@@ -66,6 +66,9 @@ Tout se rejoue avec une commande. Rien n'est fait à la main.
 | `outils/pdf_protege.py` | exemplaire de relecture chiffré, sans impression ni copie |
 | `outils/couverture.py` | couverture recto verso pour l'imprimeur |
 | `outils/couverture_pages.py` | rend la couverture en images pour le document |
+| `outils/images_impression.py` | figures à 300 dpi, sans alpha, encre plafonnée |
+| `outils/lulu.py` | bloc intérieur et couverture en un volet, pour Lulu |
+| `outils/controle_impression.py` | rejoue les contrôles de l'imprimeur |
 | `outils/controle_visuel.py` | analyse de mise en page + images des pages |
 | `build.sh` | orchestre le tout et vérifie le résultat |
 
@@ -303,12 +306,120 @@ universitaire — suppose de refaire l'intérieur et la couverture ensemble. Le
 gain principal, la longueur de ligne, est déjà obtenu par l'élargissement des
 marges.
 
-## 6. Ce que je n'ai pas pu vérifier — votre relecture est nécessaire
+## 6. Le contrôle de Lulu : trois alertes, trois causes
+
+Lulu a signalé trois défauts sur le fichier de 286 pages. Les voici, avec ce
+qui les provoquait et ce que j'ai fait.
+
+### a) Couverture d'encre trop élevée
+
+**La cause : les deux pages de couverture se trouvaient dans le fichier
+intérieur.** Elles portent un aplat bleu nuit sur près de la moitié de leur
+surface ; mesuré, cela donne 40 % de la page au-dessus de 180 % de couverture
+d'encre, avec un maximum à 241 %. Aucune page intérieure ne dépasse 1 % de sa
+surface à ce niveau.
+
+**Ce que j'ai fait, et pourquoi c'est de toute façon obligatoire.** Lulu, comme
+tout imprimeur en impression à la demande, attend **deux fichiers séparés** :
+le bloc intérieur d'un côté, la couverture de l'autre. Une couverture laissée
+dans l'intérieur serait imprimée sur le papier intérieur, sans pelliculage.
+`Lulu_interieur.pdf` compte donc **284 pages** et ne contient plus les
+couvertures.
+
+J'ai aussi plafonné la couverture d'encre des figures à 210 %, et neutralisé
+les gris sombres légèrement teintés : un gris qui n'est pas exactement neutre
+se sépare en quatre encres superposées au lieu d'une seule, ce qui alourdit
+l'encrage et fait baver les petits caractères au moindre défaut de repère.
+
+### b) Images sous 200 dpi
+
+**Dix figures sur dix-sept** étaient entre 145 et 197 points par pouce à la
+taille où elles sont placées. Toutes sont maintenant à **300 dpi**, la valeur
+de référence.
+
+**Je dois être clair sur la portée de cette correction.** Rééchantillonner ne
+crée pas de détail. Cela supprime l'escalier des contours et fait taire le
+contrôle, mais la finesse d'origine n'est pas restituée. Les figures gagneront
+vraiment à être régénérées à la bonne taille — ce qu'il faut de toute façon
+faire pour corriger les numéros incrustés dans les pixels.
+
+**Une régression que j'ai introduite et corrigée en route.** Ma première
+version accentuait les contours après agrandissement. Sur ces schémas en
+aplats, l'accentuation créait de part et d'autre des traits un halo plus
+sombre que l'original et légèrement teinté : la couverture d'encre passait de
+190 % à 300 % sur ces pixels. J'ai supprimé l'accentuation et ajouté deux
+garde-fous — un recadrage dans l'étendue de couleurs de l'image d'origine, et
+un plafond d'encre.
+
+### c) Transparence détectée
+
+Les dix-sept PNG portaient un **canal alpha**. Il était entièrement opaque,
+mais sa seule présence suffit : le moteur d'impression doit alors aplatir la
+page, avec un résultat imprévisible. Les images sont désormais en RVB sans
+canal alpha, composées sur du blanc.
+
+Vérifié sur le PDF final : aucune occurrence de `/SMask`, `/Transparency`,
+`/Group`, `/CA` ni `/ca`.
+
+### Les deux fichiers à téléverser
+
+| Fichier | Contenu |
+|---|---|
+| `Lulu_interieur.pdf` | 284 pages, 210 × 297 mm exactement, sans fond perdu |
+| `Lulu_couverture.pdf` | un seul volet : quatrième, dos, première, avec 3,175 mm de fond perdu |
+
+**La largeur du dos dépend du papier que vous choisirez.** Pour 284 pages :
+
+| Papier | Dos |
+|---|---:|
+| blanc 60 # (standard) | 16,2 mm |
+| crème 60 # (standard) | 18,0 mm |
+| couché 80 # (couleur premium) | 23,1 mm |
+
+La couverture livrée est calculée sur le blanc 60 #. **Vérifiez la valeur sur
+le gabarit que Lulu génère une fois le format et le papier choisis**, puis
+relancez `python3 outils/lulu.py --dos <millimètres>`. Une erreur de dos
+décale le titre imprimé sur la tranche.
+
+**Sur le choix d'impression.** Votre livre contient dix-sept figures en
+couleur. Si vous restez en impression standard, Lulu peut de nouveau signaler
+l'encrage ; l'option couleur premium est le choix cohérent avec le contenu.
+L'autre voie, si le coût compte, est de passer les figures en niveaux de gris :
+`python3 outils/images_nb.py` le fait, mais les schémas y perdent la
+distinction par la couleur.
+
+### Contrôle rejoué
+
+`python3 outils/controle_impression.py <fichier.pdf>` rejoue les trois
+vérifications. Résultat sur les deux fichiers livrés :
+
+```
+Lulu_interieur.pdf — 284 pages, 210 x 297 mm
+  images       : 17, aucune sous 200 dpi
+  transparence : aucune
+  encre        : aucune page au-dessus de 240 %
+
+Lulu_couverture.pdf — 1 page, 443 x 303 mm
+  images       : 1, aucune sous 200 dpi
+  transparence : aucune
+  encre        : aucune page au-dessus de 240 %
+```
+
+Une réserve sur la mesure d'encre : sans profil colorimétrique installé, la
+conversion vers le CMJN est faite par la formule qui retire le maximum de
+noir, donc celle qui donne la couverture d'encre **la plus basse possible**. Le
+moteur de Lulu sera plus sévère. C'est pourquoi j'ai plafonné les figures bien
+en dessous du seuil.
+
+---
+
+
+## 7. Ce que je n'ai pas pu vérifier — votre relecture est nécessaire
 
 C'est la section à lire avant toute diffusion. L'accès réseau sortant est bloqué
 par la politique de l'organisation ; je n'ai pu consulter aucune source externe.
 
-### 6.1 Références bibliographiques
+### 7.1 Références bibliographiques
 
 - **Les six ouvrages cités n'ont pas d'ISBN** (Russell & Norvig, Goodfellow,
   Géron, Bishop, Jurafsky & Martin, Sutton & Barto). Les 25 autres entrées sont
@@ -320,7 +431,7 @@ par la politique de l'organisation ; je n'ai pu consulter aucune source externe.
   connaissance et n'ont été confrontés à aucun catalogue. À contrôler ligne à
   ligne.
 
-### 6.2 Droit congolais (chapitre 14)
+### 7.2 Droit congolais (chapitre 14)
 
 La section repose **intégralement sur le contenu que vous m'avez fourni** —
 c'était votre consigne au prompt 6 et je m'y suis tenu. Je n'ai vérifié aucune
@@ -338,7 +449,7 @@ référence au Journal officiel. À faire confirmer par un juriste :
 **Le statut d'entrée en vigueur, les délais et les montants de sanction sont les
 points les plus susceptibles d'avoir changé depuis votre rédaction.**
 
-### 6.3 Faits que je me suis abstenu d'écrire
+### 7.3 Faits que je me suis abstenu d'écrire
 
 Vous m'aviez demandé de signaler plutôt que d'inventer. Deux affirmations
 manquent au texte :
@@ -355,7 +466,7 @@ modèle, aucune performance de produit** : ces valeurs se périment en quelques
 mois. Les ordres de grandeur qui subsistent (fenêtres de contexte, ratio
 mots/jetons) sont présentés comme approximatifs.
 
-### 6.4 Décisions qui vous reviennent
+### 7.4 Décisions qui vous reviennent
 
 Quatre points sont en attente de votre arbitrage, aucun ne bloque la
 compilation :
@@ -369,7 +480,7 @@ compilation :
    corriger porterait l'annexe A à 146 entrées. Ce n'était pas demandé.
 4. **La profondeur de la table des matières** (voir section 3).
 
-### 6.5 Un dernier mot sur le fond
+### 7.5 Un dernier mot sur le fond
 
 Je n'ai pas relu votre manuel en spécialiste de chacun des 24 domaines qu'il
 couvre. J'ai ajouté environ 60 000 mots ; ils sont cohérents avec ce que vous
@@ -381,10 +492,13 @@ technique est la plus forte.
 
 ---
 
-## 7. Ce qui est prêt
+## 8. Ce qui est prêt
 
-- `Guide_Intelligence_Artificielle_publiable.docx` — 286 pages, mise en page
-  complète, table des matières calculée, folios en pied de page.
+- `Lulu_interieur.pdf` et `Lulu_couverture.pdf` — **les deux fichiers à
+  téléverser sur Lulu**, contrôlés (voir section 6).
+- `Guide_Intelligence_Artificielle_publiable.docx` — 286 pages, couvertures
+  comprises, table des matières calculée, folios en pied de page. C'est le
+  fichier de travail, pas celui de l'imprimeur.
 - `Guide_Intelligence_Artificielle_publiable.pdf` — même document, contrôlé page
   à page.
 - `Guide_Intelligence_Artificielle.md` — la source unique.
