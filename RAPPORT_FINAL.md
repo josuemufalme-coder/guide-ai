@@ -63,6 +63,7 @@ Tout se rejoue avec une commande. Rien n'est fait à la main.
 | `outils/finitions_docx.py` | réglages de pagination impossibles en Markdown |
 | `outils/exporter_pdf.py` | export PDF avec calcul des champs |
 | `outils/images_nb.py` | tirage noir et blanc des figures (non appliqué) |
+| `outils/pdf_protege.py` | exemplaire de relecture chiffré, sans impression ni copie |
 | `outils/controle_visuel.py` | analyse de mise en page + images des pages |
 | `build.sh` | orchestre le tout et vérifie le résultat |
 

@@ -8,3 +8,6 @@ build/
 
 # Apercus de pages produits par ./build.sh --controle (48 Mo, regenerables)
 controle_pages/
+
+# Mot de passe proprietaire du PDF de relecture : ne doit jamais partir dans git
+mot_de_passe_proprietaire.txt
