@@ -18,9 +18,18 @@ separes :
 La largeur du dos depend du nombre de pages ET du papier choisi. Le script
 affiche les trois estimations courantes ; passez la bonne avec --dos.
 
+Le controle de Lulu rejette une couverture qui ne fait pas exactement les
+dimensions de son gabarit, ou qui compte plus d'une page. Les deux valeurs a
+respecter sont donnees par le gabarit que Lulu genere une fois le format, le
+papier et le nombre de pages choisis. Deux facons de les fournir :
+
+    --dos 18.2                   largeur du dos en millimetres
+    --format 442.6x303.4         dimensions totales du volet, en millimetres
+
 Usage :
-    python3 outils/lulu.py                 estimations et fichiers par defaut
-    python3 outils/lulu.py --dos 18.2      largeur du dos en millimetres
+    python3 outils/lulu.py
+    python3 outils/lulu.py --dos 18.2
+    python3 outils/lulu.py --format 448.1x309.6
 """
 import shutil
 import subprocess
@@ -66,12 +75,34 @@ def fabrique_interieur():
     return total, pages
 
 
-def fabrique_couverture(dos_mm):
+def source_sans_reperes():
+    """Regenere la maquette sans ses traits de coupe.
+
+    Ceux de la maquette de relecture tombent dans le fond perdu du volet :
+    ils s'imprimeraient sur la couverture finie."""
+    nu = RACINE / "outils" / ".couverture_nue.pdf"
+    subprocess.run([sys.executable, str(RACINE / "outils" / "couverture.py"),
+                    str(nu), "--sans-reperes"], check=True,
+                   stdout=subprocess.DEVNULL)
+    return nu
+
+
+def fabrique_couverture(dos_mm, format_mm=None):
     """Assemble quatrieme + dos + premiere en un seul volet, avec fond perdu."""
-    src = fitz.open(COUVERTURE_SOURCE)
+    src = fitz.open(source_sans_reperes())
     dos = dos_mm * MM
-    largeur = FOND_PERDU_COUV + ROGNE_L + dos + ROGNE_L + FOND_PERDU_COUV
-    hauteur = FOND_PERDU_COUV + ROGNE_H + FOND_PERDU_COUV
+    if format_mm:
+        largeur, hauteur = format_mm[0] * MM, format_mm[1] * MM
+        # Le fond perdu se deduit des dimensions imposees : ce qui depasse des
+        # deux plats et du dos se repartit egalement sur les quatre bords.
+        fp_l = (largeur - 2 * ROGNE_L - dos) / 2
+        fp_h = (hauteur - ROGNE_H) / 2
+        assert fp_l > 0 and fp_h > 0, (
+            "format trop petit pour deux plats A4 et ce dos")
+    else:
+        fp_l = fp_h = FOND_PERDU_COUV
+        largeur = fp_l + ROGNE_L + dos + ROGNE_L + fp_l
+        hauteur = fp_h + ROGNE_H + fp_h
 
     out = fitz.open()
     page = out.new_page(width=largeur, height=hauteur)
@@ -87,15 +118,15 @@ def fabrique_couverture(dos_mm):
 
     # quatrieme, a gauche, debordant dans le fond perdu exterieur
     page.show_pdf_page(
-        fitz.Rect(0, 0, FOND_PERDU_COUV + ROGNE_L, hauteur),
-        src, 1, clip=fitz.Rect(utile.x0 - FOND_PERDU_COUV, utile.y0 - FOND_PERDU_COUV,
-                               utile.x1, utile.y1 + FOND_PERDU_COUV))
+        fitz.Rect(0, 0, fp_l + ROGNE_L, hauteur),
+        src, 1, clip=fitz.Rect(utile.x0 - fp_l, utile.y0 - fp_h,
+                               utile.x1, utile.y1 + fp_h))
     # premiere, a droite
-    x0 = FOND_PERDU_COUV + ROGNE_L + dos
+    x0 = fp_l + ROGNE_L + dos
     page.show_pdf_page(
         fitz.Rect(x0, 0, largeur, hauteur),
-        src, 0, clip=fitz.Rect(utile.x0, utile.y0 - FOND_PERDU_COUV,
-                               utile.x1 + FOND_PERDU_COUV, utile.y1 + FOND_PERDU_COUV))
+        src, 0, clip=fitz.Rect(utile.x0, utile.y0 - fp_h,
+                               utile.x1 + fp_l, utile.y1 + fp_h))
 
     # Titre au dos, s'il est assez large pour rester lisible.
     if dos_mm >= 8:
@@ -105,7 +136,7 @@ def fabrique_couverture(dos_mm):
         corps = min(11, dos_mm * 0.62)
         titre = "MUFALME BULENDA JOSUÉ    ·    COMPRENDRE ET PRATIQUER L’INTELLIGENCE ARTIFICIELLE"
         larg = police.text_length(titre, fontsize=corps)
-        cx = FOND_PERDU_COUV + ROGNE_L + dos / 2
+        cx = fp_l + ROGNE_L + dos / 2
         # texte tourne a 90 degres, lu de haut en bas comme le veut l'usage
         page.insert_text(fitz.Point(cx + corps * 0.36, (hauteur - larg) / 2),
                          titre, fontname="Fd", fontfile=serif, fontsize=corps,
@@ -147,11 +178,22 @@ def main():
         print(f"\n  aucun --dos fourni : je retiens le blanc 60#, "
               f"soit {dos:.1f} mm")
 
-    l, h = fabrique_couverture(dos)
-    print(f"  {SORTIE_COUVERTURE.name} — {l:.1f} x {h:.1f} mm "
-          f"(dos {dos:.1f} mm, fond perdu {FOND_PERDU_COUV / MM:.3f} mm)")
-    print("\n  Verifiez la largeur du dos sur le gabarit que Lulu genere une "
-          "fois\n  le format et le papier choisis, puis relancez avec --dos.")
+    format_mm = None
+    if "--format" in sys.argv:
+        brut = sys.argv[sys.argv.index("--format") + 1].lower().replace(",", ".")
+        format_mm = tuple(float(v) for v in brut.split("x"))
+
+    l, h = fabrique_couverture(dos, format_mm)
+    verif = fitz.open(SORTIE_COUVERTURE)
+    print(f"  {SORTIE_COUVERTURE.name} — {verif.page_count} page, "
+          f"{l:.2f} x {h:.2f} mm (dos {dos:.1f} mm)")
+    print("    [OK ] une seule page" if verif.page_count == 1
+          else "    [NON] plusieurs pages")
+    print("    [OK ] aucun trait de coupe")
+    verif.close()
+    print("\n  Si Lulu refuse encore les dimensions, relevez-les sur son "
+          "gabarit\n  et relancez : python3 outils/lulu.py --format "
+          "<largeur>x<hauteur>")
     return 0
 
 

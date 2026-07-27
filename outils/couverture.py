@@ -100,7 +100,14 @@ def graphe(page, cx, cy, largeur_totale, hauteur, couleur):
     f.commit()
 
 
+# La maquette destinee a la relecture porte des traits de coupe ; le volet
+# assemble pour l'imprimeur ne doit en porter aucun, ils s'imprimeraient.
+AVEC_REPERES = True
+
+
 def traits_de_coupe(page):
+    if not AVEC_REPERES:
+        return
     f = page.new_shape()
     for x in (FP, FP + ROGNE_L):
         f.draw_line(fitz.Point(x, 0), fitz.Point(x, FP * 0.6))
@@ -251,7 +258,11 @@ def quatrieme(page):
 
 
 def main():
-    sortie = Path(sys.argv[1]) if len(sys.argv) > 1 else SORTIE
+    global AVEC_REPERES
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if "--sans-reperes" in sys.argv:
+        AVEC_REPERES = False
+    sortie = Path(args[0]) if args else SORTIE
     doc = fitz.open()
     premiere(doc.new_page(width=L, height=H))
     quatrieme(doc.new_page(width=L, height=H))
