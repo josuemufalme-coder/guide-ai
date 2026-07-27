@@ -1,0 +1,7 @@
+# Dossiers temporaires de travail
+tmp/
+*.tmp
+
+# Sorties de compilation (phases ulterieures)
+build/
+*.pdf
