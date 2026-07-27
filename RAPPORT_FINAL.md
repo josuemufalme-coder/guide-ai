@@ -27,7 +27,7 @@ relecture.
 | Extraits de code dans le texte | 5, illisibles | **39** | dont 30 en Python |
 | Scripts exécutables livrés | 0 | **4** | 41 ko, dans `code/` |
 | Figures | 17 | **17** | inchangé |
-| Pages du PDF final | — | **278** | A4, corps 11 pt, noir et blanc |
+| Pages du PDF final | — | **286** | A4, corps 11 pt, couvertures comprises |
 
 **Leçons étendues : les 146 leçons de chapitre, sans exception.** Aucune n'a été
 réécrite : tout a été **ajouté autour** de votre texte. Vos phrases, vos
@@ -64,6 +64,8 @@ Tout se rejoue avec une commande. Rien n'est fait à la main.
 | `outils/exporter_pdf.py` | export PDF avec calcul des champs |
 | `outils/images_nb.py` | tirage noir et blanc des figures (non appliqué) |
 | `outils/pdf_protege.py` | exemplaire de relecture chiffré, sans impression ni copie |
+| `outils/couverture.py` | couverture recto verso pour l'imprimeur |
+| `outils/couverture_pages.py` | rend la couverture en images pour le document |
 | `outils/controle_visuel.py` | analyse de mise en page + images des pages |
 | `build.sh` | orchestre le tout et vérifie le résultat |
 
@@ -80,7 +82,7 @@ titres 1 à 3 définis.
 
 **Pagination.** Vérifiée sur le PDF : les 18 pages liminaires (titre, page de
 droits, avant-propos, plan, table des matières) ne portent **aucun numéro** ; le
-corps commence à la page 19 du PDF avec le folio « 1 » et court jusqu’à « 260 ».
+corps commence à la page 22 du PDF avec le folio « 1 » et court jusqu’à « 264 ».
 Deux sections `sectPr` distinctes, la seconde avec `pgNumType w:start="1"`.
 
 **Ordre de fin vérifié**, conforme à votre demande : Annexe A — Corrigés,
@@ -90,7 +92,7 @@ Annexe B — Glossaire, Annexe C — Bibliographie, Annexe D — Index des figur
 
 ## 3. Contrôle visuel : ce que j'ai trouvé et corrigé
 
-Les 278 pages ont été converties en images et analysées ; j'en ai regardé une
+Les 286 pages ont été converties en images et analysées ; j'en ai regardé une
 quinzaine en détail, choisies pour être représentatives (page de titre, page de
 droits, table des matières, ouverture de partie, page de code, page de tableau,
 page de figure, et chacune des pages signalées).
@@ -236,12 +238,77 @@ peu de place.
 
 ---
 
-## 5. Ce que je n'ai pas pu vérifier — votre relecture est nécessaire
+## 5. La passe typographique et les normes du livre
+
+Ces corrections sont appliquées sur le document généré, et non sur le
+Markdown : les tableaux de pandoc sont alignés au caractère près, y changer la
+largeur d'une cellule casserait leur lecture.
+
+### Typographie française
+
+| | Avant | **Après** |
+|---|---:|---:|
+| Apostrophes courbes `’` | 0 | **5 039** |
+| Apostrophes droites `'` restantes | 4 859 | **59**, toutes dans du code |
+| Espaces insécables | 0 | **2 705** |
+| Lignes commençant par `:` `;` `?` `»` ou `%` | **39** | **0** |
+
+L'absence d'espace insécable était le défaut le plus visible : le PDF comptait
+trente-neuf lignes qui s'ouvraient sur un deux-points ou un guillemet fermant.
+Quatre cent soixante-douze cas demandaient un traitement particulier, la
+ponctuation s'y trouvant coupée entre deux fragments de texte — là où le gras
+commence au deux-points, par exemple.
+
+Les entiers d'au moins cinq chiffres reçoivent un séparateur de milliers
+insécable. En deçà, la règle est désactivée : elle retoucherait les années et
+les numéros d'article de loi.
+
+### Normes du livre imprimé
+
+- **Marges en vis-à-vis.** La marge de reliure alterne désormais d'une page à
+  l'autre. Vérifié sur le PDF : le bord gauche du texte passe de 91 pt sur les
+  pages impaires à 80 pt sur les paires.
+- **Justification ramenée de 76 à 74 signes** par ligne, dans la fourchette de
+  lisibilité du livre imprimé.
+- **Césure automatique française**, avec le dictionnaire `hyphen-fr`. Sans
+  elle, une justification sur 15 cm laisse des lézardes entre les mots.
+- **En-tête courant** portant le titre du chapitre en cours, sur 252 pages. Un
+  lecteur qui ouvre le livre au hasard sait où il est.
+- **Faux-titre et son verso blanc**, avant la page de titre.
+- **Mise à jour des champs à l'ouverture**, que pandoc perdait en régénérant
+  `settings.xml`. La table des matières se recalcule maintenant toute seule.
+
+### Page de droits
+
+- **ISBN 978-0-557-99817-3.** J'ai recalculé la clé de contrôle à partir des
+  douze premiers chiffres : elle vaut 3, conforme au code-barres fourni.
+- **Dépôt légal : juillet 2026.**
+
+### Couvertures intégrées
+
+La première et la quatrième sont maintenant dans le document, chacune dans sa
+propre section à marges nulles, sans folio ni en-tête, aux dimensions exactes
+de la page. Le code-barres EAN-13 est posé sur la quatrième, sur fond blanc
+franc et avec une zone de silence autour : un lecteur optique l'exige.
+
+### Ce que je n'ai pas fait, et pourquoi
+
+**Les chapitres ne démarrent pas en page de droite.** C'est la convention du
+livre imprimé, mais elle ajouterait une douzaine de pages blanches à un manuel
+de travail que l'on consulte plutôt qu'on ne le lit d'affilée. Dites-moi si
+vous la voulez : c'est un réglage, pas une reprise.
+
+**Le format reste A4.** Passer en 17 × 24 cm — le format d'un manuel
+universitaire — suppose de refaire l'intérieur et la couverture ensemble. Le
+gain principal, la longueur de ligne, est déjà obtenu par l'élargissement des
+marges.
+
+## 6. Ce que je n'ai pas pu vérifier — votre relecture est nécessaire
 
 C'est la section à lire avant toute diffusion. L'accès réseau sortant est bloqué
 par la politique de l'organisation ; je n'ai pu consulter aucune source externe.
 
-### 5.1 Références bibliographiques
+### 6.1 Références bibliographiques
 
 - **Les six ouvrages cités n'ont pas d'ISBN** (Russell & Norvig, Goodfellow,
   Géron, Bishop, Jurafsky & Martin, Sutton & Barto). Les 25 autres entrées sont
@@ -253,7 +320,7 @@ par la politique de l'organisation ; je n'ai pu consulter aucune source externe.
   connaissance et n'ont été confrontés à aucun catalogue. À contrôler ligne à
   ligne.
 
-### 5.2 Droit congolais (chapitre 14)
+### 6.2 Droit congolais (chapitre 14)
 
 La section repose **intégralement sur le contenu que vous m'avez fourni** —
 c'était votre consigne au prompt 6 et je m'y suis tenu. Je n'ai vérifié aucune
@@ -271,7 +338,7 @@ référence au Journal officiel. À faire confirmer par un juriste :
 **Le statut d'entrée en vigueur, les délais et les montants de sanction sont les
 points les plus susceptibles d'avoir changé depuis votre rédaction.**
 
-### 5.3 Faits que je me suis abstenu d'écrire
+### 6.3 Faits que je me suis abstenu d'écrire
 
 Vous m'aviez demandé de signaler plutôt que d'inventer. Deux affirmations
 manquent au texte :
@@ -288,7 +355,7 @@ modèle, aucune performance de produit** : ces valeurs se périment en quelques
 mois. Les ordres de grandeur qui subsistent (fenêtres de contexte, ratio
 mots/jetons) sont présentés comme approximatifs.
 
-### 5.4 Décisions qui vous reviennent
+### 6.4 Décisions qui vous reviennent
 
 Quatre points sont en attente de votre arbitrage, aucun ne bloque la
 compilation :
@@ -302,7 +369,7 @@ compilation :
    corriger porterait l'annexe A à 146 entrées. Ce n'était pas demandé.
 4. **La profondeur de la table des matières** (voir section 3).
 
-### 5.5 Un dernier mot sur le fond
+### 6.5 Un dernier mot sur le fond
 
 Je n'ai pas relu votre manuel en spécialiste de chacun des 24 domaines qu'il
 couvre. J'ai ajouté environ 60 000 mots ; ils sont cohérents avec ce que vous
@@ -314,15 +381,15 @@ technique est la plus forte.
 
 ---
 
-## 6. Ce qui est prêt
+## 7. Ce qui est prêt
 
-- `Guide_Intelligence_Artificielle_publiable.docx` — 278 pages, mise en page
+- `Guide_Intelligence_Artificielle_publiable.docx` — 286 pages, mise en page
   complète, table des matières calculée, folios en pied de page.
 - `Guide_Intelligence_Artificielle_publiable.pdf` — même document, contrôlé page
   à page.
 - `Guide_Intelligence_Artificielle.md` — la source unique.
 - `code/` — 4 projets exécutables, leurs jeux de données et leur vérification.
-- `controle_pages/` — les 278 pages en images, pour votre propre contrôle.
+- `controle_pages/` — les 286 pages en images, pour votre propre contrôle.
 - `build.sh` — pour tout reconstruire à l'identique.
 
 Le document original, `Guide_Intelligence_Artificielle.docx`, est intact dans le
