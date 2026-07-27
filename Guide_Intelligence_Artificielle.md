@@ -1788,6 +1788,10 @@ Un mot enfin sur les termes techniques que l\'on voit circuler — noms d\'objec
 
 La **vision par ordinateur** permet aux machines d\'analyser images et vidéos. Elle alimente le diagnostic médical, la conduite autonome, la reconnaissance faciale et bien d\'autres applications.
 
+Mesurons d\'abord la difficulté, car elle est contre-intuitive. Reconnaître un chat sur une photographie est immédiat pour un enfant de trois ans et a résisté cinquante ans à l\'informatique. La raison tient à ce qu\'une image n\'est, pour une machine, qu\'une grille de nombres. Une photographie ordinaire en comporte plusieurs centaines de milliers, et le même chat produit des grilles totalement différentes selon qu\'il est éclairé de face ou de dos, vu de profil, à moitié caché derrière une chaise, ou photographié sur un fond blanc plutôt que dans un jardin. **Deux images perçues comme identiques par un humain n\'ont presque aucun pixel en commun.** Toute la difficulté est là : il faut construire une représentation qui ignore ce qui varie et retienne ce qui compte.
+
+Une conséquence pratique en découle, et elle vous servira sur le terrain : la qualité d\'un système de vision dépend beaucoup moins de l\'architecture choisie que de la **variété des conditions représentées dans les données**. Un détecteur de défauts entraîné sur des pièces photographiées sous un éclairage constant s\'effondrera le jour où l\'atelier changera d\'ampoules. Avant de chercher un meilleur modèle, demandez-vous toujours si vos images couvrent bien les conditions réelles d\'usage.
+
 ### Leçon 2 --- Les réseaux convolutifs en profondeur
 
 Le cœur de la vision moderne est le **réseau convolutif (CNN)**, déjà rencontré. Il extrait des caractéristiques visuelles **hiérarchiques** : les premières couches détectent des bords, les suivantes des formes, puis des objets entiers.
@@ -1798,13 +1802,35 @@ Le cœur de la vision moderne est le **réseau convolutif (CNN)**, déjà rencon
 
 **Exemple --- comment un CNN voit un visage.** Les premières couches repèrent des contours et des coins. Les couches intermédiaires combinent ces traits en éléments : un œil, un nez, une bouche. Les dernières couches assemblent le tout et reconnaissent un visage. Cette construction progressive, du simple au complexe, est la clé de la vision profonde.
 
+Cette hiérarchie a une propriété remarquable, sur laquelle repose toute la leçon suivante : **les premières couches ne dépendent pas de la tâche**. Un réseau entraîné à reconnaître des chiens et un réseau entraîné à repérer des tumeurs apprennent tous deux, dans leurs premières couches, des détecteurs de contours et de textures — parce que ces motifs élémentaires composent toutes les images du monde. Ce n\'est que dans les couches profondes que la spécialisation apparaît. C\'est exactement ce qui rend l\'apprentissage par transfert possible, et c\'est une chance considérable pour qui n\'a ni des millions d\'images ni des semaines de calcul.
+
+Une autre propriété mérite d\'être nommée : l\'**invariance par translation**. Comme le même filtre est promené sur toute l\'image, un contour est détecté qu\'il se trouve en haut à gauche ou en bas à droite. Le réseau n\'a donc pas à réapprendre chaque motif à chaque position, ce qui explique l\'économie de paramètres calculée au chapitre 6. Notez toutefois la limite : cette invariance vaut pour le **déplacement**, pas pour la rotation ni le changement d\'échelle. Un chat à l\'envers reste difficile, et c\'est précisément pour cela qu\'on augmente les données par rotations et recadrages.
+
 ### Leçon 3 --- Architectures avancées et apprentissage par transfert
 
 On utilise des architectures éprouvées (ResNet, EfficientNet) et surtout l\'**apprentissage par transfert** : réutiliser un réseau déjà entraîné sur des millions d\'images pour une nouvelle tâche, ce qui économise données et calcul. Les **Vision Transformers (ViT)** appliquent quant à eux l\'attention aux images.
 
+L\'apprentissage par transfert mérite d\'être détaillé, car c\'est de très loin la technique la plus utile de ce chapitre pour un praticien ordinaire. Le principe : on prend un réseau déjà entraîné sur un immense corpus généraliste, on **remplace sa dernière couche** par une couche adaptée à nos classes, et l\'on réentraîne. Deux régimes existent. Soit on **gèle** tout le réseau sauf la dernière couche : très rapide, très peu de données nécessaires, et suffisant quand vos images ressemblent à celles du corpus d\'origine. Soit on **dégèle progressivement** les couches profondes avec un taux d\'apprentissage réduit : plus coûteux, mais nécessaire quand votre domaine s\'éloigne du corpus — l\'imagerie médicale ou satellitaire, par exemple, dont les textures n\'ont rien de commun avec des photographies du quotidien.
+
+L\'ordre de grandeur vaut d\'être retenu : là où un entraînement depuis zéro réclame des dizaines ou des centaines de milliers d\'images étiquetées, un transfert bien conduit donne souvent des résultats exploitables avec **quelques centaines d\'exemples par classe**. C\'est ce qui met la vision par ordinateur à la portée d\'une organisation modeste, et c\'est ce que vous devez proposer avant toute autre chose.
+
+Un mot enfin sur les Vision Transformers, pour situer le débat. Ils découpent l\'image en petits carrés, les traitent comme les mots d\'une phrase, et leur appliquent l\'attention du chapitre 9. Leur avantage est de relier d\'emblée des régions éloignées, là où un convolutif doit empiler des couches pour élargir son champ de vision. Leur inconvénient est qu\'ils ne supposent rien sur la structure des images — ni localité, ni invariance par translation — et doivent donc tout apprendre, ce qui exige beaucoup plus de données. La règle pratique est simple : à grande échelle de données, les Transformers l\'emportent ; à échelle modeste, les convolutifs restent le choix raisonnable.
+
 ### Leçon 4 --- Au-delà de la classification
 
 La vision ne se limite pas à classer une image. La **détection d\'objets** (YOLO, R-CNN) localise et identifie plusieurs objets ; la **segmentation** classe chaque pixel. Applications : imagerie médicale, lecture automatique de documents (OCR), véhicules autonomes.
+
+Ces trois tâches forment une gradation qu\'il faut avoir en tête, car elles ne coûtent pas la même chose. La **classification** répond « qu\'y a-t-il sur cette image ? » et rend une étiquette. La **détection** répond « où sont les objets, et lesquels ? » et rend des rectangles accompagnés d\'étiquettes. La **segmentation** répond « à quoi appartient chaque pixel ? » et rend un masque au pixel près. Le coût d\'annotation suit la même progression, et il est brutal : étiqueter une image prend quelques secondes, y tracer des rectangles quelques minutes, en colorier chaque pixel parfois une heure. **Avant de choisir une tâche, chiffrez son annotation** — c\'est très souvent elle, et non le modèle, qui décide de la faisabilité du projet.
+
+**Exemple chiffré --- comment on mesure une détection.** Dire qu\'une boîte est « juste » n\'aurait aucun sens : elle ne coïncidera jamais exactement avec la vérité. On mesure donc leur recouvrement par l\'**intersection sur union**, et le calcul est à la portée de tous.
+
+Supposons que la vérité soit un rectangle allant de (10, 10) à (50, 40), soit 40 × 30 = **1 200 pixels²**. Le modèle prédit un rectangle de même taille, mais décalé, allant de (20, 15) à (60, 45).
+
+Leur **intersection** s\'étend de 20 à 50 en largeur et de 15 à 40 en hauteur, soit 30 × 25 = **750 pixels²**. Leur **union** vaut 1 200 + 1 200 − 750 = **1 650 pixels²**. Le rapport donne 750 / 1 650 = **45,5 %**.
+
+Or le seuil d\'acceptation usuel est de 50 %. Cette prédiction, qui a pourtant bien trouvé l\'objet et se trompe seulement d\'un léger décalage, est donc **comptée comme un échec**. Une prédiction plus serrée, allant de (12, 12) à (52, 42), atteint quant à elle **79,6 %** et passe sans difficulté.
+
+Retenez-en deux choses. D\'abord, un score de détection n\'a de sens qu\'accompagné du seuil employé — annoncer « 90 % de détection » sans préciser à quel recouvrement ne veut rien dire. Ensuite, **ce seuil est une décision métier**. Pour compter des véhicules sur un parking, un recouvrement approximatif suffit. Pour guider un instrument chirurgical, il faut être bien plus exigeant. Comme le seuil de classification du chapitre 5, ce réglage vous appartient.
 
 ### Leçon 5 --- Applications concrètes de la vision
 
@@ -1823,6 +1849,14 @@ Pour mesurer la portée de la vision par ordinateur, voici ses grands domaines d
 -   **Commerce** : caisses automatiques, analyse du parcours client, gestion des stocks.
 
 **Exemple --- vision et imagerie médicale.** Un modèle entraîné sur des milliers de radiographies peut signaler au radiologue les zones suspectes, comme un second regard infatigable. Il ne remplace pas le médecin (la décision reste humaine), mais il réduit le risque qu\'une anomalie passe inaperçue. **À retenir** : en vision comme ailleurs, l\'IA assiste le professionnel plutôt qu\'elle ne le supplante.
+
+Ces applications partagent une caractéristique qu\'il faut savoir repérer : **la vision fonctionne bien là où le cadrage est contraint**. Une chaîne de production offre un éclairage constant, une distance fixe, un fond identique — conditions idéales. Une caméra de rue offre la pluie, la nuit, les reflets, les occlusions — conditions hostiles. Le même modèle passera de 99 % à 70 % de justesse d\'un contexte à l\'autre. Quand on vous présentera une performance de vision, votre première question devra donc être : **dans quelles conditions a-t-elle été mesurée ?**
+
+Je dois aussi vous mettre en garde sur deux points, car ce chapitre est celui où la technique croise le plus vite le droit et l\'éthique.
+
+La **reconnaissance faciale**, d\'abord. Techniquement mûre, elle est juridiquement encadrée de façon stricte dans de nombreux pays, et son usage en espace public fait l\'objet de restrictions particulières. Les performances y varient en outre sensiblement selon les groupes de population représentés — ou sous-représentés — dans les données d\'entraînement. Ne déployez jamais ce type de système sans avoir vérifié le cadre légal applicable et mesuré les performances **par sous-groupe**, et non seulement en moyenne. Nous y reviendrons au chapitre 14.
+
+L\'**imagerie médicale**, ensuite. Un modèle qui signale des zones suspectes est un dispositif d\'aide au diagnostic, soumis à ce titre à une réglementation propre. Et l\'expérience montre qu\'un tel outil déplace le risque plutôt qu\'il ne le supprime : un praticien qui fait confiance à un second regard infatigable relâche insensiblement sa propre vigilance. Le gain réel dépend donc autant de la manière dont l\'outil s\'insère dans le geste professionnel que de sa performance brute.
 
 ### Exercices dirigés
 
@@ -1860,17 +1894,44 @@ L\'**apprentissage par renforcement (RL)** est le paradigme par lequel un agent 
 
 **Définition --- Politique.** Stratégie de l\'agent : règle qui, à chaque état de l\'environnement, indique quelle action choisir. L\'objectif du RL est d\'apprendre la politique qui maximise la récompense cumulée.
 
+Ce paradigme diffère des précédents sur un point qui change tout, et qu\'il faut saisir avant d\'aller plus loin. En apprentissage supervisé, on vous donne la bonne réponse pour chaque exemple. Ici, **personne ne vous dit jamais quelle était la bonne action** : on vous dit seulement, après coup, si le résultat était bon. Et le plus souvent avec un retard considérable — aux échecs, la seule information reçue est « partie gagnée » ou « partie perdue », après quarante coups dont on ignore lesquels furent bons.
+
+Trois difficultés en découlent, et elles expliquent pourquoi le renforcement est le plus exigeant des trois paradigmes. Le **crédit différé** : à quel coup attribuer la victoire ? Les **données que l\'agent fabrique lui-même** : contrairement au supervisé où le jeu de données est donné, ici l\'agent produit ses propres expériences par ses actions, si bien qu\'une mauvaise politique explore mal et apprend mal, en cercle. Et enfin l\'**absence de vérité fixe** : ce qu\'il faut faire dépend de ce que l\'agent sait déjà faire.
+
+Cela dit, une remarque pour éviter une méprise fréquente. Le renforcement fascine parce qu\'il évoque l\'autonomie, mais il n\'est pas le paradigme le plus utile en entreprise — de très loin. Sa dernière contribution majeure, en revanche, vous concerne directement : c\'est par renforcement sur des préférences humaines que les grands modèles de langage sont **alignés**, comme évoqué au chapitre 10. Des humains classent des réponses, un modèle apprend à prédire ces préférences, et le modèle de langage est ajusté pour les maximiser. Le cadre que vous étudiez ici est donc celui qui rend utilisables les assistants que vous emploierez au chapitre 18.
+
 ### Leçon 2 --- Le cadre formel : états, actions, récompenses
 
 À chaque instant, l\'agent observe un **état**, choisit une **action**, et reçoit une **récompense** et un nouvel état. Le but est de maximiser la récompense **cumulée sur le long terme**, pas seulement immédiate. Le cadre mathématique est le **processus de décision markovien (MDP)**, et les **équations de Bellman** en sont l\'outil de résolution.
 
 **Exemple --- récompense immédiate contre long terme.** Un agent qui joue aux échecs pourrait être tenté de capturer une pièce tout de suite (récompense immédiate), mais cela peut mener à la défaite. Le bon agent sacrifie parfois une pièce pour gagner la partie. Apprendre à privilégier la récompense à long terme est tout l\'enjeu du renforcement.
 
+Comment traduit-on « long terme » en mathématiques ? Par un simple coefficient, appelé **facteur d\'actualisation**, qui déprécie les récompenses lointaines. Avec un coefficient de 0,9, une récompense de 10 obtenue immédiatement vaut 10 ; obtenue dans une étape, elle vaut 9 ; dans deux étapes, 8,10 ; dans cinq, 5,90. L\'agent maximise la somme de ces valeurs dépréciées.
+
+Ce réglage n\'a rien d\'anodin : il définit l\'horizon de l\'agent. Un coefficient proche de zéro produit un agent myope, qui saisit tout ce qui passe et ne planifie rien. Un coefficient proche de un produit un agent patient, capable de sacrifier une pièce pour gagner la partie, mais aussi beaucoup plus lent à apprendre — car il doit tenir compte de conséquences très éloignées. Choisir ce coefficient, c\'est décider de la profondeur de vue de votre agent.
+
+Un mot sur l\'hypothèse markovienne, que le nom du cadre met en avant sans qu\'on explique jamais ce qu\'elle signifie. Elle affirme que **l\'état présent contient tout ce qu\'il faut savoir** pour décider, et que le passé n\'apporte rien de plus. Aux échecs, c\'est vrai : la position sur l\'échiquier suffit, l\'historique des coups est sans importance. En conduite, c\'est faux si l\'état se réduit à une photographie — une image ne dit pas si le véhicule devant vous accélère ou freine. On enrichit alors l\'état, en y intégrant plusieurs images successives ou les vitesses. Retenez la question : **mon état contient-il assez d\'information pour décider ?** Si la réponse est non, aucun algorithme ne rattrapera ce manque.
+
 ### Leçon 3 --- Algorithmes et le dilemme exploration/exploitation
 
 Nous verrons les méthodes sans modèle (**Q-learning**, SARSA) puis profondes (**Deep Q-Networks**, gradient de politique). Un enjeu central : le compromis **exploration / exploitation**.
 
 **Notion essentielle ---** L\'agent doit-il exploiter ce qu\'il connaît déjà (la stratégie qui marche), ou explorer pour découvrir peut-être mieux ? Trop d\'exploitation, il stagne ; trop d\'exploration, il ne capitalise jamais. Tout l\'art est dans l\'équilibre. C\'est le même dilemme que choisir entre son restaurant favori et en essayer un nouveau.
+
+**Exemple chiffré --- comment la récompense remonte le couloir.** Voici ce que fait réellement le Q-learning, et le voir en chiffres explique d\'un coup pourquoi il exige tant d\'essais. Imaginons un couloir de trois cases, S1 → S2 → S3, au bout duquel une porte rapporte **+10**. Aucune récompense ailleurs. L\'agent démarre en ignorant tout : sa table de valeurs est à zéro partout. Prenons un facteur d\'actualisation de 0,9.
+
+| | Q(S1) | Q(S2) | Q(S3) |
+|---|---:|---:|---:|
+| **Au départ** | 0 | 0 | 0 |
+| **Après l\'épisode 1** | 0 | 0 | **10** |
+| **Après l\'épisode 2** | 0 | **9** | 10 |
+| **Après l\'épisode 3** | **8,1** | 9 | 10 |
+
+Suivez la progression. Au premier parcours, l\'agent ne découvre la récompense qu\'à la toute dernière case : seul S3 apprend quelque chose. Il faut un **deuxième** parcours complet pour que S2 découvre qu\'il mène à une case devenue intéressante, et un **troisième** pour que l\'information atteigne enfin S1. La récompense ne se diffuse pas d\'un coup : **elle remonte le couloir d\'une case par épisode**.
+
+Trois cases, trois épisodes. Sur un jeu qui compte des millions d\'états et des parties de quarante coups, vous comprenez immédiatement pourquoi le renforcement réclame des millions de parties là où un apprentissage supervisé se contenterait de quelques milliers d\'exemples. Ce n\'est pas une faiblesse d\'algorithme : c\'est la conséquence directe du fait que **l\'information est rare et arrive tard**.
+
+Vous voyez aussi pourquoi l\'exploration est vitale. Un agent qui exploiterait immédiatement la première stratégie fonctionnant un peu ne parcourrait jamais le couloir jusqu\'au bout, et sa table resterait à zéro pour toujours. En pratique, on lui impose donc d\'agir au hasard une fraction du temps — souvent beaucoup au début, de moins en moins ensuite, à mesure que ses estimations deviennent fiables.
 
 ### Leçon 4 --- Applications et limites du renforcement
 
@@ -1887,6 +1948,12 @@ Le renforcement brille dans certains domaines et peine dans d\'autres. Savoir o�
 -   **Limites** : le RL exige énormément d\'essais, ce qui est coûteux ou dangereux dans le monde réel.
 
 **Exemple --- pourquoi on simule.** Pour apprendre à un robot à marcher par renforcement, il faut des milliers de chutes. Les provoquer sur un vrai robot le détruirait. On entraîne donc d\'abord l\'agent dans une **simulation**, où les chutes ne coûtent rien, avant de transférer vers le monde réel. **À retenir** : le coût des essais conditionne la faisabilité d\'une approche par renforcement.
+
+Le passage de la simulation au monde réel mérite qu\'on s\'y arrête, car c\'est là que la plupart des projets échouent. Une simulation est toujours une approximation : les frottements y sont modélisés grossièrement, les capteurs y sont parfaits, les imprévus n\'existent pas. Un agent entraîné dans ce monde propre y devient excellent — et se révèle souvent médiocre dès qu\'on le transfère, parce qu\'il a appris à exploiter les particularités de la simulation autant que la physique du problème. On appelle cet écart le fossé de la simulation au réel, et on le réduit en **randomisant délibérément la simulation** : on fait varier au hasard les masses, les frottements, les délais, le bruit des capteurs. L\'agent, ne pouvant plus se fier à des valeurs précises, apprend une stratégie robuste plutôt qu\'un exploit sur mesure.
+
+Un second piège guette, plus insidieux, et il porte un nom : le **détournement de la récompense**. L\'agent optimise exactement ce que vous avez écrit, jamais ce que vous vouliez dire. Récompensez un robot nettoyeur pour la quantité de saleté ramassée, et vous risquez de le voir renverser la poubelle pour la ramasser à nouveau. Récompensez un agent de jeu sur le score plutôt que sur la victoire, et il tournera indéfiniment sur une zone de points sans jamais terminer la partie. Ce ne sont pas des bugs : l\'agent fait précisément ce qu\'on lui a demandé. **Concevoir la fonction de récompense est la partie la plus difficile et la moins technique du renforcement**, et c\'est celle sur laquelle il faut passer le plus de temps.
+
+D\'où un critère de faisabilité que je vous propose d\'appliquer avant d\'engager un projet de ce type. Quatre conditions doivent être réunies : il faut pouvoir **simuler** à bas coût, pouvoir **définir une récompense** qui reflète honnêtement l\'objectif, disposer d\'un problème réellement **séquentiel** — où les décisions s\'enchaînent et s\'influencent —, et accepter un agent dont le comportement sera **difficile à expliquer**. Si l\'une de ces quatre conditions manque, un apprentissage supervisé ou une simple optimisation vous mèneront au but plus vite et plus sûrement.
 
 ### Exercices dirigés
 
