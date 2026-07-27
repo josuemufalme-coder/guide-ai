@@ -137,8 +137,15 @@ def fabrique_couverture(dos_mm, format_mm=None):
         titre = "MUFALME BULENDA JOSUÉ    ·    COMPRENDRE ET PRATIQUER L’INTELLIGENCE ARTIFICIELLE"
         larg = police.text_length(titre, fontsize=corps)
         cx = fp_l + ROGNE_L + dos / 2
-        # texte tourne a 90 degres, lu de haut en bas comme le veut l'usage
-        page.insert_text(fitz.Point(cx + corps * 0.36, (hauteur - larg) / 2),
+        # Texte tourne a 90 degres, lu de haut en bas comme le veut l'usage
+        # francais. Avec cette rotation, le haut des lettres pointe vers la
+        # droite : la ligne de base doit donc etre posee A GAUCHE du milieu du
+        # dos, decalee de la demi-hauteur d'oeil, sans quoi le titre n'est pas
+        # centre sur la tranche.
+        montant = police.ascender * corps
+        descendant = abs(police.descender) * corps
+        base = cx - (montant - descendant) / 2
+        page.insert_text(fitz.Point(base, (hauteur - larg) / 2),
                          titre, fontname="Fd", fontfile=serif, fontsize=corps,
                          color=(1, 1, 1), rotate=270)
 
@@ -174,9 +181,9 @@ def main():
     if "--dos" in sys.argv:
         dos = float(sys.argv[sys.argv.index("--dos") + 1])
     else:
-        dos = pages * PAPIERS["blanc 60# (standard)"] * 25.4
-        print(f"\n  aucun --dos fourni : je retiens le blanc 60#, "
-              f"soit {dos:.1f} mm")
+        dos = pages * PAPIERS["creme 60# (standard)"] * 25.4
+        print(f"\n  aucun --dos fourni : je retiens le creme 60#, "
+              f"soit {dos:.1f} mm — celui retenu pour cet ouvrage")
 
     format_mm = None
     if "--format" in sys.argv:

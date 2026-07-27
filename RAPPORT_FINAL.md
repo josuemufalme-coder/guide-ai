@@ -366,20 +366,22 @@ Vérifié sur le PDF final : aucune occurrence de `/SMask`, `/Transparency`,
 | Fichier | Contenu |
 |---|---|
 | `Lulu_interieur.pdf` | 284 pages, 210 × 297 mm exactement, sans fond perdu |
-| `Lulu_couverture.pdf` | un seul volet : quatrième, dos, première, avec 3,175 mm de fond perdu |
+| `Lulu_couverture.pdf` | un seul volet de 444,35 × 303,35 mm : quatrième, dos de 18 mm, première, avec 3,175 mm de fond perdu |
 
 **La largeur du dos dépend du papier que vous choisirez.** Pour 284 pages :
 
 | Papier | Dos |
 |---|---:|
 | blanc 60 # (standard) | 16,2 mm |
-| crème 60 # (standard) | 18,0 mm |
+| **crème 60 # — retenu** | **18,0 mm** |
 | couché 80 # (couleur premium) | 23,1 mm |
 
-La couverture livrée est calculée sur le blanc 60 #. **Vérifiez la valeur sur
-le gabarit que Lulu génère une fois le format et le papier choisis**, puis
-relancez `python3 outils/lulu.py --dos <millimètres>`. Une erreur de dos
-décale le titre imprimé sur la tranche.
+**Le dos retenu est de 18,0 mm**, confirmé sur le gabarit de Lulu. La
+couverture livrée fait donc 444,35 × 303,35 mm. Pour un autre papier :
+`python3 outils/lulu.py --dos <millimètres>`. Une erreur de dos ne décale pas
+seulement le titre sur la tranche, elle déporte le pli, donc les deux plats.
+
+Le titre du dos est centré à 0,04 mm près, mesuré sur le fichier produit.
 
 **Sur le choix d'impression.** Votre livre contient dix-sept figures en
 couleur. Si vous restez en impression standard, Lulu peut de nouveau signaler
