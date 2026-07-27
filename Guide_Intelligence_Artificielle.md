@@ -388,7 +388,7 @@ L\'algorithme central, que vous reverrez dans absolument tous les cours suivants
 
 ![](./media/image2.png){width="4.8in" height="3.0462510936132983in"}
 
-*Figure 3.3 --- La descente de gradient : à chaque étape, on descend la pente vers le minimum du coût.*
+*Figure 3.1 --- La descente de gradient : à chaque étape, on descend la pente vers le minimum du coût.*
 
 **Exemple --- la métaphore du brouillard.** Imaginez que vous êtes sur une colline dans un épais brouillard et que vous voulez descendre. Vous ne voyez pas le bas, mais vous sentez la pente sous vos pieds. La stratégie : faire un pas dans la direction qui descend le plus, puis recommencer. C\'est exactement la descente de gradient. Le **taux d\'apprentissage** est la taille de vos pas : trop grands, vous risquez de dépasser le creux ; trop petits, vous mettrez une éternité à descendre.
 
@@ -569,7 +569,7 @@ Nous voici au cœur du sujet. Vous avez les fondations ; il est temps de répond
 
 ![](./media/image3.png){width="6.2in" height="2.340867235345582in"}
 
-*Figure 2.2 --- Les trois paradigmes : supervisé (données étiquetées), non supervisé (regroupement), renforcement (essai-erreur).*
+*Figure 5.1 --- Les trois paradigmes : supervisé (données étiquetées), non supervisé (regroupement), renforcement (essai-erreur).*
 
 ## Chapitre 5 --- Apprentissage automatique supervisé et non supervisé
 
@@ -619,7 +619,7 @@ Construire un modèle est facile ; savoir s\'il est bon est l\'enjeu réel. Le b
 
 ![](./media/image4.png){width="6.2in" height="2.300246062992126in"}
 
-*Figure 2.3 --- À gauche, le modèle sous-apprend ; au centre, il généralise bien ; à droite, il sur-apprend.*
+*Figure 5.2 --- À gauche, le modèle sous-apprend ; au centre, il généralise bien ; à droite, il sur-apprend.*
 
 **Définition --- Sur-apprentissage (overfitting).** Situation où un modèle trop complexe mémorise le bruit des données d\'entraînement au lieu d\'en capturer la tendance générale. Il excelle sur l\'entraînement mais échoue sur les données nouvelles.
 
@@ -695,7 +695,7 @@ L\'apprentissage profond s\'inspire --- de loin --- du cerveau. Le **neurone art
 
 ![](./media/image5.png){width="5.2in" height="2.620716316710411in"}
 
-*Figure 3.2 --- Un neurone : entrées pondérées, sommées, puis transformées par une fonction d\'activation.*
+*Figure 6.1 --- Un neurone : entrées pondérées, sommées, puis transformées par une fonction d\'activation.*
 
 **Définition --- Fonction d\'activation.** Fonction non linéaire appliquée à la sortie d\'un neurone. C\'est elle qui permet au réseau de modéliser des relations complexes ; sans elle, un empilement de neurones ne ferait qu\'une simple opération linéaire.
 
@@ -703,7 +703,7 @@ En empilant les neurones en **couches**, on obtient un réseau. L\'information t
 
 ![](./media/image6.png){width="5.4in" height="4.494237751531059in"}
 
-*Figure 3.1 --- Un réseau dense : chaque neurone est connecté à tous ceux de la couche suivante.*
+*Figure 6.2 --- Un réseau dense : chaque neurone est connecté à tous ceux de la couche suivante.*
 
 ### Leçon 2 --- Comment le réseau apprend : la rétropropagation
 
@@ -807,7 +807,7 @@ Un modèle qui brille dans votre carnet Jupyter est inutile s\'il ne fonctionne 
 
 ![](./media/image7.png){width="4.2in" height="4.328899825021872in"}
 
-*Figure 4.1 --- Le MLOps est un cycle : données, entraînement, validation, déploiement, surveillance, puis on recommence.*
+*Figure 7.1 --- Le MLOps est un cycle : données, entraînement, validation, déploiement, surveillance, puis on recommence.*
 
 **Définition --- MLOps.** Ensemble de pratiques visant à déployer, surveiller et maintenir de façon fiable des modèles de machine learning en production, en automatisant leur cycle de vie.
 
@@ -963,7 +963,7 @@ En 2017, une architecture a tout changé : le **Transformer**, fondé sur le mé
 
 ![](./media/image8.png){width="3.8in" height="3.8965693350831145in"}
 
-*Figure 5.1 --- Le Transformer empile des blocs d\'attention et de réseaux feed-forward.*
+*Figure 9.1 --- Le Transformer empile des blocs d\'attention et de réseaux feed-forward.*
 
 **Exemple --- le rôle de l\'attention.** Dans la phrase « la banque était au bord de la rivière », le mot « banque » est ambigu. L\'attention permet au modèle de regarder « rivière » pour comprendre qu\'il s\'agit d\'une berge, et non d\'un établissement financier. Cette capacité à relier les mots entre eux fait toute la puissance des Transformers.
 
@@ -1065,7 +1065,7 @@ Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « 
 
 ![](./media/image9.png){width="6.4in" height="2.3115474628171477in"}
 
-*Figure 7.1 --- Le RAG : on recherche d\'abord les documents pertinents, puis le modèle génère une réponse fondée sur eux.*
+*Figure 10.1 --- Le RAG : on recherche d\'abord les documents pertinents, puis le modèle génère une réponse fondée sur eux.*
 
 **Piège fréquent ---** Un LLM produit des réponses fluides et convaincantes même quand elles sont fausses. Ne confondez jamais l\'aisance du style avec l\'exactitude du contenu : toute information critique doit être vérifiée.
 
@@ -1157,7 +1157,7 @@ Le cœur de la vision moderne est le **réseau convolutif (CNN)**, déjà rencon
 
 ![](./media/image10.png){width="6.4in" height="2.1595406824146983in"}
 
-*Figure 6.1 --- Un CNN alterne convolutions et sous-échantillonnages avant de classer l\'image.*
+*Figure 11.1 --- Un CNN alterne convolutions et sous-échantillonnages avant de classer l\'image.*
 
 **Exemple --- comment un CNN voit un visage.** Les premières couches repèrent des contours et des coins. Les couches intermédiaires combinent ces traits en éléments --- un œil, un nez, une bouche. Les dernières couches assemblent le tout et reconnaissent un visage. Cette construction progressive, du simple au complexe, est la clé de la vision profonde.
 
@@ -1223,7 +1223,7 @@ L\'**apprentissage par renforcement (RL)** est le paradigme par lequel un agent 
 
 ![](./media/image11.png){width="5.0in" height="2.9844094488188975in"}
 
-*Figure 8.1 --- L\'agent agit sur l\'environnement et en reçoit un nouvel état et une récompense, en boucle.*
+*Figure 12.1 --- L\'agent agit sur l\'environnement et en reçoit un nouvel état et une récompense, en boucle.*
 
 **Définition --- Politique.** Stratégie de l\'agent : règle qui, à chaque état de l\'environnement, indique quelle action choisir. L\'objectif du RL est d\'apprendre la politique qui maximise la récompense cumulée.
 
@@ -1303,7 +1303,7 @@ Pour qu\'un agent agisse, il doit se connecter à des outils et des données. Hi
 
 ![](./media/image12.png){width="6.4in" height="2.8461909448818896in"}
 
-*Figure 9.1 --- L\'agent IA orchestre des outils externes via la couche universelle du protocole MCP.*
+*Figure 13.1 --- L\'agent IA orchestre des outils externes via la couche universelle du protocole MCP.*
 
 **Définition --- Model Context Protocol (MCP).** Standard ouvert qui définit une manière universelle de connecter un agent IA à des outils, des données et des services, remplaçant les intégrations sur mesure par un protocole unique.
 
@@ -1315,7 +1315,7 @@ Les modèles **multimodaux** traitent et combinent plusieurs types de données -
 
 ![](./media/image13.png){width="6.2in" height="2.445462598425197in"}
 
-*Figure 9.2 --- Un modèle multimodal aligne plusieurs modalités dans un espace commun pour comprendre et générer.*
+*Figure 13.2 --- Un modèle multimodal aligne plusieurs modalités dans un espace commun pour comprendre et générer.*
 
 Ces modèles projettent les différentes modalités dans un **espace de représentation commun**, ce qui leur permet d\'aligner par exemple une phrase et l\'image correspondante. Applications : assistants visuels, analyse de documents complexes, et modèles **vision-langage-action (VLA)** qui permettent à un robot d\'interpréter une consigne orale et d\'exécuter des actions physiques.
 
@@ -1639,7 +1639,7 @@ Un **assistant IA** est une application bâtie sur un grand modèle de langage, 
 
 ![](./media/image14.png){width="6.2in" height="2.815936132983377in"}
 
-*Figure 10.2 --- Les grands assistants et leurs points forts respectifs.*
+*Figure 18.1 --- Les grands assistants et leurs points forts respectifs.*
 
 ### Leçon 2 --- ChatGPT : le couteau suisse
 
@@ -1747,7 +1747,7 @@ Un prompt efficace comporte généralement cinq composantes. Vous n\'en utiliser
 
 ![](./media/image15.png){width="5.6in" height="3.5781047681539806in"}
 
-*Figure 10.1 --- Les cinq composantes d\'un prompt professionnel.*
+*Figure 19.1 --- Les cinq composantes d\'un prompt professionnel.*
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1877,7 +1877,7 @@ Tout workflow n8n se compose de trois types d\'éléments que vous devez bien di
 
 ![](./media/image16.png){width="6.6in" height="2.118919510061242in"}
 
-*Figure 11.1 --- Un workflow type : un déclencheur, des traitements IA, puis une action finale.*
+*Figure 20.1 --- Un workflow type : un déclencheur, des traitements IA, puis une action finale.*
 
 ### Leçon 4 --- Un exemple complet : le tri intelligent des emails
 
@@ -1995,7 +1995,7 @@ Une organisation n\'adopte pas l\'IA d\'un coup : elle gravit des paliers. Compr
 
 ![](./media/image17.png){width="5.6in" height="3.14581583552056in"}
 
-*Figure 12.1 --- Les quatre paliers de la maturité IA d\'une organisation.*
+*Figure 21.1 --- Les quatre paliers de la maturité IA d\'une organisation.*
 
 **L\'ESSENTIEL À RETENIR**
 
