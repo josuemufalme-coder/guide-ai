@@ -509,6 +509,10 @@ Python est le langage de l\'IA pour sa simplicité et son écosystème ; la POO 
 
 Certains voudraient « faire de l\'IA » sans mathématiques. C\'est une illusion. Les algorithmes que vous utiliserez ne sont que des mathématiques appliquées. Sans elles, vous resterez un simple utilisateur d\'outils, incapable de comprendre pourquoi un modèle échoue ou comment l\'améliorer. Rassurez-vous : nous n\'avons besoin que de quatre domaines, que je vais relier en permanence à leur usage concret.
 
+Précisons tout de suite ce qu\'on vous demande, car la peur des mathématiques vient presque toujours d\'un malentendu sur le niveau requis. Il ne s\'agit pas de démontrer des théorèmes, ni de calculer à la main : votre ordinateur s\'en charge, et bien mieux que vous. Il s\'agit de **savoir lire une formule et comprendre ce qu\'elle fait**. La différence est immense. Quand un modèle refuse de converger, celui qui sait que le gradient indique une direction et que le taux d\'apprentissage en règle la longueur trouve la cause en deux minutes ; celui qui l\'ignore change des réglages au hasard pendant trois jours.
+
+Prenez donc ce chapitre comme un chapitre de **vocabulaire**, pas de calcul. Vous n\'aurez jamais à inverser une matrice à la main, mais vous devrez comprendre pourquoi un produit matriciel échoue quand les dimensions ne s\'accordent pas. Vous n\'aurez jamais à dériver une fonction de coût, mais vous devrez savoir ce que le résultat signifie. C\'est un investissement modeste au regard de ce qu\'il débloque, et je l\'ai réduit au strict nécessaire.
+
 **L\'ESSENTIEL À RETENIR**
 
 -   **Algèbre linéaire** : le langage des données et des paramètres.
@@ -529,7 +533,13 @@ Vous maîtriserez les opérations : addition, multiplication de matrices, transp
 
 **Définition --- le produit scalaire mesure la similarité.** Considérez deux vecteurs représentant les goûts de deux personnes en cinéma. Si leur produit scalaire est élevé, leurs goûts sont alignés ; s\'il est proche de zéro, ils n\'ont rien en commun. Les systèmes de recommandation reposent directement sur cette idée.
 
+Mettons-y des nombres, c\'est plus parlant qu\'un principe. Trois amis notent trois films de 0 à 5. Alice donne (5, 1, 4), Bruno (4, 2, 5) et Clara (0, 5, 1). Le produit scalaire d\'Alice et Bruno vaut 5×4 + 1×2 + 4×5 = 20 + 2 + 20 = **42**. Celui d\'Alice et Clara vaut 5×0 + 1×5 + 4×1 = 0 + 5 + 4 = **9**. Le premier est très supérieur au second : Alice et Bruno se ressemblent, Alice et Clara non. Voilà, sous sa forme la plus nue, le calcul qui vous recommande un film ce soir. Notez qu\'il ne comprend rien au cinéma — il ne fait qu\'aligner des nombres.
+
+Une règle, maintenant, qui vous évitera la moitié des messages d\'erreur de votre vie de praticien. Pour multiplier deux matrices, **le nombre de colonnes de la première doit égaler le nombre de lignes de la seconde**, et le résultat prend les lignes de la première et les colonnes de la seconde. En notation de formes : (n, m) × (m, p) donne (n, p). Le `m` doit se correspondre et il disparaît. Quand votre programme vous annoncera une incompatibilité de dimensions — et il le fera —, c\'est cette règle qu\'il vous rappellera. Prenez l\'habitude d\'écrire les formes sur un papier avant de coder : trente secondes qui en économisent trente minutes.
+
 Nous étudierons aussi les **valeurs et vecteurs propres**, notions plus avancées qui fondent des techniques de réduction de dimension comme l\'analyse en composantes principales (ACP), que vous reverrez au chapitre 5.
+
+À quoi cela sert-il, concrètement ? Imaginez un jeu de données décrivant des clients par cinquante colonnes. Beaucoup de ces colonnes disent la même chose autrement : le revenu, le montant du panier moyen et la catégorie de logement varient ensemble. L\'ACP repère ces redondances et reconstruit un petit nombre d\'axes qui résument l\'essentiel de la variation — souvent cinq ou six suffisent à retenir l\'essentiel de l\'information portée par les cinquante colonnes de départ. Les vecteurs propres sont précisément ces axes, et les valeurs propres mesurent la quantité d\'information que chacun capte. Vous n\'aurez pas à les calculer, mais vous saurez ce que fait la fonction que vous appellerez, et surtout ce qu\'elle vous fait perdre : les nouveaux axes ne portent plus de nom interprétable.
 
 ### Leçon 3 --- Le calcul différentiel : comment une machine apprend
 
@@ -547,6 +557,26 @@ L\'algorithme central, que vous reverrez dans absolument tous les cours suivants
 
 **Pont entre matières ---** Gardez bien cette image en tête. Au chapitre 6, l\'entraînement de TOUS les réseaux de neurones que nous verrons plus loin ne sera qu\'une descente de gradient à très grande échelle. Les maths d\'aujourd\'hui sont la clé du deep learning de demain.
 
+**Exemple chiffré --- une descente de gradient déroulée à la main.** La métaphore vous a donné l\'intuition ; les nombres vont vous donner la mécanique. Nous voulons ajuster une droite *y = w·x + b* à trois points : (1, 2), (2, 3) et (3, 5). Nous partons du plus ignorant des modèles, *w* = 0 et *b* = 0, avec un taux d\'apprentissage de 0,1.
+
+Le coût est l\'erreur quadratique moyenne : on calcule l\'écart entre chaque prédiction et la vraie valeur, on l\'élève au carré, on fait la moyenne. Au départ, le modèle prédit 0 partout, les écarts valent −2, −3 et −5, et le coût s\'établit à **12,667**.
+
+**Première étape.** Les deux gradients valent −15,33 pour *w* et −6,67 pour *b*. Ils sont négatifs, ce qui signifie : « augmente les deux ». On avance donc de 0,1 fois le gradient, en sens inverse :
+
+*w* = 0 − 0,1 × (−15,33) = **1,533**  et  *b* = 0 − 0,1 × (−6,67) = **0,667**
+
+Le coût tombe de 12,667 à **0,216**. Un seul pas a supprimé 98 % de l\'erreur.
+
+**Deuxième étape.** Le modèle prédit maintenant 2,200, 3,733 et 5,267, contre 2, 3 et 5 attendus. Les écarts sont devenus petits et **positifs** : le modèle surestime légèrement. Les gradients changent donc de signe, +1,64 et +0,80, et les paramètres reculent un peu :
+
+*w* = **1,369**  et  *b* = **0,587**. Coût : **0,067**.
+
+**Troisième étape.** Les écarts ne vont plus tous dans le même sens (−0,04, +0,32, −0,31) : le modèle ne peut plus s\'améliorer beaucoup, car aucune droite ne passe exactement par ces trois points. Les gradients sont devenus minuscules, le coût ne bouge quasiment plus : **0,065**. Nous sommes arrivés.
+
+Trois observations, et elles valent pour tous les entraînements que vous lancerez. D\'abord, **la descente est très rapide au début, puis ralentit** : c\'est normal, le gradient est proportionnel à l\'erreur, donc les grands pas correspondent aux grandes erreurs. Ensuite, **le signe du gradient dit le sens de la correction**, sa valeur absolue dit l\'urgence. Enfin, **le coût ne tombe pas à zéro**, et ce n\'est pas un échec : il reste l\'erreur irréductible due au fait que les données ne sont pas exactement alignées. Un coût qui atteindrait zéro sur des données réelles serait un signal d\'alarme, pas une réussite — nous verrons pourquoi au chapitre 5, sous le nom de sur-apprentissage.
+
+Ce que vous venez de dérouler à la main sur deux paramètres, un réseau de neurones le fait sur des millions, des milliers de fois de suite. Le mécanisme, lui, est exactement celui-ci.
+
 ### Leçon 4 --- Probabilités : raisonner dans l\'incertain
 
 Le monde réel est incertain, et l\'IA doit composer avec cette incertitude. Vous réviserez les variables aléatoires, les grandes distributions (uniforme, normale, Bernoulli), l\'espérance et la variance. Puis nous étudierons un résultat fondamental : le **théorème de Bayes**.
@@ -555,9 +585,35 @@ Le monde réel est incertain, et l\'IA doit composer avec cette incertitude. Vou
 
 **Exemple --- un test médical.** Un test détecte une maladie rare avec une bonne fiabilité. Vous êtes positif : êtes-vous malade ? Contre l\'intuition, la réponse est souvent « probablement pas », car la maladie est tellement rare que les faux positifs dominent. Le théorème de Bayes permet de calculer la vraie probabilité --- un raisonnement essentiel et trop souvent mal compris.
 
+**Exemple chiffré --- faisons le calcul.** C\'est en le faisant qu\'on cesse de se tromper. Prenons une maladie qui touche **une personne sur mille**. Le test est bon : il détecte 99 % des malades et ne se trompe que dans 5 % des cas chez les personnes saines. Vous êtes positif. Quelle est la probabilité que vous soyez malade ?
+
+Plutôt que la formule, raisonnons sur une population de **100 000 personnes** : c\'est infiniment plus clair.
+
+| | Nombre de personnes | Dont test positif |
+|---|---:|---:|
+| **Malades** (1 sur 1 000) | 100 | 99 |
+| **Saines** | 99 900 | 4 995 |
+| **Total** | 100 000 | **5 094** |
+
+Sur les 5 094 personnes déclarées positives, **99 seulement sont réellement malades**. Votre probabilité d\'être malade est donc de 99 / 5 094, soit **1,9 %**. Un test fiable à 99 %, un résultat positif, et pourtant plus de 98 chances sur 100 d\'être en bonne santé.
+
+Le résultat choque, et pourtant il n\'a rien de mystérieux. Regardez la colonne de droite : les faux positifs sont cinquante fois plus nombreux que les vrais, tout simplement parce qu\'il y a mille fois plus de personnes saines que de malades. Cinq pour cent d\'une immense population écrasent quatre-vingt-dix-neuf pour cent d\'une population minuscule. **C\'est la rareté de la maladie qui commande, pas la qualité du test.**
+
+Poussons d\'un cran, car la suite est tout aussi instructive. On vous refait le test, et il est encore positif. Cette fois, votre point de départ n\'est plus « une chance sur mille » mais « 1,9 % » : le résultat précédent devient la nouvelle croyance de départ. Le même calcul donne alors **28 %**. Un troisième test positif vous mènerait à **89 %**. C\'est exactement pour cette raison qu\'un diagnostic sérieux ne repose jamais sur un examen unique.
+
+Retenez le mécanisme bien au-delà de la médecine, car il est partout en IA. Un détecteur de fraude qui signale 5 % des transactions honnêtes noiera les vraies fraudes sous les fausses alertes, puisque la fraude est rare. Un modèle qui annonce 95 % de justesse sur un phénomène touchant une personne sur mille est probablement moins utile qu\'un modèle qui répondrait « non » à tout le monde — lequel afficherait 99,9 %. Chaque fois qu\'on vous présentera un taux de réussite, votre première question devra être : **quelle est la fréquence de base du phénomène ?**
+
 ### Leçon 5 --- Théorie de l\'information : mesurer l\'erreur
 
 Dernier outil : la **théorie de l\'information**. L\'**entropie** mesure l\'incertitude d\'une situation ; la **divergence de Kullback-Leibler** mesure l\'écart entre deux distributions de probabilité. Ces notions interviennent directement dans les fonctions de coût des modèles de classification (l\'entropie croisée), que vous utiliserez constamment.
+
+Donnons-leur un sens intuitif, faute de quoi ces mots resteront des étiquettes. L\'**entropie** mesure la surprise moyenne. Une pièce truquée qui tombe sur pile neuf fois sur dix vous apprend peu de chose à chaque lancer : vous vous y attendiez. Une pièce équilibrée, elle, vous surprend au maximum, puisque vous ne pouvez rien prévoir. L\'entropie est maximale quand tout est équiprobable, nulle quand le résultat est certain. C\'est une mesure d\'ignorance, et elle se compte en bits : un bit, c\'est exactement l\'information qu\'apporte la réponse à une question fermée bien posée.
+
+La **divergence de Kullback-Leibler**, elle, mesure de combien vous vous trompez en croyant une chose alors qu\'une autre est vraie. C\'est le coût de la mauvaise croyance, exprimé en bits perdus.
+
+Reste à voir pourquoi cela concerne l\'apprentissage, et le lien est direct. Un modèle de classification ne répond pas « c\'est un chat » : il répond « 80 % chat, 15 % chien, 5 % autre ». La vérité, elle, dit « 100 % chat ». On dispose donc de deux distributions de probabilité, celle que le modèle croit et celle qui est vraie, et l\'on cherche à rapprocher la première de la seconde. L\'**entropie croisée** mesure précisément cet écart — et voilà pourquoi elle sert de fonction de coût à presque tous les classificateurs que vous entraînerez.
+
+Une conséquence pratique en découle, et elle est loin d\'être évidente. L\'entropie croisée punit très durement les erreurs commises **avec assurance**. Se tromper en annonçant 55 % coûte peu ; se tromper en annonçant 99 % coûte énormément. C\'est une propriété voulue : elle apprend au modèle non seulement à répondre juste, mais à **calibrer sa confiance**. Un modèle qui se trompe en le sachant est bien plus utile qu\'un modèle qui se trompe avec aplomb.
 
 ### Leçon 6 --- Mettre les mathématiques en pratique
 
@@ -566,6 +622,10 @@ Pour que ces notions ne restent pas abstraites, voyons comment elles s\'incarnen
 Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre linéaire). Le réseau multiplie ce vecteur par des **matrices** de poids (algèbre linéaire encore), applique des fonctions, et produit dix nombres : les probabilités d\'être chaque chiffre de 0 à 9. L\'écart entre la prédiction et la vérité est mesuré par une fonction de coût fondée sur l\'**entropie croisée** (théorie de l\'information). On ajuste les poids par **descente de gradient** (calcul différentiel). Chaque domaine mathématique de ce chapitre intervient à un moment précis.
 
 **Synthèse --- tout est lié.** Quand on dit que « apprendre, c\'est minimiser une fonction de coût par descente de gradient sur des données représentées par des vecteurs et des matrices », on résume en une phrase les quatre domaines de ce chapitre. Ils ne sont pas séparés : ils collaborent dans chaque modèle d\'IA. **C\'est pourquoi vous devez tous les maîtriser.**
+
+Poursuivons un instant le fil de ce même exemple, car il éclaire une question que tout débutant se pose : *où sont les mathématiques dans le code que j\'écris ?* La réponse est qu\'elles y sont partout, et invisibles. Quand vous écrirez `modele.fit(X, y)` au chapitre 5, cette unique ligne déclenchera exactement la mécanique que vous venez de parcourir : les données rangées en matrice, un coût calculé, un gradient, des paramètres ajustés, et cela des centaines de fois. Les bibliothèques ne suppriment pas les mathématiques, elles les emballent.
+
+C\'est précisément pour cela que ce chapitre est indispensable. Le praticien qui ignore ce qu\'il y a dans l\'emballage sait lancer un entraînement ; il ne sait pas le réparer. Or un entraînement, ça rate — le coût qui ne descend pas, le modèle qui oscille, les valeurs qui explosent. Chacun de ces symptômes a une cause mathématique simple, et chacun se diagnostique en quelques minutes quand on sait ce qui se passe sous le capot. Vous n\'apprenez pas ces quatre domaines pour les réciter : vous les apprenez pour ne pas être démuni le jour où l\'outil se taira.
 
 ### Leçon 7 --- Erreurs mathématiques fréquentes
 
@@ -578,6 +638,12 @@ Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre liné
 -   **Mal interpréter une probabilité** : confondre P(A sachant B) et P(B sachant A), le piège de Bayes.
 
 -   **Négliger les unités** : un gradient n\'a de sens que rapporté à l\'échelle des paramètres.
+
+Reprenons la deuxième de ces erreurs, car c\'est de loin la plus fréquente et la plus coûteuse. Supposez un modèle qui prédit le prix d\'un logement à partir de deux variables : la surface, en mètres carrés, qui varie de 20 à 200, et le nombre de pièces, qui varie de 1 à 6. Ces deux nombres vivent sur des échelles sans commune mesure. Pour la descente de gradient, la conséquence est immédiate : le paramètre associé à la surface recevra des gradients trente fois plus grands que celui associé aux pièces. Le modèle finira par converger, mais lentement et par une trajectoire en zigzag, comme si l\'on descendait une vallée très étroite en rebondissant d\'un versant à l\'autre.
+
+Le remède tient en une ligne de code — centrer et réduire chaque variable, c\'est-à-dire lui retrancher sa moyenne puis la diviser par son écart type — et il transforme souvent un entraînement laborieux en entraînement docile. Retenez-le : quand un modèle converge mal sans raison apparente, la normalisation des données est la première chose à vérifier, avant même de toucher au taux d\'apprentissage.
+
+Une nuance toutefois, pour ne pas appliquer la règle en aveugle. Tous les modèles n\'y sont pas sensibles : les arbres de décision et les forêts aléatoires, que vous verrez au chapitre 5, se moquent complètement des échelles, puisqu\'ils ne comparent que des seuils variable par variable. La normalisation est indispensable dès qu\'il y a une descente de gradient ou un calcul de distance ; elle est inutile ailleurs. Savoir distinguer les deux cas fait partie du métier.
 
 ### Exercices dirigés
 
