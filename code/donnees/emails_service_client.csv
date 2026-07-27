@@ -1,0 +1,121 @@
+texte,categorie,urgent
+"Bonjour, Où puis-je télécharger mes factures des six derniers mois ?",facturation,0
+"Nous envisageons une commande de 10 pièces, quels sont vos délais ?",commercial,0
+"C'est urgent, Je n'arrive pas à connecter le produit au réseau, il reste en attente.",technique,1
+Je ne souhaite pas renouveler mon abonnement l'an prochain.,resiliation,0
+"Bonjour, Est-il possible de faire livrer en point relais plutôt qu'à domicile ?",livraison,0
+Je veux arrêter le prélèvement mensuel dès la prochaine échéance.,resiliation,0
+"Je suis assez mécontent, Je demande la résiliation de mon contrat, référence CMD-88192.",resiliation,1
+"C'est urgent, Comment mettre fin à mon contrat sans frais ?",resiliation,1
+"Je suis assez mécontent, Pourriez-vous m'adresser un duplicata de la facture du mois dernier ?",facturation,1
+"Bonjour, Comment réinitialiser l'appareil aux réglages d'usine ?",technique,0
+"Merci d'avance. L'écran affiche un code erreur E29, que signifie-t-il ?",technique,0
+"Merci d'avance. Ma commande est arrivée incomplète, il manque un article.",livraison,0
+"C'est urgent, Pouvez-vous confirmer que mon abonnement ne sera pas reconduit ?",resiliation,1
+"Je suis assez mécontent, Le montant facturé ne correspond pas au devis signé, écart de 704 euros.",facturation,1
+"Je suis assez mécontent, Je veux arrêter le prélèvement mensuel dès la prochaine échéance.",resiliation,1
+"C'est urgent, Ma commande est arrivée incomplète, il manque un article.",livraison,1
+Quelles sont les conditions de résiliation anticipée ?,resiliation,0
+"Merci d'avance. L'écran affiche un code erreur E52, que signifie-t-il ?",technique,0
+"C'est urgent, Le numéro de TVA de ma société n'apparaît pas sur la facture CMD-47740.",facturation,1
+Cordialement. Je voudrais être rappelé par un commercial pour un projet d'équipement.,commercial,0
+L'appareil ne s'allume plus depuis la dernière mise à jour.,technique,1
+Merci d'avance. Je souhaite un devis pour 50 unités du modèle professionnel.,commercial,0
+Quelles sont les conditions de résiliation anticipée ?,resiliation,0
+"Je suis assez mécontent, Je n'arrive pas à connecter le produit au réseau, il reste en attente.",technique,1
+Merci d'avance. Je voudrais être rappelé par un commercial pour un projet d'équipement.,commercial,0
+"C'est urgent, Je souhaite passer au prélèvement automatique pour mes factures.",facturation,1
+"Je suis assez mécontent, L'écran affiche un code erreur E20, que signifie-t-il ?",technique,1
+Merci de clôturer mon compte et de supprimer mes données.,resiliation,0
+"Cordialement. Le montant facturé ne correspond pas au devis signé, écart de 645 euros.",facturation,0
+"Merci d'avance. Je constate un double prélèvement de 584 euros sur ma carte, merci de régulariser.",facturation,1
+Cordialement. Le colis CMD-31894 est bloqué en transit depuis une semaine.,livraison,1
+Cordialement. Le colis CMD-94268 est bloqué en transit depuis une semaine.,livraison,1
+Cordialement. Comment mettre fin à mon contrat sans frais ?,resiliation,0
+"Merci d'avance. Le montant facturé ne correspond pas au devis signé, écart de 152 euros.",facturation,0
+"C'est urgent, Je souhaite passer au prélèvement automatique pour mes factures.",facturation,1
+"Bonjour, L'application refuse ma connexion malgré le bon mot de passe.",technique,0
+"C'est urgent, Quelle est la différence entre la version standard et la version pro ?",commercial,1
+"Cordialement. Je n'arrive pas à connecter le produit au réseau, il reste en attente.",technique,0
+Pouvez-vous m'envoyer votre catalogue et vos conditions de vente ?,commercial,0
+Merci d'avance. Est-il possible de faire livrer en point relais plutôt qu'à domicile ?,livraison,0
+"Je suis assez mécontent, Ma commande est arrivée incomplète, il manque un article.",livraison,1
+"Bonjour, Le numéro de TVA de ma société n'apparaît pas sur la facture CMD-49354.",facturation,0
+"C'est urgent, Ma commande CMD-75078 devait arriver hier, le suivi n'a pas bougé depuis trois jours.",livraison,1
+"Bonjour, Je souhaite un devis pour 100 unités du modèle professionnel.",commercial,0
+Merci d'avance. Le colis est annoncé livré mais je n'ai rien reçu. Que faire ?,livraison,0
+"C'est urgent, Proposez-vous des tarifs dégressifs pour les associations ?",commercial,1
+"Je constate un double prélèvement de 665 euros sur ma carte, merci de régulariser.",facturation,1
+"C'est urgent, La batterie se décharge en deux heures alors qu'elle est neuve.",technique,1
+Merci d'avance. Je souhaite résilier mon abonnement à la fin du mois.,resiliation,0
+Cordialement. L'application refuse ma connexion malgré le bon mot de passe.,technique,0
+Cordialement. Le produit est-il compatible avec un usage en extérieur ?,commercial,0
+"Merci d'avance. Nous envisageons une commande de 5 pièces, quels sont vos délais ?",commercial,0
+"C'est urgent, Pourriez-vous m'adresser un duplicata de la facture du mois dernier ?",facturation,1
+"Le capteur ne répond plus depuis hier, j'ai déjà redémarré.",technique,0
+"Bonjour, Quel est le délai de livraison pour une commande passée aujourd'hui ?",livraison,0
+L'application refuse ma connexion malgré le bon mot de passe.,technique,0
+Cordialement. L'appareil ne s'allume plus depuis la dernière mise à jour.,technique,1
+"Je suis assez mécontent, Pouvez-vous m'envoyer votre catalogue et vos conditions de vente ?",commercial,1
+La batterie se décharge en deux heures alors qu'elle est neuve.,technique,0
+"Cordialement. Nous envisageons une commande de 10 pièces, quels sont vos délais ?",commercial,0
+"Je suis assez mécontent, Proposez-vous des tarifs dégressifs pour les associations ?",commercial,1
+"Je suis assez mécontent, Je souhaite résilier mon abonnement à la fin du mois.",resiliation,1
+"Bonjour, Est-il possible de faire livrer en point relais plutôt qu'à domicile ?",livraison,0
+"Merci d'avance. Le transporteur est passé pendant mon absence, comment reprogrammer ?",livraison,0
+"Je suis assez mécontent, Merci de clôturer mon compte et de supprimer mes données.",resiliation,1
+Merci d'avance. Le colis est annoncé livré mais je n'ai rien reçu. Que faire ?,livraison,0
+Merci d'avance. Le numéro de TVA de ma société n'apparaît pas sur la facture CMD-33562.,facturation,0
+Quel est le délai de livraison pour une commande passée aujourd'hui ?,livraison,0
+"Je suis assez mécontent, Je demande la résiliation de mon contrat, référence CMD-40514.",resiliation,1
+Ma facture indique un montant de 335 euros alors que j'ai payé 593. Pouvez-vous vérifier ?,facturation,0
+Existe-t-il une offre pour les établissements scolaires ?,commercial,0
+"Bonjour, Bonjour, je n'ai pas reçu ma facture pour la commande CMD-22337, pouvez-vous me l'envoyer ?",facturation,0
+Cordialement. Je souhaite passer au prélèvement automatique pour mes factures.,facturation,0
+"Je suis assez mécontent, Je souhaite un devis pour 50 unités du modèle professionnel.",commercial,1
+"Cordialement. Le transporteur est passé pendant mon absence, comment reprogrammer ?",livraison,0
+Cordialement. Je souhaite résilier mon abonnement à la fin du mois.,resiliation,0
+Cordialement. Le colis CMD-29215 est bloqué en transit depuis une semaine.,livraison,1
+"Bonjour, Pourriez-vous m'adresser un duplicata de la facture du mois dernier ?",facturation,0
+Proposez-vous des tarifs dégressifs pour les associations ?,commercial,0
+"Je suis assez mécontent, Existe-t-il une offre pour les établissements scolaires ?",commercial,1
+"Bonjour, Ma commande CMD-46416 devait arriver hier, le suivi n'a pas bougé depuis trois jours.",livraison,0
+"C'est urgent, Pouvez-vous confirmer que mon abonnement ne sera pas reconduit ?",resiliation,1
+Merci d'avance. Quelle est la différence entre la version standard et la version pro ?,commercial,0
+"Bonjour, Je constate un double prélèvement de 426 euros sur ma carte, merci de régulariser.",facturation,1
+"Bonjour, Le transporteur est passé pendant mon absence, comment reprogrammer ?",livraison,0
+Cordialement. Le logiciel se ferme tout seul au bout de quelques minutes.,technique,0
+"C'est urgent, Comment mettre fin à mon contrat sans frais ?",resiliation,1
+Cordialement. L'appareil ne s'allume plus depuis la dernière mise à jour.,technique,1
+"Je suis assez mécontent, Comment réinitialiser l'appareil aux réglages d'usine ?",technique,1
+"Bonjour, Quelles sont les conditions de résiliation anticipée ?",resiliation,0
+Cordialement. Je voudrais être rappelé par un commercial pour un projet d'équipement.,commercial,0
+Cordialement. Le colis est annoncé livré mais je n'ai rien reçu. Que faire ?,livraison,0
+"Cordialement. Ma commande CMD-64433 devait arriver hier, le suivi n'a pas bougé depuis trois jours.",livraison,0
+Cordialement. Puis-je modifier l'adresse de livraison de la commande CMD-89929 ?,livraison,0
+"Bonjour, Je demande la résiliation de mon contrat, référence CMD-15461.",resiliation,0
+Où puis-je télécharger mes factures des six derniers mois ?,facturation,0
+"Je suis assez mécontent, Puis-je modifier l'adresse de livraison de la commande CMD-83304 ?",livraison,1
+"Bonjour, Le logiciel se ferme tout seul au bout de quelques minutes.",technique,0
+Cordialement. Le produit est-il compatible avec un usage en extérieur ?,commercial,0
+Je ne souhaite pas renouveler mon abonnement l'an prochain.,resiliation,0
+Merci d'avance. Je ne souhaite pas renouveler mon abonnement l'an prochain.,resiliation,0
+"Je suis assez mécontent, Le capteur ne répond plus depuis hier, j'ai déjà redémarré.",technique,1
+Existe-t-il une offre pour les établissements scolaires ?,commercial,0
+Cordialement. Où puis-je télécharger mes factures des six derniers mois ?,facturation,0
+Merci d'avance. Pouvez-vous confirmer que mon abonnement ne sera pas reconduit ?,resiliation,0
+"C'est urgent, Comment réinitialiser l'appareil aux réglages d'usine ?",technique,1
+"Bonjour, Le produit est-il compatible avec un usage en extérieur ?",commercial,0
+Ma facture indique un montant de 604 euros alors que j'ai payé 674. Pouvez-vous vérifier ?,facturation,0
+Merci de clôturer mon compte et de supprimer mes données.,resiliation,0
+"Je suis assez mécontent, La batterie se décharge en deux heures alors qu'elle est neuve.",technique,1
+"Cordialement. Bonjour, je n'ai pas reçu ma facture pour la commande CMD-29772, pouvez-vous me l'envoyer ?",facturation,0
+Quel est le délai de livraison pour une commande passée aujourd'hui ?,livraison,0
+Cordialement. Le logiciel se ferme tout seul au bout de quelques minutes.,technique,0
+"Bonjour, Puis-je modifier l'adresse de livraison de la commande CMD-90949 ?",livraison,0
+"Bonjour, Pouvez-vous m'envoyer votre catalogue et vos conditions de vente ?",commercial,0
+"Bonjour, Le capteur ne répond plus depuis hier, j'ai déjà redémarré.",technique,0
+"Je suis assez mécontent, Je veux arrêter le prélèvement mensuel dès la prochaine échéance.",resiliation,1
+"Merci d'avance. Bonjour, je n'ai pas reçu ma facture pour la commande CMD-14914, pouvez-vous me l'envoyer ?",facturation,0
+"Je suis assez mécontent, Quelle est la différence entre la version standard et la version pro ?",commercial,1
+"Bonjour, Ma facture indique un montant de 316 euros alors que j'ai payé 449. Pouvez-vous vérifier ?",facturation,0

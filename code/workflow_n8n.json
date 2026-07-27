@@ -1,0 +1,206 @@
+{
+  "name": "Tri intelligent des courriels entrants",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        }
+      },
+      "name": "Declencheur : nouveau courriel",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Tu classes des courriels de service client. Reponds UNIQUEMENT en JSON : {\"categorie\": une valeur parmi facturation|livraison|technique|commercial|resiliation, \"confiance\": nombre entre 0 et 1, \"urgent\": true ou false}. Si tu hesites, baisse la confiance au lieu de deviner."
+            },
+            {
+              "role": "user",
+              "content": "={{ $json.subject }}\n\n{{ $json.text }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0
+        }
+      },
+      "name": "Classer (LLM)",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.categorie === 'resiliation' || $json.urgent === true || $json.confiance < 0.6 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "Doit passer par un humain ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Tu rediges une reponse de service client, courtoise et breve (120 mots maximum). Appuie-toi uniquement sur les elements fournis. Si une information manque, dis-le explicitement au lieu de l'inventer."
+            },
+            {
+              "role": "user",
+              "content": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "name": "Rediger la reponse (LLM)",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        660,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Envoyer au client",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        880,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "channel": "#support-a-traiter"
+      },
+      "name": "Transmettre a un agent (avec resume)",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [
+        660,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Journaliser (base de donnees)",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Declencheur : nouveau courriel": {
+      "main": [
+        [
+          {
+            "node": "Classer (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classer (LLM)": {
+      "main": [
+        [
+          {
+            "node": "Doit passer par un humain ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Doit passer par un humain ?": {
+      "main": [
+        [
+          {
+            "node": "Transmettre a un agent (avec resume)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rediger la reponse (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rediger la reponse (LLM)": {
+      "main": [
+        [
+          {
+            "node": "Envoyer au client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envoyer au client": {
+      "main": [
+        [
+          {
+            "node": "Journaliser (base de donnees)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transmettre a un agent (avec resume)": {
+      "main": [
+        [
+          {
+            "node": "Journaliser (base de donnees)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

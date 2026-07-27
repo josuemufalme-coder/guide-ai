@@ -1,0 +1,62 @@
+[
+ {
+  "id": "garantie-duree",
+  "titre": "Durée de la garantie",
+  "texte": "Tous nos produits sont couverts par une garantie légale de deux ans à compter de la date de livraison. La garantie commerciale optionnelle porte cette durée à trois ans. La date retenue est celle figurant sur la facture, et non celle de la commande."
+ },
+ {
+  "id": "garantie-exclusions",
+  "titre": "Ce que la garantie ne couvre pas",
+  "texte": "La garantie ne s'applique pas aux dommages résultant d'une chute, d'une immersion, d'une surtension électrique ou d'une réparation effectuée par un tiers non agréé. L'usure normale des pièces consommables, notamment les batteries au-delà de cinq cents cycles de charge, est également exclue."
+ },
+ {
+  "id": "retour-delai",
+  "titre": "Délai de rétractation",
+  "texte": "Vous disposez de quatorze jours calendaires après réception pour changer d'avis, sans avoir à motiver votre décision. Le produit doit être retourné complet, dans son emballage d'origine, et ne pas avoir subi de dommage."
+ },
+ {
+  "id": "retour-procedure",
+  "titre": "Comment retourner un produit",
+  "texte": "Ouvrez une demande de retour depuis votre espace client. Une étiquette prépayée vous est envoyée sous quarante-huit heures. Déposez le colis dans un point relais. Le remboursement intervient dans les quatorze jours suivant la réception du retour."
+ },
+ {
+  "id": "remboursement-delai",
+  "titre": "Délai de remboursement",
+  "texte": "Le remboursement est effectué sur le moyen de paiement utilisé lors de la commande, dans un délai de quatorze jours après réception du produit retourné. Pour un paiement par virement, comptez trois jours ouvrés supplémentaires."
+ },
+ {
+  "id": "livraison-delais",
+  "titre": "Délais de livraison",
+  "texte": "La livraison standard intervient sous trois à cinq jours ouvrés en métropole. La livraison express, proposée en supplément, garantit une remise le jour ouvré suivant pour toute commande passée avant seize heures."
+ },
+ {
+  "id": "livraison-suivi",
+  "titre": "Suivre sa commande",
+  "texte": "Un numéro de suivi vous est communiqué par courriel dès la remise du colis au transporteur. Il devient actif dans un délai de quelques heures. En cas d'absence de mise à jour pendant plus de trois jours ouvrés, contactez le service client."
+ },
+ {
+  "id": "compte-motdepasse",
+  "titre": "Mot de passe oublié",
+  "texte": "Depuis la page de connexion, utilisez le lien de réinitialisation. Un courriel contenant un lien valable une heure vous est envoyé. Si vous ne le recevez pas, vérifiez le dossier des indésirables avant de renouveler la demande."
+ },
+ {
+  "id": "compte-suppression",
+  "titre": "Supprimer son compte",
+  "texte": "La suppression du compte s'effectue depuis les paramètres de confidentialité. Elle entraîne l'effacement des données personnelles sous trente jours, à l'exception des documents comptables que la loi impose de conserver dix ans."
+ },
+ {
+  "id": "paiement-moyens",
+  "titre": "Moyens de paiement acceptés",
+  "texte": "Nous acceptons les cartes bancaires, le virement et le paiement en trois fois sans frais à partir de cent euros d'achat. Les chèques ne sont pas acceptés."
+ },
+ {
+  "id": "paiement-securite",
+  "titre": "Sécurité des paiements",
+  "texte": "Les paiements par carte sont traités par un prestataire certifié. Aucune donnée de carte bancaire n'est conservée sur nos serveurs. Une authentification forte peut être demandée par votre banque."
+ },
+ {
+  "id": "facture-obtenir",
+  "titre": "Obtenir une facture",
+  "texte": "Vos factures sont disponibles au format PDF dans la rubrique « Commandes » de votre espace client, dès l'expédition. Pour une facture au nom d'une société, renseignez le numéro de TVA avant de valider la commande."
+ }
+]

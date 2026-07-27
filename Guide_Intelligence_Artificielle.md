@@ -3820,11 +3820,37 @@ Vous avez appris les concepts ; il est temps de construire. Ce chapitre vous acc
 
 Objectif : construire un modèle qui prédit le prix d\'un logement à partir de ses caractéristiques. C\'est le projet d\'apprentissage supervisé par excellence, et il vous fera parcourir tout le cycle de la data science.
 
+**Le jeu de données.** Nous travaillons sur **California Housing**, issu du recensement américain de 1990 : 20 640 quartiers décrits par huit variables, la cible étant le prix médian du logement.
+
+| | |
+|---|---|
+| **Source** | StatLib, Carnegie Mellon University |
+| **URL** | `https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html` |
+| **Chargement** | `sklearn.datasets.fetch_california_housing()` |
+| **Taille** | 20 640 lignes, 8 variables |
+
+**Le code complet de ce projet se trouve dans `code/projet1_prix_immobilier.py`.** Il s'exécute sans argument et sans préparation : `python3 projet1_prix_immobilier.py`. Si le téléchargement échoue — machine hors ligne, proxy filtrant —, le script bascule seul sur un jeu synthétique local de structure comparable, et vous le dit. La démarche est identique ; seuls les chiffres changent.
+
+Je commente ci-dessous les passages qui comptent, étape par étape. Tapez-les, exécutez-les, modifiez-les : c'est en les cassant que vous comprendrez ce qu'ils font.
+
 ### Étape 1 --- Comprendre le problème et les données
 
 Avant tout code, posez-vous les bonnes questions : que veut-on prédire (le prix, une valeur continue → c\'est une régression) ? De quelles données dispose-t-on (surface, nombre de pièces, quartier, année...) ? Téléchargez un jeu de données immobilier public et ouvrez-le avec Pandas.
 
 **Ce que vous devez faire :** chargez le fichier, affichez les premières lignes avec head(), examinez les types de colonnes et repérez les valeurs manquantes. Notez par écrit ce que représente chaque colonne. Cette compréhension initiale est cruciale.
+
+```python
+from sklearn.datasets import fetch_california_housing
+
+jeu = fetch_california_housing(as_frame=True)
+df = jeu.frame.rename(columns={"MedHouseVal": "prix"})
+
+print(df.shape)          # (20640, 9)
+print(df.head())         # les cinq premières lignes
+print(df.isna().sum())   # valeurs manquantes, colonne par colonne
+```
+
+La troisième ligne est celle qu'on oublie, et c'est la plus importante. Une colonne aux trois quarts vide vous rendra une moyenne parfaitement calculée sur le quart restant, sans un mot d'avertissement — vous l'avez vu au chapitre 4.
 
 ### Étape 2 --- Nettoyer et explorer
 
@@ -3832,19 +3858,127 @@ Avant tout code, posez-vous les bonnes questions : que veut-on prédire (le prix
 
 **Exemple --- ce que révèle l\'exploration.** En traçant prix contre surface, vous verrez probablement une tendance croissante : plus c\'est grand, plus c\'est cher. Mais vous repérerez aussi des exceptions : un petit logement très cher (quartier prisé ?) ou une grande maison bon marché (loin de tout ?). Ces écarts vous indiquent quelles autres variables comptent. L\'exploration guide la modélisation.
 
+```python
+# La comparaison moyenne / médiane révèle la forme de la distribution.
+print(f"médiane {df['prix'].median():.2f}   moyenne {df['prix'].mean():.2f}")
+# Moyenne > médiane : distribution étirée vers le haut, quelques biens très chers.
+
+# Les corrélations disent quelles variables méritent l'attention.
+corr = df.corr(numeric_only=True)["prix"].drop("prix")
+print(corr.sort_values(key=abs, ascending=False).head(3))
+```
+
+Ne vous arrêtez pas aux chiffres : tracez. Un histogramme des prix et un nuage de points prix contre surface vous apprendront en trois secondes ce qu'aucun tableau ne montre — deux populations mélangées, un plafond artificiel, une valeur aberrante isolée.
+
 ### Étape 3 --- Préparer les caractéristiques
 
 **Ce que vous devez faire :** transformez les variables catégorielles (le quartier) en nombres par encodage. Mettez les variables numériques à la même échelle. Créez éventuellement des variables dérivées (prix au mètre carré, âge du bien). Séparez enfin vos données en un jeu d\'entraînement et un jeu de test.
 
 **Erreur classique à éviter ---** Ne touchez JAMAIS au jeu de test pendant la préparation et l\'entraînement. Il doit rester totalement « inconnu » du modèle, sans quoi votre évaluation sera faussée et trompeusement optimiste.
 
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+X, y = df.drop(columns=["prix"]), df["prix"]
+
+# On sépare AVANT toute transformation. C'est la règle anti-fuite du chapitre 4.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Le pipeline garantit que la normalisation est calculée sur l'entraînement
+# seul, puis appliquée telle quelle au test. C'est la seule façon sûre.
+modele = make_pipeline(StandardScaler(), LinearRegression())
+```
+
+Le `random_state=42` n'est pas décoratif : sans lui, deux exécutions donnent deux découpages différents, donc deux scores différents, et vous ne saurez jamais si un écart vient de votre modification ou du hasard.
+
 ### Étape 4 --- Entraîner et comparer des modèles
 
 **Ce que vous devez faire :** avec scikit-learn, entraînez d\'abord une régression linéaire (votre modèle de référence), puis une forêt aléatoire. Comparez leurs erreurs sur le jeu de test. La forêt sera probablement meilleure : notez l\'écart et réfléchissez-y.
 
+```python
+from sklearn.dummy import DummyRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
+
+modeles = {
+    # La référence stupide : prédire toujours la médiane. Sans elle, vous
+    # n'avez aucun moyen de savoir si votre R² de 0,80 est bon ou pitoyable.
+    "Référence (médiane)": DummyRegressor(strategy="median"),
+    "Régression linéaire": make_pipeline(StandardScaler(), LinearRegression()),
+    "Forêt aléatoire": RandomForestRegressor(
+        n_estimators=200, max_depth=16, random_state=42, n_jobs=-1
+    ),
+}
+
+for nom, m in modeles.items():
+    m.fit(X_train, y_train)
+    pred = m.predict(X_test)
+    print(f"{nom:<22} MAE = {mean_absolute_error(y_test, pred):.3f}"
+          f"   R² = {r2_score(y_test, pred):+.3f}")
+```
+
+**Résultats attendus** sur California Housing :
+
+| Modèle | MAE | R² |
+|---|---:|---:|
+| Référence (médiane) | ~0,90 | ~0,00 |
+| Régression linéaire | ~0,53 | ~0,58 |
+| Forêt aléatoire | ~0,33 | ~0,80 |
+
+Ce sont des ordres de grandeur, pas des valeurs exactes : votre version de scikit-learn et votre découpage les feront varier de quelques centièmes. Ce qui doit vous alerter, c'est un écart d'un ordre de grandeur, pas d'une décimale.
+
+Ajoutez toujours une validation croisée avant de conclure :
+
+```python
+from sklearn.model_selection import cross_val_score
+
+scores = cross_val_score(modeles["Forêt aléatoire"], X_train, y_train,
+                         cv=5, scoring="r2", n_jobs=-1)
+print(f"R² = {scores.mean():.3f} +/- {scores.std():.3f}")
+```
+
+Un écart type élevé signifie que votre score dépend beaucoup du découpage — donc qu'il ne veut pas dire grand-chose.
+
 ### Étape 5 --- Évaluer et interpréter
 
 **Ce que vous devez faire :** mesurez l\'erreur (par exemple l\'erreur quadratique moyenne) sur le jeu de test. Examinez quelles caractéristiques le modèle juge les plus importantes. Diagnostiquez un éventuel sur-apprentissage en comparant erreur d\'entraînement et erreur de test.
+
+```python
+foret = modeles["Forêt aléatoire"]
+import pandas as pd
+
+# Quelles variables le modèle utilise-t-il réellement ?
+imp = pd.Series(foret.feature_importances_, index=X_train.columns)
+print(imp.sort_values(ascending=False).head(4))
+
+# Diagnostic du sur-apprentissage : l'écart entre les deux scores.
+print(f"train R² = {foret.score(X_train, y_train):.3f}")
+print(f"test  R² = {foret.score(X_test, y_test):.3f}")
+```
+
+Sur ce jeu, `MedInc` — le revenu médian du quartier — domine largement. C'est instructif : le modèle n'a pas découvert une loi de l'immobilier, il a découvert que **les gens riches habitent dans des logements chers**. Une corrélation forte, aucune causalité, et un rappel du chapitre 4.
+
+### Résultats attendus et ce qui peut mal se passer
+
+**Ce que vous devez obtenir.** Une forêt aléatoire autour de **0,80 de R²** et **0,33 d'erreur absolue moyenne**, soit environ 33 000 dollars d'écart typique sur une cible exprimée en centaines de milliers. La régression linéaire plafonne vers 0,58 : l'écart entre les deux mesure ce que les relations non linéaires apportent.
+
+**Ce qui peut mal se passer.**
+
+| Symptôme | Cause probable | Ce qu'il faut faire |
+|---|---|---|
+| R² proche de 1,00 | Une variable contient la réponse, ou fuite lors de la préparation | Vérifier qu'aucune colonne ne dérive du prix ; refaire la séparation avant toute transformation |
+| R² négatif | Le modèle fait pire que prédire la moyenne | Vérifier l'alignement de `X` et `y`, et que la cible n'a pas été normalisée par erreur |
+| train 0,98 / test 0,55 | Sur-apprentissage caractérisé | Réduire `max_depth`, augmenter le nombre d'arbres, vérifier la taille du jeu |
+| Erreur mémoire | 20 640 lignes ne saturent rien ; le coupable est ailleurs | Réduire `n_estimators`, retirer `n_jobs=-1` |
+| Téléchargement impossible | Réseau filtré | Le script bascule seul sur le jeu de secours et l'annonce |
+| Scores différents à chaque exécution | `random_state` absent | Le fixer partout : découpage, modèle, validation croisée |
+
+**Le piège le plus courant sur ce projet** est de normaliser l'ensemble des données avant de les séparer. Le score gagne alors deux ou trois centièmes, et il est faux : la moyenne utilisée pour normaliser a été calculée en incluant le jeu de test. Le pipeline de l'étape 3 rend cette erreur impossible — c'est précisément pour cela qu'on l'emploie.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3854,9 +3988,40 @@ Vous avez parcouru tout le cycle : comprendre, nettoyer, explorer, préparer, mo
 
 Objectif : entraîner un réseau de neurones à reconnaître des images. Vous y appliquerez l\'apprentissage profond et l\'apprentissage par transfert.
 
+**Le jeu de données.** Nous utilisons **Optical Recognition of Handwritten Digits**, 1 797 images de chiffres manuscrits en 8×8 pixels.
+
+| | |
+|---|---|
+| **Source** | UCI Machine Learning Repository (don de E. Alpaydin et C. Kaynak) |
+| **URL** | `https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits` |
+| **Chargement** | `sklearn.datasets.load_digits()` |
+| **Taille** | 1 797 images, 64 pixels, 10 classes |
+
+J'ai choisi ce jeu plutôt que MNIST pour une raison pratique : **il est embarqué dans scikit-learn**, donc le projet fonctionne hors ligne et s'entraîne en quelques secondes au lieu de plusieurs minutes. Le problème est rigoureusement le même, à l'échelle près. Quand vous voudrez passer à MNIST — 70 000 images de 28×28, `https://yann.lecun.com/exdb/mnist/` —, il suffira de remplacer le chargement par `fetch_openml("mnist_784", version=1)`.
+
+**Le code complet est dans `code/projet2_classificateur_images.py`.**
+
 ### Étape 1 --- Choisir le jeu de données et l\'objectif
 
 **Ce que vous devez faire :** commencez par un jeu simple et célèbre : les chiffres manuscrits (MNIST) ou des catégories d\'objets. Définissez clairement les classes à distinguer. Visualisez quelques images pour comprendre vos données.
+
+```python
+import numpy as np
+from sklearn.datasets import load_digits
+
+jeu = load_digits()
+X, y = jeu.data, jeu.target
+print(X.shape)   # (1797, 64) : chaque image est un vecteur de 64 nombres
+
+# Afficher une image en texte, pour voir ce que le modèle reçoit vraiment.
+for ligne in jeu.images[0]:
+    print("".join(" .:-=+*#%@"[int(v * 9 / 16)] for v in ligne))
+
+# Les classes sont-elles équilibrées ? Cela décide si l'exactitude est un juge.
+print(np.bincount(y))   # environ 180 exemples par chiffre
+```
+
+Ce petit affichage en caractères vaut mieux qu'un long discours : il vous montre qu'une image, pour la machine, n'est qu'une grille de nombres — et qu'un chiffre lisible par vous tient dans 64 valeurs.
 
 ### Étape 2 --- Construire un premier réseau
 
@@ -3864,13 +4029,94 @@ Objectif : entraîner un réseau de neurones à reconnaître des images. Vous y 
 
 **Attention --- pourquoi commencer simple.** La tentation du débutant est de construire d\'emblée un réseau énorme. Erreur : un grand réseau est lent à entraîner, difficile à déboguer, et sujet au sur-apprentissage. Commencez petit, vérifiez que tout fonctionne, mesurez, puis complexifiez seulement si nécessaire. C\'est une règle d\'or de tout l\'apprentissage profond.
 
+```python
+from sklearn.dummy import DummyClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import accuracy_score
+
+# stratify=y : chaque chiffre garde la même proportion dans les deux paquets.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# La référence : toujours la classe majoritaire. Environ 10 % sur dix classes.
+bete = DummyClassifier(strategy="most_frequent").fit(X_train, y_train)
+print(f"référence : {accuracy_score(y_test, bete.predict(X_test)):.1%}")
+
+reseau = make_pipeline(
+    StandardScaler(),
+    MLPClassifier(hidden_layer_sizes=(128, 64), max_iter=600,
+                  random_state=42, early_stopping=True),
+).fit(X_train, y_train)
+print(f"réseau    : {accuracy_score(y_test, reseau.predict(X_test)):.1%}")
+```
+
+`early_stopping=True` fait le travail de l'arrêt précoce du chapitre 6 : le réseau surveille son erreur de validation et s'arrête dès qu'elle cesse de baisser, c'est-à-dire au moment précis où la mémorisation commence.
+
 ### Étape 3 --- Entraîner et suivre l\'apprentissage
 
 **Ce que vous devez faire :** lancez l\'entraînement et surveillez l\'évolution de l\'erreur à chaque époque, sur l\'entraînement et sur la validation. Tracez ces deux courbes. Si l\'erreur de validation cesse de baisser alors que celle d\'entraînement continue, c\'est le signe du sur-apprentissage.
 
+```python
+# Comparer les deux scores est le diagnostic le plus rapide qui soit.
+tr = accuracy_score(y_train, reseau.predict(X_train))
+te = accuracy_score(y_test, reseau.predict(X_test))
+print(f"train {tr:.1%} | test {te:.1%} | écart {tr - te:+.1%}")
+# Écart supérieur à 5 points : le réseau commence à mémoriser.
+
+# La courbe d'apprentissage, si vous voulez la tracer :
+import matplotlib.pyplot as plt
+plt.plot(reseau[-1].loss_curve_)
+plt.xlabel("époque"); plt.ylabel("coût"); plt.show()
+```
+
 ### Étape 4 --- Améliorer par l\'apprentissage par transfert
 
 **Ce que vous devez faire :** au lieu d\'entraîner de zéro, chargez un réseau pré-entraîné (ResNet) et adaptez sa dernière couche à vos classes. Comparez : vous obtiendrez généralement de bien meilleures performances avec moins de données et de temps. C\'est la puissance du transfert.
+
+Sur des images 8×8, un réseau pré-entraîné n'apporterait rien : les modèles disponibles attendent des photographies en couleur de plus de 200 pixels de côté. J'emploie donc ici l'autre levier du chapitre 6, l'**augmentation de données**, qui repose sur la même idée — donner au réseau ce qu'il n'a pas eu le temps d'apprendre seul.
+
+```python
+# On décale chaque image d'un pixel dans les quatre directions.
+# Le chiffre reste le même : le réseau apprend à ignorer la position exacte.
+images = X_train.reshape(-1, 8, 8)
+lots, etiquettes = [X_train], [y_train]
+for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+    decalees = np.roll(np.roll(images, dy, axis=1), dx, axis=2)
+    lots.append(decalees.reshape(len(images), -1))
+    etiquettes.append(y_train)
+
+X_aug, y_aug = np.vstack(lots), np.concatenate(etiquettes)
+print(f"{len(X_train)} -> {len(X_aug)} images")   # x5
+```
+
+### Résultats attendus et ce qui peut mal se passer
+
+**Ce que vous devez obtenir.**
+
+| Modèle | Exactitude (test) |
+|---|---:|
+| Référence (classe majoritaire) | ~10 % |
+| Régression logistique | ~97 % |
+| Réseau (128, 64) | ~97 % |
+| Réseau + augmentation | **~98 %** |
+
+Notez que la régression logistique fait jeu égal avec le réseau. **Ce n'est pas une anomalie, c'est la leçon du projet** : sur 64 pixels et dix classes bien séparées, un modèle linéaire suffit. Le réseau ne prend l'avantage que sur des images plus grandes et plus variées. Commencer simple n'est pas une précaution timide, c'est souvent la bonne réponse.
+
+**Ce qui peut mal se passer.**
+
+| Symptôme | Cause probable | Ce qu'il faut faire |
+|---|---|---|
+| Exactitude bloquée à 10 % | Rien n'apprend : normalisation absente ou taux d'apprentissage absurde | Vérifier le `StandardScaler` dans le pipeline |
+| Avertissement de non-convergence | `max_iter` trop faible | L'augmenter, ou activer `early_stopping` |
+| train 100 % / test 90 % | Sur-apprentissage | Augmenter les données, réduire la taille des couches |
+| 100 % sur le test | Fuite de données | Vérifier que `train_test_split` a bien été fait avant tout |
+| Résultats variables d'une exécution à l'autre | `random_state` non fixé | Le fixer dans le découpage **et** dans le modèle |
+
+**Le test à faire en premier si rien ne marche** : entraînez sur dix images seulement, et vérifiez que le réseau les apprend par cœur. S'il n'y parvient pas, le problème n'est pas dans les réglages, il y a un bug — étiquettes décalées, images mal formées, dimension de sortie fausse. Ce test prend deux minutes et élimine la moitié des causes possibles.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3880,13 +4126,75 @@ Vous avez construit, entraîné et évalué un réseau de neurones convolutif. V
 
 Objectif : construire un assistant qui répond à des questions en s\'appuyant sur vos propres documents, sans halluciner. C\'est l\'application phare de l\'IA générative en entreprise.
 
+**La base documentaire.** Le projet est fourni avec douze fiches de documentation produit en français — garantie, retours, livraison, paiement, compte — dans `code/donnees/base_documentaire.json`. Elles sont volontairement courtes pour que le mécanisme reste lisible d'un coup d'œil.
+
+Pour travailler ensuite sur un vrai corpus public :
+
+| Corpus | Usage | URL |
+|---|---|---|
+| Wikipédia en français (dumps) | corpus généraliste massif | `https://dumps.wikimedia.org/frwiki/latest/` |
+| FQuAD / SQuAD | paires question-réponse annotées, pour évaluer | `https://rajpurkar.github.io/SQuAD-explorer/` |
+
+**Le code complet est dans `code/projet3_assistant_documentaire.py`.** Il tourne **hors ligne et sans clé d'API** : la recherche est faite en local, et l'endroit exact où brancher un modèle de langage est indiqué et commenté dans le script.
+
 ### Étape 1 --- Rassembler et préparer la base documentaire
 
 **Ce que vous devez faire :** réunissez un ensemble de documents (une FAQ, des notes de cours, une documentation produit). Découpez-les en passages de taille raisonnable : ni trop longs (le modèle se perd), ni trop courts (ils perdent leur sens).
 
+```python
+import json, re
+from pathlib import Path
+
+docs = json.loads(Path("donnees/base_documentaire.json").read_text(encoding="utf-8"))
+
+passages = []
+for doc in docs:
+    phrases = [p.strip() for p in re.split(r"(?<=[.!?])\s+", doc["texte"]) if p.strip()]
+    for i in range(0, len(phrases), 2):          # groupes de deux phrases
+        bloc = " ".join(phrases[i:i + 2])
+        passages.append({
+            "source": doc["id"],
+            "titre": doc["titre"],
+            "texte": bloc,
+            # On répète le TITRE dans le texte indexé : sans lui, un passage
+            # commençant par « Elle ne s'applique pas... » perd tout son sens
+            # une fois isolé de son document.
+            "indexable": f"{doc['titre']}. {bloc}",
+        })
+```
+
+Ce détail du titre répété est le genre de chose qu'aucun tutoriel ne mentionne et qui décide de la qualité du résultat. Un passage doit pouvoir se comprendre **seul**, puisque c'est seul qu'il sera remonté.
+
 ### Étape 2 --- Indexer les passages
 
 **Ce que vous devez faire :** calculez le plongement (embedding) de chaque passage et stockez-les dans une base vectorielle. Ainsi, à chaque question, vous pourrez retrouver rapidement les passages les plus proches du sens de la question.
+
+```python
+from scipy.sparse import hstack
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Deux représentations combinées, parce qu'aucune ne suffit seule :
+#  - les MOTS discriminent bien le sujet, mais ratent « remboursé » quand le
+#    document dit « remboursement » ;
+#  - les SUITES DE CARACTÈRES rattrapent ces variations de forme et les fautes
+#    de frappe, mais trouvent de la ressemblance entre deux textes français
+#    quelconques, ce qui produit de faux positifs.
+textes = [p["indexable"] for p in passages]
+vectoriseurs = (
+    TfidfVectorizer(analyzer="word", ngram_range=(1, 2), sublinear_tf=True),
+    TfidfVectorizer(analyzer="char_wb", ngram_range=(4, 5), sublinear_tf=True),
+)
+matrice = hstack([v.fit_transform(textes) for v in vectoriseurs]).tocsr()
+
+def rechercher(question, k=3):
+    vecteur = hstack([v.transform([question]) for v in vectoriseurs]).tocsr()
+    scores = cosine_similarity(vecteur, matrice)[0]
+    meilleurs = scores.argsort()[::-1][:k]
+    return [(passages[i], float(scores[i])) for i in meilleurs]
+```
+
+Je dois être franc sur un point : ceci est une recherche **lexicale**, qui compare des mots et des lettres. Un vrai système emploierait des **plongements de phrases**, vus au chapitre 9, capables de rapprocher deux formulations sans aucun mot commun. Je m'en passe ici pour que le projet tourne sans rien télécharger, et la limite qui en découle est instructive : vous la verrez à l'étape 4.
 
 **Méthode --- comment fonctionne la recherche.** Quand l\'utilisateur demande « quelle est la politique de remboursement ? », on calcule le plongement de cette question, puis on cherche dans la base les passages dont le plongement est le plus proche. On récupère ainsi, automatiquement, les paragraphes pertinents --- même s\'ils n\'emploient pas exactement les mêmes mots que la question.
 
@@ -3894,11 +4202,77 @@ Objectif : construire un assistant qui répond à des questions en s\'appuyant s
 
 **Ce que vous devez faire :** à chaque question, récupérez les passages pertinents et fournissez-les à un LLM dans le prompt, en lui demandant de répondre uniquement sur cette base et de citer ses sources. Comparez la réponse avec et sans ces passages : la différence de fiabilité est saisissante.
 
+```python
+SEUIL = 0.18   # calibré à l'étape suivante
+
+def repondre(question):
+    trouves = rechercher(question)
+    if not trouves or trouves[0][1] < SEUIL:
+        return "Je ne trouve pas cette information dans la documentation fournie.", []
+
+    contexte = "\n".join(f"[{i+1}] {p['titre']} : {p['texte']}"
+                         for i, (p, _) in enumerate(trouves))
+
+    invite = f\"\"\"Tu réponds UNIQUEMENT à partir des passages ci-dessous.
+Si l'information n'y figure pas, dis que tu ne sais pas.
+Cite entre crochets le numéro du passage utilisé.
+
+Passages :
+{contexte}
+
+Question : {question}\"\"\"
+
+    # reponse = client.messages.create(model="...", max_tokens=400,
+    #                                  messages=[{"role": "user", "content": invite}])
+    # return reponse.content[0].text, [p for p, _ in trouves]
+    return trouves[0][0]["texte"], [p for p, _ in trouves]
+```
+
+Les trois consignes de cette invite ne sont pas décoratives. « Uniquement à partir des passages » empêche le modèle de compléter avec ses souvenirs d'entraînement. « Dis que tu ne sais pas » lui donne une issue autre que l'invention. « Cite le numéro » rend la réponse vérifiable en dix secondes. Retirez-en une seule et le système redevient un beau parleur.
+
 **L\'intérêt majeur du RAG ---** Sans RAG, le modèle invente parfois des réponses plausibles mais fausses. Avec RAG, il s\'appuie sur vos documents réels et cite ses sources. Vous transformez un beau parleur en expert fiable de VOTRE domaine.
 
 ### Étape 4 --- Évaluer et fiabiliser
 
 **Ce que vous devez faire :** testez l\'assistant sur des questions variées, y compris des questions dont la réponse n\'est pas dans les documents : il doit alors répondre qu\'il ne sait pas, plutôt qu\'inventer. Ajustez vos prompts pour obtenir ce comportement prudent.
+
+```python
+JEU_EVALUATION = [
+    ("Combien de temps dure la garantie ?", "garantie-duree"),
+    ("Est-ce que la garantie couvre une chute ?", "garantie-exclusions"),
+    ("Quand serai-je remboursé ?", "remboursement-delai"),
+    ("Où est mon colis ?", "livraison-suivi"),
+    ("Quelle est la capitale du Sénégal ?", None),   # hors base : doit refuser
+]
+
+for question, attendu in JEU_EVALUATION:
+    trouves = rechercher(question)
+    remonte = trouves[0][0]["source"] if trouves else None
+    score = trouves[0][1] if trouves else 0.0
+    print(f"{score:.2f}  {remonte:<22} {question}")
+```
+
+### Résultats attendus et ce qui peut mal se passer
+
+**Ce que vous devez obtenir : environ 80 à 85 % de réussite** sur ce jeu de onze questions. Le script en obtient **9 sur 11**, et je tiens à ce que vous voyiez pourquoi les deux autres échouent, car cela vaut mieux qu'un score parfait.
+
+**Premier échec.** « En combien de jours arrive la commande ? » remonte le suivi de colis plutôt que les délais de livraison. Les deux passages partagent « jours », « commande » et « livraison » : aucun mot ne les départage. Un plongement de phrase y parviendrait, TF-IDF non. C'est la limite structurelle annoncée à l'étape 2.
+
+**Second échec, et il est plus profond.** La question hors base — « Quelle est la capitale du Sénégal ? » — obtient un score de **0,166**, tandis que la plus faible des bonnes réponses obtient **0,149**. Les deux plages **se chevauchent** : *aucun seuil ne peut séparer proprement « la réponse n'est pas dans la base » de « la réponse y est, mal formulée »*.
+
+Ce n'est pas un défaut de réglage, c'est une propriété de la méthode. Et c'est exactement pour cela qu'un système sérieux ajoute une **seconde étape de vérification** : on demande au modèle de confirmer que le passage répond bien à la question, au lieu de s'en remettre à un score de similarité. Retenez-le : dans un RAG, le score de recherche indique où chercher, il ne garantit jamais qu'on a trouvé.
+
+**Ce qui peut mal se passer.**
+
+| Symptôme | Cause probable | Ce qu'il faut faire |
+|---|---|---|
+| Le système répond à côté | Les bons passages ne remontent pas | Afficher les passages récupérés **avant** de toucher à l'invite |
+| Réponses hors documentation | Le modèle complète avec ses souvenirs | Renforcer la consigne, exiger les citations, baisser la température |
+| Le système ne refuse jamais rien | Seuil trop bas | Le remonter, et ajouter la vérification décrite ci-dessus |
+| Il refuse trop souvent | Seuil trop haut, ou passages mal découpés | Vérifier que chaque passage se comprend seul |
+| Passages incompréhensibles isolés | Découpage à taille fixe au lieu de suivre la structure | Découper par section ou par paragraphe, répéter le titre |
+
+**Le réflexe qui vous fera gagner le plus de temps** : quand une réponse déçoit, regardez d'abord les passages remontés. Neuf fois sur dix, le modèle a parfaitement répondu — à partir de documents qui n'étaient pas les bons.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3910,6 +4284,16 @@ Objectif : construire un assistant qui répond à des questions en s\'appuyant s
 
 Objectif : automatiser un processus métier réel de bout en bout, en combinant un déclencheur, des traitements par IA et des actions, avec une validation humaine.
 
+
+
+**Les données et l'outillage.** n8n est un outil visuel : on ne l'exécute pas depuis un script. Ce projet vous donne donc les deux moitiés.
+
+D'un côté, **`code/projet4_automatisation_n8n.py`** implémente la même chaîne de bout en bout en Python — classification, routage, génération, contrôle —, sur 120 courriels de service client étiquetés fournis dans `code/donnees/emails_service_client.csv`. Vous pouvez la faire tourner, la mesurer, la casser.
+
+De l'autre, ce même script **écrit le flux n8n correspondant** dans `code/workflow_n8n.json`, importable tel quel par le menu *Workflows > Import from File*. Les sept nœuds y sont déjà reliés ; seuls les identifiants de connexion restent à renseigner.
+
+Un mot d'honnêteté sur le jeu de courriels : il a été construit par assemblage de formulations types. Il sert à démontrer la chaîne, il ne provient pas d'une boîte réelle. Pour un corpus public authentique, voyez **SMS Spam Collection** (`https://archive.ics.uci.edu/dataset/228/sms+spam+collection`) ou **20 Newsgroups**, embarqué dans scikit-learn.
+
 ### Étape 1 --- Choisir et analyser le processus
 
 **Ce que vous devez faire :** choisissez une tâche répétitive et chronophage : par exemple le tri et la réponse aux emails entrants. Décrivez le processus actuel, étape par étape, comme le ferait l\'humain qui s\'en charge aujourd\'hui. C\'est ce processus que vous allez reproduire et améliorer.
@@ -3918,15 +4302,100 @@ Objectif : automatiser un processus métier réel de bout en bout, en combinant 
 
 **Ce que vous devez faire :** dans n8n, posez d\'abord le déclencheur (l\'arrivée d\'un email), puis un nœud d\'appel à un LLM pour analyser le message, puis un nœud d\'action. Testez ce squelette minimal avant de l\'enrichir.
 
+Voici le nœud de classification tel qu'il figure dans `workflow_n8n.json`. Notez la consigne : on impose un format JSON strict, et surtout on demande au modèle de **baisser sa confiance plutôt que de deviner**.
+
+```json
+{
+  "name": "Classer (LLM)",
+  "type": "n8n-nodes-base.openAi",
+  "parameters": {
+    "messages": { "values": [
+      { "role": "system", "content":
+        "Tu classes des courriels de service client. Réponds UNIQUEMENT en JSON : {\"categorie\": une valeur parmi facturation|livraison|technique|commercial|resiliation, \"confiance\": nombre entre 0 et 1, \"urgent\": true ou false}. Si tu hésites, baisse la confiance au lieu de deviner." },
+      { "role": "user", "content": "={{ $json.subject }}\n\n{{ $json.text }}" }
+    ]},
+    "options": { "temperature": 0 }
+  }
+}
+```
+
+La température à zéro n'est pas un détail : pour une tâche de classification, vous voulez la réponse la plus probable et la même à chaque fois, pas de la variété. C'est le réglage du chapitre 10.
+
+L'équivalent Python, qui vous permet de mesurer avant de brancher quoi que ce soit :
+
+```python
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+
+# CalibratedClassifierCV : sans lui, les probabilités renvoyées sont mal
+# calibrées et le seuil de confiance ne veut plus dire grand-chose.
+modele = make_pipeline(
+    TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), sublinear_tf=True),
+    CalibratedClassifierCV(LogisticRegression(max_iter=1000), cv=3),
+).fit(X_train, y_train)
+```
+
 ### Étape 3 --- Ajouter l\'intelligence et le routage
 
 **Ce que vous devez faire :** faites classer chaque message par le LLM (sujet, urgence, sentiment), puis ajoutez une logique de routage : les demandes simples reçoivent une réponse générée automatiquement, les cas complexes sont transmis à un humain.
+
+Le routage tient en trois règles, et l'ordre dans lequel on les pose compte :
+
+```python
+SEUIL_CONFIANCE = 0.60
+# Catégories où l'on n'envoie JAMAIS automatiquement : l'acte est irréversible
+# ou engage juridiquement l'entreprise.
+TOUJOURS_HUMAIN = {"resiliation"}
+
+def router(texte, categorie, confiance):
+    urgent = any(k in texte.lower() for k in
+                 ("urgent", "mécontent", "bloqué", "double prélèvement"))
+    if categorie in TOUJOURS_HUMAIN:
+        return "HUMAIN (catégorie sensible)"
+    if confiance < SEUIL_CONFIANCE:
+        return "HUMAIN (confiance insuffisante)"
+    if urgent:
+        return "HUMAIN (urgence détectée)"
+    return "AUTOMATIQUE"
+```
+
+Remarquez que la catégorie sensible passe **avant** le seuil de confiance. Un modèle très sûr de lui sur une demande de résiliation ne doit pas pour autant y répondre seul : c'est la règle du chapitre 20, on valide avant l'irréversible et non avant le corrigible.
 
 ### Étape 4 --- Insérer la validation humaine
 
 **Ce que vous devez faire :** pour les réponses sensibles, ajoutez une étape où un humain valide avant l\'envoi. C\'est la garantie que l\'automatisation reste sous contrôle. Documentez clairement quels cas passent par cette validation.
 
 **Exemple --- le résultat concret.** Une fois le workflow en place, un email de client arrive, est analysé en deux secondes, classé, et une réponse pertinente est préparée. Pour une question courante, elle part automatiquement ; pour une réclamation délicate, elle attend l\'approbation d\'un humain. Ce qui occupait une personne toute la matinée se fait désormais en continu, sans effort. Voilà la valeur tangible de l\'automatisation intelligente.
+
+### Résultats attendus et ce qui peut mal se passer
+
+**Ce que vous devez obtenir** en exécutant `projet4_automatisation_n8n.py` :
+
+| Voie | Part des messages | Ce qui s'y passe |
+|---|---:|---|
+| Automatique | ~43 % | réponse envoyée seule, relecture a posteriori |
+| Humain (catégorie sensible) | ~20 % | résiliations, jamais automatiques |
+| Humain (confiance insuffisante) | ~20 % | le modèle hésite, l'agent tranche |
+| Humain (urgence détectée) | ~17 % | dossier préparé, traité en priorité |
+
+Sur les hypothèses du script — 200 messages par jour, 4 minutes en manuel, 30 secondes de relecture pour un message automatisé —, le gain s'établit autour de **60 % du temps**, soit environ 8 heures par jour récupérées sur 13.
+
+**Un avertissement, et il est important.** Le script affiche **100 % d'exactitude** sur le jeu de test, et **ce chiffre doit vous alerter, pas vous réjouir**. Ce jeu de courriels a été construit à partir de formulations types : le jeu de test contient des messages très proches de ceux vus à l'entraînement. Le modèle reconnaît des tournures, il ne généralise pas à du courrier réel. C'est une forme de fuite de données, au sens du chapitre 4. **Sur de vrais courriels, attendez-vous plutôt à 75 ou 90 %**, selon la netteté de vos catégories. Le script le dit lui-même à l'exécution — je préfère un projet qui vous apprend à vous méfier d'un score parfait qu'un projet qui vous en fabrique un.
+
+**Ce qui peut mal se passer.**
+
+| Symptôme | Cause probable | Ce qu'il faut faire |
+|---|---|---|
+| Le flux tourne en double | Déclencheur toutes les 5 min, exécution de 6 min | Poser un verrou empêchant le chevauchement |
+| Réponses envoyées à tort | Seuil de confiance trop bas, ou probabilités non calibrées | Remonter le seuil, vérifier la calibration |
+| Le modèle renvoie du texte au lieu de JSON | Consigne de format trop faible | Imposer le format, température à 0, valider avant de continuer |
+| Le flux s'arrête sans erreur visible | Un service extérieur ne répond plus | Ajouter reprise, repli et **alerte sur volume** |
+| Tout part en validation humaine | Seuil trop haut | Le baisser, et vérifier que les catégories sont bien séparées |
+| Messages perdus pendant une panne | Pas de reprise depuis la dernière exécution | Mémoriser l'horodatage traité, reprendre à partir de là |
+
+**Le conseil que je répète et qu'on saute toujours** : branchez d'abord le déclencheur en manuel, faites tourner le flux en parallèle du traitement humain pendant deux semaines **sans qu'il envoie quoi que ce soit**, et comparez ses décisions à celles des agents. Vous obtiendrez une mesure honnête de sa fiabilité, sur des données réelles, sans le moindre risque. C'est le meilleur usage possible de deux semaines.
 
 ### Étape 5 --- Mesurer et améliorer
 
