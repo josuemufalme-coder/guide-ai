@@ -79,7 +79,7 @@ titres 1 à 3 définis.
 
 **Pagination.** Vérifiée sur le PDF : les 18 pages liminaires (titre, page de
 droits, avant-propos, plan, table des matières) ne portent **aucun numéro** ; le
-corps commence à la page 19 du PDF avec le folio « 1 » et court jusqu'à « 257 ».
+corps commence à la page 19 du PDF avec le folio « 1 » et court jusqu’à « 260 ».
 Deux sections `sectPr` distinctes, la seconde avec `pgNumType w:start="1"`.
 
 **Ordre de fin vérifié**, conforme à votre demande : Annexe A — Corrigés,
