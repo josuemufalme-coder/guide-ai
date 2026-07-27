@@ -2559,6 +2559,22 @@ Une remarque importante : les outils évoluent vite, et leurs interfaces changen
 
 Un **assistant IA** est une application bâtie sur un grand modèle de langage, accessible par une interface de conversation. Vous lui parlez en langage naturel, il répond. Mais derrière cette simplicité se cache une grande puissance --- à condition de savoir s\'en servir. Apprendre à dialoguer avec ces outils est devenu une compétence professionnelle aussi fondamentale que savoir utiliser un tableur.
 
+Trois notions suffisent à comprendre ce qui se passe derrière l\'interface, et les ignorer explique la plupart des déceptions.
+
+**La fenêtre de contexte.** L\'assistant ne possède aucune mémoire persistante : à chaque message, on lui renvoie l\'intégralité de la conversation, et il lit tout depuis le début. Cette fenêtre a une taille limitée, mesurée en **jetons**, ces fragments de mots vus au chapitre 9. Un ordre de grandeur utile, en retenant qu\'un mot français consomme à peu près un jeton et demi :
+
+| Fenêtre | Environ | Soit à peu près |
+|---:|---:|---:|
+| 8 000 jetons | 5 000 mots | 13 pages |
+| 32 000 jetons | 21 000 mots | 53 pages |
+| 128 000 jetons | 85 000 mots | 213 pages |
+
+Ces chiffres sont approximatifs et varient selon la langue et le contenu ; retenez-en l\'ordre de grandeur, pas la décimale. Ce qu\'il faut en tirer est pratique : quand une conversation devient très longue, le début finit par sortir de la fenêtre, et l\'assistant « oublie » vos consignes initiales. Ce n\'est pas un caprice, c\'est mécanique. La parade est simple : **rappelez périodiquement le contexte essentiel**, ou ouvrez une conversation neuve en résumant ce qui compte.
+
+**L\'absence de mémoire entre conversations.** Sauf fonctionnalité spécifique, ce que vous avez expliqué hier est perdu aujourd\'hui. D\'où l\'intérêt de conserver vos consignes récurrentes dans un fichier, prêtes à être recollées.
+
+**Le tirage aléatoire.** Vous l\'avez vu au chapitre 10 : le modèle tire le mot suivant au sort. La même question posée deux fois donnera deux réponses différentes. Ce n\'est ni un bug ni un signe d\'inconstance — c\'est la nature de l\'outil, et cela a une conséquence pratique : si une réponse vous paraît douteuse, **reposez la question dans une conversation neuve** et comparez. Deux réponses divergentes sur un point factuel sont un signal d\'alarme fiable.
+
 ![](./media/image14.png){width="6.2in" height="2.815936132983377in"}
 
 *Figure 18.1 --- Les grands assistants et leurs points forts respectifs.*
@@ -2566,6 +2582,10 @@ Un **assistant IA** est une application bâtie sur un grand modèle de langage, 
 ### Leçon 2 --- ChatGPT : le couteau suisse
 
 **ChatGPT**, développé par OpenAI, est l\'assistant le plus connu. Polyvalent, il excelle dans la rédaction, le brainstorming, l\'explication de concepts, l\'aide à la programmation et la génération d\'idées. Il intègre des outils additionnels : navigation web, analyse de fichiers, génération d\'images, et des « GPTs » personnalisés pour des tâches spécifiques.
+
+Cette polyvalence a une contrepartie qu\'il faut connaître : **elle vous laisse choisir le mode de travail, et ce choix compte plus que la formulation**. Selon que vous activez ou non la navigation web, l\'analyse de fichiers ou l\'exécution de code, vous ne parlez pas au même outil. Une question factuelle posée sans navigation obtiendra une réponse tirée des souvenirs d\'entraînement, potentiellement périmée et sans source. La même question avec navigation obtiendra des références vérifiables. Beaucoup d\'utilisateurs déçus par une réponse fausse n\'avaient simplement pas activé le bon mode.
+
+Deux usages où cet assistant se montre particulièrement à l\'aise méritent d\'être signalés. **L\'assistance au code** : non pas tant pour écrire un programme entier que pour expliquer un message d\'erreur, proposer une piste, ou traduire une intention en syntaxe — ce qui, pour un débutant en Python, remplace avantageusement des heures de recherche. Et **l\'idéation** : produire vingt idées dont trois seront bonnes est une tâche pour laquelle la variabilité du modèle, ailleurs gênante, devient un atout. Demandez-lui donc des quantités, puis triez vous-même. C\'est là que le rapport entre effort et bénéfice est le plus favorable.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2577,9 +2597,19 @@ Un **assistant IA** est une application bâtie sur un grand modèle de langage, 
 
 **Méthode --- bien utiliser ChatGPT pour rédiger.** Au lieu de demander « écris un email », précisez : « Rédige un email professionnel et courtois à un client pour l\'informer d\'un retard de livraison de 3 jours, en proposant un geste commercial, en 120 mots maximum ». La précision de la demande détermine la qualité du résultat. Un assistant n\'est puissant que si vous le dirigez bien.
 
+J\'ajoute deux réflexes qui valent pour tous les assistants et que peu de gens emploient.
+
+**Faites-vous poser les questions.** Plutôt que de tout spécifier d\'emblée, terminez votre demande par : « avant de rédiger, pose-moi les trois questions dont la réponse changerait le plus ton résultat ». L\'assistant identifiera les informations manquantes bien mieux que vous ne les auriez devinées, et le texte produit sera immédiatement plus juste. C\'est la technique la plus rentable que je connaisse, et elle tient en une phrase.
+
+**Demandez la critique avant la version finale.** « Quels sont les trois points faibles de ce texte ? » produit souvent des remarques pertinentes, précisément parce que critiquer un texte existant est une tâche plus simple que d\'en produire un parfait. Vous obtenez ainsi une relecture gratuite, et vous restez celui qui décide quoi corriger.
+
 ### Leçon 3 --- Claude : le spécialiste des textes longs et du raisonnement
 
 **Claude**, développé par Anthropic, se distingue par sa capacité à traiter de très longs documents, par la qualité de son raisonnement et par une approche centrée sur la sûreté. Il est particulièrement apprécié pour l\'analyse de documents volumineux, la rédaction soignée et les tâches exigeant de la rigueur.
+
+Ce que « traiter de longs documents » change en pratique mérite d\'être explicité, car l\'avantage n\'est pas seulement quantitatif. Quand un rapport entier tient dans la fenêtre de contexte, vous pouvez poser des questions qui **portent sur l\'ensemble** : « quelles affirmations du chapitre 4 sont contredites ailleurs dans le document ? », « quels engagements chiffrés figurent dans ce contrat et à quelles échéances ? ». Ces questions transversales sont impossibles si l\'on travaille par morceaux, puisque chaque morceau ignore les autres. C\'est un changement de nature du travail documentaire, pas un simple gain de temps.
+
+Un conseil d\'usage pour ce type de tâche : **demandez les citations**. « Réponds en citant chaque fois le passage exact sur lequel tu t\'appuies » transforme une synthèse invérifiable en synthèse contrôlable en quelques minutes. Vous n\'avez plus à relire le document entier pour valider la réponse : il vous suffit de vérifier les passages cités. C\'est la même logique que le RAG du chapitre 10, appliquée à la main.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2588,6 +2618,10 @@ Un **assistant IA** est une application bâtie sur un grand modèle de langage, 
 -   **À privilégier pour** : analyse de longs rapports, synthèses, rédaction professionnelle, tâches sensibles.
 
 -   **Points de vigilance** : comme tout LLM, il faut vérifier les faits critiques.
+
+Une remarque de méthode plutôt que de produit, car les positionnements évoluent vite et ce paragraphe vieillira. **Ce qui distingue durablement ces outils tient à trois axes**, et c\'est sur eux qu\'il faut raisonner : la **taille du contexte** qu\'ils acceptent, leur **accès ou non à des sources externes en temps réel**, et l\'**écosystème** dans lequel ils s\'insèrent — outils connectés, intégration à vos logiciels, possibilité de les appeler depuis un programme. Les noms changeront, ces trois questions resteront pertinentes. Posez-les à n\'importe quel assistant qui paraîtra dans les années qui viennent, et vous saurez en dix minutes à quoi il sert.
+
+Ajoutez-y un quatrième critère, souvent décisif en entreprise et rarement mentionné : **que devient ce que vous envoyez ?** Selon le service et le type d\'abonnement, vos échanges peuvent être conservés, examinés par des humains, ou utilisés pour améliorer les modèles. Les conditions varient d\'un fournisseur à l\'autre et changent régulièrement. Avant de confier un document professionnel à un assistant, vérifiez ce point précis — c\'est celui sur lequel un service juridique vous interrogera en premier.
 
 ### Leçon 4 --- Perplexity : la recherche sourcée
 
@@ -2601,11 +2635,35 @@ Un **assistant IA** est une application bâtie sur un grand modèle de langage, 
 
 -   **Points de vigilance** : la qualité dépend des sources trouvées ; toujours évaluer leur fiabilité.
 
+Ce point de vigilance mérite d\'être pris au sérieux, car il déplace le problème plus qu\'il ne le supprime. Citer une source n\'est pas la valider : l\'outil peut fort bien s\'appuyer sur un billet de blog approximatif, un article promotionnel ou une page obsolète, et présenter le tout avec la même assurance qu\'une publication de référence. **Le risque d\'hallucination diminue, le risque de reprendre une source médiocre augmente.** Vous n\'êtes donc pas dispensé de jugement, vous l\'exercez ailleurs : au lieu de vérifier des faits sortis de nulle part, vous évaluez la qualité de références identifiées — ce qui est beaucoup plus rapide, à condition de le faire vraiment.
+
+Prenez donc l\'habitude de **cliquer sur au moins une source** avant de reprendre une information importante. Regardez qui publie, à quelle date, et si la page dit bien ce que le résumé lui fait dire. Cette dernière vérification est loin d\'être superflue : la synthèse d\'une page peut en durcir la conclusion ou en perdre les nuances.
+
+Un usage particulièrement rentable, pour finir : **la vérification croisée**. Quand un autre assistant vous a produit une affirmation factuelle dont vous doutez, posez la même question à un moteur sourcé. Vous obtenez en trente secondes soit une confirmation référencée, soit un désaccord qui vous alerte. C\'est le complément naturel des outils génératifs, et le meilleur usage professionnel que je connaisse de ce type d\'outil.
+
 **Le bon outil pour le bon usage ---** Ne cherchez pas « le meilleur » assistant : cherchez le bon outil pour chaque tâche. Recherche factuelle à jour ? Perplexity. Analyse d\'un long document ou rédaction soignée ? Claude. Tâche créative polyvalente ou assistance au code ? ChatGPT. Le professionnel aguerri jongle entre eux selon le besoin.
 
 ### Leçon 5 --- Méthode de travail avec un assistant
 
 Quel que soit l\'outil, adoptez une méthode. **Itérez** : la première réponse est rarement parfaite ; affinez votre demande. **Donnez du contexte** : plus l\'assistant en sait, mieux il répond. **Vérifiez** : ne faites jamais confiance aveuglément à une information factuelle. **Décomposez** : pour une tâche complexe, procédez par étapes plutôt qu\'en une seule requête.
+
+**Exemple chiffré --- où passe réellement le gain de temps.** L\'enthousiasme sur ces outils se mesure rarement. Faisons-le, sur une tâche ordinaire : rédiger une note argumentée qui vous prendrait **60 minutes** à la main.
+
+Avec un assistant, comptez **10 minutes** de pilotage — formuler la demande, itérer, relire. Mais le texte produit contient des affirmations factuelles qu\'il faut contrôler, à raison d\'environ **3 minutes** par vérification.
+
+| Faits à vérifier | Temps total | Gain |
+|---:|---:|---:|
+| 0 | 10 min | **+83 %** |
+| 2 | 16 min | +73 % |
+| 5 | 25 min | +58 % |
+| 10 | 40 min | **+33 %** |
+| 17 | 61 min | **le gain disparaît** |
+
+Le résultat est éclairant : **le gain n\'est pas dans la rédaction, il est dans la nature de la tâche**. Sur un texte qui n\'engage aucun fait — une reformulation, un plan, un courriel de relance —, l\'assistant fait gagner l\'essentiel du temps. Sur un texte truffé de chiffres, de dates et de références, la vérification mange le bénéfice, et au-delà d\'une quinzaine de faits vous auriez été plus rapide seul.
+
+D\'où la règle que je vous invite à retenir : **confiez à l\'assistant ce qui demande de la forme, gardez pour vous ce qui repose sur des faits**. Ou mieux : fournissez-lui vous-même les faits, dans votre demande, plutôt que de le laisser les produire. Un assistant à qui l\'on donne les chiffres et qui rédige autour est un excellent outil ; un assistant à qui l\'on demande les chiffres est un risque.
+
+Trois habitudes complètent la méthode. **Travaillez par conversations thématiques** plutôt que dans un fil unique interminable, pour que le contexte reste propre. **Conservez vos meilleures demandes** dans un fichier ; vous les réutiliserez bien plus souvent que vous ne le pensez. Et **relisez toujours en dernier lecteur**, sans l\'assistant : c\'est vous qui signez.
 
 ### Leçon 6 --- Scénarios d\'usage professionnels détaillés
 
@@ -2616,6 +2674,10 @@ Pour rendre tout cela concret, voici des scénarios complets montrant comment un
 **Cas pratique --- rédiger une proposition commerciale.** Un commercial part de quelques notes. Il demande à l\'assistant une **structure** de proposition, qu\'il valide. Puis il fait rédiger chaque section, qu\'il personnalise avec les détails du client. Il demande enfin une **relecture critique** : « quels sont les trois points faibles de cette proposition ? ». Il corrige, et obtient un document professionnel en une fraction du temps habituel.
 
 Remarquez le point commun de tous ces scénarios : l\'humain **dirige**, l\'IA **exécute**, et l\'humain **valide**. L\'assistant ne décide jamais seul ; il amplifie le travail de la personne. C\'est cette posture qu\'il faut adopter.
+
+Je veux insister sur ce point, car il ne s\'agit pas d\'une précaution de style mais du cœur du sujet. Ce qui distingue un professionnel efficace d\'un utilisateur naïf ne tient ni à la connaissance des outils, ni à l\'habileté des formulations : cela tient à **la clarté de ce qu\'il attend avant de demander**. Un cadre qui sait exactement quelle décision il doit préparer obtiendra une synthèse utile en trois échanges. Celui qui espère que l\'assistant lui dise quoi penser obtiendra un texte fluide et creux, et il repartira convaincu que l\'outil est décevant.
+
+Un risque plus insidieux mérite d\'être nommé, parce qu\'il s\'installe sans qu\'on le voie venir : **la délégation du jugement**. On commence par faire rédiger, ce qui est légitime. Puis on fait structurer, puis analyser, puis recommander. À chaque étape, la réponse arrive vite et paraît raisonnable, et l\'on prend l\'habitude de ne plus construire soi-même le raisonnement. La compétence ne disparaît pas d\'un coup ; elle s\'atrophie par désuétude. **La règle que je m\'applique : formez d\'abord votre propre avis, puis demandez à l\'assistant de le contredire.** Vous gagnez la vitesse sans perdre la compétence, et la critique reçue vaut bien mieux qu\'une réponse à laquelle vous n\'auriez rien à opposer.
 
 ### Leçon 7 --- Les limites à toujours garder en tête
 
@@ -2628,6 +2690,12 @@ Remarquez le point commun de tous ces scénarios : l\'humain **dirige**, l\'IA *
 -   **La confidentialité** : ne pas confier à un service externe des informations sensibles sans précaution.
 
 -   **Le jugement reste humain** : l\'assistant propose, mais la décision et la responsabilité vous appartiennent.
+
+Deux limites méritent d\'être développées, car ce sont celles qui causent les vrais incidents professionnels.
+
+**La confidentialité, d\'abord, se traite par une règle et non au cas par cas.** Classez ce que vous manipulez en trois niveaux. Ce qui est **public ou anodin** : aucune précaution. Ce qui est **interne** — notes, brouillons, procédures non sensibles : vérifiez les conditions du service employé, et préférez une offre professionnelle qui garantit la non-réutilisation de vos données. Ce qui est **sensible** — données personnelles de tiers, informations couvertes par un secret, documents contractuels : ne les envoyez pas à un service externe sans validation explicite de votre organisation, et envisagez un modèle hébergé localement. Une habitude simple aide beaucoup : **anonymisez avant d\'envoyer**. Remplacez les noms par des lettres, les montants réels par des ordres de grandeur. L\'assistant travaillera aussi bien, et vous n\'aurez rien exposé.
+
+**Le biais de confirmation, ensuite**, qui est la limite la moins citée et sans doute la plus dangereuse. Ces modèles sont entraînés à produire des réponses que les humains jugent satisfaisantes, et il en résulte une tendance marquée à **abonder dans votre sens**. Affirmez une chose fausse avec assurance, et vous obtiendrez souvent une réponse qui l\'accommode plutôt qu\'une contradiction franche. Formulez donc vos questions de manière neutre — « quels sont les arguments pour et contre ? » plutôt que « pourquoi cette solution est-elle la meilleure ? » —, et méfiez-vous particulièrement des réponses qui vous font plaisir. Un assistant qui vous donne toujours raison ne vous sert à rien.
 
 ### Exercices dirigés
 
