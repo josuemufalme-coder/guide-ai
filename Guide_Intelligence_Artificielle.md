@@ -1596,9 +1596,43 @@ Depuis 2022, l\'**IA générative** transforme tous les métiers. Capable de pro
 
 Un fait remarquable : de la tâche apparemment banale « prédire le mot suivant » émergent des capacités impressionnantes. L\'entraînement se fait en deux temps : un pré-entraînement massif, puis un **alignement** sur les préférences humaines.
 
+**Exemple chiffré --- comment le modèle choisit un mot.** Tout le comportement d\'un LLM découle de ce mécanisme ; le voir en chiffres dissipe beaucoup de mystère. Soumettons au modèle le début de phrase « Le chat dort sur le… ». Il produit, pour chaque mot possible de son vocabulaire, un score brut. Retenons-en quatre.
+
+| Mot candidat | Score brut | Probabilité (T = 1) |
+|---|---:|---:|
+| canapé | 5,0 | **56,8 %** |
+| lit | 4,5 | **34,5 %** |
+| toit | 3,0 | **7,7 %** |
+| clavier | 1,0 | **1,0 %** |
+
+Ces scores sont convertis en probabilités par la softmax rencontrée au chapitre 6. Puis le modèle **tire au sort** selon ces probabilités. Il ne choisit pas le plus probable : il tire. C\'est pourquoi la même question posée deux fois ne donne pas la même réponse.
+
+Un réglage commande ce tirage : la **température**. On divise les scores par elle avant la softmax, ce qui creuse ou aplanit les écarts. Observez :
+
+| Mot | T = 0,2 | T = 1,0 | T = 2,0 |
+|---|---:|---:|---:|
+| canapé | **92,4 %** | 56,8 % | 43,8 % |
+| lit | 7,6 % | 34,5 % | 34,1 % |
+| toit | 0,0 % | 7,7 % | 16,1 % |
+| clavier | 0,0 % | 1,0 % | **5,9 %** |
+
+À température basse, le modèle devient prévisible : neuf fois sur dix il dira « canapé ». À température haute, il s\'autorise « clavier » une fois sur dix-sept — surprenant, parfois créatif, souvent absurde. **La créativité d\'un modèle n\'est rien d\'autre que ce réglage.** D\'où une règle simple : température basse pour l\'extraction d\'informations, la classification et le code, où vous voulez la réponse la plus sûre et reproductible ; température plus élevée pour le brainstorming ou l\'écriture, où la variété est l\'objectif.
+
+Ce petit tableau explique aussi l\'**hallucination**, et je veux que vous compreniez qu\'elle n\'est pas un défaut accidentel. Le modèle ne dispose d\'aucune case « je ne sais pas » : il produit toujours une distribution sur les mots possibles, et tire dedans. Quand il connaît la réponse, la distribution est piquée sur le bon mot. Quand il ne la connaît pas, elle est plate — et il tire quand même, produisant une suite plausible plutôt que vraie. **Halluciner et répondre correctement sont exactement le même mécanisme**, appliqué à des distributions différentes. C\'est pourquoi aucune consigne du type « ne mens pas » ne supprimera le phénomène, et pourquoi il faut des dispositifs extérieurs, dont le RAG de la leçon 4.
+
 ### Leçon 2 --- Générer des images
 
 Au-delà du texte, on génère des images avec les **GAN**, les **VAE** et surtout les **modèles de diffusion**, aujourd\'hui dominants, qui apprennent à reconstruire une image en débruitant progressivement un bruit aléatoire.
+
+Ces trois familles répondent à une même question — comment produire quelque chose de nouveau qui ressemble à ce qu\'on a vu — par trois stratégies différentes, et il vaut la peine de les distinguer.
+
+Le **GAN** met deux réseaux en compétition. Le générateur fabrique des images, le discriminateur tente de reconnaître les vraies des fausses, et chacun s\'améliore en cherchant à déjouer l\'autre. L\'idée est brillante et l\'entraînement notoirement instable : les deux adversaires doivent progresser au même rythme, faute de quoi l\'un écrase l\'autre et l\'apprentissage s\'effondre.
+
+Le **VAE** apprend à comprimer une image en quelques centaines de nombres puis à la reconstruire. En tirant au hasard dans cet espace comprimé, on obtient des images inédites — mais souvent floues, parce que le modèle est entraîné à minimiser une erreur moyenne, et que la façon la plus sûre de se tromper peu est de rester vague.
+
+Le **modèle de diffusion** a supplanté les deux, et son avantage tient à un choix qui paraît anodin : il ne cherche pas à produire l\'image d\'un coup. Il la construit en dizaines d\'étapes, chacune consistant simplement à retirer un peu de bruit. Chaque étape est un problème facile, et leur accumulation résout un problème difficile. C\'est plus stable qu\'un GAN, plus net qu\'un VAE, et cela coûte en contrepartie beaucoup plus de calcul au moment de générer — d\'où l\'attente de quelques secondes devant votre écran.
+
+Retenez le principe général, il dépasse largement l\'image : **décomposer une tâche difficile en une longue suite de petits pas faciles est l\'une des idées les plus fécondes de l\'apprentissage profond.** Vous la retrouverez dans la chaîne de pensée quelques lignes plus bas, qui applique exactement la même recette au raisonnement.
 
 ### Leçon 3 --- L\'art de bien parler aux modèles : le prompting
 
@@ -1614,6 +1648,12 @@ La qualité des réponses d\'un LLM dépend fortement de la façon dont vous l\'
 
 **Exemple --- la puissance de la chaîne de pensée.** Posez un problème de logique à un LLM en demandant juste la réponse : il se trompe parfois. Demandez-lui de **détailler son raisonnement étape par étape** avant de conclure : sa précision augmente fortement. En l\'obligeant à « réfléchir à voix haute », on l\'aide à structurer sa réponse.
 
+Pourquoi cela fonctionne-t-il ? La réponse est plus intéressante qu\'une astuce de rédaction. Un modèle produit un mot à la fois, et le calcul qu\'il effectue par mot est **fixe**. Si vous exigez la réponse immédiatement, il doit résoudre le problème entier dans cette quantité de calcul-là. En lui demandant de dérouler son raisonnement, vous lui accordez des dizaines d\'étapes intermédiaires, chacune s\'appuyant sur les précédentes qu\'il relit dans son propre texte. **La chaîne de pensée n\'est pas une invitation à mieux réfléchir : c\'est l\'allocation de plus de calcul au problème.** Voilà pourquoi elle aide sur l\'arithmétique et la logique, et n\'apporte à peu près rien sur une question de culture générale, où la réponse est là ou n\'y est pas.
+
+Deux limites accompagnent cette technique, et il faut les connaître. D\'abord, **le raisonnement affiché n\'est pas nécessairement le raisonnement suivi**. Un modèle peut produire une suite d\'étapes convaincantes menant à une conclusion qu\'il aurait de toute façon donnée. Ne prenez pas ces explications pour une introspection fiable. Ensuite, une erreur commise à l\'étape trois se propage jusqu\'au bout sans jamais être corrigée, car chaque étape prend la précédente pour acquise. D\'où l\'utilité d\'une consigne supplémentaire : demandez au modèle de **vérifier son résultat par une autre voie** une fois qu\'il l\'a obtenu.
+
+J\'ajoute deux techniques que la liste ci-dessus laisse de côté et qui rendent d\'immenses services. Le **prompt système** définit un rôle et des contraintes valables pour tout l\'échange, au lieu de les répéter à chaque message. Et la **spécification du format de sortie** — « réponds en JSON avec les clés nom, date, montant » — transforme un texte libre en donnée exploitable par un programme. C\'est la clé qui permet de brancher un modèle de langage dans une chaîne automatisée, et vous vous en servirez constamment au chapitre 20.
+
 ### Leçon 4 --- Donner des connaissances fiables : le RAG
 
 Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « halluciner » : inventer des faits avec aplomb. La **génération augmentée par récupération (RAG)** corrige cela : avant de répondre, le système cherche des documents pertinents dans une base de connaissances et les fournit au modèle. La réponse s\'appuie alors sur des sources vérifiables et à jour.
@@ -1624,15 +1664,39 @@ Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « 
 
 **Piège fréquent ---** Un LLM produit des réponses fluides et convaincantes même quand elles sont fausses. Ne confondez jamais l\'aisance du style avec l\'exactitude du contenu : toute information critique doit être vérifiée.
 
+Voyons le RAG d\'un peu plus près, car c\'est l\'architecture que vous construirez le plus souvent, et sa réputation de simplicité est trompeuse. Elle se déroule en cinq temps. On **découpe** d\'abord les documents en passages de quelques centaines de mots. On calcule pour chacun un **plongement**, ce vecteur de sens vu au chapitre 9, et on les range dans une base vectorielle. À la question de l\'utilisateur, on calcule le plongement de la question et l\'on **cherche les passages les plus proches**. On les **insère dans l\'invite** avec la question. Le modèle **rédige** enfin sa réponse à partir de ce qu\'on lui a fourni.
+
+Le point que je veux souligner est celui-ci : **le maillon faible n\'est presque jamais le modèle, c\'est la recherche**. Si les bons passages ne sont pas remontés, aucun modèle au monde ne produira une bonne réponse — il répondra à partir de ce qu\'on lui a donné, c\'est-à-dire à côté. Quand un RAG déçoit, commencez toujours par examiner les passages récupérés avant de toucher à l\'invite. Neuf fois sur dix, le problème est là.
+
+Le découpage mérite lui aussi votre attention, car il décide de tout ce qui suit. Des passages trop courts perdent leur contexte : une phrase qui commence par « cette procédure » ne veut rien dire séparée de ce qui la précède. Trop longs, ils noient l\'information pertinente au milieu de texte non pertinent, et la recherche par similarité devient floue. On découpe donc en respectant la structure du document — par section, par paragraphe — plutôt qu\'en tronçons de taille fixe, et l\'on fait se chevaucher légèrement les passages voisins pour ne pas couper une idée en deux.
+
+Un dernier conseil, qui coûte une ligne et change tout : **exigez les sources**. Demandez au modèle de citer le passage sur lequel il s\'appuie, et d\'annoncer explicitement qu\'il ne sait pas lorsque les documents fournis ne contiennent pas la réponse. Sans cette consigne, il comblera les trous avec ses propres souvenirs d\'entraînement, et vous perdrez précisément la garantie pour laquelle vous aviez construit le RAG.
+
 ### Leçon 5 --- Agents, fine-tuning et garde-fous
 
 Enfin, vous découvrirez les **agents** (que nous approfondirons au chapitre 13), le **fine-tuning** pour spécialiser un modèle, et les **garde-fous** pour limiter les comportements indésirables. L\'**évaluation** des sorties et la lutte contre les **hallucinations** sont des enjeux majeurs.
+
+Ces quatre notions se rangent facilement si l\'on comprend à quel problème chacune répond, et cela vous évitera de sortir l\'outil le plus lourd en premier.
+
+Le **fine-tuning** répond au problème du *format* et du *style*, bien plus qu\'à celui de la connaissance. C\'est le malentendu le plus répandu du domaine : on affine un modèle en espérant lui apprendre les procédures internes d\'une entreprise, et l\'on obtient un modèle qui adopte le ton des documents fournis sans en retenir fidèlement le contenu. **Pour ajouter de la connaissance, utilisez le RAG ; pour imposer un comportement, affinez.** Cette distinction vous épargnera des semaines.
+
+Les **garde-fous** sont des contrôles placés autour du modèle, jamais dedans. En entrée, on filtre les demandes hors sujet ou malveillantes. En sortie, on vérifie que la réponse respecte le format attendu, ne contient pas de données personnelles, ne s\'aventure pas sur des sujets interdits. Un point vaut d\'être dit franchement : ces contrôles doivent être **extérieurs au modèle**. Une consigne dans l\'invite — « ne parle jamais de politique » — se contourne, et vous trouverez sur internet des collections entières de contournements. Un filtre programmé, lui, ne se laisse pas convaincre.
+
+L\'**évaluation**, enfin, est ce qui distingue une démonstration d\'un produit. Elle suppose un jeu de cas représentatifs de votre usage réel, avec pour chacun ce que vous attendez, et une mesure rejouée à chaque modification. Sans cela, vous n\'améliorez rien : vous changez des choses, et vous constatez sur trois exemples que c\'est « mieux ». Trente cas bien choisis suffisent pour commencer, et ils vous serviront pendant toute la vie du projet.
 
 ### Leçon 6 --- Études de prompts : du médiocre à l\'excellent
 
 Rien n\'illustre mieux l\'ingénierie de prompts qu\'une comparaison. Prenons une même intention et voyons comment l\'amélioration progressive du prompt transforme le résultat.
 
 **Exemple --- trois niveaux de prompt. Niveau 1 (faible)** : « Parle-moi de la vente. » → réponse vague et générique. **Niveau 2 (correct)** : « Donne cinq techniques de vente pour un commercial débutant. » → réponse utile mais standard. **Niveau 3 (excellent)** : « Tu es un formateur en vente. Donne cinq techniques de vente concrètes pour un commercial débutant dans le secteur du logiciel, avec pour chacune un exemple de phrase à dire. Format : liste numérotée, ton encourageant. » → réponse précise, actionnable, adaptée. **À retenir** : chaque précision ajoutée resserre et améliore la réponse.
+
+Décomposons ce qui a été ajouté entre le niveau 1 et le niveau 3, car ces ingrédients se transposent à n\'importe quelle demande. Un **rôle** — « tu es un formateur en vente » — qui oriente le vocabulaire et le niveau de détail. Une **tâche** précise, avec un nombre attendu. Un **contexte** — commercial débutant, secteur du logiciel — qui écarte les généralités. Une **exigence de forme** — une phrase à dire pour chacune — qui force le concret. Et un **format** — liste numérotée, ton encourageant. Cinq ajouts, et une réponse qui passe de l\'inutilisable au directement exploitable.
+
+J\'insiste particulièrement sur l\'exigence de concret, car c\'est le levier le plus sous-estimé. « Donne cinq techniques de vente » produira des généralités que tout le monde connaît. « Donne, pour chacune, un exemple de phrase à dire » oblige le modèle à descendre au niveau où l\'on peut juger si le conseil vaut quelque chose. La demande d\'un exemple, d\'un chiffre ou d\'un cas précis est la meilleure défense contre le remplissage — et cela vaut pour un modèle comme pour un collaborateur.
+
+Deux réflexes complètent la méthode. **Dites ce que vous voulez, pas ce que vous ne voulez pas** : « écris en phrases courtes » fonctionne beaucoup mieux que « n\'écris pas de phrases longues », car une consigne négative oblige à se représenter ce qu\'elle interdit. Et **itérez au lieu de tout prévoir** : plutôt que de composer d\'emblée une invite parfaite, envoyez-en une raisonnable, observez ce qui manque, et corrigez ce point-là. Trois allers-retours vous mèneront plus loin qu\'une heure de rédaction à l\'aveugle.
+
+Un dernier point sur la reproductibilité, qui distingue l\'amateur du professionnel. Une bonne invite est un **actif** : conservez-la dans un fichier, notez ce que vous en attendez, et testez-la sur plusieurs cas avant de l\'adopter. Une formulation qui brille sur un exemple peut s\'effondrer sur le suivant, et vous ne le saurez que si vous avez pris la peine de vérifier.
 
 ### Leçon 7 --- Concevoir une application générative fiable
 
@@ -1652,6 +1716,14 @@ Construire une vraie application autour d\'un LLM exige plus que de bons prompts
 
 **La règle d\'or de l\'IA générative ---** Ne déployez jamais une application générative sans avoir réfléchi à ce qui se passe quand le modèle se trompe. La question n\'est pas « et s\'il se trompe ? » mais « \*\*quand\*\* il se trompera, comment limiter les dégâts ? » Cette prudence fait la différence entre un gadget et un outil professionnel.
 
+Traduisons cette règle d\'or en dispositions concrètes, car « limiter les dégâts » reste une intention tant qu\'on ne l\'a pas outillée.
+
+Le premier réflexe est de **classer vos usages par gravité**. Résumer un compte rendu interne : une erreur coûte quelques minutes de relecture. Rédiger une réponse envoyée directement à un client : une erreur engage l\'entreprise. Calculer un montant de remboursement : une erreur engage de l\'argent et peut-être du droit. Ces trois usages n\'appellent pas le même dispositif, et vouloir le même niveau de contrôle partout revient à n\'en avoir nulle part.
+
+De là découle une gradation simple, que je vous propose d\'adopter telle quelle. **Faible enjeu** : le modèle agit seul, un signalement permet de remonter les erreurs. **Enjeu moyen** : le modèle prépare, un humain valide avant envoi — c\'est le régime qui convient à la grande majorité des usages professionnels. **Enjeu fort** : le modèle propose, un humain décide, et tout est journalisé pour pouvoir être reconstitué. **Enjeu critique** : n\'utilisez pas de modèle génératif, ou seulement comme second avis à côté d\'une méthode déterministe.
+
+Trois précautions valent enfin pour tous les niveaux. **Journalisez** les échanges — invite, réponse, sources utilisées — faute de quoi vous ne pourrez jamais analyser un incident. **Prévoyez le repli** : que se passe-t-il si le service est indisponible ou répond n\'importe quoi ? Un système qui n\'a pas de mode dégradé n\'est pas un système en production. Et **dites à l\'utilisateur qu\'il parle à une machine**, ainsi que ce qu\'elle peut se permettre de faux. C\'est une exigence éthique, souvent une exigence réglementaire, et c\'est surtout ce qui maintient la vigilance de celui qui lit — la confiance excessive dans une réponse fluide étant, comme vous l\'avez vu, le vrai danger.
+
 ### Leçon 8 --- La génération d\'images expliquée
 
 La génération d\'images mérite qu\'on s\'y attarde, tant elle a transformé les métiers créatifs. Comment une machine crée-t-elle une image à partir d\'une simple phrase ?
@@ -1659,6 +1731,12 @@ La génération d\'images mérite qu\'on s\'y attarde, tant elle a transformé l
 Les **modèles de diffusion**, aujourd\'hui dominants, procèdent par une idée élégante. Pendant l\'entraînement, on prend des images réelles et on y ajoute progressivement du bruit jusqu\'à les rendre méconnaissables. Le modèle apprend à **inverser** ce processus : à partir d\'un bruit aléatoire, il enlève le bruit étape par étape jusqu\'à faire émerger une image cohérente, guidée par la description textuelle fournie.
 
 **Exemple --- de la phrase à l\'image.** Vous demandez « un chat astronaute sur la Lune, style aquarelle ». Le modèle part d\'un nuage de pixels aléatoires et, en plusieurs dizaines d\'étapes de débruitage guidées par votre texte, fait progressivement apparaître la scène demandée. C\'est presque l\'inverse de la vision humaine : au lieu de reconnaître, le modèle **fait advenir**. **À retenir** : générer, c\'est structurer progressivement le hasard.
+
+Une précision s\'impose sur le rôle du texte dans ce processus, car elle éclaire beaucoup de comportements déroutants. Le modèle ne « lit » pas votre phrase pour ensuite dessiner. À chaque étape de débruitage, il compare deux directions : celle qu\'il suivrait sans votre texte, et celle qu\'il suit en en tenant compte, puis il **exagère l\'écart entre les deux**. L\'intensité de cette exagération est un réglage — on parle de guidage — et il explique un phénomène que tout utilisateur observe. Guidage faible : l\'image est belle et ignore la moitié de votre demande. Guidage fort : elle respecte scrupuleusement la consigne et devient rigide, saturée, parfois grotesque. Le bon réglage est un compromis, et il n\'est pas le même selon les sujets.
+
+Cela éclaire aussi les faiblesses persistantes de ces modèles. **Le texte dans les images** reste hasardeux, parce que le modèle traite les lettres comme des motifs visuels et non comme des symboles. **Le comptage** échoue régulièrement — demandez cinq objets, vous en obtiendrez quatre ou six — car rien dans le mécanisme ne compte quoi que ce soit. **Les mains** sont difficiles pour une raison de données : elles apparaissent dans une infinité de positions et d\'occlusions, ce qui rend leur structure difficile à généraliser. Et **les relations spatiales** — « le chat à gauche du chien » — sont souvent inversées, faute d\'une représentation explicite de l\'espace.
+
+Deux enjeux, enfin, que vous ne pouvez pas ignorer si vous employez ces outils professionnellement. Le **droit d\'auteur** : ces modèles ont été entraînés sur d\'immenses corpus d\'images dont le statut juridique varie selon les pays et fait l\'objet de contentieux en cours ; avant tout usage commercial, vérifiez les conditions de l\'outil que vous employez. Et la **traçabilité** : une image générée doit être signalée comme telle, dans un contexte informatif ou institutionnel. Nous y reviendrons au chapitre 14.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1669,6 +1747,12 @@ Les **modèles de diffusion**, aujourd\'hui dominants, procèdent par une idée 
 ### Leçon 9 --- Prompting pour la génération d\'images
 
 Générer une bonne image suit les mêmes principes que le prompting textuel, avec des spécificités. Décrivez précisément : le **sujet**, le **style** (photo, peinture, dessin), l\'**ambiance** (lumière, couleurs), le **cadrage** (gros plan, plan large), et les **détails** importants. Plus la description est riche et précise, plus le résultat correspond à votre intention. Itérez ensuite en ajustant les termes.
+
+Voici l\'ordre dans lequel je construis une description, et il vaut méthode : **sujet, action, cadrage, lumière, style, ambiance**. Un exemple concret plutôt qu\'une théorie. On part de « une femme qui lit » — trop vague pour donner autre chose qu\'une image quelconque. On enrichit : « une femme âgée lisant un livre, assise près d\'une fenêtre, lumière de fin d\'après-midi, plan rapproché, photographie argentique, atmosphère paisible ». Chaque ajout retire une part d\'aléatoire, et le modèle a de moins en moins de latitude pour vous surprendre désagréablement.
+
+Trois conseils que l\'expérience impose. **Une seule modification à la fois** : si vous changez le style et le cadrage simultanément et que le résultat se dégrade, vous ne saurez pas lequel des deux est responsable. **Fixez la graine aléatoire** quand votre outil le permet ; à graine identique, seule votre modification distingue les deux images, et la comparaison devient enfin lisible. Et **gardez vos descriptions qui fonctionnent** dans un fichier, avec l\'image obtenue : vous vous constituez ainsi une bibliothèque personnelle bien plus utile que n\'importe quelle liste de mots-clés trouvée en ligne.
+
+Un mot enfin sur les termes techniques que l\'on voit circuler — noms d\'objectifs photographiques, de pellicules, de mouvements picturaux. Ils fonctionnent, mais pas par magie : ils fonctionnent parce que les images d\'entraînement portaient ces mots dans leur légende. Vous ne commandez pas un rendu optique, vous **désignez un ensemble d\'images qui partageaient cette étiquette**. Comprendre cela vous évitera de traiter ces mots comme des réglages, et vous fera chercher ce qui décrit vraiment ce que vous voulez voir.
 
 ### Exercices dirigés
 
