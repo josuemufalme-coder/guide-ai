@@ -27,7 +27,7 @@ relecture.
 | Extraits de code dans le texte | 5, illisibles | **39** | dont 30 en Python |
 | Scripts exécutables livrés | 0 | **4** | 41 ko, dans `code/` |
 | Figures | 17 | **17** | inchangé |
-| Pages du PDF final | — | **275** | A4, corps 11 pt |
+| Pages du PDF final | — | **278** | A4, corps 11 pt, noir et blanc |
 
 **Leçons étendues : les 146 leçons de chapitre, sans exception.** Aucune n'a été
 réécrite : tout a été **ajouté autour** de votre texte. Vos phrases, vos
@@ -59,17 +59,18 @@ Tout se rejoue avec une commande. Rien n'est fait à la main.
 |---|---|
 | `Guide_Intelligence_Artificielle.md` | la source, seul fichier à éditer |
 | `outils/faire_reference_docx.py` | fabrique le gabarit de styles |
-| `outils/reference.docx` | le gabarit (reconstruit s'il manque) |
+| `outils/reference.docx` | le gabarit (reconstruit dès que son générateur change) |
 | `outils/finitions_docx.py` | réglages de pagination impossibles en Markdown |
 | `outils/exporter_pdf.py` | export PDF avec calcul des champs |
+| `outils/images_nb.py` | convertit les figures en niveaux de gris |
 | `outils/controle_visuel.py` | analyse de mise en page + images des pages |
 | `build.sh` | orchestre le tout et vérifie le résultat |
 
-**Le gabarit.** Sobre et universitaire, comme demandé : titres en **Cambria**
-(serif), corps en **Calibri** (sans serif), code en **Consolas**. Une seule
-couleur d'accent, un bleu d'encre (`#1F3864`), pour les titres et les filets.
-Corps justifié à 11 pt, interligne 1,15, format A4 avec une marge intérieure
-plus large (3 cm) pour la reliure.
+**Le gabarit.** Sobre et universitaire : titres en **Cambria** (serif), corps
+en **Calibri** (sans serif), code en **Consolas**. **Aucune couleur** — voir la
+section 4 pour le détail du parti pris typographique. Corps justifié à 11 pt,
+interligne 1,15, format A4 avec une marge intérieure plus large (3 cm) pour la
+reliure.
 
 **Contrôles automatiques à chaque compilation**, la construction échoue si l'un
 tombe : pied de page présent, champ de table des matières présent, au moins deux
@@ -88,7 +89,7 @@ Annexe B — Glossaire, Annexe C — Bibliographie, Annexe D — Index des figur
 
 ## 3. Contrôle visuel : ce que j'ai trouvé et corrigé
 
-Les 275 pages ont été converties en images et analysées ; j'en ai regardé une
+Les 278 pages ont été converties en images et analysées ; j'en ai regardé une
 quinzaine en détail, choisies pour être représentatives (page de titre, page de
 droits, table des matières, ouverture de partie, page de code, page de tableau,
 page de figure, et chacune des pages signalées).
@@ -118,7 +119,7 @@ maintenant de 1.
 **e) Les cinq extraits de code hérités du .docx.** Ils étaient restés en texte
 échappé avec des retours forcés, et **l'indentation Python avait disparu** : le
 code imprimé dans le manuel était syntaxiquement faux. Les cinq sont
-reconstruits en blocs colorés (`python`, `sql`) et l'indentation est rétablie.
+reconstruits en blocs composés (`python`, `sql`) et l'indentation est rétablie.
 Les 7 modèles de la bibliothèque de prompts subissaient le même sort ; ils sont
 désormais en blocs `text`.
 
@@ -145,11 +146,12 @@ antérieure que j'avais déclarée terminée.**
 
 ### Ce que le contrôle signale encore, et qui est normal
 
-Seize pages sont remplies à moins de 12 %. Je les ai toutes examinées : ce sont
-la page de titre, la page de droits, la dernière page de la table des matières,
-les six pages d'ouverture de partie (le style Titre 1 force un saut de page,
-c'est voulu) et sept fins de section qui précèdent un saut de page de chapitre.
-**Aucun trou de mise en page.**
+Dix-neuf pages sont remplies à moins de 12 %. Je les ai toutes examinées : ce
+sont la page de titre, la page de droits, la dernière page de la table des
+matières, les six pages d'ouverture de partie (le style Titre 1 force un saut de
+page, c'est voulu) et les fins de section qui précèdent un saut de page de
+chapitre — notamment celles des dix thèmes de problèmes, dont le dernier énoncé
+déborde d'une page. **Aucun trou de mise en page.**
 
 ### Défauts constatés que je n'ai pas corrigés
 
@@ -186,12 +188,59 @@ pour la **mise en page**, pas pour la **typographie**.
 
 ---
 
-## 4. Ce que je n'ai pas pu vérifier — votre relecture est nécessaire
+## 4. Le parti pris typographique : noir et blanc intégral
+
+Vous m'avez dit que le bleu des titres faisait « généré par l'IA ». Vous avez
+raison, et la raison est identifiable : un aplat de couleur unique appliqué
+mécaniquement à tous les niveaux de titre est la signature d'un gabarit
+automatique, pas d'un livre composé. Un manuel universitaire imprimé ne fait
+presque jamais cela — il hiérarchise par la **police**, le **corps**, la
+**casse** et les **filets**.
+
+**Ce que j'ai mis à la place.**
+
+| Niveau | Traitement |
+|---|---|
+| **Partie** | Cambria 24 pt, petites capitales, interlettrage élargi, centré entre deux filets pleine largeur, sur page à part |
+| **Chapitre** | Cambria 19 pt gras, aligné à gauche, filet épais (1,5 pt) sous le titre, sur page nouvelle |
+| **Leçon** | Cambria 14 pt gras, sans filet, respiration large au-dessus |
+| **Sous-partie** | Cambria 12 pt gras italique |
+| **Encadré (exercices, problèmes)** | deux filets gris fins, en retrait des deux côtés, corps 10 pt — plus d'aplat de couleur |
+| **Code** | Consolas 9 pt sur fond gris très clair, filet gris à gauche, coloration syntaxique **monochrome** (mots-clés en gras, commentaires en italique) |
+| **Légendes** | Calibri 9 pt italique, gris foncé, centré |
+
+Le contraste **serif pour les titres / sans serif pour le corps** fait à lui
+seul le travail que faisait la couleur, et il tient à l'impression comme à la
+photocopie.
+
+**Vérification.** Le PDF final ne contient que **six teintes, toutes neutres**
+(du noir au gris clair) : aucun pixel coloré dans le texte ni dans les filets.
+
+**Les 17 figures ont été converties en niveaux de gris** (`outils/images_nb.py`),
+avec un léger renforcement de contraste — sans lui, une palette vive donne des
+gris trop proches et les aplats deviennent indistincts. Les originaux en couleur
+sont conservés dans `media_couleur/` et `python3 outils/images_nb.py --couleur`
+les restaure.
+
+**Deux réserves sur ces figures**, à traiter quand vous les régénérerez :
+
+- La distinction par la couleur y disparaît. Sur le schéma du réseau dense, les
+  neurones d'entrée, cachés et de sortie se distinguaient par trois couleurs ;
+  en gris ils se distinguent encore, mais moins nettement. Les diagrammes
+  refaits gagneront à utiliser des **formes et des trames** plutôt que des
+  teintes.
+- Le contour des blocs colorés du schéma n8n devient un aplat gris moyen sur
+  lequel le texte blanc reste lisible, mais de justesse.
+
+**Coût en pages : +3** (275 → 278). Les filets et les respirations prennent un
+peu de place, la disparition des aplats en rend une partie.
+
+## 5. Ce que je n'ai pas pu vérifier — votre relecture est nécessaire
 
 C'est la section à lire avant toute diffusion. L'accès réseau sortant est bloqué
 par la politique de l'organisation ; je n'ai pu consulter aucune source externe.
 
-### 4.1 Références bibliographiques
+### 5.1 Références bibliographiques
 
 - **Les six ouvrages cités n'ont pas d'ISBN** (Russell & Norvig, Goodfellow,
   Géron, Bishop, Jurafsky & Martin, Sutton & Barto). Les 25 autres entrées sont
@@ -203,7 +252,7 @@ par la politique de l'organisation ; je n'ai pu consulter aucune source externe.
   connaissance et n'ont été confrontés à aucun catalogue. À contrôler ligne à
   ligne.
 
-### 4.2 Droit congolais (chapitre 14)
+### 5.2 Droit congolais (chapitre 14)
 
 La section repose **intégralement sur le contenu que vous m'avez fourni** —
 c'était votre consigne au prompt 6 et je m'y suis tenu. Je n'ai vérifié aucune
@@ -221,7 +270,7 @@ référence au Journal officiel. À faire confirmer par un juriste :
 **Le statut d'entrée en vigueur, les délais et les montants de sanction sont les
 points les plus susceptibles d'avoir changé depuis votre rédaction.**
 
-### 4.3 Faits que je me suis abstenu d'écrire
+### 5.3 Faits que je me suis abstenu d'écrire
 
 Vous m'aviez demandé de signaler plutôt que d'inventer. Deux affirmations
 manquent au texte :
@@ -238,7 +287,7 @@ modèle, aucune performance de produit** : ces valeurs se périment en quelques
 mois. Les ordres de grandeur qui subsistent (fenêtres de contexte, ratio
 mots/jetons) sont présentés comme approximatifs.
 
-### 4.4 Décisions qui vous reviennent
+### 5.4 Décisions qui vous reviennent
 
 Quatre points sont en attente de votre arbitrage, aucun ne bloque la
 compilation :
@@ -252,7 +301,7 @@ compilation :
    corriger porterait l'annexe A à 146 entrées. Ce n'était pas demandé.
 4. **La profondeur de la table des matières** (voir section 3).
 
-### 4.5 Un dernier mot sur le fond
+### 5.5 Un dernier mot sur le fond
 
 Je n'ai pas relu votre manuel en spécialiste de chacun des 24 domaines qu'il
 couvre. J'ai ajouté environ 60 000 mots ; ils sont cohérents avec ce que vous
@@ -264,15 +313,15 @@ technique est la plus forte.
 
 ---
 
-## 5. Ce qui est prêt
+## 6. Ce qui est prêt
 
-- `Guide_Intelligence_Artificielle_publiable.docx` — 275 pages, mise en page
+- `Guide_Intelligence_Artificielle_publiable.docx` — 278 pages, mise en page
   complète, table des matières calculée, folios en pied de page.
 - `Guide_Intelligence_Artificielle_publiable.pdf` — même document, contrôlé page
   à page.
 - `Guide_Intelligence_Artificielle.md` — la source unique.
 - `code/` — 4 projets exécutables, leurs jeux de données et leur vérification.
-- `controle_pages/` — les 275 pages en images, pour votre propre contrôle.
+- `controle_pages/` — les 278 pages en images, pour votre propre contrôle.
 - `build.sh` — pour tout reconstruire à l'identique.
 
 Le document original, `Guide_Intelligence_Artificielle.docx`, est intact dans le

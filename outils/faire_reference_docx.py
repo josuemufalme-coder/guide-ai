@@ -29,9 +29,13 @@ TITRE = "Cambria"      # avec empattements
 CORPS = "Calibri"      # sans empattements
 CODE = "Consolas"      # chasse fixe
 
-# --- Couleurs (sobres, imprimables en noir et blanc) -----------------------
-ENCRE = "1F3864"       # bleu nuit, pour les titres
-GRIS = "595959"        # gris, pour les legendes
+# --- Encre : noir et blanc strict ------------------------------------------
+# Aucune couleur. La hierarchie repose sur la police, le corps, la casse et
+# les filets. Les deux gris ci-dessous sont des nuances de noir, qui passent
+# en niveaux de gris a l'impression comme a l'ecran.
+ENCRE = "000000"       # noir, pour les titres et les filets
+GRIS = "3F3F3F"        # gris fonce, pour les legendes
+GRIS_CLAIR = "8C8C8C"  # gris clair, pour les filets secondaires
 
 
 def police(nom, taille=None, gras=None, italique=None, couleur=None, casse=False):
@@ -68,19 +72,24 @@ STYLES = [
     # Titre de PARTIE : page a part, grand, centre.
     ("Heading1", "heading 1", "Normal",
      '<w:keepNext/><w:pageBreakBefore/><w:spacing w:before="2400" w:after="600"/>'
+     '<w:pBdr>'
+     '<w:top w:val="single" w:sz="6" w:space="14" w:color="' + ENCRE + '"/>'
+     '<w:bottom w:val="single" w:sz="6" w:space="14" w:color="' + ENCRE + '"/>'
+     '</w:pBdr>'
      '<w:jc w:val="center"/><w:outlineLvl w:val="0"/>',
-     police(TITRE, 26, gras=True, couleur=ENCRE, casse=True), "BodyText"),
+     police(TITRE, 24, gras=True, couleur=ENCRE, casse=True) +
+     '<w:spacing w:val="30"/>', "BodyText"),
 
     # Titre de CHAPITRE : nouvelle page, filet sous le titre.
     ("Heading2", "heading 2", "Normal",
      '<w:keepNext/><w:pageBreakBefore/><w:spacing w:before="0" w:after="360"/>'
-     '<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="6" w:color="' + ENCRE + '"/></w:pBdr>'
+     '<w:pBdr><w:bottom w:val="single" w:sz="12" w:space="8" w:color="' + ENCRE + '"/></w:pBdr>'
      '<w:outlineLvl w:val="1"/>',
      police(TITRE, 19, gras=True, couleur=ENCRE), "BodyText"),
 
     # Titre de LECON : reste avec le paragraphe qui suit.
     ("Heading3", "heading 3", "Normal",
-     '<w:keepNext/><w:keepLines/><w:spacing w:before="360" w:after="140"/>'
+     '<w:keepNext/><w:keepLines/><w:spacing w:before="380" w:after="120"/>'
      '<w:outlineLvl w:val="2"/>',
      police(TITRE, 14, gras=True, couleur=ENCRE), "BodyText"),
 
@@ -96,10 +105,12 @@ STYLES = [
 
     # Encadres : les citations Markdown servent d'encadre (exercices).
     ("BlockText", "Block Text", "Normal",
-     '<w:pBdr><w:left w:val="single" w:sz="18" w:space="10" w:color="' + ENCRE + '"/></w:pBdr>'
-     '<w:shd w:val="clear" w:fill="F2F5FA"/>'
-     '<w:spacing w:before="160" w:after="160" w:line="264" w:lineRule="auto"/>'
-     '<w:ind w:left="284" w:right="142"/>',
+     '<w:pBdr>'
+     '<w:top w:val="single" w:sz="4" w:space="6" w:color="' + GRIS_CLAIR + '"/>'
+     '<w:bottom w:val="single" w:sz="4" w:space="6" w:color="' + GRIS_CLAIR + '"/>'
+     '</w:pBdr>'
+     '<w:spacing w:before="100" w:after="120" w:line="252" w:lineRule="auto"/>'
+     '<w:ind w:left="284" w:right="170"/>',
      police(CORPS, 10)),
 
     # Legendes de figures.
@@ -122,8 +133,9 @@ STYLES = [
 
     # Blocs de code : fond gris, filet, pas de justification.
     ("SourceCode", "Source Code", "Normal",
-     '<w:pBdr><w:left w:val="single" w:sz="12" w:space="8" w:color="BFBFBF"/></w:pBdr>'
-     '<w:shd w:val="clear" w:fill="F7F7F7"/>'
+     '<w:pBdr><w:left w:val="single" w:sz="12" w:space="8" w:color="'
+     + GRIS_CLAIR + '"/></w:pBdr>'
+     '<w:shd w:val="clear" w:fill="F2F2F2"/>'
      '<w:spacing w:before="120" w:after="120" w:line="240" w:lineRule="auto"/>'
      '<w:ind w:left="170"/><w:jc w:val="left"/>',
      police(CODE, 9)),
@@ -135,8 +147,11 @@ STYLES = [
     # Titre de la table des matieres.
     ("TOCHeading", "TOC Heading", "Normal",
      '<w:keepNext/><w:pageBreakBefore/><w:spacing w:before="0" w:after="360"/>'
+     '<w:pBdr><w:bottom w:val="single" w:sz="6" w:space="12" w:color="'
+     + ENCRE + '"/></w:pBdr>'
      '<w:jc w:val="center"/>',
-     police(TITRE, 19, gras=True, couleur=ENCRE, casse=True)),
+     police(TITRE, 19, gras=True, couleur=ENCRE, casse=True) +
+     '<w:spacing w:val="30"/>'),
 ]
 
 STYLES_CAR = [
@@ -183,6 +198,25 @@ def construire():
         f'<w:style w:type="character" w:styleId="{sid}"><w:name w:val="{nom}"/>'
         f'<w:rPr>{rpr}</w:rPr></w:style>' for sid, nom, rpr in STYLES_CAR)
     s = s.replace("</w:styles>", ajout + "</w:styles>")
+
+    # Balayage final : aucune couleur ne doit subsister dans le gabarit, y
+    # compris dans les styles herites de pandoc que le manuel n'emploie pas
+    # (Title, Hyperlink, Subtitle...). Les couleurs de theme sont neutralisees.
+    s = re.sub(r'\s*w:themeColor="[^"]*"', "", s)
+    s = re.sub(r'\s*w:themeShade="[^"]*"', "", s)
+    s = re.sub(r'\s*w:themeTint="[^"]*"', "", s)
+
+    def en_noir(m):
+        val = m.group(2).upper()
+        if val in ("AUTO", "000000", GRIS, GRIS_CLAIR):
+            return m.group(0)
+        # On garde la clarte relative de la teinte d'origine.
+        gris = round(0.299 * int(val[0:2], 16)
+                     + 0.587 * int(val[2:4], 16)
+                     + 0.114 * int(val[4:6], 16))
+        return f'w:{m.group(1)} w:val="{gris:02X}{gris:02X}{gris:02X}"'
+
+    s = re.sub(r'w:(color|fill) w:val="([0-9A-Fa-f]{6}|auto)"', en_noir, s)
     p.write_text(s, encoding="utf-8")
 
     # ---- pied de page avec numerotation -----------------------------------

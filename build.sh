@@ -31,9 +31,10 @@ info()   { printf '  %s\n' "$*"; }
 command -v pandoc >/dev/null || { rouge "pandoc est introuvable."; exit 1; }
 [ -f "$SOURCE" ] || { rouge "Source introuvable : $SOURCE"; exit 1; }
 
-# Le modèle de style est reconstruit s'il manque : le script reste autonome.
-if [ ! -f "$MODELE" ]; then
-  info "Modèle absent, reconstruction…"
+# Le modèle de style est reconstruit s'il manque, ou si son générateur a été
+# modifié depuis : sans cela une retouche des styles resterait sans effet.
+if [ ! -f "$MODELE" ] || [ outils/faire_reference_docx.py -nt "$MODELE" ]; then
+  info "Reconstruction du modèle de styles…"
   python3 outils/faire_reference_docx.py
 fi
 
@@ -44,7 +45,7 @@ pandoc "$SOURCE" \
   --to=docx \
   --reference-doc="$MODELE" \
   --resource-path=.:media \
-  --highlight-style=tango \
+  --highlight-style=monochrome \
   --metadata lang=fr-FR \
   --output="$SORTIE"
 
