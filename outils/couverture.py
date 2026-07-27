@@ -21,6 +21,10 @@ import fitz
 
 RACINE = Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "Couverture_proposition.pdf"
+CODE_BARRES = RACINE / "media" / "isbn_codebarres.png"
+
+ISBN = "978-0-557-99817-3"
+DEPOT_LEGAL = "Dépôt légal : juillet 2026"
 
 MM = 72 / 25.4
 ROGNE_L, ROGNE_H = 210 * MM, 297 * MM      # format fini
@@ -226,15 +230,22 @@ def quatrieme(page):
          "Il vit et travaille à Kinshasa.",
          "Fs", 10.8, (0.25, 0.25, 0.25), 1.36)
 
-    # emplacement du code-barres ISBN, en bas a droite
-    bx0, by0 = d - 45 * MM, FP + ROGNE_H - 45 * MM
-    page.draw_rect(fitz.Rect(bx0, by0, bx0 + 45 * MM, by0 + 27 * MM),
-                   color=(0.78, 0.78, 0.78), fill=BLANC, width=0.5)
-    ecris(page, bx0 + 6 * MM, by0 + 13 * MM, "code-barres ISBN", "Fn", 8, GRIS)
-    ecris(page, bx0 + 6 * MM, by0 + 18 * MM, "à insérer", "Fn", 8, GRIS)
+    # Code-barres EAN-13 de l'ISBN, en bas a droite, sur fond blanc franc :
+    # un lecteur optique exige un fond clair et une zone de silence autour.
+    larg, haut = 46 * MM, 31 * MM
+    bx0, by0 = d - larg, FP + ROGNE_H - 46 * MM
+    cadre = fitz.Rect(bx0, by0, bx0 + larg, by0 + haut)
+    page.draw_rect(cadre, color=None, fill=BLANC)
+    if CODE_BARRES.exists():
+        marge = 2.5 * MM
+        page.insert_image(cadre + (marge, marge, -marge, -marge),
+                          filename=str(CODE_BARRES), keep_proportion=True)
+    else:
+        ecris(page, bx0 + 6 * MM, by0 + 15 * MM, "code-barres ISBN", "Fn", 8, GRIS)
 
-    ecris(page, g, FP + ROGNE_H - 24 * MM, "ISBN 978-X-XXXXX-XXX-X", "Fn", 9, GRIS)
-    ecris(page, g, FP + ROGNE_H - 19 * MM, "Première édition — Kinshasa", "Fn", 9, GRIS)
+    ecris(page, g, FP + ROGNE_H - 27 * MM, f"ISBN {ISBN}", "Fn", 9, GRIS)
+    ecris(page, g, FP + ROGNE_H - 22 * MM, DEPOT_LEGAL, "Fn", 9, GRIS)
+    ecris(page, g, FP + ROGNE_H - 17 * MM, "Première édition — Kinshasa, 2026", "Fn", 9, GRIS)
 
     traits_de_coupe(page)
 

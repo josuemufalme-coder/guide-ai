@@ -263,8 +263,12 @@ def construire():
         "<w:sectPr>"
         '<w:footerReference w:type="default" r:id="rIdFooterManuel"/>'
         '<w:pgSz w:w="11906" w:h="16838"/>'
-        '<w:pgMar w:top="1418" w:right="1418" w:bottom="1418" w:left="1701" '
-        'w:header="709" w:footer="709" w:gutter="0"/>'
+        # Marges en vis-a-vis : avec mirrorMargins, "left" designe la marge
+        # INTERIEURE (cote du pli) et "right" la marge EXTERIEURE. 3,2 cm et
+        # 2,8 cm laissent une justification de 15 cm, soit environ 70 signes
+        # par ligne -- la fourchette de lisibilite du livre imprime.
+        '<w:pgMar w:top="1418" w:right="1588" w:bottom="1531" w:left="1814" '
+        'w:header="709" w:footer="794" w:gutter="0"/>'
         '<w:pgNumType w:start="1"/>'
         '<w:cols w:space="708"/>'
         "<w:docGrid w:linePitch=\"360\"/>"

@@ -1,5 +1,11 @@
+![](./media/couverture_1.png){width="8.268in" height="11.693in"}
+
 ```{=openxml}
-<w:p><w:pPr><w:spacing w:before="0" w:after="1600"/><w:jc w:val="center"/></w:pPr></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="3000"/><w:jc w:val="center"/></w:pPr></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="0"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:smallCaps/><w:color w:val="000000"/><w:spacing w:val="40"/><w:sz w:val="30"/></w:rPr><w:t xml:space="preserve">Comprendre et pratiquer</w:t></w:r></w:p>
+<w:p><w:pPr><w:pageBreakBefore w:val="false"/><w:spacing w:before="60" w:after="0"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:smallCaps/><w:color w:val="000000"/><w:spacing w:val="40"/><w:sz w:val="30"/></w:rPr><w:t xml:space="preserve">l’intelligence artificielle</w:t></w:r></w:p>
+<w:p><w:pPr><w:pageBreakBefore/><w:spacing w:before="0" w:after="0"/></w:pPr></w:p>
+<w:p><w:pPr><w:pageBreakBefore/><w:spacing w:before="0" w:after="1600"/><w:jc w:val="center"/></w:pPr></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="600"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:b/><w:smallCaps/><w:color w:val="3F3F3F"/><w:sz w:val="26"/></w:rPr><w:t xml:space="preserve">GUIDE PRATIQUE</w:t></w:r></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="80"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:color w:val="000000"/><w:sz w:val="44"/></w:rPr><w:t xml:space="preserve">Comprendre et pratiquer</w:t></w:r></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="240"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:b/><w:color w:val="000000"/><w:sz w:val="60"/></w:rPr><w:t xml:space="preserve">l’INTELLIGENCE ARTIFICIELLE</w:t></w:r></w:p>
@@ -15,10 +21,8 @@
 <w:p><w:pPr><w:spacing w:before="0" w:after="200"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">© 2026 MUFALME BULENDA Josué. Tous droits réservés.</w:t></w:r></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Première édition</w:t></w:r></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="400"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Version 1.0 — 2026</w:t></w:r></w:p>
-<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Dépôt légal : ………………………………………</w:t></w:r></w:p>
-<w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:color w:val="3F3F3F"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">(à compléter auprès de l’organisme compétent avant toute diffusion)</w:t></w:r></w:p>
-<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">ISBN : …………………………………</w:t></w:r></w:p>
-<w:p><w:pPr><w:spacing w:before="0" w:after="400"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:color w:val="3F3F3F"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">(emplacement réservé — un numéro distinct par format : broché, relié, numérique)</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Dépôt légal : juillet 2026</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">ISBN : 978-0-557-99817-3</w:t></w:r></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">Aucune partie de cet ouvrage ne peut être reproduite, sous quelque forme et par quelque procédé que ce soit, sans l’autorisation écrite de l’auteur, hors des exceptions prévues par la loi.</w:t></w:r></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">Les codes sources accompagnant cet ouvrage sont fournis à fin pédagogique. L’auteur ne saurait être tenu responsable de l’usage qui en serait fait.</w:t></w:r></w:p>
 <w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">Le chapitre 14 présente l’état du droit à la date de rédaction. Il ne constitue pas un avis juridique.</w:t></w:r></w:p>
@@ -5674,3 +5678,4 @@ Les dix-sept figures de l'ouvrage, dans l'ordre. Le numéro renvoie au chapitre.
 | **20.1** | Un workflow type : un déclencheur, des traitements IA, puis une action final… | 20 --- Automatisation des tâches avec n8n |
 | **21.1** | Les quatre paliers de la maturité IA d\'une organisation | 21 --- Intégrer l\'IA dans une entreprise |
 
+![](./media/couverture_4.png){width="8.268in" height="11.693in"}

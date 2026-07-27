@@ -68,7 +68,10 @@ ctrl = {
     "pied de page présent"      : any(n.startswith("word/footer") for n in noms),
     "champ de table des matières": "TOC \\o" in doc or "TOC \\\\o" in doc,
     "deux sections distinctes"   : doc.count("<w:sectPr") >= 2,
-    "images intégrées"           : sum(1 for n in noms if n.startswith("word/media/")) == 17,
+    "images intégrées"           : sum(1 for n in noms if n.startswith("word/media/")) == 19,
+    "couvertures en pleine page"  : doc.count('w:top="0" w:right="0" w:bottom="0" w:left="0"') == 2,
+    "typographie française"       : "\u2019" in doc and "\u00a0:" in doc,
+    "en-tête courant"             : any(n.startswith("word/header") for n in noms),
     "style de code défini"       : 'w:styleId="SourceCode"' in styles,
     "titres de niveau 1 à 3"     : all(f'w:styleId="Heading{i}"' in styles for i in (1, 2, 3)),
 }
