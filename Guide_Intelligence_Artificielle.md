@@ -2731,6 +2731,12 @@ Deux limites méritent d\'être développées, car ce sont celles qui causent le
 
 Un même modèle peut produire une réponse médiocre ou excellente selon la façon dont on l\'interroge. Le **prompt**, l\'instruction que vous donnez, est le volant qui dirige le modèle. L\'**ingénierie de prompts** (prompt engineering) est l\'art de formuler ces instructions pour obtenir le meilleur résultat. C\'est une compétence qui se travaille et qui distingue l\'amateur du professionnel.
 
+Pourquoi la formulation pèse-t-elle autant ? La réponse tient à ce que vous avez vu au chapitre 10 : le modèle produit le texte le plus plausible **compte tenu de ce qui précède**. Votre prompt n\'est pas une commande adressée à un exécutant, c\'est le **début du texte** que le modèle va prolonger. Une question vague appelle une suite vague, non par mauvaise volonté, mais parce que c\'est statistiquement la continuation la plus probable d\'une question vague. Une question précise, technique, situant un rôle et un lecteur, appelle une suite du même registre. Vous ne donnez pas des ordres : **vous fixez le contexte dans lequel la suite s\'écrira**.
+
+Cette manière de voir a une conséquence pratique immédiate, et c\'est la meilleure heuristique que je puisse vous donner. **Écrivez votre demande comme vous la formuleriez à un collaborateur compétent mais qui ne connaît rien de votre contexte.** Ce collaborateur imaginaire a de bonnes connaissances générales, il n\'a jamais entendu parler de votre organisation, il ne sait pas à qui le texte est destiné ni ce que vous en ferez. Tout ce que vous auriez à lui expliquer, il faut l\'écrire. Tout ce que vous jugeriez inutile de préciser, vous pouvez l\'omettre. Cette image règle à elle seule la plupart des questions de formulation.
+
+Une mise en garde, pour finir sur le mot lui-même. On a beaucoup parlé d\'« ingénierie de prompts » comme d\'un métier, avec ses formules secrètes et ses listes d\'incantations. Cette période se referme, et c\'est tant mieux : les modèles comprennent de mieux en mieux les demandes ordinaires, et les astuces d\'hier deviennent inutiles. **Ce qui reste, et qui ne se périmera pas, c\'est la capacité à énoncer clairement ce que l\'on veut.** Ce n\'est pas une compétence technique : c\'est une compétence de pensée, et elle vous servira bien au-delà de ces outils.
+
 ### Leçon 2 --- L\'anatomie d\'un bon prompt
 
 Un prompt efficace comporte généralement cinq composantes. Vous n\'en utiliserez pas toujours toutes, mais les avoir en tête garantit des demandes complètes.
@@ -2753,6 +2759,12 @@ Un prompt efficace comporte généralement cinq composantes. Vous n\'en utiliser
 
 **Exemple --- un prompt complet.** « **Rôle** : Tu es un conseiller financier pédagogue. **Contexte** : je suis un débutant de 25 ans qui veut commencer à épargner. **Tâche** : explique-moi trois façons simples de commencer. **Format** : une liste à puces, chaque point en deux phrases. **Contraintes** : ton encourageant, sans jargon, en français. » Ce prompt produira une réponse infiniment meilleure que « parle-moi de l\'épargne ».
 
+Ces cinq composantes n\'ont pas le même poids, et il est utile de savoir lesquelles rapportent le plus quand le temps manque. D\'après ce que j\'observe, ce sont la **tâche** et le **format** : énoncer précisément ce qu\'on veut et sous quelle forme corrige déjà l\'essentiel des réponses décevantes. Le **contexte** vient ensuite, et il devient décisif dès que la demande touche à une situation particulière. Le **rôle**, dont on fait grand cas, a en réalité un effet plus modeste qu\'on ne le dit : il ajuste le registre et le vocabulaire, il ne crée pas de compétence. Écrire « tu es un avocat » ne rend pas le modèle juriste — cela l\'incite simplement à adopter le ton d\'un juriste, ce qui peut même être trompeur si vous prenez l\'assurance du ton pour une garantie de justesse.
+
+J\'ajoute une sixième composante, absente de la liste et pourtant décisive dans les usages professionnels : **la conduite à tenir en cas d\'incertitude**. Précisez « si tu n\'es pas sûr d\'un élément, signale-le explicitement plutôt que de le combler » ou « si l\'information ne figure pas dans le document fourni, réponds que tu ne sais pas ». Sans cette consigne, le modèle comblera les vides, parce que produire une suite plausible est exactement ce qu\'il fait. Cette phrase unique est probablement la plus rentable de tout ce chapitre.
+
+Un dernier réflexe, sur la longueur. Un prompt trop court manque de contexte, mais un prompt de deux pages n\'est pas nécessairement meilleur : au-delà d\'un certain volume, les consignes se diluent et certaines sont ignorées. Si vous avez beaucoup à dire, **structurez plutôt qu\'entasser** — des intertitres, des listes, une séparation nette entre les instructions et les données à traiter. Un modèle lit une demande organisée bien mieux qu\'un paragraphe compact, exactement comme un humain.
+
 ### Leçon 3 --- Les grandes techniques de prompting
 
 Au-delà de la structure, certaines techniques améliorent nettement les résultats. Vous devez les maîtriser et savoir quand les employer.
@@ -2771,13 +2783,39 @@ Pour les problèmes complexes, demandez au modèle de **raisonner étape par ét
 
 Pour une tâche ambitieuse, **décomposez-la** en sous-tâches que vous enchaînez. Et n\'hésitez pas à **itérer** : « C\'est bien, mais rends le ton plus formel » ou « Développe le deuxième point ». Le dialogue affine progressivement le résultat.
 
+Deux précisions sur ces techniques, tirées de l\'usage plutôt que des présentations.
+
+Sur le **few-shot**, la qualité des exemples compte davantage que leur nombre. Trois exemples bien choisis, qui couvrent des cas différents et incluent un cas limite, valent mieux que dix exemples semblables. Attention surtout à un piège discret : **le modèle imite tout ce qu\'il voit**, y compris ce que vous n\'aviez pas l\'intention de lui transmettre. Si vos trois exemples de réponse font tous quatre lignes, il produira quatre lignes ; si tous portent sur des clients mécontents, il supposera que la tâche concerne les réclamations. Vérifiez que vos exemples ne partagent aucune caractéristique accidentelle.
+
+Sur la **décomposition**, retenez qu\'elle sert autant à vous qu\'au modèle. En découpant une tâche ambitieuse en étapes que vous validez l\'une après l\'autre, vous détectez une dérive à l\'étape deux plutôt qu\'à la fin — et vous ne perdez pas le travail des étapes suivantes, comme le montre l\'arithmétique de la fiabilité du chapitre 13. C\'est le même principe que les trois versions successives du chapitre 17 : mieux vaut plusieurs petits pas vérifiables qu\'un grand saut.
+
+J\'ajoute une technique qui manque à cette liste et que j\'emploie constamment : **le contre-exemple**. Plutôt que de décrire longuement ce que vous voulez, montrez une réponse insatisfaisante et dites pourquoi. « Voici une réponse que je ne veux pas, parce qu\'elle reste trop générale ; produis-en une qui descende au niveau des chiffres. » Cette formulation obtient souvent en un échange ce que trois reformulations n\'avaient pas donné.
+
 ### Leçon 4 --- Les pièges à éviter
 
 **Pièges fréquents ---** Évitez les demandes vagues (« aide-moi »), les instructions contradictoires, les prompts surchargés qui mélangent dix demandes, et la confiance aveugle dans la réponse. Un bon prompt est clair, ciblé, structuré --- et son résultat est toujours relu d\'un œil critique.
 
+Détaillons ces pièges, car chacun a une parade simple.
+
+**La demande vague** se corrige en s\'imposant une règle : ne jamais envoyer une demande dont vous ne sauriez pas dire, avant de lire la réponse, à quoi ressemblerait une bonne réponse. Si vous ne pouvez pas le décrire, le modèle ne le devinera pas.
+
+**Les instructions contradictoires** sont plus fréquentes qu\'on ne croit, parce qu\'elles ne se voient pas. « Sois exhaustif » et « fais court » s\'annulent ; « garde un ton neutre » et « sois convaincant » tirent en sens inverse. Le modèle tranchera arbitrairement, et vous ne saurez pas pourquoi le résultat déçoit. Relisez votre demande en cherchant les tensions.
+
+**Le prompt surchargé** — dix demandes en un message — produit une réponse qui traite bien la première, moyennement la deuxième et bâcle les suivantes. Une demande, un message.
+
+**La confiance aveugle**, enfin, est le piège le plus coûteux, et il a une parade contre-intuitive : **demandez au modèle ce qui pourrait être faux dans sa propre réponse.** « Quelles affirmations de ta réponse mériteraient d\'être vérifiées ? » produit souvent une liste étonnamment lucide, qui vous dit exactement où concentrer votre contrôle.
+
+J\'en ajoute un cinquième, qui n\'est pas dans la liste et qui est le plus répandu chez les débutants : **abandonner après un seul essai**. Une première réponse décevante n\'indique presque jamais que la tâche est hors de portée ; elle indique que la demande était incomplète. Le réflexe professionnel n\'est pas de conclure que « ça ne marche pas », mais de se demander quelle information manquait — et de la fournir.
+
 ### Leçon 5 --- Construire une bibliothèque de prompts
 
 Un professionnel efficace ne réinvente pas ses prompts à chaque fois : il se constitue une **bibliothèque** de modèles éprouvés pour ses tâches récurrentes (rédiger un compte rendu, résumer un appel, analyser un contrat). Ces modèles, avec des variables à remplir, font gagner un temps considérable et garantissent une qualité constante.
+
+Voici comment je vous suggère de construire la vôtre, car une bibliothèque mal tenue ne sert à rien. Consignez pour chaque modèle quatre choses : **à quoi il sert** en une phrase, **le texte du prompt** avec ses variables entre crochets, **un exemple de résultat** obtenu, et **ce qui a été essayé sans succès**. Cette dernière rubrique est celle qu\'on oublie et celle qui vaut le plus cher : dans six mois, elle vous évitera de refaire les mêmes tentatives infructueuses.
+
+Un principe de sélection, ensuite. **Ne conservez que ce que vous refaites régulièrement.** Une bibliothèque de cinquante modèles dont vous en utilisez trois est un classement mort. Cinq modèles bien rodés valent infiniment mieux, et vous les connaîtrez assez pour les adapter au vol.
+
+Deux conseils pratiques enfin. **Datez vos modèles et testez-les de temps en temps** : les assistants évoluent, et une formulation qui contournait une limitation d\'hier peut devenir inutile ou contre-productive. Et si vous travaillez en équipe, **partagez cette bibliothèque**. C\'est l\'un des rares gains de productivité qui se multiplie sans effort : un bon modèle écrit une fois sert à dix personnes, et chacune l\'améliore.
 
 ### Leçon 6 --- Techniques avancées de prompting
 
@@ -2797,9 +2835,25 @@ Demandez au modèle de **critiquer sa propre réponse** : « Relis ta réponse e
 
 **Méthode --- combiner les techniques.** Pour rédiger un rapport, on combine : un prompt système définissant le rôle et le style ; un découpage en étapes (plan, puis rédaction section par section) ; et une auto-évaluation finale. Le résultat rivalise avec un travail humain soigné. **À retenir** : les techniques avancées se cumulent et se renforcent.
 
+Deux nuances sur l\'auto-évaluation, car elle est présentée un peu trop favorablement et vous risqueriez d\'en attendre plus qu\'elle ne donne.
+
+D\'abord, elle fonctionne bien mieux sur la **forme** que sur le **fond**. Demandez au modèle de repérer ce qui est confus, mal structuré ou répétitif : il le fera correctement. Demandez-lui de repérer ses erreurs factuelles : il en trouvera quelques-unes et en manquera d\'autres, car les affirmations fausses qu\'il a produites lui paraissent, par construction, aussi plausibles que les vraies. **L\'auto-critique améliore la rédaction, elle ne remplace pas la vérification.**
+
+Ensuite, elle donne de bien meilleurs résultats si vous **fournissez les critères** au lieu de laisser le modèle les choisir. « Relis en vérifiant trois points : chaque affirmation est-elle étayée ? le ton convient-il à un client mécontent ? la conclusion découle-t-elle des arguments ? » produit une révision autrement plus utile qu\'un « identifie trois faiblesses » qui donnera trois remarques génériques.
+
+Un dernier mot sur le prompt système, qui est de loin la plus utile de ces techniques avancées et la plus sous-employée. Le réflexe naturel est de tout mettre dans chaque message ; le réflexe professionnel est de **séparer ce qui est stable de ce qui change**. Le rôle, les règles de conduite, le format habituel, la langue, la conduite en cas de doute : tout cela est stable et se définit une fois. Seule la demande du jour varie. Vous gagnez en concision, en constance, et vous cessez d\'oublier une consigne un message sur trois.
+
 ### Leçon 7 --- Adapter le prompt à l\'outil
 
 Chaque assistant a ses particularités. Un modèle à long contexte (Claude) accepte qu\'on lui fournisse de longs documents entiers ; un outil à recherche web (Perplexity) répond mieux à des questions factuelles précises ; un modèle polyvalent (ChatGPT) brille sur les tâches créatives. Adaptez non seulement votre prompt, mais aussi le **choix de l\'outil** à la nature de la tâche.
+
+Au-delà des outils nommés, deux paramètres méritent d\'être connus car ils changent le comportement bien plus que la formulation.
+
+**La température**, rencontrée au chapitre 10, règle la part de hasard dans le tirage des mots. Quand l\'outil vous la laisse ajuster — c\'est le cas dès qu\'on passe par une interface de programmation —, baissez-la pour tout ce qui doit être exact et reproductible : extraction d\'informations, classification, code, calcul. Montez-la pour ce qui doit varier : idéation, formulations alternatives, écriture. Une réponse trop plate ou une réponse trop fantaisiste ne se corrigent pas toujours par le prompt ; parfois, c\'est ce réglage qu\'il fallait toucher.
+
+**La longueur maximale de réponse** est l\'autre réglage qu\'on oublie. Une réponse tronquée au milieu d\'une phrase n\'est presque jamais un signe que le modèle a échoué : c\'est une limite atteinte. Augmentez-la, ou demandez explicitement une réponse plus courte.
+
+Une dernière recommandation, qui devient importante si vous automatisez. Un prompt mis au point dans une interface de conversation ne se comporte pas toujours à l\'identique lorsqu\'il est appelé depuis un programme : le prompt système par défaut n\'est pas le même, les réglages diffèrent, et l\'historique de conversation n\'existe plus. **Retestez systématiquement vos prompts dans le contexte où ils tourneront réellement.** C\'est une source d\'étonnement classique au moment de passer d\'un essai manuel à une chaîne automatisée, celle que vous construirez au chapitre suivant.
 
 ### Exercices dirigés
 
