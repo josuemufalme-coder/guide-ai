@@ -64,7 +64,7 @@ Commençons par la question la plus simple et la plus difficile : qu\'appelle-t-
 
 **Définition --- Intelligence artificielle.** Domaine de l\'informatique visant à créer des systèmes capables d\'accomplir des tâches qui requièrent normalement l\'intelligence humaine : perception, raisonnement, apprentissage, décision et action.
 
-Retenez d\'emblée une distinction capitale, que nous reverrons tout au long de la formation.
+Retenez d\'emblée une distinction capitale, que nous reverrons tout au long de ce manuel.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -138,11 +138,11 @@ L\'IA d\'aujourd\'hui **excelle** dans des tâches bien délimitées avec beauco
 
 -   **Idée reçue** : « L\'IA va bientôt être consciente. » → Rien dans les systèmes actuels ne va dans ce sens ; c\'est de la science-fiction.
 
-**Garder l\'esprit critique ---** Face à l\'enthousiasme médiatique, gardez la tête froide. L\'IA est un outil puissant mais limité, ni magique ni menaçant en soi. Comprendre précisément ses capacités et ses limites est la marque d\'un véritable professionnel --- et c\'est tout l\'objet de votre formation.
+**Garder l\'esprit critique ---** Face à l\'enthousiasme médiatique, gardez la tête froide. L\'IA est un outil puissant mais limité, ni magique ni menaçant en soi. Comprendre précisément ses capacités et ses limites est la marque d\'un véritable professionnel --- et c\'est tout l\'objet de ce manuel.
 
 ### Leçon 7 --- La carte des sous-domaines de l\'IA
 
-Avant de plonger dans le détail des cours suivants, dressons la carte du territoire. L\'IA regroupe plusieurs sous-domaines, que vous explorerez tout au long du programme. Les situer dès maintenant vous donnera une vue d\'ensemble précieuse.
+Avant de plonger dans le détail des chapitres suivants, dressons la carte du territoire. L\'IA regroupe plusieurs sous-domaines, que vous explorerez tout au long de ce manuel. Les situer dès maintenant vous donnera une vue d\'ensemble précieuse.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -204,9 +204,9 @@ Un dernier conseil avant d\'entrer dans le vif. La progression de ce livre n\'es
 
 ### Leçon 1 --- Pourquoi Python ?
 
-Avant d\'écrire la moindre ligne, comprenons pourquoi Python s\'est imposé comme le langage de l\'IA. Trois raisons : sa **syntaxe simple et lisible**, proche du langage naturel, qui laisse l\'esprit libre de se concentrer sur les idées ; son **écosystème scientifique** sans égal (NumPy, Pandas, PyTorch...) ; et une **communauté immense** qui produit documentation et tutoriels. Vous coderez en Python pendant toute la formation : autant le maîtriser dès maintenant.
+Avant d\'écrire la moindre ligne, comprenons pourquoi Python s\'est imposé comme le langage de l\'IA. Trois raisons : sa **syntaxe simple et lisible**, proche du langage naturel, qui laisse l\'esprit libre de se concentrer sur les idées ; son **écosystème scientifique** sans égal (NumPy, Pandas, PyTorch...) ; et une **communauté immense** qui produit documentation et tutoriels. Vous coderez en Python d\'un bout à l\'autre de ce manuel : autant le maîtriser dès maintenant.
 
-Nous supposons que vous connaissez les bases de la programmation. Ce cours va consolider votre maîtrise et vous rendre **autonome** avec les outils de l\'IA.
+Nous supposons que vous connaissez les bases de la programmation. Ce chapitre va consolider votre maîtrise et vous rendre **autonome** avec les outils de l\'IA.
 
 ### Leçon 2 --- Le langage : maîtriser les fondamentaux
 
@@ -300,7 +300,7 @@ Savoir programmer ne suffit pas : il faut écrire un code **lisible, robuste et 
 
 ### Leçon 7 --- Panorama de l\'écosystème Python pour l\'IA
 
-Python doit sa domination à un écosystème de bibliothèques exceptionnel. Voici celles que vous rencontrerez tout au long du programme ; les situer vous aidera à savoir quoi utiliser et quand.
+Python doit sa domination à un écosystème de bibliothèques exceptionnel. Voici celles que vous rencontrerez tout au long de ce manuel ; les situer vous aidera à savoir quoi utiliser et quand.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -380,7 +380,7 @@ Nous étudierons aussi les **valeurs et vecteurs propres**, notions plus avancé
 
 ### Leçon 3 --- Le calcul différentiel : comment une machine apprend
 
-Voici l\'idée la plus importante de tout ce cours, alors lisez-la lentement : **apprendre, pour une machine, c\'est minimiser une erreur**. Un modèle possède des paramètres ; on définit une **fonction de coût** qui mesure à quel point ses prédictions sont mauvaises ; et l\'on ajuste les paramètres pour réduire ce coût. Le calcul différentiel nous dit dans quelle direction les ajuster.
+Voici l\'idée la plus importante de tout ce manuel, alors lisez-la lentement : **apprendre, pour une machine, c\'est minimiser une erreur**. Un modèle possède des paramètres ; on définit une **fonction de coût** qui mesure à quel point ses prédictions sont mauvaises ; et l\'on ajuste les paramètres pour réduire ce coût. Le calcul différentiel nous dit dans quelle direction les ajuster.
 
 **Définition --- Gradient.** Le gradient d\'une fonction indique la direction de plus forte pente. En un point donné, il pointe vers là où la fonction croît le plus vite ; son opposé indique donc où elle décroît le plus vite.
 
@@ -410,9 +410,9 @@ Dernier outil : la **théorie de l\'information**. L\'**entropie** mesure l\'inc
 
 Pour que ces notions ne restent pas abstraites, voyons comment elles s\'incarnent dans un cas réel : la reconnaissance d\'une image de chiffre manuscrit, comme dans le projet que vous réaliserez.
 
-Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre linéaire). Le réseau multiplie ce vecteur par des **matrices** de poids (algèbre linéaire encore), applique des fonctions, et produit dix nombres : les probabilités d\'être chaque chiffre de 0 à 9. L\'écart entre la prédiction et la vérité est mesuré par une fonction de coût fondée sur l\'**entropie croisée** (théorie de l\'information). On ajuste les poids par **descente de gradient** (calcul différentiel). Chaque domaine mathématique du cours intervient à un moment précis.
+Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre linéaire). Le réseau multiplie ce vecteur par des **matrices** de poids (algèbre linéaire encore), applique des fonctions, et produit dix nombres : les probabilités d\'être chaque chiffre de 0 à 9. L\'écart entre la prédiction et la vérité est mesuré par une fonction de coût fondée sur l\'**entropie croisée** (théorie de l\'information). On ajuste les poids par **descente de gradient** (calcul différentiel). Chaque domaine mathématique de ce chapitre intervient à un moment précis.
 
-**Exemple --- tout est lié.** Quand on dit que « apprendre, c\'est minimiser une fonction de coût par descente de gradient sur des données représentées par des vecteurs et des matrices », on résume en une phrase les quatre domaines de ce cours. Ils ne sont pas séparés : ils collaborent dans chaque modèle d\'IA. **C\'est pourquoi vous devez tous les maîtriser.**
+**Exemple --- tout est lié.** Quand on dit que « apprendre, c\'est minimiser une fonction de coût par descente de gradient sur des données représentées par des vecteurs et des matrices », on résume en une phrase les quatre domaines de ce chapitre. Ils ne sont pas séparés : ils collaborent dans chaque modèle d\'IA. **C\'est pourquoi vous devez tous les maîtriser.**
 
 ### Leçon 7 --- Erreurs mathématiques fréquentes
 
@@ -462,7 +462,7 @@ Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre liné
 
 ### Leçon 1 --- La donnée, matière première de l\'IA
 
-Un modèle d\'IA ne vaut que par les données dont il se nourrit. « Garbage in, garbage out » --- des données médiocres produisent des modèles médiocres, quelle que soit la sophistication de l\'algorithme. Ce cours vous enseigne la démarche rigoureuse du **data scientist** : transformer des données brutes en connaissances fiables.
+Un modèle d\'IA ne vaut que par les données dont il se nourrit. « Garbage in, garbage out » --- des données médiocres produisent des modèles médiocres, quelle que soit la sophistication de l\'algorithme. Ce chapitre vous enseigne la démarche rigoureuse du **data scientist** : transformer des données brutes en connaissances fiables.
 
 Tout projet d\'analyse suit un cycle que vous devez connaître par cœur :
 
@@ -474,7 +474,7 @@ Tout projet d\'analyse suit un cycle que vous devez connaître par cœur :
 
 -   **Exploration** : comprendre les données par les statistiques et la visualisation.
 
--   **Modélisation** : appliquer un modèle (objet des cours suivants).
+-   **Modélisation** : appliquer un modèle (objet des chapitres suivants).
 
 -   **Communication** : présenter les résultats de façon claire et honnête.
 
@@ -537,7 +537,7 @@ Toutes les données ne se ressemblent pas, et chaque type appelle un traitement 
 >
 > **Exercice 2.** Proposez deux variables dérivées utiles que l\'on pourrait créer à partir d\'une adresse postale, pour un modèle de prédiction de prix immobilier.
 >
-> **Exercice 3.** Donnez un exemple, autre que celui du cours, de deux variables corrélées sans lien de cause à effet.
+> **Exercice 3.** Donnez un exemple, autre que ceux de ce chapitre, de deux variables corrélées sans lien de cause à effet.
 >
 > **Exercice 4.** Écrivez une requête SQL qui retourne le nombre de clients par ville, classés du plus grand au plus petit.
 
@@ -879,7 +879,7 @@ Récapitulons le parcours d\'un modèle, de l\'idée à la production durable. C
 
 ### Leçon 1 --- Prédire, mais aussi connaître son incertitude
 
-Un bon modèle ne se contente pas de prédire : il sait dire **à quel point** il est sûr. Une prédiction médicale ou financière sans mesure d\'incertitude est dangereuse. Ce cours vous apprend les approches probabilistes qui quantifient cette incertitude.
+Un bon modèle ne se contente pas de prédire : il sait dire **à quel point** il est sûr. Une prédiction médicale ou financière sans mesure d\'incertitude est dangereuse. Ce chapitre vous apprend les approches probabilistes qui quantifient cette incertitude.
 
 ### Leçon 2 --- Le raisonnement bayésien
 
@@ -1035,7 +1035,7 @@ Techniquement, pour chaque mot, le modèle calcule un score d\'attention envers 
 
 ### Leçon 1 --- La technologie qui a tout changé
 
-Depuis 2022, l\'**IA générative** transforme tous les métiers. Capable de produire texte, images, code et son, elle repose sur les **grands modèles de langage (LLM)**. Ce cours vous apprend à les comprendre et à bâtir des applications fiables qui s\'appuient sur eux.
+Depuis 2022, l\'**IA générative** transforme tous les métiers. Capable de produire texte, images, code et son, elle repose sur les **grands modèles de langage (LLM)**. Ce chapitre vous apprend à les comprendre et à bâtir des applications fiables qui s\'appuient sur eux.
 
 **Définition --- Grand modèle de langage (LLM).** Réseau de type Transformer de très grande taille, entraîné à prédire le mot suivant sur d\'immenses corpus de texte, et dont émergent des capacités de rédaction, de raisonnement et de traduction.
 
@@ -1071,7 +1071,7 @@ Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « 
 
 ### Leçon 5 --- Agents, fine-tuning et garde-fous
 
-Enfin, vous découvrirez les **agents** (que nous approfondirons un peu plus loin), le **fine-tuning** pour spécialiser un modèle, et les **garde-fous** pour limiter les comportements indésirables. L\'**évaluation** des sorties et la lutte contre les **hallucinations** sont des enjeux majeurs.
+Enfin, vous découvrirez les **agents** (que nous approfondirons au chapitre 13), le **fine-tuning** pour spécialiser un modèle, et les **garde-fous** pour limiter les comportements indésirables. L\'**évaluation** des sorties et la lutte contre les **hallucinations** sont des enjeux majeurs.
 
 ### Leçon 6 --- Études de prompts : du médiocre à l\'excellent
 
@@ -1235,7 +1235,7 @@ L\'**apprentissage par renforcement (RL)** est le paradigme par lequel un agent 
 
 ### Leçon 3 --- Algorithmes et le dilemme exploration/exploitation
 
-Vous étudierez les méthodes sans modèle (**Q-learning**, SARSA) puis profondes (**Deep Q-Networks**, gradient de politique). Un enjeu central : le compromis **exploration / exploitation**.
+Nous verrons les méthodes sans modèle (**Q-learning**, SARSA) puis profondes (**Deep Q-Networks**, gradient de politique). Un enjeu central : le compromis **exploration / exploitation**.
 
 **Notion essentielle ---** L\'agent doit-il exploiter ce qu\'il connaît déjà (la stratégie qui marche), ou explorer pour découvrir peut-être mieux ? Trop d\'exploitation, il stagne ; trop d\'exploration, il ne capitalise jamais. Tout l\'art est dans l\'équilibre. C\'est le même dilemme que choisir entre son restaurant favori et en essayer un nouveau.
 
@@ -1287,7 +1287,7 @@ Le renforcement brille dans certains domaines et peine dans d\'autres. Savoir o�
 
 ### Leçon 1 --- Le visage de l\'IA en 2026
 
-Ce cours vous amène à la pointe absolue du domaine. Nous y traitons les avancées qui définissent l\'IA d\'aujourd\'hui : les **agents autonomes**, le **protocole MCP** qui les connecte au monde, les modèles **multimodaux**, et la **sûreté de l\'IA**, devenue une discipline centrale.
+Ce chapitre vous amène à la pointe absolue du domaine. Nous y traitons les avancées qui définissent l\'IA d\'aujourd\'hui : les **agents autonomes**, le **protocole MCP** qui les connecte au monde, les modèles **multimodaux**, et la **sûreté de l\'IA**, devenue une discipline centrale.
 
 ### Leçon 2 --- Les agents IA autonomes
 
@@ -1307,7 +1307,7 @@ Pour qu\'un agent agisse, il doit se connecter à des outils et des données. Hi
 
 **Définition --- Model Context Protocol (MCP).** Standard ouvert qui définit une manière universelle de connecter un agent IA à des outils, des données et des services, remplaçant les intégrations sur mesure par un protocole unique.
 
-Le protocole repose sur trois primitives : les **outils** (fonctions exécutables, comme rechercher sur le web), les **ressources** (données consultables) et les **invites** (modèles d\'interaction standardisés). Devenu un standard industriel adopté par les grands laboratoires, MCP est à l\'IA ce que les conteneurs sont à l\'informatique en nuage. Le cours aborde aussi ses **enjeux de sécurité** : contrôle des accès, authentification, maîtrise du contexte exposé.
+Le protocole repose sur trois primitives : les **outils** (fonctions exécutables, comme rechercher sur le web), les **ressources** (données consultables) et les **invites** (modèles d\'interaction standardisés). Devenu un standard industriel adopté par les grands laboratoires, MCP est à l\'IA ce que les conteneurs sont à l\'informatique en nuage. J\'aborde aussi ses **enjeux de sécurité** : contrôle des accès, authentification, maîtrise du contexte exposé.
 
 ### Leçon 4 --- L\'IA multimodale
 
@@ -1415,7 +1415,7 @@ Beaucoup de modèles sont des « boîtes noires » : on connaît leurs sorties, 
 
 ### Leçon 4 --- Le cadre réglementaire et les enjeux de société
 
-Les régulations se mettent en place, notamment l\'**AI Act** européen, qui classe les systèmes par niveau de risque. Vous étudierez aussi les grands enjeux : impact sur l\'emploi, **désinformation** et deepfakes, sécurité et alignement des systèmes les plus avancés.
+Les régulations se mettent en place, notamment l\'**AI Act** européen, qui classe les systèmes par niveau de risque. J\'aborde aussi les grands enjeux : impact sur l\'emploi, **désinformation** et deepfakes, sécurité et alignement des systèmes les plus avancés.
 
 ### Leçon 5 --- Un cadre de décision éthique
 
@@ -1537,7 +1537,7 @@ Un chef de projet IA doit traduire la technique en langage métier. Ne parlez pa
 
 ### Leçon 1 --- Relier la technique à la valeur
 
-Ce cours relie tout ce que vous avez appris aux besoins réels des organisations. Connaître les algorithmes ne suffit pas : il faut savoir **où** et **comment** l\'IA crée de la valeur dans chaque secteur.
+Ce chapitre relie tout ce que vous avez appris aux besoins réels des organisations. Connaître les algorithmes ne suffit pas : il faut savoir **où** et **comment** l\'IA crée de la valeur dans chaque secteur.
 
 ### Leçon 2 --- Panorama sectoriel
 
@@ -1987,7 +1987,7 @@ C\'est cette capacité d\'orchestration qui transforme des outils isolés en un 
 
 ### Leçon 1 --- Le vrai défi n\'est pas technique
 
-Beaucoup d\'entreprises investissent dans l\'IA sans en retirer de bénéfice. Pourquoi ? Parce que le défi est rarement technique : il est **humain et organisationnel**. Réussir l\'intégration de l\'IA, c\'est savoir par où commencer, embarquer les équipes, choisir les bons projets et mesurer la valeur. Ce cours vous donne cette méthode.
+Beaucoup d\'entreprises investissent dans l\'IA sans en retirer de bénéfice. Pourquoi ? Parce que le défi est rarement technique : il est **humain et organisationnel**. Réussir l\'intégration de l\'IA, c\'est savoir par où commencer, embarquer les équipes, choisir les bons projets et mesurer la valeur. Ce chapitre vous donne cette méthode.
 
 ### Leçon 2 --- L\'escalier de maturité
 
@@ -2095,7 +2095,7 @@ Pour conclure, voici une feuille de route type que vous pourriez proposer à une
 
 ### Leçon 1 --- L\'IA comme multiplicateur de productivité
 
-Bien utilisée, l\'IA ne remplace pas le professionnel : elle le **démultiplie**. Une heure de travail peut en valoir trois. Mais cela suppose d\'identifier les bonnes tâches à déléguer à l\'IA et de garder la main sur ce qui exige jugement humain. Ce cours vous apprend à intégrer l\'IA dans votre travail quotidien.
+Bien utilisée, l\'IA ne remplace pas le professionnel : elle le **démultiplie**. Une heure de travail peut en valoir trois. Mais cela suppose d\'identifier les bonnes tâches à déléguer à l\'IA et de garder la main sur ce qui exige jugement humain. Ce chapitre vous apprend à intégrer l\'IA dans votre travail quotidien.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2153,7 +2153,7 @@ L\'objectif final est d\'intégrer l\'IA dans une **routine** : un ensemble d\'h
 
 ### Leçon 1 --- Apprendre par l\'exemple
 
-Rien ne vaut des cas concrets pour comprendre la valeur de l\'automatisation intelligente. Ce cours passe en revue des scénarios réels, secteur par secteur, en détaillant à chaque fois le problème, la solution automatisée et les bénéfices. Inspirez-vous-en pour vos propres projets.
+Rien ne vaut des cas concrets pour comprendre la valeur de l\'automatisation intelligente. Ce chapitre passe en revue des scénarios réels, secteur par secteur, en détaillant à chaque fois le problème, la solution automatisée et les bénéfices. Inspirez-vous-en pour vos propres projets.
 
 ### Leçon 2 --- Support client
 
@@ -2267,7 +2267,7 @@ Plus l\'IA devient puissante et facile d\'accès, plus la responsabilité de cel
 
 ### Leçon 1 --- Pourquoi une bibliothèque de prompts
 
-Un professionnel efficace ne réécrit pas ses instructions à chaque fois. Il dispose d\'une **bibliothèque** de prompts éprouvés, qu\'il adapte en remplaçant quelques variables. Ce cours vous en fournit une base concrète, organisée par usage, que vous enrichirez au fil du temps. Recopiez ces modèles, testez-les, puis personnalisez-les pour votre contexte.
+Un professionnel efficace ne réécrit pas ses instructions à chaque fois. Il dispose d\'une **bibliothèque** de prompts éprouvés, qu\'il adapte en remplaçant quelques variables. Vous en trouverez ici une base concrète, organisée par usage, que vous enrichirez au fil du temps. Recopiez ces modèles, testez-les, puis personnalisez-les pour votre contexte.
 
 **Comment utiliser ces modèles ---** Les éléments entre crochets \[comme ceci\] sont des variables à remplacer par vos informations. Conservez la structure (rôle, tâche, format, contraintes) : c\'est elle qui garantit la qualité de la réponse.
 
@@ -2363,7 +2363,7 @@ Constituez votre propre bibliothèque en partant de ces modèles. Classez-les pa
 
 ### Leçon 1 --- Des recettes prêtes à adapter
 
-Ce cours vous offre des **recettes** d\'automatisation détaillées, que vous pourrez reproduire et adapter. Chaque recette décrit l\'objectif, les nœuds à enchaîner et les points de vigilance. Commencez par les reproduire à l\'identique, puis adaptez-les à vos besoins. C\'est la meilleure façon d\'apprendre l\'automatisation : par l\'imitation puis l\'appropriation.
+Vous trouverez ici des **recettes** d\'automatisation détaillées, que vous pourrez reproduire et adapter. Chaque recette décrit l\'objectif, les nœuds à enchaîner et les points de vigilance. Commencez par les reproduire à l\'identique, puis adaptez-les à vos besoins. C\'est la meilleure façon d\'apprendre l\'automatisation : par l\'imitation puis l\'appropriation.
 
 ### Leçon 2 --- Recette : tri et résumé quotidien des emails
 
@@ -2451,7 +2451,7 @@ Ce cours vous offre des **recettes** d\'automatisation détaillées, que vous po
 
 #### À VOUS DE JOUER --- Reproduire et adapter une recette
 
-106. Choisissez l\'une des recettes de ce cours.
+106. Choisissez l\'une des recettes qui précèdent.
 
 107. Reproduisez-la dans n8n, nœud par nœud, en testant à chaque étape.
 
