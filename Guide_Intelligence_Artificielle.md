@@ -124,7 +124,7 @@ Dans les jeux à deux joueurs (échecs, dames), l\'IA doit anticiper les coups d
 
 ### Leçon 6 --- Applications, limites et idées reçues
 
-Terminons ce premier cours par un regard lucide sur ce que l\'IA peut et ne peut pas faire. Beaucoup d\'erreurs viennent d\'attentes mal calibrées.
+Terminons ce premier chapitre par un regard lucide sur ce que l\'IA peut et ne peut pas faire. Beaucoup d\'erreurs viennent d\'attentes mal calibrées.
 
 L\'IA d\'aujourd\'hui **excelle** dans des tâches bien délimitées avec beaucoup de données : reconnaître des images, traduire, recommander, détecter des fraudes, générer du texte. Elle **peine** en revanche sur le raisonnement de bon sens, la compréhension causale profonde, l\'adaptation à des situations vraiment nouvelles, et tout ce qui demande une véritable compréhension du monde physique et social.
 
@@ -160,7 +160,7 @@ Avant de plonger dans le détail des chapitres suivants, dressons la carte du te
 
 -   **Robotique** : l\'IA incarnée dans le monde physique, à la croisée de plusieurs domaines.
 
-Ces domaines ne sont pas étanches : un assistant vocal combine langage et génération ; une voiture autonome mêle vision, renforcement et décision. La force d\'un expert est de comprendre comment ils s\'articulent. C\'est précisément ce que ce programme va vous apprendre, brique par brique.
+Ces domaines ne sont pas étanches : un assistant vocal combine langage et génération ; une voiture autonome mêle vision, renforcement et décision. La force d\'un expert est de comprendre comment ils s\'articulent. C\'est précisément ce que ce manuel va vous apprendre, brique par brique.
 
 ### Leçon 8 --- Comment aborder la suite du livre
 
@@ -2779,7 +2779,7 @@ Ce glossaire rassemble les termes clés rencontrés dans le manuel. Reportez-vou
 
 ## Guide d\'étude et conseils de réussite
 
-Réussir ce programme demande de la méthode autant que du travail. Voici les conseils que je donne à tous mes étudiants.
+Réussir cet apprentissage demande de la méthode autant que du travail. Voici les conseils que je donne à tous mes étudiants.
 
 **L\'ESSENTIEL À RETENIR**
 
