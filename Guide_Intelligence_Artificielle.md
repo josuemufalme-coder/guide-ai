@@ -1048,6 +1048,10 @@ En empilant les neurones en **couches**, on obtient un réseau. L\'information t
 
 *Figure 6.2 --- Un réseau dense : chaque neurone est connecté à tous ceux de la couche suivante.*
 
+Arrêtons-nous sur la fonction d\'activation, car sa nécessité n\'a rien d\'évident et beaucoup la traversent sans comprendre pourquoi elle existe. Supprimez-la, et empilez dix couches de neurones : le résultat sera **exactement équivalent à une seule couche**. La raison est purement algébrique — une suite de multiplications de matrices se ramène toujours à une seule multiplication. Dix couches linéaires ne valent pas mieux qu\'une, elles coûtent seulement dix fois plus cher. C\'est la non-linéarité, insérée entre chaque couche, qui rend la profondeur profitable. Sans elle, l\'apprentissage profond n\'existerait tout simplement pas.
+
+Un mot enfin sur la comparaison avec le cerveau, dont j\'ai dit d\'emblée qu\'elle valait « de loin ». Elle a servi d\'inspiration historique, elle ne décrit rien. Un neurone biologique communique par impulsions électriques, dans le temps ; le neurone artificiel additionne des nombres, sans notion de temps. Le cerveau apprend en continu à partir d\'une poignée d\'exemples et consomme quelques dizaines de watts ; un réseau apprend en une phase séparée, à partir de millions d\'exemples, et l\'entraînement des plus gros modèles consomme l\'équivalent de plusieurs foyers pendant des mois. Gardez la métaphore pour l\'intuition, jetez-la dès qu\'il s\'agit de raisonner. Un réseau de neurones est un objet mathématique, pas un cerveau miniature.
+
 ### Leçon 2 --- Comment le réseau apprend : la rétropropagation
 
 Voici le mécanisme central. Après chaque prédiction, on mesure l\'erreur. Puis, par la **rétropropagation**, on calcule la contribution de chaque poids à cette erreur (en remontant de la sortie vers l\'entrée) et l\'on ajuste les poids par descente de gradient. Répété des milliers de fois, ce processus fait converger le réseau.
@@ -1055,6 +1059,12 @@ Voici le mécanisme central. Après chaque prédiction, on mesure l\'erreur. Pui
 **Pont entre matières ---** La rétropropagation n\'est rien d\'autre que la règle de dérivation en chaîne, appliquée massivement. Les mathématiques vues plus tôt prennent ici tout leur sens : sans gradient, pas d\'apprentissage profond.
 
 **Exemple --- apprendre de ses erreurs.** Imaginez un archer qui rate sa cible. Il observe de combien et dans quel sens la flèche a dévié, puis corrige sa visée. Le réseau fait pareil : il mesure son erreur et ajuste chacun de ses poids dans la direction qui la réduit. Tir après tir, il s\'améliore.
+
+L\'image de l\'archer est juste, mais elle laisse de côté ce qui fait la vraie difficulté du problème. L\'archer sait immédiatement quoi corriger : sa visée. Un réseau, lui, possède des millions de poids, et il doit déterminer **la part de responsabilité de chacun** dans l\'erreur finale. C\'est ce qu\'on appelle le problème de l\'attribution du crédit, et c\'est précisément ce que résout la rétropropagation.
+
+Le principe est plus simple que sa réputation. On part de l\'erreur en sortie et l\'on remonte couche par couche. À chaque étape, on demande : de combien l\'erreur changerait-elle si ce poids changeait un peu ? La réponse s\'obtient en multipliant les dérivées rencontrées le long du chemin — c\'est la dérivation en chaîne, appliquée mécaniquement. Le calcul se fait donc en deux passes : une **passe avant** qui produit la prédiction en allant de l\'entrée vers la sortie, une **passe arrière** qui distribue la responsabilité en sens inverse.
+
+Trois points méritent d\'être fixés. D\'abord, **on ne met jamais à jour les poids sur un seul exemple** : on calcule l\'erreur sur un petit lot, souvent trente-deux ou soixante-quatre exemples, et l\'on moyenne. C\'est plus stable, et cela exploite bien mieux le parallélisme des cartes graphiques. Ensuite, **une passe complète sur toutes les données s\'appelle une époque**, et il en faut typiquement des dizaines. Enfin, et c\'est ce qui rend le domaine praticable : **vous n\'écrirez jamais une rétropropagation**. PyTorch et TensorFlow tiennent le registre de toutes les opérations effectuées et en dérivent automatiquement les gradients. Ce que vous devez comprendre, c\'est ce qu\'ils font — pour savoir quoi regarder le jour où le gradient s\'éteint ou explose.
 
 ### Leçon 3 --- Les grandes familles d\'architectures
 
@@ -1066,11 +1076,23 @@ Selon le type de données, on utilise des architectures spécialisées. Deux son
 
 -   **Réseaux récurrents (RNN, LSTM, GRU)** : conçus pour les séquences (texte, séries temporelles), ils conservent une mémoire des éléments précédents.
 
+Ces deux familles reposent sur une même idée, qu\'il vaut la peine de nommer parce qu\'elle explique tout le reste : **l\'architecture encode une hypothèse sur les données**. Le convolutif suppose que ce qui compte est local et se répète — un contour est un contour, qu\'il se trouve en haut à gauche ou en bas à droite de l\'image. Le récurrent suppose que l\'ordre compte et que le passé influence le présent. Ces hypothèses ne sont pas des limitations : ce sont des connaissances que l\'ingénieur offre au modèle, et qui lui évitent de les redécouvrir à partir des données. Un réseau dense pourrait en principe apprendre à reconnaître des images ; il lui faudrait infiniment plus d\'exemples pour redécouvrir seul ce qu\'un convolutif tient pour acquis dès le départ.
+
+Une troisième famille manque à cette liste, et elle a supplanté les récurrents sur presque tous leurs terrains : le **Transformer**. Les réseaux récurrents traitent une séquence mot après mot, ce qui les rend lents — impossible de paralléliser ce qui est séquentiel par construction — et leur mémoire s\'estompe sur les longues distances. Le Transformer abandonne le traitement séquentiel : il regarde tous les éléments simultanément et apprend, pour chacun, lesquels des autres méritent attention. Cette architecture est aujourd\'hui derrière l\'ensemble des grands modèles de langage, et elle a débordé sur l\'image et le son. Nous l\'étudierons en détail au chapitre 9 ; sachez dès maintenant qu\'elle existe et qu\'elle a redistribué les cartes.
+
 ### Leçon 4 --- Les techniques qui font marcher le deep learning
 
 Entraîner un réseau profond exige du savoir-faire. Vous apprendrez à choisir la fonction d\'activation (la **ReLU** est la plus courante), à initialiser les poids correctement, à utiliser des optimiseurs avancés comme **Adam**, et à combattre le sur-apprentissage par le **dropout** (désactiver aléatoirement des neurones pendant l\'entraînement), l\'arrêt précoce et l\'augmentation de données.
 
 Tout cela s\'implémente avec des **frameworks** professionnels : **PyTorch** et **TensorFlow/Keras**, qui calculent automatiquement les gradients et exploitent les cartes graphiques.
+
+Ces techniques paraissent disparates ; elles répondent en réalité à trois questions bien distinctes, et les ranger ainsi vous évitera de les appliquer au hasard.
+
+**Faire démarrer l\'apprentissage**, d\'abord. L\'initialisation des poids en fait partie : les mettre tous à zéro condamne le réseau, car tous les neurones d\'une couche calculeraient exactement la même chose et recevraient le même gradient — ils resteraient identiques pour toujours. On les tire donc au hasard, dans une plage soigneusement calibrée sur la taille des couches. La normalisation des entrées, vue au chapitre 3, joue le même rôle.
+
+**Faire converger vite et bien**, ensuite. C\'est le rôle des optimiseurs. La descente de gradient classique applique le même pas à tous les paramètres ; **Adam** adapte le pas à chacun, en tenant compte de l\'historique de ses gradients, et ajoute une inertie qui l\'aide à traverser les zones plates. C\'est pourquoi il est devenu le choix par défaut. On y ajoute presque toujours un **planificateur** qui réduit progressivement le taux d\'apprentissage : de grands pas au début pour approcher vite, de petits pas à la fin pour se poser précisément.
+
+**Empêcher le réseau de tricher**, enfin. Un réseau profond a largement assez de paramètres pour mémoriser ses données d\'entraînement, et il le fera si on le laisse faire. Le **dropout** désactive au hasard une partie des neurones à chaque passage, ce qui interdit au réseau de dépendre d\'un neurone particulier et l\'oblige à répartir l\'information. L\'**arrêt précoce** surveille l\'erreur sur le jeu de validation et interrompt l\'entraînement dès qu\'elle cesse de baisser — car c\'est exactement à ce moment que la mémorisation commence. L\'**augmentation de données** fabrique de nouveaux exemples en transformant les existants : une image légèrement tournée, recadrée ou éclaircie reste la même image, et le réseau apprend ainsi à ignorer ce qui n\'a pas d\'importance.
 
 ### Leçon 5 --- Comprendre une couche convolutive en détail
 
@@ -1079,6 +1101,40 @@ Arrêtons-nous sur le cœur de la vision profonde : la **convolution**. Imaginez
 **Définition --- ce que détecte un filtre.** Un filtre peut être configuré (ou apprendre) pour réagir fortement aux **contours verticaux** : il produira des valeurs élevées là où l\'image passe brusquement du clair au sombre verticalement, et des valeurs faibles ailleurs. Un réseau convolutif apprend des dizaines de tels filtres, chacun spécialisé dans un motif. C\'est ainsi qu\'il « voit ».
 
 Après la convolution vient souvent le **sous-échantillonnage** (pooling), qui réduit la taille de l\'image en ne gardant que l\'information essentielle de chaque région. On gagne en robustesse (un objet légèrement décalé reste reconnu) et en efficacité (moins de calculs). En empilant convolutions et pooling, le réseau construit une compréhension de plus en plus abstraite, du pixel jusqu\'à l\'objet.
+
+**Exemple chiffré --- une convolution calculée à la main.** Rien ne remplace le calcul. Voici une image minuscule de 5×5 pixels, sombre à gauche, claire à droite. J\'utilise 0 pour le noir et 10 pour le blanc, afin que l\'arithmétique reste lisible.
+
+| | | | | |
+|---:|---:|---:|---:|---:|
+| 0 | 0 | 10 | 10 | 10 |
+| 0 | 0 | 10 | 10 | 10 |
+| 0 | 0 | 10 | 10 | 10 |
+| 0 | 0 | 10 | 10 | 10 |
+| 0 | 0 | 10 | 10 | 10 |
+
+Appliquons-lui un filtre 3×3 détecteur de **contour vertical** : une colonne de −1, une colonne de 0, une colonne de +1. Il retranche ce qui est à gauche de ce qui est à droite.
+
+Plaçons-le en haut à gauche. Il recouvre les colonnes 0, 1 et 2, soit trois lignes identiques valant (0, 0, 10). Pour chacune : (−1 × 0) + (0 × 0) + (1 × 10) = **10**. Trois lignes, donc **30**. En glissant le filtre sur toute l\'image, on obtient :
+
+| | | |
+|---:|---:|---:|
+| 30 | 30 | 0 |
+| 30 | 30 | 0 |
+| 30 | 30 | 0 |
+
+Lisez ce résultat : les deux premières colonnes s\'allument, la troisième reste éteinte. Le filtre a répondu partout où la transition sombre-clair tombait dans sa fenêtre, et s\'est tu là où il ne voyait que du blanc uniforme. **Il a trouvé le contour, et rien d\'autre.**
+
+Maintenant, le même exercice avec un filtre détecteur de contour **horizontal** — une ligne de −1, une ligne de 0, une ligne de +1. Sur cette même image, il rend :
+
+| | | |
+|---:|---:|---:|
+| 0 | 0 | 0 |
+| 0 | 0 | 0 |
+| 0 | 0 | 0 |
+
+Rien. Pas un seul chiffre. Ce filtre cherche des variations de haut en bas, et notre image n\'en comporte aucune : chaque colonne est constante verticalement. Deux filtres, une seule image, et deux réponses opposées. **Voilà ce que signifie « un filtre est spécialisé dans un motif ».** Un réseau convolutif en apprend des dizaines par couche, chacun aveugle à tout sauf à ce qu\'il cherche, et c\'est la combinaison de leurs réponses qui compose la perception.
+
+Un dernier chiffre, qui explique à lui seul pourquoi cette architecture existe. Une photographie ordinaire de 224 × 224 pixels en couleur représente 150 528 valeurs d\'entrée. Une couche dense de mille neurones branchée dessus demanderait plus de **150 millions de paramètres**. Une couche convolutive de 64 filtres 3×3 en demande **1 792** — quatre-vingt mille fois moins. La raison est que le filtre est **le même partout sur l\'image** : on n\'apprend pas un détecteur de contour pour chaque position, on en apprend un seul qu\'on promène. Sans cette économie, la vision par ordinateur profonde serait restée hors de portée.
 
 ### Leçon 6 --- Les pièges de l\'entraînement et comment les éviter
 
@@ -1096,6 +1152,14 @@ Entraîner un réseau profond réserve des difficultés que tout praticien renco
 
 **Conseil de praticien ---** Quand un réseau n\'apprend pas, ne changez pas tout à la fois. Vérifiez d\'abord vos données, puis votre taux d\'apprentissage, puis l\'architecture. Procédez méthodiquement, une variable à la fois : c\'est ainsi qu\'on débogue efficacement.
 
+Je vais rendre ce conseil opératoire, car « vérifiez vos données » reste vague tant qu\'on ne sait pas quoi regarder. Voici l\'ordre dans lequel je procède, et il m\'a rarement fait défaut.
+
+**Premier test, et de loin le plus utile : faites sur-apprendre le réseau sur dix exemples.** Prenez dix images, dix phrases, dix lignes, et entraînez jusqu\'à ce que l\'erreur tombe pratiquement à zéro. Si le réseau n\'y parvient pas, inutile de chercher plus loin du côté des hyperparamètres : il y a un bug. Étiquettes décalées, images mal normalisées, sortie de mauvaise dimension, fonction de coût inadaptée. Un réseau correct **doit** savoir mémoriser dix exemples ; s\'il en est incapable, quelque chose est cassé. Ce test prend deux minutes et élimine la moitié des causes possibles.
+
+**Ensuite, regardez les deux courbes d\'erreur** — celle de l\'entraînement et celle de la validation — car leur allure relative pose le diagnostic à elle seule. Les deux restent hautes : le modèle sous-apprend, il est trop simple ou l\'entraînement trop court. L\'erreur d\'entraînement descend, celle de validation remonte : sur-apprentissage caractérisé, c\'est le moment d\'arrêter et de régulariser. L\'erreur oscille violemment sans tendance : le taux d\'apprentissage est trop grand. L\'erreur ne bouge pas du tout dès la première époque : le gradient ne circule pas, cherchez du côté de l\'initialisation ou des activations saturées.
+
+**Enfin, méfiez-vous d\'un résultat trop beau.** Une erreur de validation anormalement basse dès la deuxième époque n\'annonce presque jamais un talent particulier : elle annonce une fuite de données. Vérifiez que rien du jeu de validation n\'a filtré dans l\'entraînement — un doublon, une normalisation calculée sur l\'ensemble, une image présente deux fois. Le chapitre 4 vous a mis en garde ; c\'est ici que la mise en garde se paie.
+
 ### Leçon 7 --- Les fonctions d\'activation en détail
 
 La fonction d\'activation est ce petit ingrédient qui donne toute sa puissance au réseau. Voyons les principales, car le choix de l\'activation influence l\'apprentissage.
@@ -1111,6 +1175,18 @@ La fonction d\'activation est ce petit ingrédient qui donne toute sa puissance 
 -   **Softmax** : en sortie d\'une classification, transforme des scores en probabilités qui somment à 1.
 
 **Exemple --- pourquoi la ReLU a tout changé.** Avant la ReLU, les réseaux profonds souffraient de la disparition du gradient : le signal d\'apprentissage s\'éteignait dans les couches profondes. La ReLU, par sa simplicité, laisse passer le gradient sans l\'atténuer pour les valeurs positives. Cette innovation modeste en apparence a rendu possible l\'entraînement de réseaux très profonds. **À retenir** : en IA, une idée simple bien placée peut débloquer tout un domaine.
+
+Encore faut-il savoir laquelle employer, et la réponse est heureusement simple. Dans les **couches cachées**, prenez la ReLU par défaut, sans hésiter : elle est rapide à calculer, laisse passer le gradient, et convient dans la très grande majorité des cas. En **sortie**, en revanche, l\'activation n\'est pas un choix de confort — elle est dictée par la nature de ce que vous prédisez, et se tromper ici rend l\'entraînement impossible.
+
+| Ce que vous prédisez | Activation de sortie | Fonction de coût associée |
+|---|---|---|
+| Un nombre quelconque (prix, température) | **aucune** | erreur quadratique |
+| Une réponse oui / non | **sigmoïde** | entropie croisée binaire |
+| Une classe parmi plusieurs | **softmax** | entropie croisée |
+
+Retenez que la sortie et le coût vont par paire. Une softmax garantit que les valeurs produites sont positives et somment à 1, ce qui en fait des probabilités légitimes ; l\'entropie croisée sait exactement quoi faire de telles probabilités. Les associer autrement produit un entraînement qui n\'échoue pas franchement — il stagne, ce qui est bien plus difficile à diagnostiquer.
+
+Un mot enfin sur le défaut de la ReLU, puisque j\'en ai vanté les mérites. Un neurone dont la sortie devient négative renvoie zéro, et le gradient qui le traverse vaut zéro également : il cesse d\'apprendre, définitivement. On appelle cela un **neurone mort**, et un réseau peut en accumuler une proportion notable sans que rien ne le signale. Des variantes existent pour l\'éviter, qui laissent passer un filet de signal du côté négatif. C\'est un ajustement de second ordre, mais si un réseau plafonne sans raison apparente, comptez vos neurones morts avant de changer d\'architecture.
 
 ### Exercices dirigés
 
