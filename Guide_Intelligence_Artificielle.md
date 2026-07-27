@@ -413,6 +413,19 @@ Le regroupement mérite aussi qu\'on s\'y arrête, car il constitue à lui seul 
 
 Un dernier mot sur les valeurs manquantes, puisque c\'est là que passera votre temps. Pandas les note `NaN` et, contrairement à ce qu\'on attend, une moyenne les ignore silencieusement au lieu d\'échouer. C\'est commode et dangereux : une colonne aux trois quarts vide vous rendra une moyenne parfaitement calculée sur le quart restant, sans un mot d\'avertissement. Prenez l\'habitude de commencer toute exploration par `df.isna().sum()`. Cette seule ligne vous dira, colonne par colonne, ce qui manque, et vous évitera de bâtir un raisonnement sur du vide.
 
+```python
+import pandas as pd
+
+df = pd.DataFrame({"region": ["Nord", "Sud", "Nord", "Est", None],
+                   "montant": [1200, 800, None, 2400, 600]})
+
+print(df.isna().sum())        # ce qui manque, colonne par colonne
+print(df.groupby("region")["montant"].agg(["count", "sum", "mean"]))
+print("médiane :", df["montant"].median(), "| moyenne :", df["montant"].mean())
+```
+
+Deux choses à observer dans la sortie. Le `count` du regroupement compte les valeurs **présentes**, pas les lignes : c'est ainsi que l'on repère qu'une catégorie est mal renseignée. Et la médiane vaut 1 000 quand la moyenne vaut 1 250 — sur cinq lignes, une seule valeur élevée suffit déjà à les séparer.
+
 ### Leçon 5 --- Visualiser et travailler proprement
 
 Avec **Matplotlib** et **Seaborn**, vous transformerez des colonnes de chiffres en graphiques parlants : histogrammes, nuages de points, courbes. Voir les données est souvent le premier pas pour les comprendre.
@@ -537,6 +550,24 @@ Mettons-y des nombres, c\'est plus parlant qu\'un principe. Trois amis notent tr
 
 Une règle, maintenant, qui vous évitera la moitié des messages d\'erreur de votre vie de praticien. Pour multiplier deux matrices, **le nombre de colonnes de la première doit égaler le nombre de lignes de la seconde**, et le résultat prend les lignes de la première et les colonnes de la seconde. En notation de formes : (n, m) × (m, p) donne (n, p). Le `m` doit se correspondre et il disparaît. Quand votre programme vous annoncera une incompatibilité de dimensions, et il le fera ---, c\'est cette règle qu\'il vous rappellera. Prenez l\'habitude d\'écrire les formes sur un papier avant de coder : trente secondes qui en économisent trente minutes.
 
+Vérifions les deux idées en quelques lignes.
+
+```python
+import numpy as np
+
+# Le produit scalaire mesure la ressemblance : trois amis, trois films notés.
+alice, bruno, clara = np.array([5, 1, 4]), np.array([4, 2, 5]), np.array([0, 5, 1])
+print("Alice . Bruno =", alice @ bruno)   # 42 : goûts alignés
+print("Alice . Clara =", alice @ clara)   #  9 : rien en commun
+
+# La règle des dimensions : (n, m) x (m, p) donne (n, p). Le m disparaît.
+X = np.array([[1., 2.], [3., 4.], [5., 6.]])   # 3 observations, 2 variables
+W = np.array([[0.5], [-0.2]])                   # 2 poids, 1 sortie
+print("formes :", X.shape, "x", W.shape, "->", (X @ W).shape)   # (3,2) x (2,1) -> (3,1)
+```
+
+L'opérateur `@` est le produit matriciel. Retenez le dernier `print` : c'est le réflexe qui vous sauvera des heures. Devant une erreur de dimensions, affichez les formes avant toute chose.
+
 Nous étudierons aussi les **valeurs et vecteurs propres**, notions plus avancées qui fondent des techniques de réduction de dimension comme l\'analyse en composantes principales (ACP), que vous reverrez au chapitre 5.
 
 À quoi cela sert-il, concrètement ? Imaginez un jeu de données décrivant des clients par cinquante colonnes. Beaucoup de ces colonnes disent la même chose autrement : le revenu, le montant du panier moyen et la catégorie de logement varient ensemble. L\'ACP repère ces redondances et reconstruit un petit nombre d\'axes qui résument l\'essentiel de la variation --- souvent cinq ou six suffisent à retenir l\'essentiel de l\'information portée par les cinquante colonnes de départ. Les vecteurs propres sont précisément ces axes, et les valeurs propres mesurent la quantité d\'information que chacun capte. Vous n\'aurez pas à les calculer, mais vous saurez ce que fait la fonction que vous appellerez, et surtout ce qu\'elle vous fait perdre : les nouveaux axes ne portent plus de nom interprétable.
@@ -576,6 +607,26 @@ Le coût tombe de 12,667 à **0,216**. Un seul pas a supprimé 98 % de l\'erreur
 Trois observations, et elles valent pour tous les entraînements que vous lancerez. D\'abord, **la descente est très rapide au début, puis ralentit** : c\'est normal, le gradient est proportionnel à l\'erreur, donc les grands pas correspondent aux grandes erreurs. Ensuite, **le signe du gradient dit le sens de la correction**, sa valeur absolue dit l\'urgence. Enfin, **le coût ne tombe pas à zéro**, et ce n\'est pas un échec : il reste l\'erreur irréductible due au fait que les données ne sont pas exactement alignées. Un coût qui atteindrait zéro sur des données réelles serait un signal d\'alarme, pas une réussite --- nous verrons pourquoi au chapitre 5, sous le nom de sur-apprentissage.
 
 Ce que vous venez de dérouler à la main sur deux paramètres, un réseau de neurones le fait sur des millions, des milliers de fois de suite. Le mécanisme, lui, est exactement celui-ci.
+
+Et voici ce même calcul en code, sans aucune bibliothèque d'apprentissage : dix lignes de Python suffisent à écrire une descente de gradient complète.
+
+```python
+X, Y = [1, 2, 3], [2, 3, 5]      # nos trois points
+w = b = 0.0                       # le modèle le plus ignorant possible
+lr, n = 0.1, len(X)               # taux d'apprentissage et nombre de points
+
+for etape in range(3):
+    preds = [w * x + b for x in X]
+    err = [p - y for p, y in zip(preds, Y)]        # écart prédiction - vérité
+    cout = sum(e * e for e in err) / n             # erreur quadratique moyenne
+    gw = 2 / n * sum(x * e for x, e in zip(X, err))  # gradient sur la pente
+    gb = 2 / n * sum(err)                            # gradient sur l'ordonnée
+    print(f"étape {etape}: coût={cout:6.3f}  w={w:5.3f}  b={b:5.3f}")
+    w -= lr * gw                  # on avance À L'OPPOSÉ du gradient
+    b -= lr * gb
+```
+
+À l'exécution : `coût=12.667`, puis `0.216`, puis `0.067` — exactement les valeurs déroulées plus haut. Modifiez `lr` à 1,5 et relancez : vous verrez le coût exploser au lieu de descendre. C'est le pas trop grand dont je vous parlais, et il vaut mieux le voir une fois soi-même que le lire dix fois.
 
 ### Leçon 4 --- Probabilités : raisonner dans l\'incertain
 
@@ -726,6 +777,25 @@ Un mot sur l\'encodage des catégories, car c\'est là que se niche une erreur s
 Il me faut maintenant vous avertir de l\'erreur la plus coûteuse de toute la préparation de données, celle qui produit des modèles brillants en laboratoire et catastrophiques en production : la **fuite de données**. Elle survient quand une information issue des données de test se glisse dans l\'entraînement. Le cas le plus courant est d\'une banalité désarmante : on normalise l\'ensemble du jeu de données, **puis** on le sépare en entraînement et test. La moyenne utilisée pour normaliser a donc été calculée en incluant les données de test ; le modèle a vu, indirectement, ce qu\'il était censé ignorer. Les scores obtenus sont flatteurs et faux.
 
 La règle est simple et sans exception : **on sépare d\'abord, on prépare ensuite**. Toutes les transformations (normalisation, remplissage des valeurs manquantes, encodage) se calculent sur les seules données d\'entraînement, puis s\'appliquent telles quelles aux données de test. Une variante plus vicieuse encore consiste à inclure une variable qui n\'existera pas au moment de la prédiction : prédire si un client va résilier en utilisant la colonne « date de résiliation » donne 100 % de justesse et zéro utilité. Quand un résultat vous paraît trop beau, cherchez la fuite. Elle est presque toujours là.
+
+Le pipeline est la parade, et il tient en trois lignes :
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+
+# 1. On sépare D'ABORD.
+X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 2. Le pipeline calcule la moyenne et l'écart type sur X_tr SEULEMENT,
+#    puis applique la même transformation à X_te. La fuite devient impossible.
+modele = make_pipeline(StandardScaler(), LinearRegression()).fit(X_tr, y_tr)
+print("R² =", round(modele.score(X_te, y_te), 4))
+```
+
+Comparez avec la version fautive — `StandardScaler().fit_transform(X)` avant le découpage — et vous verrez le score gagner quelques centièmes. Ces centièmes sont faux, et ils disparaîtront en production.
 
 ### Leçon 4 --- Le piège à éviter absolument : corrélation n\'est pas causalité
 
@@ -943,6 +1013,19 @@ Voilà le piège, et il est de taille : ce modèle affiche **98,6 % d\'exactitud
 
 Reste à choisir entre précision et rappel, car les deux s\'opposent : resserrer le seuil améliore la précision et dégrade le rappel, l\'élargir fait l\'inverse. Le choix ne se déduit d\'aucune formule, il se déduit du **coût des deux erreurs**. Pour un dépistage médical, on privilégie le rappel : mieux vaut alarmer à tort, un examen complémentaire lèvera le doute, que manquer un malade. Pour un filtre anti-spam, on privilégie la précision : perdre un message important coûte bien plus cher que supporter quelques indésirables. Posez-vous toujours la question dans ces termes, non pas « quel modèle est le meilleur ? », mais **« laquelle des deux erreurs suis-je prêt à commettre ? »**
 
+Ce compromis se règle en une ligne, et je vous encourage à le voir de vos yeux :
+
+```python
+proba = modele.predict_proba(X_te)[:, 1]      # une probabilité, pas une classe
+
+for seuil in (0.3, 0.5, 0.8):
+    pred = (proba >= seuil).astype(int)
+    print(f"seuil {seuil}: précision {precision_score(y_te, pred):.3f}"
+          f"  rappel {recall_score(y_te, pred):.3f}")
+```
+
+Sur le jeu de dépistage utilisé plus haut, le seuil à 0,3 donne un **rappel de 1,000** — aucun malade manqué — au prix d'une précision légèrement moindre. Le seuil à 0,8 fait l'inverse. Un seul modèle, entraîné une seule fois, et tout un éventail de comportements. Le réglage est votre décision, pas la sienne.
+
 ### Leçon 6 --- Comprendre en profondeur : un exemple chiffré de régression
 
 Reprenons la régression linéaire avec des chiffres, pour bien saisir ce qui se passe. Supposons que l\'on veuille prédire la note d\'un étudiant (sur 20) à partir du nombre d\'heures de révision. On dispose de quelques observations : 2 h → 9, 4 h → 12, 6 h → 15, 8 h → 17.
@@ -1002,6 +1085,37 @@ Le premier concerne l\'étape 4, et c\'est la règle la plus rentable de tout le
 
 Le second concerne l\'étape 3, et c\'est le rôle exact des **trois** jeux de données, que beaucoup réduisent à deux. L\'entraînement sert à ajuster les paramètres. La **validation** sert à choisir entre plusieurs modèles ou réglages. Le **test**, lui, ne sert qu\'une fois, tout à la fin, pour estimer honnêtement la performance. Si vous choisissez votre modèle d\'après le jeu de test, vous vous êtes adapté à lui, et son score cesse d\'être une estimation honnête --- vous avez simplement déplacé le sur-apprentissage d\'un cran. Le jeu de test se garde sous clé.
 
+Voici le déroulé complet en une vingtaine de lignes, sur un jeu de données embarqué dans scikit-learn — donc exécutable immédiatement, sans rien télécharger.
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.dummy import DummyClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, precision_score, recall_score
+from sklearn.model_selection import train_test_split
+
+X, y = load_breast_cancer(return_X_y=True)
+X_tr, X_te, y_tr, y_te = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# ÉTAPE 4a : la référence stupide, toujours en premier.
+ref = DummyClassifier(strategy="most_frequent").fit(X_tr, y_tr)
+print("référence  :", round(ref.score(X_te, y_te), 3))     # ~0.63
+
+# ÉTAPE 4b : le modèle sérieux.
+m = RandomForestClassifier(n_estimators=200, random_state=42).fit(X_tr, y_tr)
+p = m.predict(X_te)
+
+# ÉTAPE 5 : les bonnes métriques, pas seulement l'exactitude.
+print("exactitude :", round(m.score(X_te, y_te), 3))       # ~0.96
+print("précision  :", round(precision_score(y_te, p), 3))  # ~0.96
+print("rappel     :", round(recall_score(y_te, p), 3))     # ~0.97
+print(confusion_matrix(y_te, p))
+```
+
+Sans la ligne de référence, un score de 0,96 ne veut rien dire. Avec elle, vous savez que le modèle apporte 33 points au-dessus de la solution la plus bête — et c'est **cela**, sa valeur réelle.
+
 Un mot enfin sur l\'étape 7, qu\'on traite trop souvent comme une formalité administrative. Un modèle déployé n\'est pas un projet terminé : c\'est un projet qui commence à vivre, et à vieillir. Les habitudes changent, les gammes de produits évoluent, un fournisseur modifie le format d\'un fichier. Rien de tout cela n\'apparaîtra comme une erreur ; les performances glisseront simplement, mois après mois. C\'est tout l\'objet du chapitre 7.
 
 ### Exercices dirigés
@@ -1051,6 +1165,31 @@ En empilant les neurones en **couches**, on obtient un réseau. L\'information t
 Arrêtons-nous sur la fonction d\'activation, car sa nécessité n\'a rien d\'évident et beaucoup la traversent sans comprendre pourquoi elle existe. Supprimez-la, et empilez dix couches de neurones : le résultat sera **exactement équivalent à une seule couche**. La raison est purement algébrique : une suite de multiplications de matrices se ramène toujours à une seule multiplication. Dix couches linéaires ne valent pas mieux qu\'une, elles coûtent seulement dix fois plus cher. C\'est la non-linéarité, insérée entre chaque couche, qui rend la profondeur profitable. Sans elle, l\'apprentissage profond n\'existerait tout simplement pas.
 
 Un mot enfin sur la comparaison avec le cerveau, dont j\'ai dit d\'emblée qu\'elle valait « de loin ». Elle a servi d\'inspiration historique, elle ne décrit rien. Un neurone biologique communique par impulsions électriques, dans le temps ; le neurone artificiel additionne des nombres, sans notion de temps. Le cerveau apprend en continu à partir d\'une poignée d\'exemples et consomme quelques dizaines de watts ; un réseau apprend en une phase séparée, à partir de millions d\'exemples, et l\'entraînement des plus gros modèles consomme l\'équivalent de plusieurs foyers pendant des mois. Gardez la métaphore pour l\'intuition, jetez-la dès qu\'il s\'agit de raisonner. Un réseau de neurones est un objet mathématique, pas un cerveau miniature.
+
+Et pour dissiper le mystère une bonne fois, voici un réseau complet — deux couches, une passe avant — en huit lignes de NumPy, sans aucune bibliothèque d'apprentissage profond :
+
+```python
+import numpy as np
+
+def relu(x): return np.maximum(0, x)
+def softmax(x):
+    e = np.exp(x - x.max())      # on retire le max pour éviter les débordements
+    return e / e.sum()
+
+entrees = np.array([0.5, -1.2, 2.0])                    # trois caractéristiques
+W1 = np.array([[0.3, -0.1, 0.2], [0.7, 0.4, -0.5]])     # 2 neurones cachés
+b1 = np.array([0.1, -0.2])
+W2 = np.array([[1.0, -1.0], [0.5, 0.5]])                # 2 classes en sortie
+b2 = np.array([0.0, 0.1])
+
+h = relu(W1 @ entrees + b1)          # couche cachée : pondérer, sommer, activer
+sortie = softmax(W2 @ h + b2)        # couche de sortie : des probabilités
+
+print("couche cachée :", h.round(3))       # [0.77 0.   ] <- un neurone éteint
+print("probabilités  :", sortie.round(3))  # [0.571 0.429], somme = 1
+```
+
+Regardez le second neurone caché : il vaut **zéro**. La ReLU l'a éteint pour cette entrée-là. C'est exactement le mécanisme décrit plus haut — et vous voyez qu'un réseau de neurones, dépouillé de son vocabulaire, tient en trois multiplications de matrices.
 
 ### Leçon 2 --- Comment le réseau apprend : la rétropropagation
 
@@ -1187,6 +1326,20 @@ Encore faut-il savoir laquelle employer, et la réponse est heureusement simple.
 Retenez que la sortie et le coût vont par paire. Une softmax garantit que les valeurs produites sont positives et somment à 1, ce qui en fait des probabilités légitimes ; l\'entropie croisée sait exactement quoi faire de telles probabilités. Les associer autrement produit un entraînement qui n\'échoue pas franchement --- il stagne, ce qui est bien plus difficile à diagnostiquer.
 
 Un mot enfin sur le défaut de la ReLU, puisque j\'en ai vanté les mérites. Un neurone dont la sortie devient négative renvoie zéro, et le gradient qui le traverse vaut zéro également : il cesse d\'apprendre, définitivement. On appelle cela un **neurone mort**, et un réseau peut en accumuler une proportion notable sans que rien ne le signale. Des variantes existent pour l\'éviter, qui laissent passer un filet de signal du côté négatif. C\'est un ajustement de second ordre, mais si un réseau plafonne sans raison apparente, comptez vos neurones morts avant de changer d\'architecture.
+
+Trois lignes suffisent à voir ce que chaque activation fait réellement :
+
+```python
+import numpy as np
+x = np.array([-2.0, -0.5, 0.0, 0.5, 2.0])
+
+print("entrée   ", x)
+print("ReLU     ", np.maximum(0, x))        # [0.  0.  0.  0.5 2. ]
+print("sigmoïde ", (1 / (1 + np.exp(-x))).round(3))   # [0.119 ... 0.881]
+print("tanh     ", np.tanh(x).round(3))     # [-0.964 ... 0.964]
+```
+
+Observez la première ligne de sortie : la ReLU renvoie **zéro pour toutes les valeurs négatives**. Le gradient y est nul lui aussi — c'est là que naît le neurone mort. Observez la sigmoïde : elle écrase tout entre 0 et 1, et ses valeurs extrêmes se tassent contre les bornes. C'est cette compression qui fait disparaître le gradient dans les réseaux profonds.
 
 ### Exercices dirigés
 
@@ -1456,6 +1609,24 @@ La première concerne le découpage. On ne travaille presque jamais mot par mot,
 
 La seconde limite est plus profonde. Un plongement classique attribue **un vecteur unique à chaque mot**, quel que soit son emploi. « Avocat » reçoit donc une seule représentation, coincée entre le fruit et le juriste, qui ne convient à aucun des deux. C\'est exactement le mur sur lequel ces méthodes ont buté, et ce que résolvent les **plongements contextuels** : le vecteur d\'un mot y est calculé en fonction de la phrase où il apparaît, si bien que l\'avocat du tribunal et celui de la salade n\'ont plus la même représentation. Cette bascule, du mot fixe au mot situé, est le véritable saut du NLP moderne, et c\'est précisément ce que produit le mécanisme d\'attention de la leçon suivante.
 
+Avant d'en arriver là, mesurons ce que sait faire une représentation simple :
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+phrases = ["le chat dort sur le canape",
+           "un felin se repose sur le divan",     # même sens, autres mots
+           "la voiture roule sur l autoroute"]    # sens différent
+
+M = TfidfVectorizer().fit_transform(phrases)
+sim = cosine_similarity(M)
+print(f"phrases 1 et 2 : {sim[0,1]:.3f}")   # 0.260
+print(f"phrases 1 et 3 : {sim[0,2]:.3f}")   # 0.070
+```
+
+Le résultat est instructif et un peu décevant. La méthode distingue correctement les phrases proches des phrases éloignées — 0,26 contre 0,07 —, mais la similarité entre les deux premières reste faible **alors qu'elles disent la même chose**. Elles ne partagent que « sur » et « le ». Voilà précisément le mur que les plongements contextuels franchissent : reconnaître que « félin » et « chat », « divan » et « canapé » désignent la même chose, sans partager une seule lettre.
+
 ### Leçon 3 --- La révolution Transformer
 
 En 2017, une architecture a tout changé : le **Transformer**, fondé sur le mécanisme d\'**attention**. L\'attention permet au modèle de pondérer l\'importance de chaque mot par rapport aux autres, capturant le contexte même sur de longues distances.
@@ -1619,6 +1790,26 @@ Un réglage commande ce tirage : la **température**. On divise les scores par e
 À température basse, le modèle devient prévisible : neuf fois sur dix il dira « canapé ». À température haute, il s\'autorise « clavier » une fois sur dix-sept --- surprenant, parfois créatif, souvent absurde. **La créativité d\'un modèle n\'est rien d\'autre que ce réglage.** D\'où une règle simple : température basse pour l\'extraction d\'informations, la classification et le code, où vous voulez la réponse la plus sûre et reproductible ; température plus élevée pour le brainstorming ou l\'écriture, où la variété est l\'objectif.
 
 Ce petit tableau explique aussi l\'**hallucination**, et je veux que vous compreniez qu\'elle n\'est pas un défaut accidentel. Le modèle ne dispose d\'aucune case « je ne sais pas » : il produit toujours une distribution sur les mots possibles, et tire dedans. Quand il connaît la réponse, la distribution est piquée sur le bon mot. Quand il ne la connaît pas, elle est plate, et il tire quand même, produisant une suite plausible plutôt que vraie. **Halluciner et répondre correctement sont exactement le même mécanisme**, appliqué à des distributions différentes. C\'est pourquoi aucune consigne du type « ne mens pas » ne supprimera le phénomène, et pourquoi il faut des dispositifs extérieurs, dont le RAG de la leçon 4.
+
+Le tableau ci-dessus se reproduit en cinq lignes, et je vous encourage à jouer avec les valeurs :
+
+```python
+import numpy as np
+
+mots   = ["canapé", "lit", "toit", "clavier"]
+scores = np.array([5.0, 4.5, 3.0, 1.0])       # ce que produit le modèle
+
+def softmax(x, T=1.0):
+    z = x / T                    # la température divise AVANT l'exponentielle
+    e = np.exp(z - z.max())
+    return e / e.sum()
+
+for T in (0.2, 1.0, 2.0):
+    p = softmax(scores, T)
+    print(f"T={T:>3}  " + "  ".join(f"{m}={q:5.1%}" for m, q in zip(mots, p)))
+```
+
+Poussez la température vers zéro : la distribution se concentre entièrement sur le premier mot, le modèle devient déterministe. Poussez-la vers l'infini : tous les mots deviennent équiprobables, la sortie devient du bruit. Entre les deux se joue tout ce qu'on appelle la « créativité » d'un modèle.
 
 ### Leçon 2 --- Générer des images
 
