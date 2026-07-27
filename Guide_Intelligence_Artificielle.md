@@ -1239,7 +1239,7 @@ Vous étudierez les méthodes sans modèle (**Q-learning**, SARSA) puis profonde
 
 **Notion essentielle ---** L\'agent doit-il exploiter ce qu\'il connaît déjà (la stratégie qui marche), ou explorer pour découvrir peut-être mieux ? Trop d\'exploitation, il stagne ; trop d\'exploration, il ne capitalise jamais. Tout l\'art est dans l\'équilibre. C\'est le même dilemme que choisir entre son restaurant favori et en essayer un nouveau.
 
-### Leçon 4bis --- Applications et limites du renforcement
+### Leçon 4 --- Applications et limites du renforcement
 
 Le renforcement brille dans certains domaines et peine dans d\'autres. Savoir où l\'employer est essentiel.
 
@@ -1479,7 +1479,7 @@ Avant la moindre ligne de code, il faut définir clairement le problème, les **
 
 Un projet d\'IA est avant tout un projet de **données** : sont-elles disponibles, de qualité, à un coût raisonnable ? Il faut aussi gérer les **risques**, coordonner les **parties prenantes**, et préparer le passage délicat du prototype à la production à grande échelle. Enfin, on mesure le **retour sur investissement**.
 
-### Leçon 5 --- Les sept causes d\'échec et comment les éviter
+### Leçon 4 --- Les sept causes d\'échec et comment les éviter
 
 Apprenons des échecs des autres. Voici les sept causes les plus fréquentes d\'échec d\'un projet d\'IA, et la parade pour chacune.
 
@@ -1501,7 +1501,7 @@ Apprenons des échecs des autres. Voici les sept causes les plus fréquentes d\'
 
 **Exemple --- un échec instructif.** Une entreprise investit des mois dans un modèle de prévision très précis... que personne n\'utilise, car il n\'a jamais été intégré aux outils des équipes. Le modèle était excellent ; le projet a échoué. **Leçon** : un modèle qui ne sert pas est un échec, si performant soit-il. L\'adoption compte autant que la performance.
 
-### Leçon 6 --- Communiquer avec les décideurs
+### Leçon 5 --- Communiquer avec les décideurs
 
 Un chef de projet IA doit traduire la technique en langage métier. Ne parlez pas de « score F1 » à un directeur : parlez de « réduction des erreurs de 30 % » et « d\'économie estimée ». Reliez toujours la technique à la valeur, et appuyez-vous sur des démonstrations concrètes plutôt que sur des concepts abstraits. C\'est ainsi qu\'on obtient l\'adhésion et les budgets.
 
@@ -1929,7 +1929,7 @@ Une automatisation manipule souvent des données sensibles (emails, fiches clien
 
 **Exemple --- une question à toujours se poser.** Avant d\'envoyer le contenu d\'un email client à un service d\'IA externe, demandez-vous : ai-je le droit de transmettre cette donnée à un tiers ? Si elle est confidentielle, mieux vaut un modèle auto-hébergé. **Leçon** : l\'automatisation ne dispense jamais de la vigilance sur la confidentialité --- au contraire, elle la rend plus cruciale, car le traitement est massif.
 
-### Leçon 9bis --- Comprendre les déclencheurs en profondeur
+### Leçon 9 --- Comprendre les déclencheurs en profondeur
 
 Le déclencheur est le point de départ de toute automatisation : c\'est l\'événement qui met le flux en marche. Bien le choisir conditionne toute la suite. Il en existe plusieurs grandes familles, que vous devez savoir distinguer.
 
