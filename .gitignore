@@ -5,3 +5,6 @@ tmp/
 # Sorties de compilation (phases ulterieures)
 build/
 *.pdf
+
+# Apercus de pages produits par ./build.sh --controle (48 Mo, regenerables)
+controle_pages/

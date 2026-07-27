@@ -1,18 +1,28 @@
-**GUIDE PRATIQUE**
-
-**Comprendre et pratiquer**
-
-**l\'INTELLIGENCE ARTIFICIELLE**
-
-*Un manuel pour apprendre par soi-même,*
-
-*des fondations jusqu\'aux usages professionnels*
-
-*Écrit par*
-
-**MUFALME BULENDA Josué**
-
-*Expert Numérique*
+```{=openxml}
+<w:p><w:pPr><w:spacing w:before="0" w:after="1600"/><w:jc w:val="center"/></w:pPr></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="600"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:b/><w:smallCaps/><w:color w:val="595959"/><w:sz w:val="26"/></w:rPr><w:t xml:space="preserve">GUIDE PRATIQUE</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="80"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:color w:val="1F3864"/><w:sz w:val="44"/></w:rPr><w:t xml:space="preserve">Comprendre et pratiquer</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="240"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:b/><w:color w:val="1F3864"/><w:sz w:val="60"/></w:rPr><w:t xml:space="preserve">l’INTELLIGENCE ARTIFICIELLE</w:t></w:r></w:p>
+<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="1F3864"/></w:pBdr><w:spacing w:before="120" w:after="240"/><w:jc w:val="center"/></w:pPr></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="60"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:sz w:val="24"/></w:rPr><w:t xml:space="preserve">Un manuel pour apprendre par soi-même,</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="1800"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:sz w:val="24"/></w:rPr><w:t xml:space="preserve">des fondations jusqu’aux usages professionnels</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="60"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:b/><w:color w:val="1F3864"/><w:sz w:val="30"/></w:rPr><w:t xml:space="preserve">MUFALME BULENDA Josué</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="1200"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:color w:val="595959"/><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Expert Numérique</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="120"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:color w:val="595959"/><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Kinshasa — 2026</w:t></w:r></w:p>
+<w:p><w:pPr><w:pageBreakBefore/><w:spacing w:before="0" w:after="2400"/><w:jc w:val="center"/></w:pPr></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="200"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria"/><w:b/><w:sz w:val="24"/></w:rPr><w:t xml:space="preserve">Comprendre et pratiquer l’intelligence artificielle</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="400"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Un manuel pour apprendre par soi-même, des fondations jusqu’aux usages professionnels</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="200"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">© 2026 MUFALME BULENDA Josué. Tous droits réservés.</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Première édition</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="400"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Version 1.0 — 2026</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Dépôt légal : ………………………………………</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:color w:val="595959"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">(à compléter auprès de l’organisme compétent avant toute diffusion)</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">ISBN : …………………………………</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="400"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:color w:val="595959"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">(emplacement réservé — un numéro distinct par format : broché, relié, numérique)</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">Aucune partie de cet ouvrage ne peut être reproduite, sous quelque forme et par quelque procédé que ce soit, sans l’autorisation écrite de l’auteur, hors des exceptions prévues par la loi.</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">Les codes sources accompagnant cet ouvrage sont fournis à fin pédagogique. L’auteur ne saurait être tenu responsable de l’usage qui en serait fait.</w:t></w:r></w:p>
+<w:p><w:pPr><w:spacing w:before="0" w:after="240"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">Le chapitre 14 présente l’état du droit à la date de rédaction. Il ne constitue pas un avis juridique.</w:t></w:r></w:p>
+```
 
 # Quelques mots avant de commencer
 
@@ -47,6 +57,14 @@ Un dernier mot, le plus important : on n\'apprend pas l\'IA en lisant, mais en f
 
   VIII --- Pour aller plus loin        Lectures, outils, métiers, glossaire, conseils, questions fréquentes
   ---------------------------------------------------------------------------------------------------------------------------------------
+
+
+```{=openxml}
+<w:p><w:pPr><w:pageBreakBefore/><w:spacing w:before="0" w:after="0"/><w:jc w:val="center"/></w:pPr></w:p>
+<w:p><w:pPr><w:pStyle w:val="TOCHeading"/><w:pageBreakBefore w:val="false"/></w:pPr><w:r><w:t>Table des matières</w:t></w:r></w:p>
+<w:p><w:r><w:fldChar w:fldCharType="begin" w:dirty="true"/></w:r><w:r><w:instrText xml:space="preserve"> TOC \o "1-3" \h \z \u </w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:i/><w:color w:val="595959"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">Table des matières — pour la remplir : clic droit sur ce texte, puis « Mettre à jour les champs » (ou F9 dans Word).</w:t></w:r><w:r><w:fldChar w:fldCharType="end"/></w:r></w:p>
+<w:p><w:pPr><w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1418" w:right="1418" w:bottom="1418" w:left="1701" w:header="709" w:footer="709" w:gutter="0"/><w:cols w:space="708"/></w:sectPr></w:pPr></w:p>
+```
 
 # Partie I --- Les fondations
 
@@ -145,11 +163,11 @@ Voici les trois algorithmes de recherche que vous devez connaître et savoir imp
 
 -   **Recherche en profondeur (DFS)** : on suit une piste jusqu\'au bout avant de revenir en arrière. Économe en mémoire, mais elle peut s\'égarer et ne garantit pas le plus court chemin.
 
--   **Algorithme A\\**\* : la plus utilisée. Elle se sert d\'une heuristique (une estimation de la distance restante jusqu\'au but) pour explorer en priorité les pistes les plus prometteuses. C\'est l\'algorithme du GPS.
+-   **Algorithme A\**\* : la plus utilisée. Elle se sert d\'une heuristique (une estimation de la distance restante jusqu\'au but) pour explorer en priorité les pistes les plus prometteuses. C\'est l\'algorithme du GPS.
 
-**Méthode --- comprendre l\'heuristique d\'A\\\*.** Pour aller d\'une ville à une autre, A\\\* combine deux informations : la distance déjà parcourue (certaine) et une estimation de la distance restante (l\'heuristique, par exemple la distance à vol d\'oiseau). En additionnant les deux, l\'algorithme privilégie les chemins qui semblent à la fois courts et bien orientés vers le but. Une bonne heuristique accélère énormément la recherche. L\'algorithme A\\\* a été formalisé par Hart, Nilsson et Raphael en 1968 ; la référence figure en bibliographie.
+**Méthode --- comprendre l\'heuristique d\'A\*.** Pour aller d\'une ville à une autre, A\* combine deux informations : la distance déjà parcourue (certaine) et une estimation de la distance restante (l\'heuristique, par exemple la distance à vol d\'oiseau). En additionnant les deux, l\'algorithme privilégie les chemins qui semblent à la fois courts et bien orientés vers le but. Une bonne heuristique accélère énormément la recherche. L\'algorithme A\* a été formalisé par Hart, Nilsson et Raphael en 1968 ; la référence figure en bibliographie.
 
-**Exemple chiffré --- A\\\* sur un petit réseau routier.** Passons du principe au calcul. Six villes, reliées par des routes dont je vous donne les longueurs en kilomètres. Nous partons de **A** et voulons rejoindre **E**.
+**Exemple chiffré --- A\* sur un petit réseau routier.** Passons du principe au calcul. Six villes, reliées par des routes dont je vous donne les longueurs en kilomètres. Nous partons de **A** et voulons rejoindre **E**.
 
 | Route | A–B | A–C | A–F | B–C | B–D | C–D | C–E | D–E | F–E |
 |---|---|---|---|---|---|---|---|---|---|
@@ -161,7 +179,7 @@ L\'heuristique est la distance à vol d\'oiseau jusqu\'à E. On la lit sur une c
 |---|---|---|---|---|---|---|
 | **h (vol d\'oiseau vers E)** | 10 | 7 | 9 | 3 | 0 | 14 |
 
-A\\\* classe les villes à explorer par **f = g + h**, où *g* est la distance réellement parcourue depuis A et *h* l\'estimation de ce qui reste. Déroulons, étape par étape.
+A\* classe les villes à explorer par **f = g + h**, où *g* est la distance réellement parcourue depuis A et *h* l\'estimation de ce qui reste. Déroulons, étape par étape.
 
 1.  **On part de A** : g = 0, h = 10, donc f = 10. On l\'explore, ce qui révèle trois voisins --- B (g = 5, f = 12), C (g = 2, f = 11) et F (g = 3, f = 17).
 
@@ -177,9 +195,9 @@ Résultat : **A → C → B → D → E, soit 11 km.**
 
 Deux observations méritent votre attention. D\'abord, **F n\'a jamais été exploré**. Son f de 17 l\'a maintenu au fond de la file du début à la fin : l\'heuristique a compris toute seule que partir vers F, c\'était s\'éloigner du but. C\'est exactement ce qu\'on attend d\'une recherche informée, et c\'est ce qui la distingue d\'une recherche aveugle.
 
-Ensuite, comparez avec la recherche en largeur. La BFS minimise le **nombre d\'étapes**, pas la distance. Elle aurait retourné A → C → E : deux routes seulement, mais 14 km. Le chemin d\'A\\\* en compte quatre et fait 11 km. Sur six villes l\'écart semble anecdotique, et il l\'est ; ce qui ne l\'est pas, c\'est le principe. « Le moins d\'étapes » et « le moins cher » sont deux problèmes différents, et les confondre est une erreur que je vois régulièrement.
+Ensuite, comparez avec la recherche en largeur. La BFS minimise le **nombre d\'étapes**, pas la distance. Elle aurait retourné A → C → E : deux routes seulement, mais 14 km. Le chemin d\'A\* en compte quatre et fait 11 km. Sur six villes l\'écart semble anecdotique, et il l\'est ; ce qui ne l\'est pas, c\'est le principe. « Le moins d\'étapes » et « le moins cher » sont deux problèmes différents, et les confondre est une erreur que je vois régulièrement.
 
-Une condition, enfin, et elle est essentielle : l\'heuristique ne doit **jamais surestimer** la distance restante. Le vol d\'oiseau convient parce qu\'aucune route ne saurait être plus courte que la ligne droite. Si vous choisissez une heuristique trop optimiste, A\\\* reste rapide mais cesse de garantir le meilleur chemin. Voilà le compromis à connaître : plus l\'heuristique serre la vérité, moins on explore ; dès qu\'elle la dépasse, on perd l\'optimalité.
+Une condition, enfin, et elle est essentielle : l\'heuristique ne doit **jamais surestimer** la distance restante. Le vol d\'oiseau convient parce qu\'aucune route ne saurait être plus courte que la ligne droite. Si vous choisissez une heuristique trop optimiste, A\* reste rapide mais cesse de garantir le meilleur chemin. Voilà le compromis à connaître : plus l\'heuristique serre la vérité, moins on explore ; dès qu\'elle la dépasse, on perd l\'optimalité.
 
 ### Leçon 5 --- Représenter la connaissance et anticiper l\'adversaire
 
@@ -295,13 +313,13 @@ Un mot enfin sur les blocages, parce qu\'il y en aura. Quand une notion résiste
 
 3.  Implémentez l\'heuristique du nombre de tuiles mal placées.
 
-4.  Implémentez l\'algorithme A\\\* en utilisant une file de priorité.
+4.  Implémentez l\'algorithme A\* en utilisant une file de priorité.
 
 5.  Testez votre agent sur plusieurs configurations et mesurez le nombre d\'états explorés selon l\'heuristique choisie.
 
 **L\'ESSENTIEL À RETENIR**
 
-L\'IA cherche à faire accomplir par des machines des tâches exigeant de l\'intelligence ; toute l\'IA actuelle est « étroite ». Deux approches : programmer le savoir (symbolique) ou l\'apprendre des données (apprentissage) : c\'est cette seconde voie qui domine. De nombreux problèmes se formulent comme une recherche dans un espace d\'états ; A\\\* est l\'algorithme de recherche informée de référence.
+L\'IA cherche à faire accomplir par des machines des tâches exigeant de l\'intelligence ; toute l\'IA actuelle est « étroite ». Deux approches : programmer le savoir (symbolique) ou l\'apprendre des données (apprentissage) : c\'est cette seconde voie qui domine. De nombreux problèmes se formulent comme une recherche dans un espace d\'états ; A\* est l\'algorithme de recherche informée de référence.
 
 ## Chapitre 2 --- Programmation Python pour l\'intelligence artificielle
 
@@ -325,29 +343,34 @@ Choisissez ensuite vos structures pour ce qu\'elles font, pas par habitude. La *
 
 Une particularité puissante de Python est la **compréhension de liste**, qui construit une liste en une ligne. Comparez :
 
-\# Sans compréhension\
-carres = \[\]\
-for i in range(10):\
-carres.append(i \* i)\
-\
-\# Avec compréhension (plus concis, plus rapide)\
-carres = \[i \* i for i in range(10)\]
+```python
+# Sans compréhension
+carres = []
+for i in range(10):
+    carres.append(i * i)
+
+# Avec compréhension (plus concis, plus rapide)
+carres = [i * i for i in range(10)]
+```
 
 Pour structurer des projets d\'IA complexes, on utilise la **programmation orientée objet (POO)** : on regroupe données et traitements dans des **classes**. Voici un exemple complet, commenté ligne à ligne, d\'un petit modèle linéaire.
 
-class ModeleLineaire:\
-\# Le constructeur initialise les paramètres du modèle\
-def \_\_init\_\_(self, pente, ordonnee):\
-self.pente = pente\
-self.ordonnee = ordonnee\
-\
-\# Une méthode qui calcule une prédiction\
-def predire(self, x):\
-return self.pente \* x + self.ordonnee\
-\
-\# On crée une instance et on l\'utilise\
-modele = ModeleLineaire(pente=2.0, ordonnee=1.0)\
-print(modele.predire(3)) \# affiche 7.0
+```python
+class ModeleLineaire:
+    # Le constructeur initialise les paramètres du modèle
+    def __init__(self, pente, ordonnee):
+        self.pente = pente
+        self.ordonnee = ordonnee
+
+    # Une méthode qui calcule une prédiction
+    def predire(self, x):
+        return self.pente * x + self.ordonnee
+
+
+# On crée une instance et on l'utilise
+modele = ModeleLineaire(pente=2.0, ordonnee=1.0)
+print(modele.predire(3))          # affiche 7.0
+```
 
 **Méthode --- lire ce code.** La classe **ModeleLineaire** décrit un modèle y = pente × x + ordonnée. Le constructeur **\_\_init\_\_** mémorise les deux paramètres. La méthode **predire** applique la formule. On crée ensuite un objet avec pente 2 et ordonnée 1, et predire(3) renvoie 2×3+1 = 7. Toute la modélisation en IA repose sur ce schéma : un objet qui contient des paramètres et sait prédire.
 
@@ -365,15 +388,17 @@ Avant le code, une notion sans laquelle NumPy reste opaque : la **forme** d\'un 
 
 De là découle le **broadcasting**, le mécanisme le plus utile et le plus déroutant de NumPy. Quand deux tableaux de formes différentes se rencontrent, NumPy étire silencieusement le plus petit pour qu\'il épouse le plus grand, sans jamais le recopier en mémoire. Ajouter un nombre unique à un tableau de mille éléments fonctionne : le nombre est diffusé partout. Soustraire un vecteur de 3 moyennes à un tableau de forme `(1000, 3)` fonctionne aussi : la même ligne est retranchée de chacune des mille lignes. C\'est exactement ce que l\'on fait pour centrer des données, et c\'est pourquoi cette opération s\'écrit `X - X.mean(axis=0)` et rien de plus.
 
-import numpy as np\
-\
-a = np.array(\[1, 2, 3, 4\])\
-b = np.array(\[10, 20, 30, 40\])\
-\
-print(a + b) \# \[11 22 33 44\] --- addition élément par élément\
-print(a \* 2) \# \[2 4 6 8\] --- multiplication par un scalaire\
-print(a.dot(b)) \# 300 --- produit scalaire\
-print(a.mean()) \# 2.5 --- moyenne
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4])
+b = np.array([10, 20, 30, 40])
+
+print(a + b)        # [11 22 33 44]  addition élément par élément
+print(a * 2)        # [2 4 6 8]      multiplication par un scalaire
+print(a.dot(b))     # 300            produit scalaire
+print(a.mean())     # 2.5            moyenne
+```
 
 **Pourquoi c\'est crucial ---** Un réseau de neurones effectue des milliards de multiplications de matrices. NumPy (et ses équivalents sur carte graphique) rend ces opérations quasi instantanées. Comprendre les tableaux NumPy, c\'est comprendre la mécanique interne de tout le deep learning que vous verrez plus tard.
 
@@ -395,15 +420,17 @@ Ces mesures ont été prises sur une machine ordinaire, avec Python 3.11 et NumP
 
 En pratique, vos données arriveront sous forme de tableaux (fichiers Excel, CSV, bases de données). **Pandas** offre le **DataFrame**, une feuille de calcul programmable. Vous y apprendrez à charger, filtrer, regrouper, agréger et **nettoyer** les données : une étape qui occupe, en vérité, la majeure partie du temps d\'un projet réel.
 
-import pandas as pd\
-\
-df = pd.read_csv(\'ventes.csv\') \# charger les données\
-print(df.head()) \# afficher les premières lignes\
-print(df\[\'montant\'\].mean()) \# moyenne d\'une colonne\
-\
-\# Filtrer puis regrouper\
-grosses = df\[df\[\'montant\'\] \> 1000\]\
-par_region = df.groupby(\'region\')\[\'montant\'\].sum()
+```python
+import pandas as pd
+
+df = pd.read_csv('ventes.csv')      # charger les données
+print(df.head())                    # afficher les premières lignes
+print(df['montant'].mean())         # moyenne d'une colonne
+
+# Filtrer puis regrouper
+grosses = df[df['montant'] > 1000]
+par_region = df.groupby('region')['montant'].sum()
+```
 
 **Attention --- le travail réel de préparation.** On dit souvent que la data science, c\'est **80 % de préparation et 20 % de modélisation**. Avant qu\'un modèle voie vos données, vous passerez beaucoup de temps à corriger les valeurs manquantes, supprimer les doublons, harmoniser les formats. Pandas est l\'outil de ce travail essentiel : ne le sous-estimez pas.
 
@@ -502,15 +529,15 @@ Deux mots enfin sur ce qui ne figure pas dans la liste ci-dessus mais que vous c
 
 #### À VOUS DE JOUER --- Analyse complète d\'un jeu de données
 
-6.  Choisissez un jeu de données public (par exemple les passagers du Titanic, ou des prix immobiliers).
+1.  Choisissez un jeu de données public (par exemple les passagers du Titanic, ou des prix immobiliers).
 
-7.  Chargez-le avec Pandas et explorez sa structure (dimensions, types, valeurs manquantes).
+2.  Chargez-le avec Pandas et explorez sa structure (dimensions, types, valeurs manquantes).
 
-8.  Nettoyez les données : traitez les valeurs manquantes et les anomalies, en justifiant chaque choix.
+3.  Nettoyez les données : traitez les valeurs manquantes et les anomalies, en justifiant chaque choix.
 
-9.  Produisez au moins trois visualisations pertinentes avec Matplotlib ou Seaborn.
+4.  Produisez au moins trois visualisations pertinentes avec Matplotlib ou Seaborn.
 
-10. Rédigez un court rapport présentant trois observations tirées de votre analyse.
+5.  Rédigez un court rapport présentant trois observations tirées de votre analyse.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -710,15 +737,15 @@ Une nuance toutefois, pour ne pas appliquer la règle en aveugle. Tous les modè
 
 #### À VOUS DE JOUER --- Visualiser la descente de gradient
 
-11. En Python avec NumPy, définissez une fonction de coût simple, par exemple f(w) = (w − 3)².
+1.  En Python avec NumPy, définissez une fonction de coût simple, par exemple f(w) = (w − 3)².
 
-12. Implémentez la descente de gradient : partez d\'un w aléatoire et mettez-le à jour pas à pas.
+2.  Implémentez la descente de gradient : partez d\'un w aléatoire et mettez-le à jour pas à pas.
 
-13. Enregistrez la valeur de w à chaque itération et tracez sa trajectoire avec Matplotlib.
+3.  Enregistrez la valeur de w à chaque itération et tracez sa trajectoire avec Matplotlib.
 
-14. Faites varier le taux d\'apprentissage et observez l\'effet sur la convergence.
+4.  Faites varier le taux d\'apprentissage et observez l\'effet sur la convergence.
 
-15. Rédigez vos conclusions sur le choix du taux d\'apprentissage.
+5.  Rédigez vos conclusions sur le choix du taux d\'apprentissage.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -823,12 +850,14 @@ Comment sortir de ce piège, alors ? En observation pure, on ne le peut jamais t
 
 En entreprise, les données vivent dans des **bases de données relationnelles** que l\'on interroge avec le langage **SQL**. Vous apprendrez à sélectionner, filtrer, regrouper et joindre des tables. C\'est une compétence professionnelle indispensable.
 
-\-- Montant total des ventes par région, pour 2025\
-SELECT region, SUM(montant) AS total\
-FROM ventes\
-WHERE annee = 2025\
-GROUP BY region\
+```sql
+-- Montant total des ventes par région, sur un exercice donné
+SELECT region, SUM(montant) AS total
+FROM ventes
+WHERE annee = 2025
+GROUP BY region
 ORDER BY total DESC;
+```
 
 Prenez le temps de relire cette requête, car elle contient déjà l\'essentiel du langage. `SELECT` choisit les colonnes à afficher, `FROM` la table, `WHERE` filtre les lignes, `GROUP BY` les rassemble par paquets, `ORDER BY` trie le résultat. Cinq mots-clés, et vous répondez déjà à la majorité des questions qu\'on pose à une base de données. Notez au passage la parenté avec le `groupby` de Pandas vu au chapitre précédent : c\'est le même découper-appliquer-recombiner, dans une autre syntaxe.
 
@@ -884,15 +913,15 @@ Les données temporelles appellent enfin une vigilance particulière, parce qu\'
 
 #### À VOUS DE JOUER --- Une étude de données de bout en bout
 
-16. Choisissez un jeu de données réel et formulez une question à laquelle vous voulez répondre.
+1.  Choisissez un jeu de données réel et formulez une question à laquelle vous voulez répondre.
 
-17. Nettoyez les données et documentez chaque décision de nettoyage.
+2.  Nettoyez les données et documentez chaque décision de nettoyage.
 
-18. Menez une analyse exploratoire complète : statistiques descriptives et visualisations.
+3.  Menez une analyse exploratoire complète : statistiques descriptives et visualisations.
 
-19. Créez au moins deux variables dérivées par feature engineering.
+4.  Créez au moins deux variables dérivées par feature engineering.
 
-20. Rédigez un rapport racontant ce que les données révèlent, en distinguant bien corrélation et causalité.
+5.  Rédigez un rapport racontant ce que les données révèlent, en distinguant bien corrélation et causalité.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1130,15 +1159,15 @@ Un mot enfin sur l\'étape 7, qu\'on traite trop souvent comme une formalité ad
 
 #### À VOUS DE JOUER --- Votre premier modèle prédictif
 
-21. Avec scikit-learn, chargez un jeu de données de classification (par exemple l\'iris ou le diagnostic du sein).
+1.  Avec scikit-learn, chargez un jeu de données de classification (par exemple l\'iris ou le diagnostic du sein).
 
-22. Séparez les données en jeu d\'entraînement et jeu de test.
+2.  Séparez les données en jeu d\'entraînement et jeu de test.
 
-23. Entraînez trois modèles différents (régression logistique, arbre, forêt aléatoire).
+3.  Entraînez trois modèles différents (régression logistique, arbre, forêt aléatoire).
 
-24. Comparez leurs performances sur le jeu de test avec plusieurs métriques.
+4.  Comparez leurs performances sur le jeu de test avec plusieurs métriques.
 
-25. Diagnostiquez un éventuel sur-apprentissage et proposez une amélioration.
+5.  Diagnostiquez un éventuel sur-apprentissage et proposez une amélioration.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1353,15 +1382,15 @@ Observez la première ligne de sortie : la ReLU renvoie **zéro pour toutes les 
 
 #### À VOUS DE JOUER --- Un réseau qui reconnaît des chiffres manuscrits
 
-26. Avec PyTorch ou Keras, chargez le jeu de données MNIST de chiffres manuscrits.
+1.  Avec PyTorch ou Keras, chargez le jeu de données MNIST de chiffres manuscrits.
 
-27. Construisez un réseau de neurones simple (quelques couches denses).
+2.  Construisez un réseau de neurones simple (quelques couches denses).
 
-28. Entraînez-le et suivez l\'évolution de l\'erreur au fil des époques.
+3.  Entraînez-le et suivez l\'évolution de l\'erreur au fil des époques.
 
-29. Évaluez sa précision sur le jeu de test.
+4.  Évaluez sa précision sur le jeu de test.
 
-30. Ajoutez du dropout et comparez : le sur-apprentissage a-t-il diminué ?
+5.  Ajoutez du dropout et comparez : le sur-apprentissage a-t-il diminué ?
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1467,13 +1496,13 @@ Sachez enfin qu\'un réentraînement n\'est jamais une simple mise à jour : c\'
 
 #### À VOUS DE JOUER --- Déployer un modèle en API
 
-31. Entraînez un modèle simple et sauvegardez-le sur disque.
+1.  Entraînez un modèle simple et sauvegardez-le sur disque.
 
-32. Écrivez une API avec FastAPI qui charge le modèle et expose une route de prédiction.
+2.  Écrivez une API avec FastAPI qui charge le modèle et expose une route de prédiction.
 
-33. Empaquetez le tout dans un conteneur Docker.
+3.  Empaquetez le tout dans un conteneur Docker.
 
-34. Testez votre API en lui envoyant des requêtes et en vérifiant les réponses.
+4.  Testez votre API en lui envoyant des requêtes et en vérifiant les réponses.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1567,13 +1596,13 @@ Les taux observés sont rigoureusement identiques dans les deux cas. Seule la **
 
 #### À VOUS DE JOUER --- Estimer pi par Monte-Carlo
 
-35. Tirez aléatoirement de nombreux points dans un carré contenant un quart de cercle.
+1.  Tirez aléatoirement de nombreux points dans un carré contenant un quart de cercle.
 
-36. Comptez la proportion de points tombant dans le quart de cercle.
+2.  Comptez la proportion de points tombant dans le quart de cercle.
 
-37. Déduisez-en une estimation de pi et observez comment elle s\'affine avec le nombre de tirages.
+3.  Déduisez-en une estimation de pi et observez comment elle s\'affine avec le nombre de tirages.
 
-38. Tracez l\'évolution de l\'estimation en fonction du nombre de points.
+4.  Tracez l\'évolution de l\'estimation en fonction du nombre de points.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1745,13 +1774,13 @@ Deux remarques pour terminer. La première : dans un vrai Transformer, les vecte
 
 #### À VOUS DE JOUER --- Analyse de sentiment avec un modèle pré-entraîné
 
-39. Avec la bibliothèque Hugging Face, chargez un modèle de classification de sentiment.
+1.  Avec la bibliothèque Hugging Face, chargez un modèle de classification de sentiment.
 
-40. Appliquez-le à un ensemble d\'avis clients et observez les prédictions.
+2.  Appliquez-le à un ensemble d\'avis clients et observez les prédictions.
 
-41. Affinez (fine-tuning) le modèle sur un petit jeu de données annoté.
+3.  Affinez (fine-tuning) le modèle sur un petit jeu de données annoté.
 
-42. Mesurez l\'amélioration des performances après affinage.
+4.  Mesurez l\'amélioration des performances après affinage.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1905,7 +1934,7 @@ Construire une vraie application autour d\'un LLM exige plus que de bons prompts
 
 -   **Itérer** : améliorez prompts, sources et garde-fous au vu des erreurs réelles observées.
 
-**La règle d\'or de l\'IA générative ---** Ne déployez jamais une application générative sans avoir réfléchi à ce qui se passe quand le modèle se trompe. La question n\'est pas « et s\'il se trompe ? » mais « \*\*quand\*\* il se trompera, comment limiter les dégâts ? » Cette prudence fait la différence entre un gadget et un outil professionnel.
+**La règle d\'or de l\'IA générative ---** Ne déployez jamais une application générative sans avoir réfléchi à ce qui se passe quand le modèle se trompe. La question n\'est pas « et s\'il se trompe ? » mais « **quand** il se trompera, comment limiter les dégâts ? » Cette prudence fait la différence entre un gadget et un outil professionnel.
 
 Traduisons cette règle d\'or en dispositions concrètes, car « limiter les dégâts » reste une intention tant qu\'on ne l\'a pas outillée.
 
@@ -1957,13 +1986,13 @@ Un mot enfin sur les termes techniques que l\'on voit circuler --- noms d\'objec
 
 #### À VOUS DE JOUER --- Construire un assistant documentaire (RAG)
 
-43. Rassemblez un ensemble de documents (par exemple une FAQ ou des notes de cours).
+1.  Rassemblez un ensemble de documents (par exemple une FAQ ou des notes de cours).
 
-44. Découpez-les et calculez leurs plongements, puis stockez-les dans une base vectorielle.
+2.  Découpez-les et calculez leurs plongements, puis stockez-les dans une base vectorielle.
 
-45. À chaque question, recherchez les passages pertinents et fournissez-les à un LLM.
+3.  À chaque question, recherchez les passages pertinents et fournissez-les à un LLM.
 
-46. Comparez les réponses avec et sans RAG, et évaluez la fiabilité des sources citées.
+4.  Comparez les réponses avec et sans RAG, et évaluez la fiabilité des sources citées.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2065,13 +2094,13 @@ L\'**imagerie médicale**, ensuite. Un modèle qui signale des zones suspectes e
 
 #### À VOUS DE JOUER --- Classer des images par transfert d\'apprentissage
 
-47. Choisissez un petit jeu d\'images réparties en quelques catégories.
+1.  Choisissez un petit jeu d\'images réparties en quelques catégories.
 
-48. Chargez un réseau pré-entraîné (par exemple ResNet) sans sa dernière couche.
+2.  Chargez un réseau pré-entraîné (par exemple ResNet) sans sa dernière couche.
 
-49. Ajoutez une couche de classification adaptée à vos catégories et entraînez-la.
+3.  Ajoutez une couche de classification adaptée à vos catégories et entraînez-la.
 
-50. Évaluez la précision et comparez avec un réseau entraîné de zéro.
+4.  Évaluez la précision et comparez avec un réseau entraîné de zéro.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2162,13 +2191,13 @@ D\'où un critère de faisabilité que je vous propose d\'appliquer avant d\'eng
 
 #### À VOUS DE JOUER --- Un agent qui apprend à jouer
 
-51. Avec la bibliothèque Gymnasium, choisissez un environnement simple (par exemple le pendule ou le cart-pole).
+1.  Avec la bibliothèque Gymnasium, choisissez un environnement simple (par exemple le pendule ou le cart-pole).
 
-52. Implémentez un agent par Q-learning.
+2.  Implémentez un agent par Q-learning.
 
-53. Entraînez-le et observez l\'évolution de la récompense au fil des épisodes.
+3.  Entraînez-le et observez l\'évolution de la récompense au fil des épisodes.
 
-54. Faites varier le réglage exploration/exploitation et commentez son effet.
+4.  Faites varier le réglage exploration/exploitation et commentez son effet.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2328,15 +2357,15 @@ Ma recommandation pratique, pour finir. Ne cherchez pas à suivre l\'actualité 
 
 #### À VOUS DE JOUER --- Concevoir un agent IA connecté
 
-55. Définissez une tâche que l\'agent devra accomplir (par exemple répondre à des questions en consultant des fichiers).
+1.  Définissez une tâche que l\'agent devra accomplir (par exemple répondre à des questions en consultant des fichiers).
 
-56. Connectez l\'agent à un ou deux outils via le protocole MCP.
+2.  Connectez l\'agent à un ou deux outils via le protocole MCP.
 
-57. Faites exécuter à l\'agent une suite d\'actions et observez son cycle perception-action.
+3.  Faites exécuter à l\'agent une suite d\'actions et observez son cycle perception-action.
 
-58. Menez un petit exercice de red teaming : tentez de le faire échouer et notez ses failles.
+4.  Menez un petit exercice de red teaming : tentez de le faire échouer et notez ses failles.
 
-59. Proposez des garde-fous pour fiabiliser son comportement.
+5.  Proposez des garde-fous pour fiabiliser son comportement.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2513,13 +2542,13 @@ Un dernier mot pour vous éviter un piège d\'organisation. Ces questions ne se 
 
 #### À VOUS DE JOUER --- Audit éthique d\'un système d\'IA
 
-60. Choisissez un système d\'IA réel (réel ou hypothétique) ayant un impact sur des personnes.
+1.  Choisissez un système d\'IA réel (réel ou hypothétique) ayant un impact sur des personnes.
 
-61. Identifiez les sources possibles de biais dans ses données et sa conception.
+2.  Identifiez les sources possibles de biais dans ses données et sa conception.
 
-62. Évaluez ses enjeux de transparence et de protection des données.
+3.  Évaluez ses enjeux de transparence et de protection des données.
 
-63. Rédigez une série de recommandations pour le rendre plus équitable et responsable.
+4.  Rédigez une série de recommandations pour le rendre plus équitable et responsable.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2646,13 +2675,13 @@ Un dernier conseil, sur un sujet dont on parle peu : **sachez annoncer un arrêt
 
 #### À VOUS DE JOUER --- Cadrer un projet d\'IA de bout en bout
 
-64. Choisissez un problème métier réel dans un secteur de votre choix.
+1.  Choisissez un problème métier réel dans un secteur de votre choix.
 
-65. Rédigez une note de cadrage : objectif, indicateurs de succès, valeur attendue.
+2.  Rédigez une note de cadrage : objectif, indicateurs de succès, valeur attendue.
 
-66. Identifiez les données nécessaires, leur disponibilité et les risques du projet.
+3.  Identifiez les données nécessaires, leur disponibilité et les risques du projet.
 
-67. Proposez un plan de réalisation par étapes, du prototype à la production.
+4.  Proposez un plan de réalisation par étapes, du prototype à la production.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -2732,13 +2761,13 @@ Un dernier mot sur ce que signifie « conseiller », car le terme intimide souve
 
 #### À VOUS DE JOUER --- Étude de cas sectorielle
 
-68. Choisissez une organisation et un problème métier concret.
+1.  Choisissez une organisation et un problème métier concret.
 
-69. Identifiez la ou les techniques d\'IA pertinentes pour le résoudre.
+2.  Identifiez la ou les techniques d\'IA pertinentes pour le résoudre.
 
-70. Évaluez la faisabilité : données, coûts, risques, valeur attendue.
+3.  Évaluez la faisabilité : données, coûts, risques, valeur attendue.
 
-71. Rédigez une recommandation stratégique à destination de la direction.
+4.  Rédigez une recommandation stratégique à destination de la direction.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3029,13 +3058,13 @@ Deux limites méritent d\'être développées, car ce sont celles qui causent le
 
 #### À VOUS DE JOUER --- Comparer les assistants sur une même tâche
 
-72. Choisissez une tâche réelle (par exemple résumer un article et en extraire trois enseignements).
+1.  Choisissez une tâche réelle (par exemple résumer un article et en extraire trois enseignements).
 
-73. Soumettez exactement la même demande à ChatGPT, Claude et Perplexity.
+2.  Soumettez exactement la même demande à ChatGPT, Claude et Perplexity.
 
-74. Comparez les réponses : exactitude, profondeur, sources, style.
+3.  Comparez les réponses : exactitude, profondeur, sources, style.
 
-75. Rédigez une courte synthèse indiquant quel outil convient le mieux à ce type de tâche, et pourquoi.
+4.  Rédigez une courte synthèse indiquant quel outil convient le mieux à ce type de tâche, et pourquoi.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3193,13 +3222,13 @@ Une dernière recommandation, qui devient importante si vous automatisez. Un pro
 
 #### À VOUS DE JOUER --- Constituer une bibliothèque de prompts professionnels
 
-76. Identifiez cinq tâches que vous (ou une entreprise) répétez souvent.
+1.  Identifiez cinq tâches que vous (ou une entreprise) répétez souvent.
 
-77. Pour chacune, rédigez un prompt-modèle complet avec des variables à remplir.
+2.  Pour chacune, rédigez un prompt-modèle complet avec des variables à remplir.
 
-78. Testez chaque modèle, mesurez la qualité des réponses et affinez-les.
+3.  Testez chaque modèle, mesurez la qualité des réponses et affinez-les.
 
-79. Documentez votre bibliothèque pour qu\'elle soit réutilisable par d\'autres.
+4.  Documentez votre bibliothèque pour qu\'elle soit réutilisable par d\'autres.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3276,7 +3305,7 @@ Sur la logique, enfin, un conseil de structure. Un flux qui bifurque en cascade 
 
 **Méthode --- anatomie du workflow. 1. Déclencheur** : un nouvel email arrive. **2. Classer** : un LLM analyse le message et détermine son sujet et son urgence. **3. Décision** : selon la classification, le flux bifurque (réclamation, demande d\'info, spam...). **4. Générer** : pour une demande standard, un LLM rédige une proposition de réponse. **5. Action** : la réponse est envoyée, ou transmise à un humain pour validation si le sujet est sensible. Ce qui prenait des heures se fait en quelques secondes.
 
-**Bonne pratique --- l\'humain dans la boucle** Pour les décisions sensibles, ne laissez jamais l\'automatisation agir seule. Insérez une étape de \*\*validation humaine\*\* (human-in-the-loop) : l\'IA prépare, l\'humain approuve. On gagne en rapidité sans perdre le contrôle.
+**Bonne pratique --- l\'humain dans la boucle** Pour les décisions sensibles, ne laissez jamais l\'automatisation agir seule. Insérez une étape de **validation humaine** (human-in-the-loop) : l\'IA prépare, l\'humain approuve. On gagne en rapidité sans perdre le contrôle.
 
 Encore faut-il placer cette validation au bon endroit, car mal située elle ne protège rien et coûte tout. Le critère est simple : **validez avant ce qui est irréversible, pas avant ce qui est corrigible**. Classer un email dans un dossier n\'a pas besoin de validation, cela se rattrape en un clic. Envoyer une réponse à un client, supprimer un enregistrement, déclencher un paiement : rien de tout cela ne se rattrape, et c\'est là que l\'humain doit se trouver.
 
@@ -3406,15 +3435,15 @@ Un dernier conseil pour bien commencer, et il tient en une phrase. **Automatisez
 
 #### À VOUS DE JOUER --- Construire votre premier workflow automatisé
 
-80. Créez un compte n8n (cloud) ou installez-le en auto-hébergement.
+1.  Créez un compte n8n (cloud) ou installez-le en auto-hébergement.
 
-81. Choisissez un processus simple à automatiser (par exemple résumer les emails entrants).
+2.  Choisissez un processus simple à automatiser (par exemple résumer les emails entrants).
 
-82. Construisez le workflow : déclencheur, nœud d\'appel à un LLM, nœud d\'action.
+3.  Construisez le workflow : déclencheur, nœud d\'appel à un LLM, nœud d\'action.
 
-83. Testez le flux avec des données réelles et corrigez les erreurs.
+4.  Testez le flux avec des données réelles et corrigez les erreurs.
 
-84. Ajoutez une étape de validation humaine pour les cas sensibles, puis documentez votre workflow.
+5.  Ajoutez une étape de validation humaine pour les cas sensibles, puis documentez votre workflow.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3596,15 +3625,15 @@ Un dernier conseil, qui vaut pour tout ce chapitre : **écrivez ce que vous atte
 
 #### À VOUS DE JOUER --- Plan d\'intégration de l\'IA pour une organisation
 
-85. Choisissez une organisation réelle ou fictive et évaluez son palier de maturité IA.
+1.  Choisissez une organisation réelle ou fictive et évaluez son palier de maturité IA.
 
-86. Identifiez un premier cas d\'usage répondant aux quatre critères du bon projet.
+2.  Identifiez un premier cas d\'usage répondant aux quatre critères du bon projet.
 
-87. Rédigez un plan : objectifs, indicateurs de valeur, données nécessaires, risques.
+3.  Rédigez un plan : objectifs, indicateurs de valeur, données nécessaires, risques.
 
-88. Proposez un volet conduite du changement (formation, communication, implication des équipes).
+4.  Proposez un volet conduite du changement (formation, communication, implication des équipes).
 
-89. Esquissez une charte d\'usage de l\'IA couvrant confidentialité, RGPD et responsabilité.
+5.  Esquissez une charte d\'usage de l\'IA couvrant confidentialité, RGPD et responsabilité.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3696,13 +3725,13 @@ Un dernier mot, qui vaut avertissement. L\'expression « professionnel augmenté
 
 #### À VOUS DE JOUER --- Augmenter une tâche professionnelle réelle
 
-90. Choisissez une tâche que vous réalisez régulièrement et chronométrez-la sans IA.
+1.  Choisissez une tâche que vous réalisez régulièrement et chronométrez-la sans IA.
 
-91. Concevez un flux de travail assisté par IA pour cette même tâche.
+2.  Concevez un flux de travail assisté par IA pour cette même tâche.
 
-92. Réalisez-la avec ce flux et mesurez le temps gagné et la qualité obtenue.
+3.  Réalisez-la avec ce flux et mesurez le temps gagné et la qualité obtenue.
 
-93. Rédigez un bilan : gains, limites, points de vigilance.
+4.  Rédigez un bilan : gains, limites, points de vigilance.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3800,13 +3829,13 @@ Un dernier critère de sélection, qui complète la règle d\'or ci-dessus et qu
 
 #### À VOUS DE JOUER --- Concevoir une automatisation sectorielle
 
-94. Choisissez un secteur et un processus métier précis.
+1.  Choisissez un secteur et un processus métier précis.
 
-95. Analysez le processus actuel et repérez les étapes automatisables.
+2.  Analysez le processus actuel et repérez les étapes automatisables.
 
-96. Concevez le workflow complet, en identifiant déclencheur, traitements IA et points de validation humaine.
+3.  Concevez le workflow complet, en identifiant déclencheur, traitements IA et points de validation humaine.
 
-97. Estimez les bénéfices attendus (temps, coûts, qualité) et les risques à surveiller.
+4.  Estimez les bénéfices attendus (temps, coûts, qualité) et les risques à surveiller.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3900,13 +3929,13 @@ Voilà le point où je voulais vous amener. Ces outils sont remarquables et ils 
 
 #### À VOUS DE JOUER --- Concevoir et documenter votre système IA personnel
 
-98. Identifiez vos trois tâches professionnelles les plus chronophages.
+1.  Identifiez vos trois tâches professionnelles les plus chronophages.
 
-99. Pour chacune, choisissez l\'outil ou l\'assistant le plus adapté et configurez-le.
+2.  Pour chacune, choisissez l\'outil ou l\'assistant le plus adapté et configurez-le.
 
-100. Reliez ces outils en un flux de travail cohérent, de la recherche à la production.
+3.  Reliez ces outils en un flux de travail cohérent, de la recherche à la production.
 
-101. Documentez votre système pour qu\'il soit réutilisable et partageable avec une équipe.
+4.  Documentez votre système pour qu\'il soit réutilisable et partageable avec une équipe.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -3932,59 +3961,73 @@ Trois recommandations avant d\'utiliser ce qui suit, car un modèle recopié san
 
 #### Rédiger un email professionnel
 
-Tu es un assistant de rédaction professionnelle.\
-Rédige un email \[formel / cordial\] à \[destinataire\] pour \[objectif\].\
-Contexte : \[informations utiles\].\
-Format : objet + corps de 120 mots maximum.\
+```text
+Tu es un assistant de rédaction professionnelle.
+Rédige un email [formel / cordial] à [destinataire] pour [objectif].
+Contexte : [informations utiles].
+Format : objet + corps de 120 mots maximum.
 Contraintes : ton courtois, clair, sans jargon, en français.
+```
 
 #### Résumer un document
 
-Tu es analyste. Résume le document ci-dessous.\
-Format : 5 points clés en puces, puis une phrase de conclusion.\
-Contraintes : reste fidèle au texte, n\'invente rien, signale ce qui\
-est incertain. Document : \[coller le texte\].
+```text
+Tu es analyste. Résume le document ci-dessous.
+Format : 5 points clés en puces, puis une phrase de conclusion.
+Contraintes : reste fidèle au texte, n'invente rien, signale ce qui
+est incertain. Document : [coller le texte].
+```
 
 ### Leçon 3 --- Prompts pour l\'analyse et la décision
 
 #### Analyser les avantages et inconvénients
 
-Tu es un conseiller impartial.\
-Analyse l\'option suivante : \[décrire l\'option\].\
-Format : un tableau à deux colonnes (avantages / inconvénients),\
-puis une recommandation nuancée en 3 phrases.\
+```text
+Tu es un conseiller impartial.
+Analyse l'option suivante : [décrire l'option].
+Format : un tableau à deux colonnes (avantages / inconvénients),
+puis une recommandation nuancée en 3 phrases.
 Contraintes : reste objectif, présente les deux côtés équitablement.
+```
 
 #### Préparer des questions difficiles
 
-Tu es un préparateur. Je vais présenter \[sujet\] à \[audience\].\
-Génère les 5 questions les plus difficiles qu\'on pourrait me poser,\
-et pour chacune, une piste de réponse solide.\
+```text
+Tu es un préparateur. Je vais présenter [sujet] à [audience].
+Génère les 5 questions les plus difficiles qu'on pourrait me poser,
+et pour chacune, une piste de réponse solide.
 Contraintes : questions réalistes et exigeantes.
+```
 
 ### Leçon 4 --- Prompts pour la création de contenu
 
 #### Générer des idées
 
-Tu es un créatif spécialisé en \[domaine\].\
-Propose 10 idées de \[contenu : titres, noms, accroches\] pour \[objectif\].\
-Format : liste numérotée, chaque idée en une ligne.\
-Contraintes : idées variées, originales, adaptées à \[public cible\].
+```text
+Tu es un créatif spécialisé en [domaine].
+Propose 10 idées de [contenu : titres, noms, accroches] pour [objectif].
+Format : liste numérotée, chaque idée en une ligne.
+Contraintes : idées variées, originales, adaptées à [public cible].
+```
 
 #### Adapter le ton d\'un texte
 
-Réécris le texte suivant dans un ton \[professionnel / chaleureux /\
-persuasif\], pour \[public\]. Garde le sens, change la forme.\
-Texte : \[coller le texte\].
+```text
+Réécris le texte suivant dans un ton [professionnel / chaleureux /
+persuasif], pour [public]. Garde le sens, change la forme.
+Texte : [coller le texte].
+```
 
 ### Leçon 5 --- Prompts pour l\'apprentissage et l\'explication
 
 #### Expliquer un concept à différents niveaux
 
-Explique \[concept\] à trois niveaux :\
-1) à un enfant de 10 ans ; 2) à un étudiant ; 3) à un expert.\
-Format : trois paragraphes courts et distincts.\
+```text
+Explique [concept] à trois niveaux :
+1) à un enfant de 10 ans ; 2) à un étudiant ; 3) à un expert.
+Format : trois paragraphes courts et distincts.
 Contraintes : exact, progressif, avec une analogie au niveau 1.
+```
 
 Constituez votre propre bibliothèque en partant de ces modèles. Classez-les par usage, testez-les régulièrement, et notez ceux qui donnent les meilleurs résultats. Cette bibliothèque deviendra l\'un de vos outils de travail les plus précieux.
 
@@ -4000,13 +4043,13 @@ Constituez votre propre bibliothèque en partant de ces modèles. Classez-les pa
 
 #### À VOUS DE JOUER --- Bâtir votre bibliothèque personnelle de prompts
 
-102. Recensez les dix tâches pour lesquelles vous sollicitez le plus souvent un assistant.
+1.  Recensez les dix tâches pour lesquelles vous sollicitez le plus souvent un assistant.
 
-103. Rédigez un prompt-modèle complet pour chacune, avec variables entre crochets.
+2.  Rédigez un prompt-modèle complet pour chacune, avec variables entre crochets.
 
-104. Testez et affinez chaque modèle jusqu\'à obtenir un résultat fiable.
+3.  Testez et affinez chaque modèle jusqu\'à obtenir un résultat fiable.
 
-105. Organisez-les dans un document classé par usage, prêt à être réutilisé et partagé.
+4.  Organisez-les dans un document classé par usage, prêt à être réutilisé et partagé.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -4112,15 +4155,15 @@ Deux précisions avant de commencer, qui vous éviteront les déconvenues les pl
 
 #### À VOUS DE JOUER --- Reproduire et adapter une recette
 
-106. Choisissez l\'une des recettes qui précèdent.
+1.  Choisissez l\'une des recettes qui précèdent.
 
-107. Reproduisez-la dans n8n, nœud par nœud, en testant à chaque étape.
+2.  Reproduisez-la dans n8n, nœud par nœud, en testant à chaque étape.
 
-108. Adaptez-la à un besoin réel qui vous est propre.
+3.  Adaptez-la à un besoin réel qui vous est propre.
 
-109. Ajoutez une gestion d\'erreur et une étape de validation humaine si nécessaire.
+4.  Ajoutez une gestion d\'erreur et une étape de validation humaine si nécessaire.
 
-110. Documentez votre workflow et mesurez le temps qu\'il vous fait gagner.
+5.  Documentez votre workflow et mesurez le temps qu\'il vous fait gagner.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -4531,14 +4574,14 @@ def repondre(question):
     contexte = "\n".join(f"[{i+1}] {p['titre']} : {p['texte']}"
                          for i, (p, _) in enumerate(trouves))
 
-    invite = f\"\"\"Tu réponds UNIQUEMENT à partir des passages ci-dessous.
+    invite = f"""Tu réponds UNIQUEMENT à partir des passages ci-dessous.
 Si l'information n'y figure pas, dis que tu ne sais pas.
 Cite entre crochets le numéro du passage utilisé.
 
 Passages :
 {contexte}
 
-Question : {question}\"\"\"
+Question : {question}"""
 
     # reponse = client.messages.create(model="...", max_tokens=400,
     #                                  messages=[{"role": "user", "content": invite}])
@@ -4629,7 +4672,7 @@ Voici le nœud de classification tel qu'il figure dans `workflow_n8n.json`. Note
   "parameters": {
     "messages": { "values": [
       { "role": "system", "content":
-        "Tu classes des courriels de service client. Réponds UNIQUEMENT en JSON : {\"categorie\": une valeur parmi facturation|livraison|technique|commercial|resiliation, \"confiance\": nombre entre 0 et 1, \"urgent\": true ou false}. Si tu hésites, baisse la confiance au lieu de deviner." },
+        "Tu classes des courriels de service client. Réponds UNIQUEMENT en JSON : {"categorie": une valeur parmi facturation|livraison|technique|commercial|resiliation, "confiance": nombre entre 0 et 1, "urgent": true ou false}. Si tu hésites, baisse la confiance au lieu de deviner." },
       { "role": "user", "content": "={{ $json.subject }}\n\n{{ $json.text }}" }
     ]},
     "options": { "temperature": 0 }
@@ -4764,7 +4807,7 @@ Les exercices sont classés par **niveau**, indiqué devant chaque énoncé.
 
 ### Problème 1.4
 
-> **Niveau 2.** Pourquoi A\\\* est-il généralement plus rapide que BFS pour aller d\'un point à un autre sur une carte ?
+> **Niveau 2.** Pourquoi A\* est-il généralement plus rapide que BFS pour aller d\'un point à un autre sur une carte ?
 >
 > → *Corrigé 1.4, en annexe.*
 
@@ -5160,100 +5203,6 @@ Les exercices sont classés par **niveau**, indiqué devant chaque énoncé.
 
 # Partie VIII --- Pour aller plus loin
 
-## Bibliographie de référence
-
-Voici les ouvrages qui m\'ont accompagné et que je vous recommande de tout cœur. Ils vous suivront longtemps.
-
-### Ouvrages
-
--   **Russell, S. & Norvig, P.** (2020). *Artificial Intelligence: A Modern Approach*, 4ᵉ édition. Pearson. La référence générale du domaine, celle qu\'on garde toute sa carrière. Couvre la recherche, la logique, la planification et l\'apprentissage.
-
--   **Goodfellow, I., Bengio, Y. & Courville, A.** (2016). *Deep Learning*. MIT Press. L\'ouvrage fondateur de l\'apprentissage profond. Exigeant mathématiquement, et disponible gratuitement en ligne sur `deeplearningbook.org`.
-
--   **Géron, A.** (2022). *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow*, 3ᵉ édition. O\'Reilly. Le plus pratique de cette liste, et celui par lequel je vous conseille de commencer si vous voulez coder tout de suite. Existe en traduction française chez Dunod.
-
--   **Bishop, C. M.** (2006). *Pattern Recognition and Machine Learning*. Springer. Approche probabiliste rigoureuse. C\'est le livre vers lequel se tourner quand on veut comprendre **pourquoi** une méthode fonctionne.
-
--   **Jurafsky, D. & Martin, J. H.** *Speech and Language Processing*, 3ᵉ édition. La référence en traitement du langage. La troisième édition circule depuis des années sous forme de version de travail mise à jour en continu, librement accessible en ligne ; la 2ᵉ édition publiée date de 2009 chez Pearson.
-
--   **Sutton, R. S. & Barto, A. G.** (2018). *Reinforcement Learning: An Introduction*, 2ᵉ édition. MIT Press. La référence en apprentissage par renforcement, également disponible gratuitement en ligne.
-
-**Sur les ISBN.** Je ne les ai volontairement pas reportés ici, et je préfère vous dire pourquoi plutôt que d\'inscrire des chiffres approximatifs. Un ISBN est propre à **une édition et à un format donnés** : le même ouvrage en relié, en broché et en version électronique porte trois identifiants différents, et une nouvelle édition en crée un quatrième. Un ISBN erroné dans un manuel universitaire renvoie le lecteur vers un ouvrage qui n\'est pas celui que vous citez, ce qui est pire que pas d\'ISBN du tout. Relevez-les sur l\'exemplaire que vous citez réellement, ou dans le catalogue de la Bibliothèque nationale ou de l\'éditeur, et complétez cette liste avant publication.
-
-### Textes juridiques
-
-Les références ci-dessous sont celles citées au chapitre 14, leçon 5. Elles ont été établies par l\'auteur ; vérifiez l\'état des textes d\'application avant de vous en prévaloir, le Code du numérique étant récent.
-
--   **République démocratique du Congo** (2023). *Ordonnance-loi n° 23/010 du 13 mars 2023 portant Code du numérique*. Ratifiée par la loi n° 23/041 du 1ᵉʳ septembre 2023. *Journal officiel de la République démocratique du Congo*, numéro spécial, 64ᵉ année, 20 mars 2023. Le texte-cadre : définitions (art. 2), décision automatisée (art. 54), protection des données (titre II, art. 31 à 123), autorité de contrôle (art. 76 et 81), sanctions (art. 304 et suivants).
-
--   **République démocratique du Congo** (2020). *Loi n° 20/017 du 25 novembre 2020 relative aux télécommunications et aux technologies de l\'information et de la communication*.
-
--   **République démocratique du Congo** (2022). *Décret n° 22/41 du 26 novembre 2022 portant gouvernance de l\'i-administration en RDC*.
-
--   **République démocratique du Congo** (2002). *Loi n° 005/2002 relative à la constitution, à l\'organisation et au fonctionnement de la Banque centrale du Congo*, complétée par les instructions administratives de la BCC en matière de contrôle interne et de conformité.
-
--   **Union africaine** (2014). *Convention de l\'Union africaine sur la cybersécurité et la protection des données à caractère personnel*, dite Convention de Malabo. Signée par la RDC.
-
--   **Union européenne** (2016). *Règlement (UE) 2016/679 relatif à la protection des personnes physiques à l\'égard du traitement des données à caractère personnel*, dit RGPD. Cité pour son article 3.2, qui en fixe la portée extraterritoriale.
-
-### Articles fondateurs### Articles fondateurs
-
-Les travaux ci-dessous sont ceux que le manuel évoque nommément. Je les donne dans l\'ordre où ils apparaissent dans le texte, avec le chapitre correspondant, pour que vous puissiez remonter à la source de ce que vous venez de lire. La plupart sont librement accessibles.
-
-**Les origines**
-
--   **Turing, A. M.** (1950). « Computing Machinery and Intelligence ». *Mind*, 59(236), 433--460. DOI : `10.1093/mind/LIX.236.433`. L\'article qui pose la question « les machines peuvent-elles penser ? » et propose le jeu de l\'imitation. *(chapitre 1, leçon 2)*
-
--   **McCarthy, J., Minsky, M. L., Rochester, N. & Shannon, C. E.** (1955). « A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence ». Reproduit dans *AI Magazine*, 27(4), 2006. Le texte qui donne son nom au domaine. *(chapitre 1, leçon 2)*
-
--   **Shannon, C. E.** (1948). « A Mathematical Theory of Communication ». *Bell System Technical Journal*, 27, 379--423 et 623--656. L\'acte de naissance de la théorie de l\'information, dont vient l\'entropie. *(chapitre 3, leçon 5)*
-
-**Recherche et raisonnement**
-
--   **Hart, P. E., Nilsson, N. J. & Raphael, B.** (1968). « A Formal Basis for the Heuristic Determination of Minimum Cost Paths ». *IEEE Transactions on Systems Science and Cybernetics*, 4(2), 100--107. L\'article qui introduit A\\*. *(chapitre 1, leçon 4)*
-
-**Apprentissage automatique**
-
--   **Breiman, L.** (2001). « Random Forests ». *Machine Learning*, 45(1), 5--32. *(chapitre 5, leçon 3)*
-
--   **Simpson, E. H.** (1951). « The Interpretation of Interaction in Contingency Tables ». *Journal of the Royal Statistical Society, Series B*, 13(2), 238--241. L\'article dont vient le paradoxe du chapitre 4. *(chapitre 4, leçon 4)*
-
-**Apprentissage profond**
-
--   **Rumelhart, D. E., Hinton, G. E. & Williams, R. J.** (1986). « Learning Representations by Back-Propagating Errors ». *Nature*, 323, 533--536. La rétropropagation. *(chapitre 6, leçon 2)*
-
--   **LeCun, Y., Bottou, L., Bengio, Y. & Haffner, P.** (1998). « Gradient-Based Learning Applied to Document Recognition ». *Proceedings of the IEEE*, 86(11), 2278--2324. Les réseaux convolutifs et le jeu MNIST. *(chapitre 6, leçon 5 ; projet 2)*
-
--   **Krizhevsky, A., Sutskever, I. & Hinton, G. E.** (2012). « ImageNet Classification with Deep Convolutional Neural Networks ». *Advances in Neural Information Processing Systems (NeurIPS)*, 25. L\'article d\'AlexNet, celui du tournant de 2012. *(chapitre 1, leçon 2)*
-
--   **He, K., Zhang, X., Ren, S. & Sun, J.** (2016). « Deep Residual Learning for Image Recognition ». *CVPR*. arXiv : `1512.03385`. Les connexions résiduelles, qui rendent les réseaux très profonds entraînables. *(chapitre 6, leçon 6 ; chapitre 11, leçon 3)*
-
-**Langage et IA générative**
-
--   **Vaswani, A., Shazeer, N., Parmar, N. et al.** (2017). « Attention Is All You Need ». *NeurIPS*, 30. arXiv : `1706.03762`. L\'article du Transformer. Sans doute le plus influent de cette liste. *(chapitre 9, leçons 3 et 7)*
-
--   **Devlin, J., Chang, M.-W., Lee, K. & Toutanova, K.** (2019). « BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding ». *NAACL*. arXiv : `1810.04805`. Le pré-entraînement puis l\'affinage. *(chapitre 9, leçon 4)*
-
--   **Brown, T. et al.** (2020). « Language Models are Few-Shot Learners ». *NeurIPS*, 33. arXiv : `2005.14165`. L\'article qui montre qu\'un modèle assez grand accomplit une tâche décrite dans l\'invite, sans affinage. *(chapitre 9, leçon 4 ; chapitre 19, leçon 3)*
-
--   **Lewis, P. et al.** (2020). « Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks ». *NeurIPS*, 33. arXiv : `2005.11401`. L\'article qui introduit le RAG. *(chapitre 10, leçon 4 ; projet 3)*
-
--   **Wei, J. et al.** (2022). « Chain-of-Thought Prompting Elicits Reasoning in Large Language Models ». *NeurIPS*, 35. arXiv : `2201.11903`. La chaîne de pensée. *(chapitre 10, leçon 3 ; chapitre 19, leçon 3)*
-
--   **Ho, J., Jain, A. & Abbeel, P.** (2020). « Denoising Diffusion Probabilistic Models ». *NeurIPS*, 33. arXiv : `2006.11239`. Les modèles de diffusion, derrière la génération d\'images. *(chapitre 10, leçon 8)*
-
--   **Ouyang, L. et al.** (2022). « Training Language Models to Follow Instructions with Human Feedback ». *NeurIPS*, 35. arXiv : `2203.02155`. L\'alignement par renforcement sur préférences humaines. *(chapitre 12, leçon 1 ; chapitre 13, leçon 5)*
-
-**Éthique et pratique responsable**
-
--   **Gebru, T. et al.** (2021). « Datasheets for Datasets ». *Communications of the ACM*, 64(12), 86--92. arXiv : `1803.09010`. Documenter un jeu de données. *(chapitre 14, leçon 3)*
-
--   **Mitchell, M. et al.** (2019). « Model Cards for Model Reporting ». *FAT\\**. arXiv : `1810.03993`. Documenter un modèle, y compris ses performances par sous-groupe. *(chapitre 14, leçon 2)*
-
-**Comment lire ces références.** Les identifiants `arXiv` renvoient à une archive ouverte : tapez `arxiv.org/abs/` suivi du numéro et vous accédez au texte intégral, gratuitement. Un `DOI` s\'ouvre de la même manière depuis `doi.org/`. Pour les articles publiés en conférence — NeurIPS, CVPR, NAACL —, les actes sont également en accès libre.
-
-Un conseil, enfin, sur l\'usage de ces textes. Ne cherchez pas à les lire intégralement : un article de recherche s\'aborde par son résumé, son introduction et ses figures, et cela suffit dans neuf cas sur dix à comprendre l\'idée. Les sections techniques ne se lisent que si l\'on veut reproduire le travail. Commencez par « Attention Is All You Need » : il est court, clair, et vous venez d\'en comprendre le mécanisme au chapitre 9.
-
 ## Plateformes et outils
 
   -------------------------------------------------------------------------------------------------------
@@ -5304,7 +5253,75 @@ Maîtriser ces sujets ouvre la porte à des métiers parmi les plus recherchés 
   Chercheur en IA                     Mener des travaux de recherche sur de nouvelles méthodes.
   ----------------------------------------------------------------------------------------------------
 
-## Corrigés des exercices
+## Guide d\'étude et conseils de réussite
+
+Réussir cet apprentissage demande de la méthode autant que du travail. Voici les conseils que je donne à tous mes étudiants.
+
+**L\'ESSENTIEL À RETENIR**
+
+-   **Pratiquez chaque jour, même peu.** La régularité bat l\'intensité. Trente minutes quotidiennes valent mieux qu\'une longue séance hebdomadaire.
+
+-   **Codez tout ce que vous lisez.** Ne vous contentez jamais de comprendre un concept : implémentez-le. C\'est en programmant qu\'on assimile.
+
+-   **Refaites les exemples vous-même.** Cachez la solution, cherchez, puis comparez. L\'erreur est le meilleur professeur.
+
+-   **Tenez un carnet de bord.** Notez ce que vous apprenez, vos difficultés, vos déclics. Vous y reviendrez avec profit.
+
+-   **Travaillez en groupe.** Expliquer à un autre est le test ultime de la compréhension. Ce qu\'on sait expliquer, on le maîtrise.
+
+-   **Construisez un portfolio.** Chaque projet réalisé est une preuve de compétence. Conservez-les, soignez-les, montrez-les.
+
+-   **Restez curieux et à jour.** L\'IA évolue vite. Lisez, expérimentez les nouveaux outils, suivez les avancées du domaine.
+
+## Questions fréquentes
+
+### Faut-il être fort en mathématiques pour réussir ?
+
+Il faut être à l\'aise avec les bases (un peu d\'algèbre, de calcul, de probabilités), mais nul besoin d\'être un génie. La partie sur les mathématiques de ce livre vous donne tout le nécessaire. La compréhension intuitive compte autant que la virtuosité calculatoire.
+
+### Quel langage de programmation apprendre en priorité ?
+
+Python, sans hésitation. C\'est le langage de référence de l\'IA, et tout ce livre s\'appuie sur lui.
+
+### L\'IA va-t-elle remplacer les emplois ?
+
+Elle transforme les métiers plus qu\'elle ne les supprime. Les professionnels qui maîtrisent l\'IA remplaceront ceux qui l\'ignorent. C\'est précisément l\'objet de ce manuel : faire de vous ce professionnel.
+
+### Combien de temps pour devenir opérationnel ?
+
+La partie sur les outils vous rend opérationnel en quelques semaines sur les assistants et l\'automatisation. La maîtrise complète, elle, demande des mois de pratique, et au fond, on n\'arrête jamais vraiment d\'apprendre dans ce domaine.
+
+### Vaut-il mieux se spécialiser ou rester généraliste ?
+
+Commencez généraliste pour comprendre l\'ensemble du domaine, puis spécialisez-vous selon vos goûts (NLP, vision, agents, MLOps...). La polyvalence initiale rend la spécialisation plus solide.
+
+### Les outils comme ChatGPT rendent-ils l\'apprentissage inutile ?
+
+Au contraire. Ces outils sont puissants entre des mains compétentes, et trompeurs entre des mains naïves. Comprendre comment ils fonctionnent vous permet de les utiliser à bon escient et d\'en repérer les limites.
+
+## Un dernier mot
+
+Vous voici arrivé au bout de ce livre. J\'espère qu\'il vous a montré que l\'intelligence artificielle n\'a rien d\'inaccessible : c\'est un domaine exigeant, oui, mais ouvert à qui veut vraiment l\'apprendre. Vous êtes parti des fondations et vous voilà capable de comprendre les idées qui font l\'actualité, et de vous en servir.
+
+Si je ne devais vous laisser qu\'une phrase, ce serait celle-ci : on n\'apprend pas l\'IA en lisant, mais en faisant. Reprenez les exemples, tapez les codes, cherchez les exercices, menez vos propres projets. C\'est ce travail patient, et lui seul, qui vous transformera. Je vous fais entièrement confiance pour cela.
+
+Merci de m\'avoir lu jusqu\'ici. J\'ai écrit ces pages avec le souhait sincère qu\'elles vous soient utiles. Maintenant, le plus beau commence : à vous de jouer.
+
+*Avec toute ma conviction et mes encouragements,*
+
+**MUFALME BULENDA Josué**
+
+*Expert Numérique*
+
+Kinshasa
+
+*Fin*
+
+# Annexes
+
+Ce qui suit ne se lit pas d'affilée. Les corrigés se consultent après avoir cherché, le glossaire quand un mot résiste, la bibliographie quand on veut remonter à la source, et l'index des figures quand on cherche un schéma dont on a oublié où il se trouvait.
+
+## Annexe A --- Corrigés des exercices
 
 Vous trouverez ici la correction des soixante-quatre problèmes de la partie VII. Chaque corrigé porte le même numéro que son énoncé.
 
@@ -5319,9 +5336,7 @@ Un conseil avant de les lire : cherchez d'abord, même mal, même longtemps. Un 
 
 **Corrigé 1.3.** On choisit la **recherche en largeur (BFS)**. Elle explore le labyrinthe par cercles concentriques autour de l\'entrée : toutes les cases à un pas, puis à deux pas, etc. La première sortie atteinte est donc nécessairement la plus proche. La recherche en profondeur, elle, pourrait s\'enfoncer dans un long couloir et trouver d\'abord une sortie lointaine. **À retenir** : BFS garantit le chemin le plus court dans un graphe non pondéré.
 
-**Corrigé 1.4.** BFS explore dans toutes les directions sans tenir compte du but. A\\\* utilise une **heuristique** (par exemple la distance à vol d\'oiseau) pour privilégier les directions menant vers le but. Il explore donc beaucoup moins de cases inutiles. **À retenir** : une bonne heuristique transforme une recherche aveugle en recherche orientée, bien plus efficace.
-
-## Thème 2 --- Mathématiques de l\'apprentissage
+**Corrigé 1.4.** BFS explore dans toutes les directions sans tenir compte du but. A\* utilise une **heuristique** (par exemple la distance à vol d\'oiseau) pour privilégier les directions menant vers le but. Il explore donc beaucoup moins de cases inutiles. **À retenir** : une bonne heuristique transforme une recherche aveugle en recherche orientée, bien plus efficace.
 
 **Corrigé 1.5.** Avec h(F) = 2, on aurait f(F) = 3 + 2 = 5, le plus petit de tous : A\* explorerait F en premier. Or la vraie distance de F à E est 20 : l'heuristique **surestime de beaucoup à l'envers**, c'est-à-dire qu'elle sous-estime grossièrement — ce qui reste admissible. A\* explorerait donc F inutilement, perdrait du temps, mais **trouverait quand même le chemin optimal**. C'est l'inverse qui casse la garantie : une heuristique qui SURESTIME la distance restante. **À retenir** : une heuristique trop optimiste coûte du temps ; une heuristique trop pessimiste coûte l'optimalité.
 
@@ -5351,8 +5366,6 @@ Un conseil avant de les lire : cherchez d'abord, même mal, même longtemps. Un 
 
 **Corrigé 3.4.** Produit scalaire = 2×1 + (−1)×4 + 3×2 = 2 − 4 + 6 = 4. Le résultat est positif mais modéré : les vecteurs pointent globalement dans des directions proches, sans être parfaitement alignés. **À retenir** : le signe et l\'ampleur du produit scalaire renseignent sur la similarité de direction.
 
-## Thème 3 --- Machine learning
-
 **Corrigé 3.5.** 500 malades, dont 475 positifs. 99 500 sains, dont 9 950 faux positifs. Total des positifs : 10 425. Probabilité d'être réellement malade : 475 / 10 425 = **4,6 %**. **À retenir** : c'est la rareté de la maladie qui commande le résultat, pas la qualité du test.
 
 **Corrigé 3.6.** Parce qu'elle apprend au modèle non seulement à répondre juste, mais à **calibrer sa confiance**. Un modèle qui se trompe en annonçant 55 % reste utilisable : on sait qu'il faut vérifier. Un modèle qui se trompe en annonçant 99 % est dangereux, car rien dans sa sortie n'avertit. **À retenir** : un modèle qui se trompe en le sachant vaut bien mieux qu'un modèle qui se trompe avec aplomb.
@@ -5364,8 +5377,6 @@ Un conseil avant de les lire : cherchez d'abord, même mal, même longtemps. Un 
 **Corrigé 4.1.** Moyenne = (9 × 2 000 + 200 000) / 10 = **21 800 €**. Médiane = **2 000 €**. La médiane décrit la personne typique ; la moyenne ne décrit personne dans cette salle. **À retenir** : sur une distribution étirée, la moyenne informe sur le total, la médiane sur l'individu.
 
 **Corrigé 4.2.** Sans étiquettes, c\'est de l\'apprentissage **non supervisé**. On utilise un algorithme de **clustering** comme k-means, qui partitionne les clients en groupes homogènes selon leurs caractéristiques. **À retenir** : l\'absence d\'étiquettes oriente vers le non supervisé.
-
-## Thème 4 --- Apprentissage profond
 
 **Corrigé 4.3.** Vous inventez un ordre et des distances qui n'existent pas : le modèle en conclura que Goma est trois fois Kinshasa. La bonne méthode est l'**encodage one-hot**, une colonne par ville. Le codage numérique direct ne se justifie que pour des catégories réellement ordonnées, comme « petit, moyen, grand ». **À retenir** : n'introduisez jamais un ordre que les données n'ont pas.
 
@@ -5397,8 +5408,6 @@ Un conseil avant de les lire : cherchez d'abord, même mal, même longtemps. Un 
 
 **Corrigé 6.2.** Un **RNN** (ou ses variantes LSTM, GRU), car les données sont **séquentielles** et l\'ordre temporel compte : le cours d\'aujourd\'hui dépend de ceux des jours précédents. Les CNN sont adaptés aux données spatiales comme les images. **À retenir** : on choisit l\'architecture selon la structure des données.
 
-## Thème 5 --- IA générative et prompting
-
 **Corrigé 6.3.** Entrée : 224 × 224 × 3 = 150 528 valeurs. Couche dense : 150 528 × 1 000 + 1 000 ≈ **150 millions** de paramètres. Couche convolutive : 64 × (3 × 3 × 3) + 64 = **1 792**. Environ 84 000 fois moins. La raison est que le filtre est **le même partout sur l'image** : on n'apprend pas un détecteur par position. **À retenir** : sans cette économie, la vision profonde serait restée hors de portée.
 
 **Corrigé 6.4.** Sur-apprentissage caractérisé : le réseau commence à mémoriser à partir de la vingtième époque. Remèdes : **arrêt précoce** au minimum de l'erreur de validation, **dropout**, **augmentation de données**. On peut aussi réduire la taille du réseau. **À retenir** : le moment où la validation remonte est exactement celui où la mémorisation commence.
@@ -5427,8 +5436,6 @@ Un conseil avant de les lire : cherchez d'abord, même mal, même longtemps. Un 
 
 **Corrigé 8.2.** Il s\'agit probablement d\'une **hallucination**. On ne reprend jamais cette statistique sans la vérifier dans une source fiable. Pour l\'éviter : utiliser un outil à recherche sourcée (Perplexity) ou une approche **RAG** qui ancre les réponses dans des documents réels. **À retenir** : la fluidité d\'une réponse n\'est jamais une preuve de sa véracité.
 
-## Thème 6 --- Automatisation et entreprise
-
 **Corrigé 8.3.** La température divise les scores **avant** la softmax : une température basse creuse les écarts et concentre la probabilité sur le meilleur candidat, une température haute les aplanit. Pour une extraction d'informations, choisissez une **température basse** : vous voulez la réponse la plus sûre et la même à chaque exécution. **À retenir** : ce qu'on appelle la créativité d'un modèle n'est rien d'autre que ce réglage.
 
 **Corrigé 8.4.** Parce que le modèle ne dispose d'aucune case « je ne sais pas » : il produit toujours une distribution sur les mots possibles et tire dedans. Quand il connaît la réponse, cette distribution est piquée ; quand il l'ignore, elle est plate, et il tire quand même. **Halluciner et répondre juste sont le même mécanisme.** Le dispositif à mettre en place est extérieur : ancrage dans des sources vérifiables (RAG), exigence de citation, et vérification automatique ou humaine des affirmations critiques. **À retenir** : aucune consigne ne corrige un phénomène qui tient à la nature du modèle.
@@ -5441,7 +5448,7 @@ Un conseil avant de les lire : cherchez d'abord, même mal, même longtemps. Un 
 
 ### Corrigés du thème 9 --- Automatisation et entreprise
 
-**Corrigé 9.1.** Déclencheur** : réception d\'une candidature. **Traitement IA** : extraction des informations clés, évaluation par rapport aux critères du poste, classement. **Routage** : les candidatures clairement hors critères sont écartées (avec réponse polie) ; les autres sont présentées à un recruteur. **Validation humaine** : le recruteur décide qui convoquer, jamais l\'IA seule, car un recrutement engage des personnes et comporte des risques de biais. **À retenir** : on automatise le tri, on laisse à l\'humain la décision sensible.
+**Corrigé 9.1.** **Déclencheur** : réception d\'une candidature. **Traitement IA** : extraction des informations clés, évaluation par rapport aux critères du poste, classement. **Routage** : les candidatures clairement hors critères sont écartées (avec réponse polie) ; les autres sont présentées à un recruteur. **Validation humaine** : le recruteur décide qui convoquer, jamais l\'IA seule, car un recrutement engage des personnes et comporte des risques de biais. **À retenir** : on automatise le tri, on laisse à l\'humain la décision sensible.
 
 **Corrigé 9.2.** Tempérer l\'ambition. Une organisation au palier de **sensibilisation** ne saute pas directement à la transformation. On conseille : (1) former les équipes ; (2) lancer **un** projet pilote à valeur rapide et risque faible ; (3) mesurer, apprendre, puis élargir. **À retenir** : la maturité IA se construit par paliers ; vouloir tout transformer d\'emblée mène à l\'échec.
 
@@ -5471,7 +5478,7 @@ Entraînez-vous régulièrement sur ce type de problèmes. La capacité à raiso
 
 **Corrigé 10.7.** **Pour la régulation** : les décisions automatisées affectent l'accès à l'emploi, au crédit et aux soins ; sans obligation de documentation et de recours, les personnes concernées n'ont aucun moyen de contester. **Contre** : une réglementation uniforme pèse surtout sur les petits acteurs, qui n'ont pas de service de conformité, et fige des pratiques dans un domaine mouvant. **Critère de démarcation** : réguler selon la **conséquence de l'usage** et non selon la technique employée. Un tri de candidatures relève des mêmes obligations qu'il soit fait par un réseau de neurones ou par un tableur ; un système de recommandation de films n'appelle presque rien. **À retenir** : la question n'est pas « quelle technologie ? » mais « quelle décision, et sur qui ? ».
 
-## Glossaire des termes essentiels
+## Annexe B --- Glossaire des termes essentiels
 
 Ce glossaire rassemble les termes clés rencontrés dans le manuel. Reportez-vous-y chaque fois qu\'un concept vous échappe ; la maîtrise du vocabulaire est la première étape de la maîtrise du domaine.
 
@@ -5549,66 +5556,121 @@ Ce glossaire rassemble les termes clés rencontrés dans le manuel. Reportez-vou
   Workflow                            Chaîne de tâches automatisées s\'exécutant à partir d\'un déclencheur.
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Guide d\'étude et conseils de réussite
+## Annexe C --- Bibliographie
 
-Réussir cet apprentissage demande de la méthode autant que du travail. Voici les conseils que je donne à tous mes étudiants.
+Voici les ouvrages qui m\'ont accompagné et que je vous recommande de tout cœur. Ils vous suivront longtemps.
 
-**L\'ESSENTIEL À RETENIR**
+### Ouvrages
 
--   **Pratiquez chaque jour, même peu.** La régularité bat l\'intensité. Trente minutes quotidiennes valent mieux qu\'une longue séance hebdomadaire.
+-   **Russell, S. & Norvig, P.** (2020). *Artificial Intelligence: A Modern Approach*, 4ᵉ édition. Pearson. La référence générale du domaine, celle qu\'on garde toute sa carrière. Couvre la recherche, la logique, la planification et l\'apprentissage.
 
--   **Codez tout ce que vous lisez.** Ne vous contentez jamais de comprendre un concept : implémentez-le. C\'est en programmant qu\'on assimile.
+-   **Goodfellow, I., Bengio, Y. & Courville, A.** (2016). *Deep Learning*. MIT Press. L\'ouvrage fondateur de l\'apprentissage profond. Exigeant mathématiquement, et disponible gratuitement en ligne sur `deeplearningbook.org`.
 
--   **Refaites les exemples vous-même.** Cachez la solution, cherchez, puis comparez. L\'erreur est le meilleur professeur.
+-   **Géron, A.** (2022). *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow*, 3ᵉ édition. O\'Reilly. Le plus pratique de cette liste, et celui par lequel je vous conseille de commencer si vous voulez coder tout de suite. Existe en traduction française chez Dunod.
 
--   **Tenez un carnet de bord.** Notez ce que vous apprenez, vos difficultés, vos déclics. Vous y reviendrez avec profit.
+-   **Bishop, C. M.** (2006). *Pattern Recognition and Machine Learning*. Springer. Approche probabiliste rigoureuse. C\'est le livre vers lequel se tourner quand on veut comprendre **pourquoi** une méthode fonctionne.
 
--   **Travaillez en groupe.** Expliquer à un autre est le test ultime de la compréhension. Ce qu\'on sait expliquer, on le maîtrise.
+-   **Jurafsky, D. & Martin, J. H.** *Speech and Language Processing*, 3ᵉ édition. La référence en traitement du langage. La troisième édition circule depuis des années sous forme de version de travail mise à jour en continu, librement accessible en ligne ; la 2ᵉ édition publiée date de 2009 chez Pearson.
 
--   **Construisez un portfolio.** Chaque projet réalisé est une preuve de compétence. Conservez-les, soignez-les, montrez-les.
+-   **Sutton, R. S. & Barto, A. G.** (2018). *Reinforcement Learning: An Introduction*, 2ᵉ édition. MIT Press. La référence en apprentissage par renforcement, également disponible gratuitement en ligne.
 
--   **Restez curieux et à jour.** L\'IA évolue vite. Lisez, expérimentez les nouveaux outils, suivez les avancées du domaine.
+**Sur les ISBN.** Je ne les ai volontairement pas reportés ici, et je préfère vous dire pourquoi plutôt que d\'inscrire des chiffres approximatifs. Un ISBN est propre à **une édition et à un format donnés** : le même ouvrage en relié, en broché et en version électronique porte trois identifiants différents, et une nouvelle édition en crée un quatrième. Un ISBN erroné dans un manuel universitaire renvoie le lecteur vers un ouvrage qui n\'est pas celui que vous citez, ce qui est pire que pas d\'ISBN du tout. Relevez-les sur l\'exemplaire que vous citez réellement, ou dans le catalogue de la Bibliothèque nationale ou de l\'éditeur, et complétez cette liste avant publication.
 
-## Questions fréquentes
+### Textes juridiques
 
-### Faut-il être fort en mathématiques pour réussir ?
+Les références ci-dessous sont celles citées au chapitre 14, leçon 5. Elles ont été établies par l\'auteur ; vérifiez l\'état des textes d\'application avant de vous en prévaloir, le Code du numérique étant récent.
 
-Il faut être à l\'aise avec les bases (un peu d\'algèbre, de calcul, de probabilités), mais nul besoin d\'être un génie. La partie sur les mathématiques de ce livre vous donne tout le nécessaire. La compréhension intuitive compte autant que la virtuosité calculatoire.
+-   **République démocratique du Congo** (2023). *Ordonnance-loi n° 23/010 du 13 mars 2023 portant Code du numérique*. Ratifiée par la loi n° 23/041 du 1ᵉʳ septembre 2023. *Journal officiel de la République démocratique du Congo*, numéro spécial, 64ᵉ année, 20 mars 2023. Le texte-cadre : définitions (art. 2), décision automatisée (art. 54), protection des données (titre II, art. 31 à 123), autorité de contrôle (art. 76 et 81), sanctions (art. 304 et suivants).
 
-### Quel langage de programmation apprendre en priorité ?
+-   **République démocratique du Congo** (2020). *Loi n° 20/017 du 25 novembre 2020 relative aux télécommunications et aux technologies de l\'information et de la communication*.
 
-Python, sans hésitation. C\'est le langage de référence de l\'IA, et tout ce livre s\'appuie sur lui.
+-   **République démocratique du Congo** (2022). *Décret n° 22/41 du 26 novembre 2022 portant gouvernance de l\'i-administration en RDC*.
 
-### L\'IA va-t-elle remplacer les emplois ?
+-   **République démocratique du Congo** (2002). *Loi n° 005/2002 relative à la constitution, à l\'organisation et au fonctionnement de la Banque centrale du Congo*, complétée par les instructions administratives de la BCC en matière de contrôle interne et de conformité.
 
-Elle transforme les métiers plus qu\'elle ne les supprime. Les professionnels qui maîtrisent l\'IA remplaceront ceux qui l\'ignorent. C\'est précisément l\'objet de ce manuel : faire de vous ce professionnel.
+-   **Union africaine** (2014). *Convention de l\'Union africaine sur la cybersécurité et la protection des données à caractère personnel*, dite Convention de Malabo. Signée par la RDC.
 
-### Combien de temps pour devenir opérationnel ?
+-   **Union européenne** (2016). *Règlement (UE) 2016/679 relatif à la protection des personnes physiques à l\'égard du traitement des données à caractère personnel*, dit RGPD. Cité pour son article 3.2, qui en fixe la portée extraterritoriale.
 
-La partie sur les outils vous rend opérationnel en quelques semaines sur les assistants et l\'automatisation. La maîtrise complète, elle, demande des mois de pratique, et au fond, on n\'arrête jamais vraiment d\'apprendre dans ce domaine.
+### Articles fondateurs### Articles fondateurs
 
-### Vaut-il mieux se spécialiser ou rester généraliste ?
+Les travaux ci-dessous sont ceux que le manuel évoque nommément. Je les donne dans l\'ordre où ils apparaissent dans le texte, avec le chapitre correspondant, pour que vous puissiez remonter à la source de ce que vous venez de lire. La plupart sont librement accessibles.
 
-Commencez généraliste pour comprendre l\'ensemble du domaine, puis spécialisez-vous selon vos goûts (NLP, vision, agents, MLOps...). La polyvalence initiale rend la spécialisation plus solide.
+**Les origines**
 
-### Les outils comme ChatGPT rendent-ils l\'apprentissage inutile ?
+-   **Turing, A. M.** (1950). « Computing Machinery and Intelligence ». *Mind*, 59(236), 433--460. DOI : `10.1093/mind/LIX.236.433`. L\'article qui pose la question « les machines peuvent-elles penser ? » et propose le jeu de l\'imitation. *(chapitre 1, leçon 2)*
 
-Au contraire. Ces outils sont puissants entre des mains compétentes, et trompeurs entre des mains naïves. Comprendre comment ils fonctionnent vous permet de les utiliser à bon escient et d\'en repérer les limites.
+-   **McCarthy, J., Minsky, M. L., Rochester, N. & Shannon, C. E.** (1955). « A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence ». Reproduit dans *AI Magazine*, 27(4), 2006. Le texte qui donne son nom au domaine. *(chapitre 1, leçon 2)*
 
-## Un dernier mot
+-   **Shannon, C. E.** (1948). « A Mathematical Theory of Communication ». *Bell System Technical Journal*, 27, 379--423 et 623--656. L\'acte de naissance de la théorie de l\'information, dont vient l\'entropie. *(chapitre 3, leçon 5)*
 
-Vous voici arrivé au bout de ce livre. J\'espère qu\'il vous a montré que l\'intelligence artificielle n\'a rien d\'inaccessible : c\'est un domaine exigeant, oui, mais ouvert à qui veut vraiment l\'apprendre. Vous êtes parti des fondations et vous voilà capable de comprendre les idées qui font l\'actualité, et de vous en servir.
+**Recherche et raisonnement**
 
-Si je ne devais vous laisser qu\'une phrase, ce serait celle-ci : on n\'apprend pas l\'IA en lisant, mais en faisant. Reprenez les exemples, tapez les codes, cherchez les exercices, menez vos propres projets. C\'est ce travail patient, et lui seul, qui vous transformera. Je vous fais entièrement confiance pour cela.
+-   **Hart, P. E., Nilsson, N. J. & Raphael, B.** (1968). « A Formal Basis for the Heuristic Determination of Minimum Cost Paths ». *IEEE Transactions on Systems Science and Cybernetics*, 4(2), 100--107. L\'article qui introduit A\*. *(chapitre 1, leçon 4)*
 
-Merci de m\'avoir lu jusqu\'ici. J\'ai écrit ces pages avec le souhait sincère qu\'elles vous soient utiles. Maintenant, le plus beau commence : à vous de jouer.
+**Apprentissage automatique**
 
-*Avec toute ma conviction et mes encouragements,*
+-   **Breiman, L.** (2001). « Random Forests ». *Machine Learning*, 45(1), 5--32. *(chapitre 5, leçon 3)*
 
-**MUFALME BULENDA Josué**
+-   **Simpson, E. H.** (1951). « The Interpretation of Interaction in Contingency Tables ». *Journal of the Royal Statistical Society, Series B*, 13(2), 238--241. L\'article dont vient le paradoxe du chapitre 4. *(chapitre 4, leçon 4)*
 
-*Expert Numérique*
+**Apprentissage profond**
 
-Kinshasa
+-   **Rumelhart, D. E., Hinton, G. E. & Williams, R. J.** (1986). « Learning Representations by Back-Propagating Errors ». *Nature*, 323, 533--536. La rétropropagation. *(chapitre 6, leçon 2)*
 
-*Fin*
+-   **LeCun, Y., Bottou, L., Bengio, Y. & Haffner, P.** (1998). « Gradient-Based Learning Applied to Document Recognition ». *Proceedings of the IEEE*, 86(11), 2278--2324. Les réseaux convolutifs et le jeu MNIST. *(chapitre 6, leçon 5 ; projet 2)*
+
+-   **Krizhevsky, A., Sutskever, I. & Hinton, G. E.** (2012). « ImageNet Classification with Deep Convolutional Neural Networks ». *Advances in Neural Information Processing Systems (NeurIPS)*, 25. L\'article d\'AlexNet, celui du tournant de 2012. *(chapitre 1, leçon 2)*
+
+-   **He, K., Zhang, X., Ren, S. & Sun, J.** (2016). « Deep Residual Learning for Image Recognition ». *CVPR*. arXiv : `1512.03385`. Les connexions résiduelles, qui rendent les réseaux très profonds entraînables. *(chapitre 6, leçon 6 ; chapitre 11, leçon 3)*
+
+**Langage et IA générative**
+
+-   **Vaswani, A., Shazeer, N., Parmar, N. et al.** (2017). « Attention Is All You Need ». *NeurIPS*, 30. arXiv : `1706.03762`. L\'article du Transformer. Sans doute le plus influent de cette liste. *(chapitre 9, leçons 3 et 7)*
+
+-   **Devlin, J., Chang, M.-W., Lee, K. & Toutanova, K.** (2019). « BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding ». *NAACL*. arXiv : `1810.04805`. Le pré-entraînement puis l\'affinage. *(chapitre 9, leçon 4)*
+
+-   **Brown, T. et al.** (2020). « Language Models are Few-Shot Learners ». *NeurIPS*, 33. arXiv : `2005.14165`. L\'article qui montre qu\'un modèle assez grand accomplit une tâche décrite dans l\'invite, sans affinage. *(chapitre 9, leçon 4 ; chapitre 19, leçon 3)*
+
+-   **Lewis, P. et al.** (2020). « Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks ». *NeurIPS*, 33. arXiv : `2005.11401`. L\'article qui introduit le RAG. *(chapitre 10, leçon 4 ; projet 3)*
+
+-   **Wei, J. et al.** (2022). « Chain-of-Thought Prompting Elicits Reasoning in Large Language Models ». *NeurIPS*, 35. arXiv : `2201.11903`. La chaîne de pensée. *(chapitre 10, leçon 3 ; chapitre 19, leçon 3)*
+
+-   **Ho, J., Jain, A. & Abbeel, P.** (2020). « Denoising Diffusion Probabilistic Models ». *NeurIPS*, 33. arXiv : `2006.11239`. Les modèles de diffusion, derrière la génération d\'images. *(chapitre 10, leçon 8)*
+
+-   **Ouyang, L. et al.** (2022). « Training Language Models to Follow Instructions with Human Feedback ». *NeurIPS*, 35. arXiv : `2203.02155`. L\'alignement par renforcement sur préférences humaines. *(chapitre 12, leçon 1 ; chapitre 13, leçon 5)*
+
+**Éthique et pratique responsable**
+
+-   **Gebru, T. et al.** (2021). « Datasheets for Datasets ». *Communications of the ACM*, 64(12), 86--92. arXiv : `1803.09010`. Documenter un jeu de données. *(chapitre 14, leçon 3)*
+
+-   **Mitchell, M. et al.** (2019). « Model Cards for Model Reporting ». *FAT\**. arXiv : `1810.03993`. Documenter un modèle, y compris ses performances par sous-groupe. *(chapitre 14, leçon 2)*
+
+**Comment lire ces références.** Les identifiants `arXiv` renvoient à une archive ouverte : tapez `arxiv.org/abs/` suivi du numéro et vous accédez au texte intégral, gratuitement. Un `DOI` s\'ouvre de la même manière depuis `doi.org/`. Pour les articles publiés en conférence — NeurIPS, CVPR, NAACL —, les actes sont également en accès libre.
+
+Un conseil, enfin, sur l\'usage de ces textes. Ne cherchez pas à les lire intégralement : un article de recherche s\'aborde par son résumé, son introduction et ses figures, et cela suffit dans neuf cas sur dix à comprendre l\'idée. Les sections techniques ne se lisent que si l\'on veut reproduire le travail. Commencez par « Attention Is All You Need » : il est court, clair, et vous venez d\'en comprendre le mécanisme au chapitre 9.
+
+## Annexe D --- Index des figures
+
+Les dix-sept figures de l'ouvrage, dans l'ordre. Le numéro renvoie au chapitre.
+
+| Figure | Sujet | Chapitre |
+|---|---|---|
+| **1.1** | L\'IA englobe le machine learning, qui englobe l\'apprentissage profond | introduction de partie |
+| **3.1** | La descente de gradient : à chaque étape, on descend la pente vers le minimu… | introduction de partie |
+| **5.1** | Les trois paradigmes : supervisé (données étiquetées), non supervisé (regrou… | introduction de partie |
+| **5.2** | À gauche, le modèle sous-apprend ; au centre, il généralise bien ; à droite,… | 5 --- Apprentissage automatique supervisé et non |
+| **6.1** | Un neurone : entrées pondérées, sommées, puis transformées par une fonction … | 6 --- Réseaux de neurones et apprentissage profo |
+| **6.2** | Un réseau dense : chaque neurone est connecté à tous ceux de la couche suiva… | 6 --- Réseaux de neurones et apprentissage profo |
+| **7.1** | Le MLOps est un cycle : données, entraînement, validation, déploiement, surv… | 7 --- Ingénierie des données et MLOps |
+| **9.1** | Le Transformer empile des blocs d\'attention et de réseaux feed-forward | 9 --- Traitement automatique du langage naturel  |
+| **10.1** | Le RAG : on recherche d\'abord les documents pertinents, puis le modèle génè… | 10 --- IA générative et ingénierie des invites (p |
+| **11.1** | Un CNN alterne convolutions et sous-échantillonnages avant de classer l\'ima… | 11 --- Vision par ordinateur |
+| **12.1** | L\'agent agit sur l\'environnement et en reçoit un nouvel état et une récomp… | 12 --- Apprentissage par renforcement |
+| **13.1** | L\'agent IA orchestre des outils externes via la couche universelle du proto… | 13 --- IA avancée : agents, protocole MCP, multim |
+| **13.2** | Un modèle multimodal aligne plusieurs modalités dans un espace commun pour c… | 13 --- IA avancée : agents, protocole MCP, multim |
+| **18.1** | Les grands assistants et leurs points forts respectifs | 18 --- Maîtriser les assistants IA : ChatGPT, Cla |
+| **19.1** | Les cinq composantes d\'un prompt professionnel | 19 --- Ingénierie de prompts : l\'art de bien for |
+| **20.1** | Un workflow type : un déclencheur, des traitements IA, puis une action final… | 20 --- Automatisation des tâches avec n8n |
+| **21.1** | Les quatre paliers de la maturité IA d\'une organisation | 21 --- Intégrer l\'IA dans une entreprise |
+
