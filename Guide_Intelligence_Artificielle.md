@@ -695,6 +695,12 @@ Tout projet d\'analyse suit un cycle que vous devez connaître par cœur :
 
 -   **Communication** : présenter les résultats de façon claire et honnête.
 
+Deux remarques sur ce cycle, avant d\'entrer dans le détail. La première : **il n\'est pas linéaire**. On le présente en cinq étapes parce qu\'il faut bien les énumérer, mais dans la réalité on revient sans cesse en arrière. L\'exploration révèle une anomalie qui renvoie au nettoyage ; la modélisation montre qu\'il manque une variable, ce qui renvoie à la collecte. Un débutant vit ces retours comme des échecs ; un praticien sait que c\'est ainsi que le travail avance.
+
+La seconde : **les proportions sont très inégales**. Sur un projet réel, la collecte et le nettoyage occupent le plus clair du temps, l\'exploration une part notable, et la modélisation — la partie que tout le monde imagine quand on parle d\'IA — souvent moins d\'un cinquième. Autant le savoir avant de choisir ce métier.
+
+Reste à définir ce qu\'est une donnée de qualité, car « bonnes données » ne veut rien dire tant qu\'on ne l\'a pas décomposé. Quatre critères suffisent. Elle est **complète** : les valeurs manquantes sont rares et leur absence s\'explique. Elle est **juste** : les valeurs correspondent à la réalité, sans erreur de saisie ni unité mélangée. Elle est **cohérente** : la même chose s\'écrit toujours de la même manière, « Kinshasa » et « kinshasa » ne doivent pas coexister comme deux villes distinctes. Elle est enfin **représentative** : elle décrit bien la population sur laquelle vous voudrez prédire. Ce dernier critère est le plus souvent négligé et le plus dangereux — un modèle entraîné sur les clients d\'une seule agence prédira mal ailleurs, et rien dans ses métriques ne vous en avertira.
+
 ### Leçon 2 --- L\'analyse exploratoire (EDA)
 
 Avant toute modélisation, on **explore**. L\'analyse exploratoire des données (EDA) consiste à examiner un jeu de données pour en dégager les structures et les anomalies. On commence par les **statistiques descriptives** : moyenne, médiane, écart-type, quantiles.
@@ -703,17 +709,45 @@ Avant toute modélisation, on **explore**. L\'analyse exploratoire des données 
 
 **Attention --- pourquoi la moyenne peut tromper.** Dans une salle de dix personnes gagnant chacune 2 000 €, la moyenne et la médiane valent 2 000 €. Si un milliardaire entre, la moyenne explose à plusieurs millions, mais la médiane reste à 2 000 €. La médiane décrit donc bien mieux la personne « typique ». Choisir le bon indicateur est un acte d\'honnêteté analytique.
 
+Complétons la boîte à outils, car moyenne et médiane ne suffisent pas. L\'**écart type** mesure la dispersion : deux groupes de même moyenne peuvent être l\'un homogène, l\'autre très étalé, et cette différence change tout. Les **quantiles** découpent les données en tranches ; le premier quartile est la valeur en dessous de laquelle se trouve un quart des observations, la médiane est le deuxième, et ainsi de suite. Dire « le quart des clients dépense moins de 15 € et le quart dépense plus de 80 € » informe infiniment plus qu\'annoncer une dépense moyenne de 45 €.
+
+Prenons un jeu de données minuscule pour rendre cela tangible : neuf salaires mensuels, en dollars — 900, 950, 1 000, 1 050, 1 100, 1 200, 1 300, 1 500 et 2 000. La moyenne vaut 1 222, la médiane 1 100. L\'écart est déjà instructif : la moyenne est tirée vers le haut par les deux derniers salaires. Ajoutons maintenant un dixième salaire, celui du dirigeant, à 20 000. La moyenne bondit à **3 100** — soit davantage que ce que gagnent neuf personnes sur dix — tandis que la médiane ne se déplace que de 1 100 à **1 150**. Neuf des dix personnes concernées se reconnaîtront dans la médiane ; aucune ne se reconnaîtra dans la moyenne.
+
+D\'où une méthode de travail que je vous recommande d\'adopter définitivement : **regardez toujours la distribution avant de citer un indicateur**. Un histogramme se trace en une ligne de code et vous dira immédiatement si vos données sont symétriques, étalées d\'un côté, ou séparées en deux groupes distincts. Dans ce dernier cas — deux populations mélangées — la moyenne tombe pile entre les deux groupes et ne décrit strictement personne. C\'est le genre d\'erreur qu\'aucun tableau de chiffres ne révèle et qu\'un graphique dénonce en une seconde.
+
 ### Leçon 3 --- Préparer les données : le feature engineering
 
 Les données brutes sont rarement utilisables telles quelles. L\'**ingénierie des caractéristiques** (feature engineering) consiste à les transformer en variables pertinentes pour les modèles : mettre les valeurs à la même échelle (**normalisation**), transformer les catégories en nombres (**encodage**), créer des variables dérivées plus parlantes.
 
 **Méthode --- créer une bonne variable.** À partir d\'une date de naissance, la variable brute est peu utile à un modèle. En la transformant en **âge**, voire en **tranche d\'âge**, on crée une caractéristique bien plus exploitable. Souvent, un bon feature engineering améliore davantage les performances qu\'un changement d\'algorithme.
 
+Un mot sur l\'encodage des catégories, car c\'est là que se niche une erreur silencieuse et fréquente. Pour transformer une colonne « ville » contenant Kinshasa, Lubumbashi et Goma en nombres, la tentation est de numéroter : 1, 2, 3. Ne le faites pas. Le modèle en conclura que Goma est trois fois Kinshasa, et que Lubumbashi se situe entre les deux. Vous venez d\'inventer un ordre qui n\'existe pas. La bonne méthode est l\'**encodage one-hot** : une colonne par ville, remplie de 0 sauf un 1 sur la bonne. Le codage numérique direct ne se justifie que si les catégories sont réellement ordonnées — « petit, moyen, grand » par exemple, où l\'ordre a un sens.
+
+Il me faut maintenant vous avertir de l\'erreur la plus coûteuse de toute la préparation de données, celle qui produit des modèles brillants en laboratoire et catastrophiques en production : la **fuite de données**. Elle survient quand une information issue des données de test se glisse dans l\'entraînement. Le cas le plus courant est d\'une banalité désarmante : on normalise l\'ensemble du jeu de données, **puis** on le sépare en entraînement et test. La moyenne utilisée pour normaliser a donc été calculée en incluant les données de test ; le modèle a vu, indirectement, ce qu\'il était censé ignorer. Les scores obtenus sont flatteurs et faux.
+
+La règle est simple et sans exception : **on sépare d\'abord, on prépare ensuite**. Toutes les transformations — normalisation, remplissage des valeurs manquantes, encodage — se calculent sur les seules données d\'entraînement, puis s\'appliquent telles quelles aux données de test. Une variante plus vicieuse encore consiste à inclure une variable qui n\'existera pas au moment de la prédiction : prédire si un client va résilier en utilisant la colonne « date de résiliation » donne 100 % de justesse et zéro utilité. Quand un résultat vous paraît trop beau, cherchez la fuite. Elle est presque toujours là.
+
 ### Leçon 4 --- Le piège à éviter absolument : corrélation n\'est pas causalité
 
 Voici l\'erreur la plus fréquente, et la plus grave, en analyse de données. Deux variables peuvent évoluer ensemble (être **corrélées**) sans que l\'une cause l\'autre.
 
 **Piège fréquent ---** Les ventes de glaces et les noyades augmentent en même temps. La glace ne cause pas la noyade : une troisième variable, la chaleur estivale, explique les deux. Confondre corrélation et causalité conduit à des décisions absurdes. Méfiez-vous toujours d\'une troisième cause cachée.
+
+**Exemple chiffré --- le paradoxe de Simpson.** L\'histoire des glaces et des noyades est facile à repérer. En voici une version qui ne l\'est pas, et qui piège des professionnels chaque année. Deux hôpitaux, mille patients chacun, et une question simple : lequel soigne le mieux ?
+
+| | Hôpital A | Hôpital B |
+|---|---|---|
+| **Cas légers** | 90 survivants sur 100 → **90,0 %** | 800 survivants sur 900 → **88,9 %** |
+| **Cas graves** | 500 survivants sur 900 → **55,6 %** | 50 survivants sur 100 → **50,0 %** |
+| **Ensemble** | 590 sur 1 000 → **59,0 %** | 850 sur 1 000 → **85,0 %** |
+
+Lisez les trois lignes attentivement, car ce que vous voyez est bien réel. L\'hôpital A fait **mieux sur les cas légers**. Il fait **mieux sur les cas graves**. Et pourtant, globalement, il affiche 59 % de survie contre 85 % à son concurrent. Aucune erreur de calcul : additionnez vous-même.
+
+L\'explication tient à la composition des patients. A traite 900 cas graves sur 1 000, B seulement 100. A est vraisemblablement l\'hôpital de référence de la région, celui vers lequel on transfère les situations désespérées. Sa moyenne globale ne mesure pas la qualité de ses soins : elle mesure la gravité de ce qu\'on lui envoie.
+
+Ce renversement porte un nom, le **paradoxe de Simpson**, et sa leçon dépasse largement la statistique : une moyenne calculée sur des populations mélangées peut inverser la conclusion. Fermer l\'hôpital A sur la foi du chiffre global serait fermer le meilleur des deux. Chaque fois que vous comparerez deux groupes, posez-vous donc la question : **ces groupes sont-ils comparables, ou diffèrent-ils par autre chose que ce que je mesure ?**
+
+Comment sortir de ce piège, alors ? En observation pure, on ne le peut jamais tout à fait ; on peut seulement contrôler les variables auxquelles on a pensé — ici, la gravité — et il restera toujours celles auxquelles on n\'a pas pensé. La seule méthode qui établisse vraiment une causalité est l\'**expérience contrôlée** : répartir les sujets au hasard entre deux traitements. Le hasard, et lui seul, équilibre en moyenne toutes les variables cachées, y compris celles qu\'on ignore. C\'est le principe de l\'essai clinique, et c\'est aussi celui du test A/B que vous rencontrerez en entreprise. Retenez la hiérarchie : **corrélation observée, hypothèse ; expérience randomisée, preuve.**
 
 ### Leçon 5 --- Interroger les données : le SQL
 
@@ -726,9 +760,21 @@ WHERE annee = 2025\
 GROUP BY region\
 ORDER BY total DESC;
 
+Prenez le temps de relire cette requête, car elle contient déjà l\'essentiel du langage. `SELECT` choisit les colonnes à afficher, `FROM` la table, `WHERE` filtre les lignes, `GROUP BY` les rassemble par paquets, `ORDER BY` trie le résultat. Cinq mots-clés, et vous répondez déjà à la majorité des questions qu\'on pose à une base de données. Notez au passage la parenté avec le `groupby` de Pandas vu au chapitre précédent : c\'est le même découper-appliquer-recombiner, dans une autre syntaxe.
+
+La sixième notion est la **jointure**, et c\'est celle qui distingue un débutant d\'un praticien. Dans une base bien conçue, l\'information est répartie : une table `ventes` contenant un identifiant de client, une table `clients` contenant les noms et les villes. Pour obtenir les ventes par ville, il faut rapprocher les deux tables sur leur colonne commune — c\'est ce que fait `JOIN`. Rien de sorcier, mais un point de vigilance : si un identifiant de vente ne correspond à aucun client, la jointure classique fait **disparaître la ligne silencieusement**. Vérifiez toujours le nombre de lignes avant et après une jointure. Un total qui maigrit sans raison, c\'est une jointure qui a mangé des données.
+
+Une dernière remarque, qui a des conséquences très concrètes sur votre travail. La tentation du débutant est de charger toute la table en Python puis de filtrer avec Pandas. C\'est une erreur dès que les volumes grandissent : vous faites transiter par le réseau des millions de lignes pour en garder mille. **Faites travailler la base**. Un moteur de base de données est conçu pour filtrer et agréger sur des volumes que votre mémoire ne pourrait pas contenir, et il le fait bien mieux que vous. La règle : filtrez et agrégez en SQL, ramenez le résultat, analysez en Python.
+
 ### Leçon 6 --- Communiquer : raconter une histoire avec les données
 
 Un résultat incompris est un résultat inutile. Le **storytelling de données** consiste à choisir la bonne visualisation et à structurer un récit clair. Et toujours, l\'exigence de **reproductibilité** : documentez chaque étape pour qu\'un collègue puisse refaire votre analyse et obtenir le même résultat.
+
+Sur la forme du récit, une structure fonctionne presque toujours, et je vous invite à vous y tenir tant que vous n\'avez pas trouvé mieux. Commencez par **la question**, pas par la méthode : « Pourquoi perdons-nous des clients dans l\'Est ? » et non « J\'ai appliqué une régression logistique ». Donnez ensuite **la réponse**, en une phrase, tout de suite. Puis seulement, déroulez ce qui l\'établit. Terminez par **ce que cela implique de faire**. C\'est l\'inverse de l\'ordre dans lequel vous avez travaillé, et c\'est précisément pour cela qu\'il faut y penser : votre auditoire ne veut pas revivre votre enquête, il veut sa conclusion.
+
+Adaptez ensuite la profondeur à qui vous écoute. Une direction veut la décision et son risque. Une équipe métier veut ce qui change dans son travail quotidien. Un collègue technique veut la méthode et ses limites. Le même travail, trois récits différents — et l\'erreur classique consiste à servir le troisième aux deux premiers.
+
+Un mot enfin sur l\'honnêteté graphique, car c\'est là que la profession se joue. Tronquer un axe vertical transforme une variation de 2 % en falaise spectaculaire. Choisir la période qui arrange fabrique la tendance qu\'on souhaite. Montrer un pourcentage sans son effectif — « 100 % de progression » sur deux clients devenus quatre — relève du même procédé. Aucune de ces manipulations n\'est un mensonge au sens strict, et c\'est bien ce qui les rend tentantes. Je vous demande de vous imposer une règle simple : **présentez vos résultats comme vous voudriez qu\'on vous les présente si la décision vous engageait personnellement.** Et signalez toujours ce que vos données ne permettent pas de conclure. Un analyste qui dit « je ne sais pas » gagne en crédibilité ; celui qui conclut toujours la perd un jour d\'un coup.
 
 ### Leçon 7 --- Les types de données et leur traitement
 
@@ -747,6 +793,12 @@ Toutes les données ne se ressemblent pas, et chaque type appelle un traitement 
 -   **Manquantes** : l\'absence est une information. On la traite explicitement, jamais à la légère.
 
 **Méthode --- le traitement des valeurs manquantes.** Imaginez une colonne « revenu » avec des cases vides. Les supprimer ? On perd des lignes entières. Les remplacer par zéro ? On fausse les moyennes. Les remplacer par la médiane ? Souvent un bon compromis. Le choix dépend du contexte et doit toujours être justifié et documenté. **À retenir** : il n\'existe pas de recette unique ; il existe des choix raisonnés.
+
+Un point mérite d\'être creusé, car il est plus subtil qu\'il n\'y paraît : **pourquoi une valeur manque-t-elle ?** Trois situations très différentes se cachent derrière une case vide. Il y a l\'absence purement accidentelle — un capteur en panne un matin — qui ne dépend de rien et que l\'on peut remplacer sans grand risque. Il y a l\'absence liée à une autre variable connue : dans une enquête, les plus jeunes répondent moins souvent à la question du patrimoine ; l\'absence dépend de l\'âge, que l\'on connaît, et l\'on peut en tenir compte. Et il y a le cas redoutable, celui où **l\'absence dépend de la valeur elle-même** : les très hauts revenus refusent de déclarer leur revenu. Ici, remplacer les vides par la médiane écrase précisément l\'information qu\'on cherchait, et aucun traitement statistique ne rattrapera la perte.
+
+D\'où un conseil que je vous recommande d\'appliquer systématiquement : quand vous remplissez une valeur manquante, **ajoutez une colonne indiquant qu\'elle l\'était**. Elle ne coûte rien, et il arrive qu\'elle devienne l\'une des variables les plus prédictives du modèle. Le fait qu\'un client n\'ait pas renseigné son revenu dit souvent quelque chose sur ce client. L\'absence est une donnée ; effacez la trace, et vous jetez l\'information avec.
+
+Les données temporelles appellent enfin une vigilance particulière, parce qu\'elles brisent une hypothèse implicite de tout ce chapitre : l\'ordre compte. On n\'y mélange pas les lignes au hasard pour constituer un jeu de test, sous peine d\'entraîner un modèle sur le futur pour lui faire prédire le passé — une fuite de données déguisée, et l\'une des plus fréquentes en entreprise. On sépare toujours dans le sens du temps : les mois anciens pour apprendre, les récents pour tester. Et l\'on pense à en extraire ce qui est réellement exploitable : le jour de la semaine, le mois, la proximité d\'un jour férié, l\'écart avec la même période de l\'année précédente. Une date brute n\'apprend rien à un modèle ; ce qu\'on en tire, beaucoup.
 
 ### Exercices dirigés
 
