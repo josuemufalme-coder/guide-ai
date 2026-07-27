@@ -2838,9 +2838,76 @@ Prenez donc l\'habitude de **cliquer sur au moins une source** avant de reprendr
 
 Un usage particulièrement rentable, pour finir : **la vérification croisée**. Quand un autre assistant vous a produit une affirmation factuelle dont vous doutez, posez la même question à un moteur sourcé. Vous obtenez en trente secondes soit une confirmation référencée, soit un désaccord qui vous alerte. C\'est le complément naturel des outils génératifs, et le meilleur usage professionnel que je connaisse de ce type d\'outil.
 
+### Leçon 5 --- Les autres acteurs qu'il faut connaître
+
+Les trois assistants qui précèdent ne sont pas seuls, et s'en tenir à eux vous priverait de solutions parfois mieux adaptées à votre situation — notamment sur la question du coût et sur celle de la confidentialité. Je décris ici cinq autres acteurs par leur **positionnement durable**, sans citer de numéro de version ni de performance chiffrée : ces éléments changent tous les quelques mois, tandis que le positionnement d'un acteur bouge rarement.
+
+#### Gemini, l'assistant intégré à une suite bureautique
+
+**Positionnement.** Développé par Google, il se distingue moins par ses capacités propres que par son **intégration native** dans un environnement de travail complet : messagerie, agenda, traitement de texte, tableur, stockage de documents.
+
+**Forces.** L'accès direct à vos propres documents sans copier-coller, ce qui supprime la friction dont je vous parlais plus haut. Une multimodalité solide — texte, image, audio, vidéo — et un traitement de contextes longs.
+
+**Cas d'usage privilégiés.** Toute organisation déjà installée dans cette suite bureautique : rédiger à partir d'un document existant, résumer un fil de messages, extraire les décisions d'une réunion. C'est le cas où l'outil arrive **là où le travail se fait déjà**, ce qui décide très souvent de l'adoption.
+
+**Points de vigilance.** L'intégration profonde est aussi un enfermement : plus vos usages y sont ancrés, plus il devient coûteux d'en changer. Et l'accès automatique à vos documents impose de vérifier soigneusement ce que l'outil consulte et ce qui en sort.
+
+#### Copilot, l'assistant du développeur
+
+**Positionnement.** Copilot désigne d'abord un assistant de programmation intégré à l'éditeur de code — il complète, suggère, explique — même si le nom recouvre aussi des assistants bureautiques.
+
+**Forces.** Il travaille **dans le contexte de votre projet** : il voit vos fichiers ouverts, vos conventions de nommage, vos fonctions existantes. Une suggestion tient donc compte de votre code, ce qu'un assistant conversationnel à qui l'on colle un extrait ne peut pas faire.
+
+**Cas d'usage privilégiés.** Écrire le code répétitif, traduire une intention en syntaxe, produire des tests, comprendre un code hérité qu'on n'a pas écrit. Le gain est particulièrement net sur un langage que l'on maîtrise mal.
+
+**Points de vigilance.** Trois, et elles sont sérieuses. Il produit du code **plausible**, ce qui n'est pas du code **correct** : la relecture reste entière, et le chapitre 2 vous a dit pourquoi. Il a été entraîné sur du code public, ce qui soulève des questions de licence pour un usage commercial. Et son usage prolongé atrophie la compétence : on accepte des suggestions qu'on ne saurait plus écrire soi-même.
+
+#### Mistral, l'acteur européen
+
+**Positionnement.** Éditeur français proposant à la fois des modèles accessibles par interface de programmation et des modèles **à poids ouverts**, que l'on peut télécharger et exécuter sur sa propre infrastructure.
+
+**Forces.** La possibilité de **maîtriser entièrement où vont ses données**, qui est souvent le point bloquant en entreprise, comme vous l'avez vu à la leçon précédente. Une gamme comprenant des modèles compacts, moins coûteux et exécutables sur du matériel modeste. Et un ancrage juridique européen qui simplifie la conformité pour une organisation soumise au droit européen.
+
+**Cas d'usage privilégiés.** Traitement de documents confidentiels, secteurs régulés, volumes importants où le coût unitaire devient déterminant, et déploiement dans un environnement à connectivité limitée — un point qui compte plus qu'on ne le croit hors des grandes métropoles.
+
+**Points de vigilance.** « Poids ouverts » ne signifie pas « sans contrainte » : les licences varient selon les modèles et certaines restreignent l'usage commercial. Vérifiez-la avant de bâtir un produit dessus. Et auto-héberger déplace le coût plutôt qu'il ne le supprime, comme au chapitre 20.
+
+#### Llama, la famille ouverte de référence
+
+**Positionnement.** Famille de modèles publiés par Meta avec leurs poids, devenue la base de référence de l'écosystème ouvert : une grande partie des modèles spécialisés que vous croiserez en dérivent.
+
+**Forces.** Un **écosystème considérable** — outils, variantes affinées, documentation, communauté —, ce qui en fait le point de départ le plus documenté pour qui veut affiner un modèle sur son domaine. Existe en plusieurs tailles, du modèle exécutable sur un ordinateur portable au modèle exigeant une infrastructure sérieuse.
+
+**Cas d'usage privilégiés.** Affiner un modèle sur un domaine ou une langue mal couverts ; exécuter localement pour des raisons de confidentialité ou de coût ; expérimenter et apprendre, puisque tout est inspectable.
+
+**Points de vigilance.** La licence comporte des conditions particulières qu'il faut lire — elle n'est pas équivalente à une licence libre classique. Et un modèle brut n'est pas un produit : il faut l'héberger, le surveiller, l'encadrer. Le coût réel n'est pas celui du modèle, c'est celui de tout ce qui l'entoure.
+
+#### DeepSeek, la pression sur les coûts
+
+**Positionnement.** Éditeur chinois qui s'est fait connaître en publiant des modèles très performants à un coût d'usage nettement inférieur à celui des acteurs établis, avec une partie de sa gamme en poids ouverts.
+
+**Forces.** Un **rapport performance-prix** qui a contraint l'ensemble du marché à s'aligner, et de bonnes capacités sur le raisonnement et le code. La disponibilité en poids ouverts permet là encore l'exécution locale.
+
+**Cas d'usage privilégiés.** Traitements à gros volume où le coût unitaire domine ; expérimentation à budget contraint ; tâches de raisonnement et de programmation.
+
+**Points de vigilance.** Deux méritent une attention particulière. D'abord la **juridiction** : si vous utilisez le service hébergé, vos données sont traitées sous un régime juridique qui n'est ni européen ni congolais, ce qui peut être rédhibitoire pour des données personnelles ou sensibles — l'exécution locale, elle, ne pose pas ce problème. Ensuite, comme tout modèle, il porte les orientations de ses données d'entraînement et des règles qui lui ont été appliquées ; sur des sujets sensibles, comparez ses réponses à celles d'un autre modèle avant de conclure.
+
+#### Comment choisir, une fois pour toutes
+
+Ce panorama vieillira ; la méthode pour s'y retrouver, non. Devant n'importe quel assistant, présent ou à venir, posez **quatre questions**.
+
+| Question | Ce qu'elle décide |
+|---|---|
+| **Où vont mes données ?** | service hébergé ou exécution locale — souvent le critère qui tranche seul |
+| **Quel est le coût à mon volume réel ?** | négligeable sur dix requêtes par jour, déterminant sur dix mille |
+| **L'outil arrive-t-il là où je travaille déjà ?** | un outil qui exige un détour sera abandonné, comme au chapitre 15 |
+| **Puis-je en changer ?** | interfaces standards et formats ouverts contre enfermement progressif |
+
+Et une remarque de méthode qui vaut mieux que tout classement : **ne cherchez pas le meilleur modèle, constituez-vous une tâche de référence**. Prenez trois ou quatre travaux que vous faites réellement, dont vous connaissez la bonne réponse, et soumettez-les à chaque outil que vous envisagez. Vous saurez en une heure lequel vous convient — ce qu'aucun palmarès public ne vous dira, puisqu'il mesure des capacités générales et que vous, vous avez un problème particulier.
+
 **Le bon outil pour le bon usage ---** Ne cherchez pas « le meilleur » assistant : cherchez le bon outil pour chaque tâche. Recherche factuelle à jour ? Perplexity. Analyse d\'un long document ou rédaction soignée ? Claude. Tâche créative polyvalente ou assistance au code ? ChatGPT. Le professionnel aguerri jongle entre eux selon le besoin.
 
-### Leçon 5 --- Méthode de travail avec un assistant
+### Leçon 6 --- Méthode de travail avec un assistant
 
 Quel que soit l\'outil, adoptez une méthode. **Itérez** : la première réponse est rarement parfaite ; affinez votre demande. **Donnez du contexte** : plus l\'assistant en sait, mieux il répond. **Vérifiez** : ne faites jamais confiance aveuglément à une information factuelle. **Décomposez** : pour une tâche complexe, procédez par étapes plutôt qu\'en une seule requête.
 
@@ -2862,7 +2929,7 @@ D\'où la règle que je vous invite à retenir : **confiez à l\'assistant ce qu
 
 Trois habitudes complètent la méthode. **Travaillez par conversations thématiques** plutôt que dans un fil unique interminable, pour que le contexte reste propre. **Conservez vos meilleures demandes** dans un fichier ; vous les réutiliserez bien plus souvent que vous ne le pensez. Et **relisez toujours en dernier lecteur**, sans l\'assistant : c\'est vous qui signez.
 
-### Leçon 6 --- Scénarios d\'usage professionnels détaillés
+### Leçon 7 --- Scénarios d\'usage professionnels détaillés
 
 Pour rendre tout cela concret, voici des scénarios complets montrant comment un professionnel utilise ces assistants au quotidien. Inspirez-vous-en.
 
@@ -2876,7 +2943,7 @@ Je veux insister sur ce point, car il ne s\'agit pas d\'une précaution de style
 
 Un risque plus insidieux mérite d\'être nommé, parce qu\'il s\'installe sans qu\'on le voie venir : **la délégation du jugement**. On commence par faire rédiger, ce qui est légitime. Puis on fait structurer, puis analyser, puis recommander. À chaque étape, la réponse arrive vite et paraît raisonnable, et l\'on prend l\'habitude de ne plus construire soi-même le raisonnement. La compétence ne disparaît pas d\'un coup ; elle s\'atrophie par désuétude. **La règle que je m\'applique : formez d\'abord votre propre avis, puis demandez à l\'assistant de le contredire.** Vous gagnez la vitesse sans perdre la compétence, et la critique reçue vaut bien mieux qu\'une réponse à laquelle vous n\'auriez rien à opposer.
 
-### Leçon 7 --- Les limites à toujours garder en tête
+### Leçon 8 --- Les limites à toujours garder en tête
 
 **L\'ESSENTIEL À RETENIR**
 
