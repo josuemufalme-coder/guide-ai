@@ -20,7 +20,7 @@ J\'ai écrit ce livre parce que j\'aurais aimé le lire quand j\'ai commencé. �
 
 Ce n\'est pas un cours froid ni un catalogue de notions. Je l\'ai voulu comme une conversation : je vous explique chaque idée comme je l\'expliquerais à un ami, en prenant le temps, avec des exemples concrets et des images simples. Lisez-le à votre rythme. Rien ne presse. Ce qui compte, c\'est que vous compreniez vraiment, pas que vous alliez vite.
 
-J\'ai organisé ce guide comme un chemin. On part des fondations --- comprendre ce qu\'est l\'IA, savoir un peu programmer, saisir les quelques idées mathématiques utiles, apprendre à regarder des données. Puis on avance vers le cœur du sujet : comment une machine apprend. Ensuite viennent les grands domaines --- le langage, la vision, l\'IA générative, les agents. Et enfin, la partie qui vous rendra immédiatement utile : les outils du quotidien, l\'automatisation, et la façon d\'intégrer l\'IA dans une organisation.
+J\'ai organisé ce guide comme un chemin. On part des fondations : comprendre ce qu\'est l\'IA, savoir un peu programmer, saisir les quelques idées mathématiques utiles, apprendre à regarder des données. Puis on avance vers le cœur du sujet : comment une machine apprend. Ensuite viennent les grands domaines : le langage, la vision, l\'IA générative, les agents. Et enfin, la partie qui vous rendra immédiatement utile : les outils du quotidien, l\'automatisation, et la façon d\'intégrer l\'IA dans une organisation.
 
 Un dernier mot, le plus important : on n\'apprend pas l\'IA en lisant, mais en faisant. À la fin de chaque chapitre, je vous propose des exercices et des choses à réaliser de vos mains. Faites-les. Trompez-vous. Recommencez. C\'est ainsi, et seulement ainsi, que la lecture devient un vrai savoir.
 
@@ -76,7 +76,7 @@ Retenez d\'emblée une distinction capitale, que nous reverrons tout au long de 
 
 Pour comprendre où nous en sommes, il faut savoir d\'où nous venons. L\'histoire de l\'IA n\'est pas linéaire : elle alterne emballements et désillusions. La connaître vous évitera de reproduire les erreurs d\'optimisme du passé.
 
-Tout commence avec une question posée par Alan Turing en 1950 : « Les machines peuvent-elles penser ? » Il propose un test célèbre --- aujourd\'hui appelé **test de Turing** --- où une machine est jugée « intelligente » si un humain, en conversant avec elle, ne peut la distinguer d\'un autre humain. En 1956, lors de la conférence de Dartmouth, John McCarthy donne un nom au domaine : « intelligence artificielle ». L\'enthousiasme est immense.
+Tout commence avec une question posée par Alan Turing en 1950 : « Les machines peuvent-elles penser ? » Il propose un test célèbre (aujourd\'hui appelé **test de Turing**) où une machine est jugée « intelligente » si un humain, en conversant avec elle, ne peut la distinguer d\'un autre humain. En 1956, lors de la conférence de Dartmouth, John McCarthy donne un nom au domaine : « intelligence artificielle ». L\'enthousiasme est immense.
 
 Suivent les premières décennies de l\'**IA symbolique** : on tente de coder l\'intelligence sous forme de règles logiques explicites. Les succès sont réels mais limités, et les promesses non tenues provoquent deux « hivers de l\'IA » (années 1970, puis fin des années 1980), durant lesquels les financements s\'effondrent. Le renouveau vient dans les années 1990 avec une idée différente : plutôt que de programmer les règles, **laissons la machine les apprendre à partir de données**. C\'est l\'approche statistique. Enfin, à partir de 2012, l\'**apprentissage profond** explose, porté par trois facteurs conjugués : des masses de données, des processeurs graphiques (GPU) puissants, et des algorithmes améliorés.
 
@@ -112,7 +112,7 @@ Voici les trois algorithmes de recherche que vous devez connaître et savoir imp
 
 -   **Recherche en profondeur (DFS)** : on suit une piste jusqu\'au bout avant de revenir en arrière. Économe en mémoire, mais elle peut s\'égarer et ne garantit pas le plus court chemin.
 
--   **Algorithme A\\**\* : la plus utilisée. Elle se sert d\'une heuristique --- une estimation de la distance restante jusqu\'au but --- pour explorer en priorité les pistes les plus prometteuses. C\'est l\'algorithme du GPS.
+-   **Algorithme A\\**\* : la plus utilisée. Elle se sert d\'une heuristique (une estimation de la distance restante jusqu\'au but) pour explorer en priorité les pistes les plus prometteuses. C\'est l\'algorithme du GPS.
 
 **Méthode --- comprendre l\'heuristique d\'A\\\*.** Pour aller d\'une ville à une autre, A\\\* combine deux informations : la distance déjà parcourue (certaine) et une estimation de la distance restante (l\'heuristique, par exemple la distance à vol d\'oiseau). En additionnant les deux, l\'algorithme privilégie les chemins qui semblent à la fois courts et bien orientés vers le but. Une bonne heuristique accélère énormément la recherche.
 
@@ -196,7 +196,7 @@ Un dernier conseil avant d\'entrer dans le vif. La progression de ce livre n\'es
 
 -   L\'IA cherche à faire accomplir par des machines des tâches exigeant de l\'intelligence ; toute l\'IA actuelle est « étroite ».
 
--   Deux approches : programmer le savoir (symbolique) ou l\'apprendre des données (apprentissage) --- c\'est cette seconde voie qui domine.
+-   Deux approches : programmer le savoir (symbolique) ou l\'apprendre des données (apprentissage) : c\'est cette seconde voie qui domine.
 
 -   De nombreux problèmes se formulent comme une recherche dans un espace d\'états ; A\\\* est l\'algorithme de recherche informée de référence.
 
@@ -272,7 +272,7 @@ print(df\[\'montant\'\].mean()) \# moyenne d\'une colonne\
 grosses = df\[df\[\'montant\'\] \> 1000\]\
 par_region = df.groupby(\'region\')\[\'montant\'\].sum()
 
-**Attention --- le travail réel de préparation.** On dit souvent que la data science, c\'est **80 % de préparation et 20 % de modélisation**. Avant qu\'un modèle voie vos données, vous passerez beaucoup de temps à corriger les valeurs manquantes, supprimer les doublons, harmoniser les formats. Pandas est l\'outil de ce travail essentiel --- ne le sous-estimez pas.
+**Attention --- le travail réel de préparation.** On dit souvent que la data science, c\'est **80 % de préparation et 20 % de modélisation**. Avant qu\'un modèle voie vos données, vous passerez beaucoup de temps à corriger les valeurs manquantes, supprimer les doublons, harmoniser les formats. Pandas est l\'outil de ce travail essentiel : ne le sous-estimez pas.
 
 ### Leçon 5 --- Visualiser et travailler proprement
 
@@ -422,7 +422,7 @@ Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre liné
 
 -   **Oublier de normaliser** : des variables à échelles très différentes faussent l\'apprentissage.
 
--   **Mal interpréter une probabilité** : confondre P(A sachant B) et P(B sachant A) --- le piège de Bayes.
+-   **Mal interpréter une probabilité** : confondre P(A sachant B) et P(B sachant A), le piège de Bayes.
 
 -   **Négliger les unités** : un gradient n\'a de sens que rapporté à l\'échelle des paramètres.
 
@@ -462,7 +462,7 @@ Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre liné
 
 ### Leçon 1 --- La donnée, matière première de l\'IA
 
-Un modèle d\'IA ne vaut que par les données dont il se nourrit. « Garbage in, garbage out » --- des données médiocres produisent des modèles médiocres, quelle que soit la sophistication de l\'algorithme. Ce chapitre vous enseigne la démarche rigoureuse du **data scientist** : transformer des données brutes en connaissances fiables.
+Un modèle d\'IA ne vaut que par les données dont il se nourrit. « Garbage in, garbage out » : des données médiocres produisent des modèles médiocres, quelle que soit la sophistication de l\'algorithme. Ce chapitre vous enseigne la démarche rigoureuse du **data scientist** : transformer des données brutes en connaissances fiables.
 
 Tout projet d\'analyse suit un cycle que vous devez connaître par cœur :
 
@@ -565,7 +565,7 @@ Toutes les données ne se ressemblent pas, et chaque type appelle un traitement 
 
 # Partie II --- Comment une machine apprend
 
-Nous voici au cœur du sujet. Vous avez les fondations ; il est temps de répondre à la question qui fonde toute l\'IA moderne : comment une machine apprend-elle, vraiment, à partir de données ? Nous verrons d\'abord l\'apprentissage automatique « classique », puis l\'apprentissage profond qui a tout bouleversé, puis comment faire vivre un modèle une fois construit, et enfin comment mesurer ce qu\'on ne sait pas avec certitude. C\'est la partie la plus dense --- prenez votre temps.
+Nous voici au cœur du sujet. Vous avez les fondations ; il est temps de répondre à la question qui fonde toute l\'IA moderne : comment une machine apprend-elle, vraiment, à partir de données ? Nous verrons d\'abord l\'apprentissage automatique « classique », puis l\'apprentissage profond qui a tout bouleversé, puis comment faire vivre un modèle une fois construit, et enfin comment mesurer ce qu\'on ne sait pas avec certitude. C\'est la partie la plus dense : prenez votre temps.
 
 ![](./media/image3.png){width="6.2in" height="2.340867235345582in"}
 
@@ -605,13 +605,13 @@ Un **arbre de décision** pose une suite de questions binaires pour aboutir à u
 
 -   **Gradient boosting** : on construit les arbres l\'un après l\'autre, chacun corrigeant les erreurs du précédent ; très performant sur données tabulaires.
 
-**Exemple --- la sagesse de la foule.** Demandez à une seule personne d\'estimer le poids d\'un bœuf : elle se trompe. Demandez à mille personnes et faites la moyenne : l\'estimation devient étonnamment juste. Les forêts aléatoires exploitent ce principe --- beaucoup de modèles imparfaits, combinés, deviennent puissants.
+**Exemple --- la sagesse de la foule.** Demandez à une seule personne d\'estimer le poids d\'un bœuf : elle se trompe. Demandez à mille personnes et faites la moyenne : l\'estimation devient étonnamment juste. Les forêts aléatoires exploitent ce principe : beaucoup de modèles imparfaits, combinés, deviennent puissants.
 
 ### Leçon 4 --- Apprendre sans étiquettes
 
 En apprentissage non supervisé, les données n\'ont pas de réponse connue. Le **clustering** regroupe les données semblables : l\'algorithme **k-means** partitionne en k groupes, **DBSCAN** trouve des amas de densité variable. La **réduction de dimension** (ACP, t-SNE) résume des données complexes en peu de variables, utile pour la visualisation.
 
-**Exemple --- segmenter une clientèle.** Un commerçant possède les habitudes d\'achat de milliers de clients, sans catégories prédéfinies. Le clustering révèle spontanément des groupes --- par exemple « jeunes urbains », « familles », « seniors » --- qui guideront des actions marketing ciblées. Personne n\'a fourni ces étiquettes : l\'algorithme les a découvertes.
+**Exemple --- segmenter une clientèle.** Un commerçant possède les habitudes d\'achat de milliers de clients, sans catégories prédéfinies. Le clustering révèle spontanément des groupes (par exemple « jeunes urbains », « familles », « seniors ») qui guideront des actions marketing ciblées. Personne n\'a fourni ces étiquettes : l\'algorithme les a découvertes.
 
 ### Leçon 5 --- La leçon la plus importante : évaluer et généraliser
 
@@ -635,7 +635,7 @@ Le modèle cherche une droite note = a × heures + b. L\'apprentissage consiste 
 
 **Méthode --- interpréter les paramètres.** Si l\'apprentissage aboutit à note = 1,35 × heures + 6,5, on lit deux choses. **La pente 1,35** : chaque heure de révision rapporte en moyenne 1,35 point. **L\'ordonnée 6,5** : un étudiant qui ne révise pas du tout obtiendrait environ 6,5. Un modèle linéaire n\'est pas qu\'un outil de prédiction : c\'est aussi un outil d\'**interprétation** qui révèle les relations dans les données.
 
-Attention toutefois aux limites : le modèle suppose une relation **linéaire**, ce qui n\'est pas toujours vrai. Au-delà d\'un certain point, réviser davantage ne fait plus progresser autant --- la vraie relation s\'aplatit. Un modèle linéaire ne capterait pas cet effet ; il faudrait alors un modèle plus riche. **Savoir reconnaître les limites de son modèle fait partie du métier.**
+Attention toutefois aux limites : le modèle suppose une relation **linéaire**, ce qui n\'est pas toujours vrai. Au-delà d\'un certain point, réviser davantage ne fait plus progresser autant : la vraie relation s\'aplatit. Un modèle linéaire ne capterait pas cet effet ; il faudrait alors un modèle plus riche. **Savoir reconnaître les limites de son modèle fait partie du métier.**
 
 ### Leçon 7 --- Le déroulé complet d\'un projet supervisé
 
@@ -691,7 +691,7 @@ Récapitulons la démarche que vous suivrez systématiquement, et que vous devez
 
 ### Leçon 1 --- Du neurone biologique au neurone artificiel
 
-L\'apprentissage profond s\'inspire --- de loin --- du cerveau. Le **neurone artificiel** est une unité de calcul simple : il reçoit des entrées, les multiplie par des **poids**, les additionne, ajoute un **biais**, puis passe le tout dans une **fonction d\'activation** qui introduit de la non-linéarité.
+L\'apprentissage profond s\'inspire, de loin, du cerveau. Le **neurone artificiel** est une unité de calcul simple : il reçoit des entrées, les multiplie par des **poids**, les additionne, ajoute un **biais**, puis passe le tout dans une **fonction d\'activation** qui introduit de la non-linéarité.
 
 ![](./media/image5.png){width="5.2in" height="2.620716316710411in"}
 
@@ -707,7 +707,7 @@ En empilant les neurones en **couches**, on obtient un réseau. L\'information t
 
 ### Leçon 2 --- Comment le réseau apprend : la rétropropagation
 
-Voici le mécanisme central. Après chaque prédiction, on mesure l\'erreur. Puis, par la **rétropropagation**, on calcule la contribution de chaque poids à cette erreur --- en remontant de la sortie vers l\'entrée --- et l\'on ajuste les poids par descente de gradient. Répété des milliers de fois, ce processus fait converger le réseau.
+Voici le mécanisme central. Après chaque prédiction, on mesure l\'erreur. Puis, par la **rétropropagation**, on calcule la contribution de chaque poids à cette erreur (en remontant de la sortie vers l\'entrée) et l\'on ajuste les poids par descente de gradient. Répété des milliers de fois, ce processus fait converger le réseau.
 
 **Pont entre matières ---** La rétropropagation n\'est rien d\'autre que la règle de dérivation en chaîne, appliquée massivement. Les mathématiques vues plus tôt prennent ici tout leur sens : sans gradient, pas d\'apprentissage profond.
 
@@ -731,7 +731,7 @@ Tout cela s\'implémente avec des **frameworks** professionnels : **PyTorch** et
 
 ### Leçon 5 --- Comprendre une couche convolutive en détail
 
-Arrêtons-nous sur le cœur de la vision profonde : la **convolution**. Imaginez une petite fenêtre --- appelée **filtre** --- de 3×3 pixels, que l\'on fait glisser sur toute l\'image. À chaque position, le filtre calcule une combinaison des pixels qu\'il recouvre, produisant une nouvelle valeur. En glissant sur toute l\'image, il produit une nouvelle image qui met en évidence un certain motif.
+Arrêtons-nous sur le cœur de la vision profonde : la **convolution**. Imaginez une petite fenêtre (appelée **filtre**) de 3×3 pixels, que l\'on fait glisser sur toute l\'image. À chaque position, le filtre calcule une combinaison des pixels qu\'il recouvre, produisant une nouvelle valeur. En glissant sur toute l\'image, il produit une nouvelle image qui met en évidence un certain motif.
 
 **Définition --- ce que détecte un filtre.** Un filtre peut être configuré (ou apprendre) pour réagir fortement aux **contours verticaux** : il produira des valeurs élevées là où l\'image passe brusquement du clair au sombre verticalement, et des valeurs faibles ailleurs. Un réseau convolutif apprend des dizaines de tels filtres, chacun spécialisé dans un motif. C\'est ainsi qu\'il « voit ».
 
@@ -941,7 +941,7 @@ Illustrons par un cas concret l\'importance de quantifier l\'incertitude. Deux m
 
 # Partie III --- Les grands domaines de l\'IA
 
-Vous voici aux frontières actuelles de l\'intelligence artificielle. Fort de vos fondations et de votre compréhension de l\'apprentissage profond, vous allez explorer les domaines qui font l\'actualité : le langage, l\'IA générative, la vision, l\'apprentissage par renforcement, et enfin les avancées les plus récentes --- agents autonomes, protocole MCP, multimodalité et sûreté de l\'IA. C\'est ici que les choses deviennent passionnantes.
+Vous voici aux frontières actuelles de l\'intelligence artificielle. Fort de vos fondations et de votre compréhension de l\'apprentissage profond, vous allez explorer les domaines qui font l\'actualité : le langage, l\'IA générative, la vision, l\'apprentissage par renforcement, et enfin les avancées les plus récentes : agents autonomes, protocole MCP, multimodalité et sûreté de l\'IA. C\'est ici que les choses deviennent passionnantes.
 
 ## Chapitre 9 --- Traitement automatique du langage naturel (NLP)
 
@@ -955,7 +955,7 @@ Une machine ne comprend que des nombres. La première étape est donc de **repr�
 
 **Définition --- Plongement lexical (embedding).** Représentation d\'un mot par un vecteur de nombres, appris de telle façon que la proximité géométrique entre vecteurs reflète la proximité de sens entre les mots.
 
-**Notion essentielle ---** Dans l\'espace des plongements, on peut faire de l\'« arithmétique du sens » : le vecteur de « roi » moins « homme » plus « femme » donne approximativement « reine ». Le sens devient géométrie --- une idée stupéfiante et féconde.
+**Notion essentielle ---** Dans l\'espace des plongements, on peut faire de l\'« arithmétique du sens » : le vecteur de « roi » moins « homme » plus « femme » donne approximativement « reine ». Le sens devient géométrie, une idée stupéfiante et féconde.
 
 ### Leçon 3 --- La révolution Transformer
 
@@ -1061,7 +1061,7 @@ La qualité des réponses d\'un LLM dépend fortement de la façon dont vous l\'
 
 ### Leçon 4 --- Donner des connaissances fiables : le RAG
 
-Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « halluciner » --- inventer des faits avec aplomb. La **génération augmentée par récupération (RAG)** corrige cela : avant de répondre, le système cherche des documents pertinents dans une base de connaissances et les fournit au modèle. La réponse s\'appuie alors sur des sources vérifiables et à jour.
+Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « halluciner » : inventer des faits avec aplomb. La **génération augmentée par récupération (RAG)** corrige cela : avant de répondre, le système cherche des documents pertinents dans une base de connaissances et les fournit au modèle. La réponse s\'appuie alors sur des sources vérifiables et à jour.
 
 ![](./media/image9.png){width="6.4in" height="2.3115474628171477in"}
 
@@ -1159,7 +1159,7 @@ Le cœur de la vision moderne est le **réseau convolutif (CNN)**, déjà rencon
 
 *Figure 11.1 --- Un CNN alterne convolutions et sous-échantillonnages avant de classer l\'image.*
 
-**Exemple --- comment un CNN voit un visage.** Les premières couches repèrent des contours et des coins. Les couches intermédiaires combinent ces traits en éléments --- un œil, un nez, une bouche. Les dernières couches assemblent le tout et reconnaissent un visage. Cette construction progressive, du simple au complexe, est la clé de la vision profonde.
+**Exemple --- comment un CNN voit un visage.** Les premières couches repèrent des contours et des coins. Les couches intermédiaires combinent ces traits en éléments : un œil, un nez, une bouche. Les dernières couches assemblent le tout et reconnaissent un visage. Cette construction progressive, du simple au complexe, est la clé de la vision profonde.
 
 ### Leçon 3 --- Architectures avancées et apprentissage par transfert
 
@@ -1185,7 +1185,7 @@ Pour mesurer la portée de la vision par ordinateur, voici ses grands domaines d
 
 -   **Commerce** : caisses automatiques, analyse du parcours client, gestion des stocks.
 
-**Exemple --- vision et imagerie médicale.** Un modèle entraîné sur des milliers de radiographies peut signaler au radiologue les zones suspectes, comme un second regard infatigable. Il ne remplace pas le médecin --- la décision reste humaine --- mais il réduit le risque qu\'une anomalie passe inaperçue. **À retenir** : en vision comme ailleurs, l\'IA assiste le professionnel plutôt qu\'elle ne le supplante.
+**Exemple --- vision et imagerie médicale.** Un modèle entraîné sur des milliers de radiographies peut signaler au radiologue les zones suspectes, comme un second regard infatigable. Il ne remplace pas le médecin (la décision reste humaine), mais il réduit le risque qu\'une anomalie passe inaperçue. **À retenir** : en vision comme ailleurs, l\'IA assiste le professionnel plutôt qu\'elle ne le supplante.
 
 ### Exercices dirigés
 
@@ -1311,7 +1311,7 @@ Le protocole repose sur trois primitives : les **outils** (fonctions exécutable
 
 ### Leçon 4 --- L\'IA multimodale
 
-Les modèles **multimodaux** traitent et combinent plusieurs types de données --- texte, image, audio, vidéo --- dans un système unifié, là où les approches anciennes exigeaient des chaînes séparées. Cette intégration donne une compréhension plus riche du monde.
+Les modèles **multimodaux** traitent et combinent plusieurs types de données (texte, image, audio, vidéo) dans un système unifié, là où les approches anciennes exigeaient des chaînes séparées. Cette intégration donne une compréhension plus riche du monde.
 
 ![](./media/image13.png){width="6.2in" height="2.445462598425197in"}
 
@@ -1611,7 +1611,7 @@ Quel que soit votre sujet, suivez une démarche complète et honnête :
 
 -   **Présenter votre travail** : savoir l\'expliquer simplement est aussi important que de l\'avoir fait.
 
-Si vous le pouvez, menez ce projet en lien avec un besoin réel --- le vôtre, celui d\'une organisation, d\'un proche. Un projet ancré dans le réel a bien plus de valeur qu\'un exercice théorique, et il prouve concrètement ce dont vous êtes capable.
+Si vous le pouvez, menez ce projet en lien avec un besoin réel : le vôtre, celui d\'une organisation, d\'un proche. Un projet ancré dans le réel a bien plus de valeur qu\'un exercice théorique, et il prouve concrètement ce dont vous êtes capable.
 
 **Mon conseil ---** Ne visez pas la perfection du premier coup. Un projet modeste mais achevé et bien présenté vaut mille projets ambitieux jamais terminés. Allez au bout, même petit. C\'est l\'achèvement qui vous fera grandir, pas l\'ambition affichée.
 
@@ -1629,7 +1629,7 @@ Cette partie est un peu différente des précédentes. Jusqu\'ici, vous avez app
 
 Pourquoi cette partie est-elle si importante ? Parce que la connaissance théorique, sans application, ne crée pas de valeur. Un excellent théoricien incapable d\'utiliser concrètement un assistant ou d\'automatiser un processus sera dépassé par un praticien moins savant mais plus opérationnel. L\'idéal, que ce livre vise, est de **réunir les deux** : comprendre en profondeur ET savoir faire. C\'est ici que se fait le pont entre la science et l\'action.
 
-Une remarque importante : les outils évoluent vite, et leurs interfaces changent. Ce qui compte n\'est pas de mémoriser tel bouton de tel logiciel, mais de comprendre les **principes** --- comment bien formuler une demande, comment penser une automatisation, comment intégrer l\'IA dans une organisation. Ces principes restent valables quels que soient les outils du moment. Concentrez-vous sur eux.
+Une remarque importante : les outils évoluent vite, et leurs interfaces changent. Ce qui compte n\'est pas de mémoriser tel bouton de tel logiciel, mais de comprendre les **principes** : comment bien formuler une demande, comment penser une automatisation, comment intégrer l\'IA dans une organisation. Ces principes restent valables quels que soient les outils du moment. Concentrez-vous sur eux.
 
 ## Chapitre 18 --- Maîtriser les assistants IA : ChatGPT, Claude, Perplexity
 
@@ -1739,7 +1739,7 @@ Remarquez le point commun de tous ces scénarios : l\'humain **dirige**, l\'IA *
 
 ### Leçon 1 --- Pourquoi le prompt est décisif
 
-Un même modèle peut produire une réponse médiocre ou excellente selon la façon dont on l\'interroge. Le **prompt** --- l\'instruction que vous donnez --- est le volant qui dirige le modèle. L\'**ingénierie de prompts** (prompt engineering) est l\'art de formuler ces instructions pour obtenir le meilleur résultat. C\'est une compétence qui se travaille et qui distingue l\'amateur du professionnel.
+Un même modèle peut produire une réponse médiocre ou excellente selon la façon dont on l\'interroge. Le **prompt**, l\'instruction que vous donnez, est le volant qui dirige le modèle. L\'**ingénierie de prompts** (prompt engineering) est l\'art de formuler ces instructions pour obtenir le meilleur résultat. C\'est une compétence qui se travaille et qui distingue l\'amateur du professionnel.
 
 ### Leçon 2 --- L\'anatomie d\'un bon prompt
 
@@ -1927,7 +1927,7 @@ Un workflow qui fonctionne ne suffit pas : il doit être **maintenable** et **fi
 
 Une automatisation manipule souvent des données sensibles (emails, fiches clients, documents internes). Vous devez en tenir compte. Protégez vos **clés d\'API** (ne les écrivez jamais en clair), réfléchissez à ce que vous envoyez aux services externes, et privilégiez l\'**auto-hébergement** quand les données sont confidentielles. Le respect du RGPD s\'applique aussi à vos workflows.
 
-**Attention --- une question à toujours se poser.** Avant d\'envoyer le contenu d\'un email client à un service d\'IA externe, demandez-vous : ai-je le droit de transmettre cette donnée à un tiers ? Si elle est confidentielle, mieux vaut un modèle auto-hébergé. **À retenir** : l\'automatisation ne dispense jamais de la vigilance sur la confidentialité --- au contraire, elle la rend plus cruciale, car le traitement est massif.
+**Attention --- une question à toujours se poser.** Avant d\'envoyer le contenu d\'un email client à un service d\'IA externe, demandez-vous : ai-je le droit de transmettre cette donnée à un tiers ? Si elle est confidentielle, mieux vaut un modèle auto-hébergé. **À retenir** : l\'automatisation ne dispense jamais de la vigilance sur la confidentialité : au contraire, elle la rend plus cruciale, car le traitement est massif.
 
 ### Leçon 9 --- Comprendre les déclencheurs en profondeur
 
@@ -2229,7 +2229,7 @@ Le vrai professionnel ne se contente pas d\'un outil : il **assemble** un systè
 
 L\'IA évolue à une vitesse inédite. Les outils d\'aujourd\'hui seront dépassés demain. La compétence la plus durable n\'est donc pas la maîtrise d\'un outil précis, mais la **capacité d\'apprendre en continu** : suivre les avancées, tester les nouveautés, garder l\'esprit critique.
 
-**Le seul conseil vraiment durable ---** N\'apprenez pas seulement des outils, apprenez à apprendre. Les modèles, les interfaces, les noms changeront ; les principes que vous avez vus dans ce manuel --- apprentissage, prompting, automatisation, intégration --- resteront. Maîtrisez les principes, et vous vous adapterez à tout outil futur.
+**Le seul conseil vraiment durable ---** N\'apprenez pas seulement des outils, apprenez à apprendre. Les modèles, les interfaces, les noms changeront ; les principes que vous avez vus dans ce manuel (apprentissage, prompting, automatisation, intégration) resteront. Maîtrisez les principes, et vous vous adapterez à tout outil futur.
 
 ### Leçon 4 --- Vers une pratique responsable
 
@@ -2485,9 +2485,9 @@ Avant tout code, posez-vous les bonnes questions : que veut-on prédire (le prix
 
 ### Étape 2 --- Nettoyer et explorer
 
-**Ce que vous devez faire :** traitez les valeurs manquantes (suppression ou remplacement par la médiane, en justifiant votre choix). Tracez la distribution des prix, et des nuages de points reliant le prix à la surface. Vous découvrirez peut-être des valeurs aberrantes --- des maisons à prix absurde --- qu\'il faudra examiner.
+**Ce que vous devez faire :** traitez les valeurs manquantes (suppression ou remplacement par la médiane, en justifiant votre choix). Tracez la distribution des prix, et des nuages de points reliant le prix à la surface. Vous découvrirez peut-être des valeurs aberrantes (des maisons à prix absurde) qu\'il faudra examiner.
 
-**Exemple --- ce que révèle l\'exploration.** En traçant prix contre surface, vous verrez probablement une tendance croissante : plus c\'est grand, plus c\'est cher. Mais vous repérerez aussi des exceptions --- un petit logement très cher (quartier prisé ?) ou une grande maison bon marché (loin de tout ?). Ces écarts vous indiquent quelles autres variables comptent. L\'exploration guide la modélisation.
+**Exemple --- ce que révèle l\'exploration.** En traçant prix contre surface, vous verrez probablement une tendance croissante : plus c\'est grand, plus c\'est cher. Mais vous repérerez aussi des exceptions : un petit logement très cher (quartier prisé ?) ou une grande maison bon marché (loin de tout ?). Ces écarts vous indiquent quelles autres variables comptent. L\'exploration guide la modélisation.
 
 ### Étape 3 --- Préparer les caractéristiques
 
@@ -2517,7 +2517,7 @@ Objectif : entraîner un réseau de neurones à reconnaître des images. Vous y 
 
 ### Étape 1 --- Choisir le jeu de données et l\'objectif
 
-**Ce que vous devez faire :** commencez par un jeu simple et célèbre --- les chiffres manuscrits (MNIST) ou des catégories d\'objets. Définissez clairement les classes à distinguer. Visualisez quelques images pour comprendre vos données.
+**Ce que vous devez faire :** commencez par un jeu simple et célèbre : les chiffres manuscrits (MNIST) ou des catégories d\'objets. Définissez clairement les classes à distinguer. Visualisez quelques images pour comprendre vos données.
 
 ### Étape 2 --- Construire un premier réseau
 
@@ -2563,7 +2563,7 @@ Objectif : construire un assistant qui répond à des questions en s\'appuyant s
 
 ### Étape 4 --- Évaluer et fiabiliser
 
-**Ce que vous devez faire :** testez l\'assistant sur des questions variées, y compris des questions dont la réponse n\'est pas dans les documents --- il doit alors répondre qu\'il ne sait pas, plutôt qu\'inventer. Ajustez vos prompts pour obtenir ce comportement prudent.
+**Ce que vous devez faire :** testez l\'assistant sur des questions variées, y compris des questions dont la réponse n\'est pas dans les documents : il doit alors répondre qu\'il ne sait pas, plutôt qu\'inventer. Ajustez vos prompts pour obtenir ce comportement prudent.
 
 **L\'ESSENTIEL À RETENIR**
 
