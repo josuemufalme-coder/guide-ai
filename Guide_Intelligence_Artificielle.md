@@ -84,13 +84,13 @@ Un mot sur ce vocabulaire, car il induit en erreur. « Faible » ne signifie pas
 
 Pour comprendre où nous en sommes, il faut savoir d\'où nous venons. L\'histoire de l\'IA n\'est pas linéaire : elle alterne emballements et désillusions. La connaître vous évitera de reproduire les erreurs d\'optimisme du passé.
 
-Tout commence avec une question posée par Alan Turing en 1950 : « Les machines peuvent-elles penser ? » Il propose un test célèbre (aujourd\'hui appelé **test de Turing**) où une machine est jugée « intelligente » si un humain, en conversant avec elle, ne peut la distinguer d\'un autre humain. En 1956, lors de la conférence de Dartmouth, John McCarthy donne un nom au domaine : « intelligence artificielle ». L\'enthousiasme est immense.
+Tout commence avec une question posée par Alan Turing en 1950 : « Les machines peuvent-elles penser ? » *(Turing, 1950 --- voir la bibliographie)* Il propose un test célèbre (aujourd\'hui appelé **test de Turing**) où une machine est jugée « intelligente » si un humain, en conversant avec elle, ne peut la distinguer d\'un autre humain. En 1956, lors de la conférence de Dartmouth, John McCarthy donne un nom au domaine : « intelligence artificielle ». *(McCarthy et al., 1955)* L\'enthousiasme est immense.
 
 Suivent les premières décennies de l\'**IA symbolique** : on tente de coder l\'intelligence sous forme de règles logiques explicites. Les succès sont réels mais limités, et les promesses non tenues provoquent deux « hivers de l\'IA » (années 1970, puis fin des années 1980), durant lesquels les financements s\'effondrent. Le renouveau vient dans les années 1990 avec une idée différente : plutôt que de programmer les règles, **laissons la machine les apprendre à partir de données**. C\'est l\'approche statistique. Enfin, à partir de 2012, l\'**apprentissage profond** explose, porté par trois facteurs conjugués : des masses de données, des processeurs graphiques (GPU) puissants, et des algorithmes améliorés.
 
 Arrêtons-nous sur ces hivers, car ils ne sont pas une anecdote de manuel. Les deux fois, le scénario a été le même : des promesses publiques très supérieures aux résultats, puis un retournement brutal des financements quand l\'écart est devenu visible. Ce que j\'en retire, et que je vous invite à en retirer, c\'est une règle de lecture plutôt qu\'une leçon d\'histoire. Chaque fois qu\'une technologie vous est présentée comme sur le point de tout résoudre, demandez : sur quelle tâche précise, avec quelles données, et mesurée comment ? Ces trois questions vous protégeront mieux que n\'importe quelle expertise technique.
 
-**Exemple --- le tournant de 2012.** En 2012, un réseau de neurones profond nommé AlexNet remporte une compétition de reconnaissance d\'images avec une marge spectaculaire sur toutes les méthodes classiques. Ce moment marque le début de la révolution actuelle : il prouve que, **avec assez de données et de puissance de calcul**, les réseaux profonds surpassent les approches programmées à la main.
+**Exemple --- le tournant de 2012.** En 2012, un réseau de neurones profond nommé AlexNet remporte une compétition de reconnaissance d\'images avec une marge spectaculaire sur toutes les méthodes classiques. *(Krizhevsky, Sutskever & Hinton, 2012)* Ce moment marque le début de la révolution actuelle : il prouve que, **avec assez de données et de puissance de calcul**, les réseaux profonds surpassent les approches programmées à la main.
 
 On présente volontiers 2012 comme une percée théorique. C\'en est fort peu une. Les réseaux de neurones et la rétropropagation datent des années 1980, les couches convolutives aussi. Ce qui a changé, ce sont les conditions matérielles. Les jeux de données annotés se comptaient désormais en millions d\'images et non plus en milliers. Les processeurs graphiques, conçus pour le jeu vidéo, se sont révélés être exactement l\'outil qu\'il fallait pour multiplier des matrices en parallèle. Et quelques ajustements techniques ont rendu l\'entraînement des réseaux profonds enfin stable.
 
@@ -147,7 +147,7 @@ Voici les trois algorithmes de recherche que vous devez connaître et savoir imp
 
 -   **Algorithme A\\**\* : la plus utilisée. Elle se sert d\'une heuristique (une estimation de la distance restante jusqu\'au but) pour explorer en priorité les pistes les plus prometteuses. C\'est l\'algorithme du GPS.
 
-**Méthode --- comprendre l\'heuristique d\'A\\\*.** Pour aller d\'une ville à une autre, A\\\* combine deux informations : la distance déjà parcourue (certaine) et une estimation de la distance restante (l\'heuristique, par exemple la distance à vol d\'oiseau). En additionnant les deux, l\'algorithme privilégie les chemins qui semblent à la fois courts et bien orientés vers le but. Une bonne heuristique accélère énormément la recherche.
+**Méthode --- comprendre l\'heuristique d\'A\\\*.** Pour aller d\'une ville à une autre, A\\\* combine deux informations : la distance déjà parcourue (certaine) et une estimation de la distance restante (l\'heuristique, par exemple la distance à vol d\'oiseau). En additionnant les deux, l\'algorithme privilégie les chemins qui semblent à la fois courts et bien orientés vers le but. Une bonne heuristique accélère énormément la recherche. L\'algorithme A\\\* a été formalisé par Hart, Nilsson et Raphael en 1968 ; la référence figure en bibliographie.
 
 **Exemple chiffré --- A\\\* sur un petit réseau routier.** Passons du principe au calcul. Six villes, reliées par des routes dont je vous donne les longueurs en kilomètres. Nous partons de **A** et voulons rejoindre **E**.
 
@@ -1195,7 +1195,7 @@ Regardez le second neurone caché : il vaut **zéro**. La ReLU l'a éteint pour 
 
 Voici le mécanisme central. Après chaque prédiction, on mesure l\'erreur. Puis, par la **rétropropagation**, on calcule la contribution de chaque poids à cette erreur (en remontant de la sortie vers l\'entrée) et l\'on ajuste les poids par descente de gradient. Répété des milliers de fois, ce processus fait converger le réseau.
 
-**Pont entre matières ---** La rétropropagation n\'est rien d\'autre que la règle de dérivation en chaîne, appliquée massivement. Les mathématiques vues plus tôt prennent ici tout leur sens : sans gradient, pas d\'apprentissage profond.
+**Pont entre matières ---** La rétropropagation n\'est rien d\'autre que la règle de dérivation en chaîne, appliquée massivement. *(Rumelhart, Hinton & Williams, 1986)* Les mathématiques vues plus tôt prennent ici tout leur sens : sans gradient, pas d\'apprentissage profond.
 
 **Exemple --- apprendre de ses erreurs.** Imaginez un archer qui rate sa cible. Il observe de combien et dans quel sens la flèche a dévié, puis corrige sa visée. Le réseau fait pareil : il mesure son erreur et ajuste chacun de ses poids dans la direction qui la réduit. Tir après tir, il s\'améliore.
 
@@ -1629,7 +1629,7 @@ Le résultat est instructif et un peu décevant. La méthode distingue correctem
 
 ### Leçon 3 --- La révolution Transformer
 
-En 2017, une architecture a tout changé : le **Transformer**, fondé sur le mécanisme d\'**attention**. L\'attention permet au modèle de pondérer l\'importance de chaque mot par rapport aux autres, capturant le contexte même sur de longues distances.
+En 2017, une architecture a tout changé : le **Transformer**, fondé sur le mécanisme d\'**attention**. *(Vaswani et al., 2017)* L\'attention permet au modèle de pondérer l\'importance de chaque mot par rapport aux autres, capturant le contexte même sur de longues distances.
 
 ![](./media/image8.png){width="3.8in" height="3.8965693350831145in"}
 
@@ -1835,7 +1835,7 @@ La qualité des réponses d\'un LLM dépend fortement de la façon dont vous l\'
 
 -   **Few-shot** : fournir quelques exemples dans l\'invite pour guider le modèle.
 
--   **Chaîne de pensée** : demander au modèle de raisonner étape par étape, ce qui améliore nettement les tâches complexes.
+-   **Chaîne de pensée** : demander au modèle de raisonner étape par étape, ce qui améliore nettement les tâches complexes. *(Wei et al., 2022)*
 
 **Exemple --- la puissance de la chaîne de pensée.** Posez un problème de logique à un LLM en demandant juste la réponse : il se trompe parfois. Demandez-lui de **détailler son raisonnement étape par étape** avant de conclure : sa précision augmente fortement. En l\'obligeant à « réfléchir à voix haute », on l\'aide à structurer sa réponse.
 
@@ -1847,7 +1847,7 @@ J\'ajoute deux techniques que la liste ci-dessus laisse de côté et qui rendent
 
 ### Leçon 4 --- Donner des connaissances fiables : le RAG
 
-Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « halluciner » : inventer des faits avec aplomb. La **génération augmentée par récupération (RAG)** corrige cela : avant de répondre, le système cherche des documents pertinents dans une base de connaissances et les fournit au modèle. La réponse s\'appuie alors sur des sources vérifiables et à jour.
+Les LLM ont une connaissance figée à leur date d\'entraînement et peuvent « halluciner » : inventer des faits avec aplomb. La **génération augmentée par récupération (RAG)** corrige cela : avant de répondre, le système cherche des documents pertinents dans une base de connaissances et les fournit au modèle. *(Lewis et al., 2020)* La réponse s\'appuie alors sur des sources vérifiables et à jour.
 
 ![](./media/image9.png){width="6.4in" height="2.3115474628171477in"}
 
@@ -5104,17 +5104,79 @@ Les exercices sont classés par **niveau**, indiqué devant chaque énoncé.
 
 Voici les ouvrages qui m\'ont accompagné et que je vous recommande de tout cœur. Ils vous suivront longtemps.
 
--   **Russell & Norvig** --- Artificial Intelligence: A Modern Approach. La référence générale.
+### Ouvrages
 
--   **Goodfellow, Bengio & Courville** --- Deep Learning. L\'ouvrage fondateur du domaine.
+-   **Russell, S. & Norvig, P.** (2020). *Artificial Intelligence: A Modern Approach*, 4ᵉ édition. Pearson. La référence générale du domaine, celle qu\'on garde toute sa carrière. Couvre la recherche, la logique, la planification et l\'apprentissage.
 
--   **Aurélien Géron** --- Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow.
+-   **Goodfellow, I., Bengio, Y. & Courville, A.** (2016). *Deep Learning*. MIT Press. L\'ouvrage fondateur de l\'apprentissage profond. Exigeant mathématiquement, et disponible gratuitement en ligne sur `deeplearningbook.org`.
 
--   **Bishop** --- Pattern Recognition and Machine Learning. Approche probabiliste rigoureuse.
+-   **Géron, A.** (2022). *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow*, 3ᵉ édition. O\'Reilly. Le plus pratique de cette liste, et celui par lequel je vous conseille de commencer si vous voulez coder tout de suite. Existe en traduction française chez Dunod.
 
--   **Jurafsky & Martin** --- Speech and Language Processing. La référence en NLP.
+-   **Bishop, C. M.** (2006). *Pattern Recognition and Machine Learning*. Springer. Approche probabiliste rigoureuse. C\'est le livre vers lequel se tourner quand on veut comprendre **pourquoi** une méthode fonctionne.
 
--   **Sutton & Barto** --- Reinforcement Learning: An Introduction. La référence en renforcement.
+-   **Jurafsky, D. & Martin, J. H.** *Speech and Language Processing*, 3ᵉ édition. La référence en traitement du langage. La troisième édition circule depuis des années sous forme de version de travail mise à jour en continu, librement accessible en ligne ; la 2ᵉ édition publiée date de 2009 chez Pearson.
+
+-   **Sutton, R. S. & Barto, A. G.** (2018). *Reinforcement Learning: An Introduction*, 2ᵉ édition. MIT Press. La référence en apprentissage par renforcement, également disponible gratuitement en ligne.
+
+**Sur les ISBN.** Je ne les ai volontairement pas reportés ici, et je préfère vous dire pourquoi plutôt que d\'inscrire des chiffres approximatifs. Un ISBN est propre à **une édition et à un format donnés** : le même ouvrage en relié, en broché et en version électronique porte trois identifiants différents, et une nouvelle édition en crée un quatrième. Un ISBN erroné dans un manuel universitaire renvoie le lecteur vers un ouvrage qui n\'est pas celui que vous citez, ce qui est pire que pas d\'ISBN du tout. Relevez-les sur l\'exemplaire que vous citez réellement, ou dans le catalogue de la Bibliothèque nationale ou de l\'éditeur, et complétez cette liste avant publication.
+
+### Articles fondateurs
+
+Les travaux ci-dessous sont ceux que le manuel évoque nommément. Je les donne dans l\'ordre où ils apparaissent dans le texte, avec le chapitre correspondant, pour que vous puissiez remonter à la source de ce que vous venez de lire. La plupart sont librement accessibles.
+
+**Les origines**
+
+-   **Turing, A. M.** (1950). « Computing Machinery and Intelligence ». *Mind*, 59(236), 433--460. DOI : `10.1093/mind/LIX.236.433`. L\'article qui pose la question « les machines peuvent-elles penser ? » et propose le jeu de l\'imitation. *(chapitre 1, leçon 2)*
+
+-   **McCarthy, J., Minsky, M. L., Rochester, N. & Shannon, C. E.** (1955). « A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence ». Reproduit dans *AI Magazine*, 27(4), 2006. Le texte qui donne son nom au domaine. *(chapitre 1, leçon 2)*
+
+-   **Shannon, C. E.** (1948). « A Mathematical Theory of Communication ». *Bell System Technical Journal*, 27, 379--423 et 623--656. L\'acte de naissance de la théorie de l\'information, dont vient l\'entropie. *(chapitre 3, leçon 5)*
+
+**Recherche et raisonnement**
+
+-   **Hart, P. E., Nilsson, N. J. & Raphael, B.** (1968). « A Formal Basis for the Heuristic Determination of Minimum Cost Paths ». *IEEE Transactions on Systems Science and Cybernetics*, 4(2), 100--107. L\'article qui introduit A\\*. *(chapitre 1, leçon 4)*
+
+**Apprentissage automatique**
+
+-   **Breiman, L.** (2001). « Random Forests ». *Machine Learning*, 45(1), 5--32. *(chapitre 5, leçon 3)*
+
+-   **Simpson, E. H.** (1951). « The Interpretation of Interaction in Contingency Tables ». *Journal of the Royal Statistical Society, Series B*, 13(2), 238--241. L\'article dont vient le paradoxe du chapitre 4. *(chapitre 4, leçon 4)*
+
+**Apprentissage profond**
+
+-   **Rumelhart, D. E., Hinton, G. E. & Williams, R. J.** (1986). « Learning Representations by Back-Propagating Errors ». *Nature*, 323, 533--536. La rétropropagation. *(chapitre 6, leçon 2)*
+
+-   **LeCun, Y., Bottou, L., Bengio, Y. & Haffner, P.** (1998). « Gradient-Based Learning Applied to Document Recognition ». *Proceedings of the IEEE*, 86(11), 2278--2324. Les réseaux convolutifs et le jeu MNIST. *(chapitre 6, leçon 5 ; projet 2)*
+
+-   **Krizhevsky, A., Sutskever, I. & Hinton, G. E.** (2012). « ImageNet Classification with Deep Convolutional Neural Networks ». *Advances in Neural Information Processing Systems (NeurIPS)*, 25. L\'article d\'AlexNet, celui du tournant de 2012. *(chapitre 1, leçon 2)*
+
+-   **He, K., Zhang, X., Ren, S. & Sun, J.** (2016). « Deep Residual Learning for Image Recognition ». *CVPR*. arXiv : `1512.03385`. Les connexions résiduelles, qui rendent les réseaux très profonds entraînables. *(chapitre 6, leçon 6 ; chapitre 11, leçon 3)*
+
+**Langage et IA générative**
+
+-   **Vaswani, A., Shazeer, N., Parmar, N. et al.** (2017). « Attention Is All You Need ». *NeurIPS*, 30. arXiv : `1706.03762`. L\'article du Transformer. Sans doute le plus influent de cette liste. *(chapitre 9, leçons 3 et 7)*
+
+-   **Devlin, J., Chang, M.-W., Lee, K. & Toutanova, K.** (2019). « BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding ». *NAACL*. arXiv : `1810.04805`. Le pré-entraînement puis l\'affinage. *(chapitre 9, leçon 4)*
+
+-   **Brown, T. et al.** (2020). « Language Models are Few-Shot Learners ». *NeurIPS*, 33. arXiv : `2005.14165`. L\'article qui montre qu\'un modèle assez grand accomplit une tâche décrite dans l\'invite, sans affinage. *(chapitre 9, leçon 4 ; chapitre 19, leçon 3)*
+
+-   **Lewis, P. et al.** (2020). « Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks ». *NeurIPS*, 33. arXiv : `2005.11401`. L\'article qui introduit le RAG. *(chapitre 10, leçon 4 ; projet 3)*
+
+-   **Wei, J. et al.** (2022). « Chain-of-Thought Prompting Elicits Reasoning in Large Language Models ». *NeurIPS*, 35. arXiv : `2201.11903`. La chaîne de pensée. *(chapitre 10, leçon 3 ; chapitre 19, leçon 3)*
+
+-   **Ho, J., Jain, A. & Abbeel, P.** (2020). « Denoising Diffusion Probabilistic Models ». *NeurIPS*, 33. arXiv : `2006.11239`. Les modèles de diffusion, derrière la génération d\'images. *(chapitre 10, leçon 8)*
+
+-   **Ouyang, L. et al.** (2022). « Training Language Models to Follow Instructions with Human Feedback ». *NeurIPS*, 35. arXiv : `2203.02155`. L\'alignement par renforcement sur préférences humaines. *(chapitre 12, leçon 1 ; chapitre 13, leçon 5)*
+
+**Éthique et pratique responsable**
+
+-   **Gebru, T. et al.** (2021). « Datasheets for Datasets ». *Communications of the ACM*, 64(12), 86--92. arXiv : `1803.09010`. Documenter un jeu de données. *(chapitre 14, leçon 3)*
+
+-   **Mitchell, M. et al.** (2019). « Model Cards for Model Reporting ». *FAT\\**. arXiv : `1810.03993`. Documenter un modèle, y compris ses performances par sous-groupe. *(chapitre 14, leçon 2)*
+
+**Comment lire ces références.** Les identifiants `arXiv` renvoient à une archive ouverte : tapez `arxiv.org/abs/` suivi du numéro et vous accédez au texte intégral, gratuitement. Un `DOI` s\'ouvre de la même manière depuis `doi.org/`. Pour les articles publiés en conférence — NeurIPS, CVPR, NAACL —, les actes sont également en accès libre.
+
+Un conseil, enfin, sur l\'usage de ces textes. Ne cherchez pas à les lire intégralement : un article de recherche s\'aborde par son résumé, son introduction et ses figures, et cela suffit dans neuf cas sur dix à comprendre l\'idée. Les sections techniques ne se lisent que si l\'on veut reproduire le travail. Commencez par « Attention Is All You Need » : il est court, clair, et vous venez d\'en comprendre le mécanisme au chapitre 9.
 
 ## Plateformes et outils
 
