@@ -296,7 +296,7 @@ Savoir programmer ne suffit pas : il faut écrire un code **lisible, robuste et 
 
 -   **Testez votre code** : une fonction non testée est une fonction qui ne marche pas encore.
 
-**Exemple --- du code lisible.** Comparez \`def f(x): return x\*0.2\` et \`def appliquer_remise(prix): return prix \* 0.2\`. La seconde version se comprend sans contexte : le nom de la fonction et du paramètre racontent ce qu\'elle fait. Dans un projet de plusieurs milliers de lignes, cette clarté fait toute la différence. **Leçon** : on écrit le code une fois, mais on le lit cent fois.
+**Exemple --- du code lisible.** Comparez \`def f(x): return x\*0.2\` et \`def appliquer_remise(prix): return prix \* 0.2\`. La seconde version se comprend sans contexte : le nom de la fonction et du paramètre racontent ce qu\'elle fait. Dans un projet de plusieurs milliers de lignes, cette clarté fait toute la différence. **À retenir** : on écrit le code une fois, mais on le lit cent fois.
 
 ### Leçon 7 --- Panorama de l\'écosystème Python pour l\'IA
 
@@ -316,7 +316,7 @@ Python doit sa domination à un écosystème de bibliothèques exceptionnel. Voi
 
 -   **Hugging Face Transformers** : modèles de langage pré-entraînés. Pour le NLP et l\'IA générative.
 
-**Méthode --- le bon outil au bon moment.** Pour un projet type : Pandas pour charger et nettoyer les données, Matplotlib pour les explorer, scikit-learn pour un premier modèle simple, puis PyTorch si le problème exige un réseau profond. Chaque bibliothèque a son rôle ; les connaître toutes vous rend polyvalent. **Leçon** : un bon artisan connaît tous ses outils et choisit le bon pour chaque tâche.
+**Méthode --- le bon outil au bon moment.** Pour un projet type : Pandas pour charger et nettoyer les données, Matplotlib pour les explorer, scikit-learn pour un premier modèle simple, puis PyTorch si le problème exige un réseau profond. Chaque bibliothèque a son rôle ; les connaître toutes vous rend polyvalent. **À retenir** : un bon artisan connaît tous ses outils et choisit le bon pour chaque tâche.
 
 ### Exercices dirigés
 
@@ -529,7 +529,7 @@ Toutes les données ne se ressemblent pas, et chaque type appelle un traitement 
 
 -   **Manquantes** : l\'absence est une information. On la traite explicitement, jamais à la légère.
 
-**Méthode --- le traitement des valeurs manquantes.** Imaginez une colonne « revenu » avec des cases vides. Les supprimer ? On perd des lignes entières. Les remplacer par zéro ? On fausse les moyennes. Les remplacer par la médiane ? Souvent un bon compromis. Le choix dépend du contexte et doit toujours être justifié et documenté. **Leçon** : il n\'existe pas de recette unique ; il existe des choix raisonnés.
+**Méthode --- le traitement des valeurs manquantes.** Imaginez une colonne « revenu » avec des cases vides. Les supprimer ? On perd des lignes entières. Les remplacer par zéro ? On fausse les moyennes. Les remplacer par la médiane ? Souvent un bon compromis. Le choix dépend du contexte et doit toujours être justifié et documenté. **À retenir** : il n\'existe pas de recette unique ; il existe des choix raisonnés.
 
 ### Exercices dirigés
 
@@ -767,7 +767,7 @@ La fonction d\'activation est ce petit ingrédient qui donne toute sa puissance 
 
 -   **Softmax** : en sortie d\'une classification, transforme des scores en probabilités qui somment à 1.
 
-**Exemple --- pourquoi la ReLU a tout changé.** Avant la ReLU, les réseaux profonds souffraient de la disparition du gradient : le signal d\'apprentissage s\'éteignait dans les couches profondes. La ReLU, par sa simplicité, laisse passer le gradient sans l\'atténuer pour les valeurs positives. Cette innovation modeste en apparence a rendu possible l\'entraînement de réseaux très profonds. **Leçon** : en IA, une idée simple bien placée peut débloquer tout un domaine.
+**Exemple --- pourquoi la ReLU a tout changé.** Avant la ReLU, les réseaux profonds souffraient de la disparition du gradient : le signal d\'apprentissage s\'éteignait dans les couches profondes. La ReLU, par sa simplicité, laisse passer le gradient sans l\'atténuer pour les valeurs positives. Cette innovation modeste en apparence a rendu possible l\'entraînement de réseaux très profonds. **À retenir** : en IA, une idée simple bien placée peut débloquer tout un domaine.
 
 ### Exercices dirigés
 
@@ -845,7 +845,7 @@ Récapitulons le parcours d\'un modèle, de l\'idée à la production durable. C
 
 -   **Ré-entraînement** : quand la dérive l\'exige, on reprend le cycle avec des données fraîches.
 
-**Exemple --- pourquoi le cycle ne s\'arrête jamais.** Un modèle de recommandation entraîné en janvier devient moins pertinent en juin : les goûts ont changé, de nouveaux produits sont apparus. Sans surveillance ni ré-entraînement, ses performances se dégradent en silence. Le MLOps organise ce cycle perpétuel. **Leçon** : un modèle est un organisme vivant qu\'on entretient, pas un objet qu\'on livre une fois pour toutes.
+**Exemple --- pourquoi le cycle ne s\'arrête jamais.** Un modèle de recommandation entraîné en janvier devient moins pertinent en juin : les goûts ont changé, de nouveaux produits sont apparus. Sans surveillance ni ré-entraînement, ses performances se dégradent en silence. Le MLOps organise ce cycle perpétuel. **À retenir** : un modèle est un organisme vivant qu\'on entretient, pas un objet qu\'on livre une fois pour toutes.
 
 ### Exercices dirigés
 
@@ -901,7 +901,7 @@ Les **méthodes de Monte-Carlo** estiment des quantités complexes par simulatio
 
 Illustrons par un cas concret l\'importance de quantifier l\'incertitude. Deux modèles prédisent qu\'un patient a 60 % de risque de complication. Mais le premier dit « 60 %, plus ou moins 5 % », le second « 60 %, plus ou moins 40 % ». La prédiction est la même, la confiance radicalement différente. Le médecin agira tout autrement selon les cas.
 
-**Exemple --- décider sous incertitude.** Une banque évalue un prêt risqué. Un modèle classique dit « défaut probable ». Un modèle bayésien dit « défaut probable, mais avec une grande incertitude vu le peu de données sur ce profil ». Cette nuance invite à demander plus d\'informations plutôt qu\'à refuser sèchement. **Leçon** : connaître son ignorance est aussi précieux que connaître la réponse.
+**Exemple --- décider sous incertitude.** Une banque évalue un prêt risqué. Un modèle classique dit « défaut probable ». Un modèle bayésien dit « défaut probable, mais avec une grande incertitude vu le peu de données sur ce profil ». Cette nuance invite à demander plus d\'informations plutôt qu\'à refuser sèchement. **À retenir** : connaître son ignorance est aussi précieux que connaître la réponse.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -989,7 +989,7 @@ Voyons concrètement ce que le NLP permet de faire, car ces tâches sont à la b
 
 -   **Question-réponse** : extraire d\'un texte la réponse à une question posée.
 
-**Exemple --- la reconnaissance d\'entités en action.** Donnez à un modèle la phrase « Marie Dupont a signé le contrat à Paris le 3 mars pour 50 000 euros ». Le modèle extrait : personne = Marie Dupont, lieu = Paris, date = 3 mars, montant = 50 000 euros. Cette capacité automatise l\'analyse de contrats, de courriers ou de formulaires à grande échelle. **Leçon** : des tâches qui occupaient des heures de lecture humaine deviennent instantanées.
+**Exemple --- la reconnaissance d\'entités en action.** Donnez à un modèle la phrase « Marie Dupont a signé le contrat à Paris le 3 mars pour 50 000 euros ». Le modèle extrait : personne = Marie Dupont, lieu = Paris, date = 3 mars, montant = 50 000 euros. Cette capacité automatise l\'analyse de contrats, de courriers ou de formulaires à grande échelle. **À retenir** : des tâches qui occupaient des heures de lecture humaine deviennent instantanées.
 
 ### Leçon 6 --- Évaluer un modèle de langage
 
@@ -999,7 +999,7 @@ Comment savoir si un modèle de NLP est bon ? On le teste sur des données de r�
 
 Le mécanisme d\'attention est si central qu\'il mérite une explication intuitive approfondie. Imaginez que vous lisez une phrase et que, pour comprendre chaque mot, vous puissiez regarder tous les autres mots et décider lesquels comptent le plus. C\'est exactement ce que fait l\'attention.
 
-**Exemple --- résoudre une ambiguïté.** Dans « Le trophée ne rentrait pas dans la valise car il était trop grand », à quoi renvoie « il » ? Au trophée, évidemment --- pas à la valise. L\'attention permet au modèle de relier « il » à « trophée » en pondérant fortement ce lien. Changez « grand » en « petite », et l\'attention reliera « elle » à « valise ». Cette capacité à tisser des liens entre les mots, où qu\'ils soient dans la phrase, est la clé de la compréhension du langage. **Leçon** : l\'attention donne au modèle le sens du contexte.
+**Exemple --- résoudre une ambiguïté.** Dans « Le trophée ne rentrait pas dans la valise car il était trop grand », à quoi renvoie « il » ? Au trophée, évidemment --- pas à la valise. L\'attention permet au modèle de relier « il » à « trophée » en pondérant fortement ce lien. Changez « grand » en « petite », et l\'attention reliera « elle » à « valise ». Cette capacité à tisser des liens entre les mots, où qu\'ils soient dans la phrase, est la clé de la compréhension du langage. **À retenir** : l\'attention donne au modèle le sens du contexte.
 
 Techniquement, pour chaque mot, le modèle calcule un score d\'attention envers tous les autres, puis construit une représentation qui mélange l\'information des mots les plus pertinents. Répété sur plusieurs « têtes » d\'attention en parallèle, ce mécanisme capture des relations riches et variées. C\'est ce qui a rendu les Transformers si puissants.
 
@@ -1077,7 +1077,7 @@ Enfin, vous découvrirez les **agents** (que nous approfondirons au chapitre 13)
 
 Rien n\'illustre mieux l\'ingénierie de prompts qu\'une comparaison. Prenons une même intention et voyons comment l\'amélioration progressive du prompt transforme le résultat.
 
-**Exemple --- trois niveaux de prompt. Niveau 1 (faible)** : « Parle-moi de la vente. » → réponse vague et générique. **Niveau 2 (correct)** : « Donne cinq techniques de vente pour un commercial débutant. » → réponse utile mais standard. **Niveau 3 (excellent)** : « Tu es un formateur en vente. Donne cinq techniques de vente concrètes pour un commercial débutant dans le secteur du logiciel, avec pour chacune un exemple de phrase à dire. Format : liste numérotée, ton encourageant. » → réponse précise, actionnable, adaptée. **Leçon** : chaque précision ajoutée resserre et améliore la réponse.
+**Exemple --- trois niveaux de prompt. Niveau 1 (faible)** : « Parle-moi de la vente. » → réponse vague et générique. **Niveau 2 (correct)** : « Donne cinq techniques de vente pour un commercial débutant. » → réponse utile mais standard. **Niveau 3 (excellent)** : « Tu es un formateur en vente. Donne cinq techniques de vente concrètes pour un commercial débutant dans le secteur du logiciel, avec pour chacune un exemple de phrase à dire. Format : liste numérotée, ton encourageant. » → réponse précise, actionnable, adaptée. **À retenir** : chaque précision ajoutée resserre et améliore la réponse.
 
 ### Leçon 7 --- Concevoir une application générative fiable
 
@@ -1103,7 +1103,7 @@ La génération d\'images mérite qu\'on s\'y attarde, tant elle a transformé l
 
 Les **modèles de diffusion**, aujourd\'hui dominants, procèdent par une idée élégante. Pendant l\'entraînement, on prend des images réelles et on y ajoute progressivement du bruit jusqu\'à les rendre méconnaissables. Le modèle apprend à **inverser** ce processus : à partir d\'un bruit aléatoire, il enlève le bruit étape par étape jusqu\'à faire émerger une image cohérente, guidée par la description textuelle fournie.
 
-**Exemple --- de la phrase à l\'image.** Vous demandez « un chat astronaute sur la Lune, style aquarelle ». Le modèle part d\'un nuage de pixels aléatoires et, en plusieurs dizaines d\'étapes de débruitage guidées par votre texte, fait progressivement apparaître la scène demandée. C\'est presque l\'inverse de la vision humaine : au lieu de reconnaître, le modèle **fait advenir**. **Leçon** : générer, c\'est structurer progressivement le hasard.
+**Exemple --- de la phrase à l\'image.** Vous demandez « un chat astronaute sur la Lune, style aquarelle ». Le modèle part d\'un nuage de pixels aléatoires et, en plusieurs dizaines d\'étapes de débruitage guidées par votre texte, fait progressivement apparaître la scène demandée. C\'est presque l\'inverse de la vision humaine : au lieu de reconnaître, le modèle **fait advenir**. **À retenir** : générer, c\'est structurer progressivement le hasard.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -1185,7 +1185,7 @@ Pour mesurer la portée de la vision par ordinateur, voici ses grands domaines d
 
 -   **Commerce** : caisses automatiques, analyse du parcours client, gestion des stocks.
 
-**Exemple --- vision et imagerie médicale.** Un modèle entraîné sur des milliers de radiographies peut signaler au radiologue les zones suspectes, comme un second regard infatigable. Il ne remplace pas le médecin --- la décision reste humaine --- mais il réduit le risque qu\'une anomalie passe inaperçue. **Leçon** : en vision comme ailleurs, l\'IA assiste le professionnel plutôt qu\'elle ne le supplante.
+**Exemple --- vision et imagerie médicale.** Un modèle entraîné sur des milliers de radiographies peut signaler au radiologue les zones suspectes, comme un second regard infatigable. Il ne remplace pas le médecin --- la décision reste humaine --- mais il réduit le risque qu\'une anomalie passe inaperçue. **À retenir** : en vision comme ailleurs, l\'IA assiste le professionnel plutôt qu\'elle ne le supplante.
 
 ### Exercices dirigés
 
@@ -1253,7 +1253,7 @@ Le renforcement brille dans certains domaines et peine dans d\'autres. Savoir o�
 
 -   **Limites** : le RL exige énormément d\'essais, ce qui est coûteux ou dangereux dans le monde réel.
 
-**Exemple --- pourquoi on simule.** Pour apprendre à un robot à marcher par renforcement, il faut des milliers de chutes. Les provoquer sur un vrai robot le détruirait. On entraîne donc d\'abord l\'agent dans une **simulation**, où les chutes ne coûtent rien, avant de transférer vers le monde réel. **Leçon** : le coût des essais conditionne la faisabilité d\'une approche par renforcement.
+**Exemple --- pourquoi on simule.** Pour apprendre à un robot à marcher par renforcement, il faut des milliers de chutes. Les provoquer sur un vrai robot le détruirait. On entraîne donc d\'abord l\'agent dans une **simulation**, où les chutes ne coûtent rien, avant de transférer vers le monde réel. **À retenir** : le coût des essais conditionne la faisabilité d\'une approche par renforcement.
 
 ### Exercices dirigés
 
@@ -1351,7 +1351,7 @@ Passons de la théorie à la pratique. Construire un agent fiable suit une déma
 
 -   **Tester intensément** : un agent autonome doit être éprouvé sur de nombreux cas avant tout usage réel.
 
-**Exemple --- un agent de recherche documentaire.** Objectif : répondre à des questions en consultant une base de documents. Outils connectés via MCP : recherche dans la base, lecture de fichiers. L\'agent reçoit la question, planifie (chercher les documents pertinents, les lire, synthétiser), agit, puis vérifie sa réponse avant de la rendre. S\'il ne trouve rien de fiable, il le dit plutôt que d\'inventer. **Leçon** : un bon agent sait aussi reconnaître ses limites.
+**Exemple --- un agent de recherche documentaire.** Objectif : répondre à des questions en consultant une base de documents. Outils connectés via MCP : recherche dans la base, lecture de fichiers. L\'agent reçoit la question, planifie (chercher les documents pertinents, les lire, synthétiser), agit, puis vérifie sa réponse avant de la rendre. S\'il ne trouve rien de fiable, il le dit plutôt que d\'inventer. **À retenir** : un bon agent sait aussi reconnaître ses limites.
 
 ### Leçon 7 --- L\'avenir : où va l\'IA ?
 
@@ -1433,7 +1433,7 @@ Face à un dilemme éthique en IA, ne tranchez pas à l\'instinct : raisonnez av
 
 -   **Qui est responsable ?** Une décision importante doit toujours avoir un responsable humain.
 
-**Cas pratique --- appliquer le cadre.** Une banque veut automatiser l\'octroi de crédits. En appliquant le cadre : les concernés sont les demandeurs (dont des personnes fragiles) ; le risque majeur est le biais discriminatoire ; la transparence impose d\'expliquer les refus ; l\'alternative est de garder l\'humain dans la décision finale ; la responsabilité reste à la banque. La conclusion raisonnée : l\'IA peut **assister** l\'analyse, mais la décision de refus doit rester explicable et humaine. **Leçon** : un cadre transforme un malaise diffus en décision argumentée.
+**Cas pratique --- appliquer le cadre.** Une banque veut automatiser l\'octroi de crédits. En appliquant le cadre : les concernés sont les demandeurs (dont des personnes fragiles) ; le risque majeur est le biais discriminatoire ; la transparence impose d\'expliquer les refus ; l\'alternative est de garder l\'humain dans la décision finale ; la responsabilité reste à la banque. La conclusion raisonnée : l\'IA peut **assister** l\'analyse, mais la décision de refus doit rester explicable et humaine. **À retenir** : un cadre transforme un malaise diffus en décision argumentée.
 
 ### Exercices dirigés
 
@@ -1499,7 +1499,7 @@ Apprenons des échecs des autres. Voici les sept causes les plus fréquentes d\'
 
 -   **Absence de suivi** → mesurez les résultats et ajustez dans la durée.
 
-**Attention --- un échec instructif.** Une entreprise investit des mois dans un modèle de prévision très précis... que personne n\'utilise, car il n\'a jamais été intégré aux outils des équipes. Le modèle était excellent ; le projet a échoué. **Leçon** : un modèle qui ne sert pas est un échec, si performant soit-il. L\'adoption compte autant que la performance.
+**Attention --- un échec instructif.** Une entreprise investit des mois dans un modèle de prévision très précis... que personne n\'utilise, car il n\'a jamais été intégré aux outils des équipes. Le modèle était excellent ; le projet a échoué. **À retenir** : un modèle qui ne sert pas est un échec, si performant soit-il. L\'adoption compte autant que la performance.
 
 ### Leçon 5 --- Communiquer avec les décideurs
 
@@ -1805,7 +1805,7 @@ Pour une tâche complexe, ne demandez pas tout d\'un coup. Guidez le modèle ét
 
 Demandez au modèle de **critiquer sa propre réponse** : « Relis ta réponse et identifie trois faiblesses, puis corrige-les. » Cette technique d\'auto-révision améliore sensiblement la qualité finale, car le modèle repère souvent ses propres lacunes.
 
-**Méthode --- combiner les techniques.** Pour rédiger un rapport, on combine : un prompt système définissant le rôle et le style ; un découpage en étapes (plan, puis rédaction section par section) ; et une auto-évaluation finale. Le résultat rivalise avec un travail humain soigné. **Leçon** : les techniques avancées se cumulent et se renforcent.
+**Méthode --- combiner les techniques.** Pour rédiger un rapport, on combine : un prompt système définissant le rôle et le style ; un découpage en étapes (plan, puis rédaction section par section) ; et une auto-évaluation finale. Le résultat rivalise avec un travail humain soigné. **À retenir** : les techniques avancées se cumulent et se renforcent.
 
 ### Leçon 7 --- Adapter le prompt à l\'outil
 
@@ -1927,7 +1927,7 @@ Un workflow qui fonctionne ne suffit pas : il doit être **maintenable** et **fi
 
 Une automatisation manipule souvent des données sensibles (emails, fiches clients, documents internes). Vous devez en tenir compte. Protégez vos **clés d\'API** (ne les écrivez jamais en clair), réfléchissez à ce que vous envoyez aux services externes, et privilégiez l\'**auto-hébergement** quand les données sont confidentielles. Le respect du RGPD s\'applique aussi à vos workflows.
 
-**Attention --- une question à toujours se poser.** Avant d\'envoyer le contenu d\'un email client à un service d\'IA externe, demandez-vous : ai-je le droit de transmettre cette donnée à un tiers ? Si elle est confidentielle, mieux vaut un modèle auto-hébergé. **Leçon** : l\'automatisation ne dispense jamais de la vigilance sur la confidentialité --- au contraire, elle la rend plus cruciale, car le traitement est massif.
+**Attention --- une question à toujours se poser.** Avant d\'envoyer le contenu d\'un email client à un service d\'IA externe, demandez-vous : ai-je le droit de transmettre cette donnée à un tiers ? Si elle est confidentielle, mieux vaut un modèle auto-hébergé. **À retenir** : l\'automatisation ne dispense jamais de la vigilance sur la confidentialité --- au contraire, elle la rend plus cruciale, car le traitement est massif.
 
 ### Leçon 9 --- Comprendre les déclencheurs en profondeur
 
@@ -1943,7 +1943,7 @@ Le déclencheur est le point de départ de toute automatisation : c\'est l\'év�
 
 -   **Déclencheur manuel** : on lance le flux à la demande, utile pour les tests et les tâches ponctuelles.
 
-**Méthode --- choisir le bon déclencheur.** Pour un rapport hebdomadaire, un déclencheur temporel (chaque vendredi 17 h) s\'impose. Pour répondre aux clients, un déclencheur sur événement (email reçu) est le bon choix. Se tromper de déclencheur, c\'est construire une automatisation qui se lance au mauvais moment. **Leçon** : le déclencheur doit épouser le rythme réel du processus.
+**Méthode --- choisir le bon déclencheur.** Pour un rapport hebdomadaire, un déclencheur temporel (chaque vendredi 17 h) s\'impose. Pour répondre aux clients, un déclencheur sur événement (email reçu) est le bon choix. Se tromper de déclencheur, c\'est construire une automatisation qui se lance au mauvais moment. **À retenir** : le déclencheur doit épouser le rythme réel du processus.
 
 ### Leçon 10 --- Connecter n8n au reste de votre écosystème
 
@@ -2219,7 +2219,7 @@ Au-delà de l\'usage général, on peut **configurer un assistant** pour une tâ
 
 -   **Standardiser** : toute l\'équipe utilise le même assistant, donc des résultats cohérents.
 
-**Cas pratique --- un assistant de support sur mesure.** Une entreprise crée un assistant nourri de sa documentation produit et de sa FAQ, avec pour consigne de répondre dans un ton courtois et de toujours citer la source. Chaque agent du support l\'utilise : les réponses sont rapides, cohérentes et fiables. On a transformé un outil générique en expert maison. **Leçon** : la personnalisation décuple la valeur d\'un assistant.
+**Cas pratique --- un assistant de support sur mesure.** Une entreprise crée un assistant nourri de sa documentation produit et de sa FAQ, avec pour consigne de répondre dans un ton courtois et de toujours citer la source. Chaque agent du support l\'utilise : les réponses sont rapides, cohérentes et fiables. On a transformé un outil générique en expert maison. **À retenir** : la personnalisation décuple la valeur d\'un assistant.
 
 ### Leçon 2 --- Combiner les outils en un système
 
@@ -2619,13 +2619,13 @@ On n\'apprend l\'IA qu\'en résolvant des problèmes. Ce chapitre vous propose u
 
 On dispose d\'un labyrinthe et l\'on veut trouver la sortie la plus proche de l\'entrée. Quel algorithme de recherche choisir, et pourquoi ?
 
-**Correction.** On choisit la **recherche en largeur (BFS)**. Elle explore le labyrinthe par cercles concentriques autour de l\'entrée : toutes les cases à un pas, puis à deux pas, etc. La première sortie atteinte est donc nécessairement la plus proche. La recherche en profondeur, elle, pourrait s\'enfoncer dans un long couloir et trouver d\'abord une sortie lointaine. **Leçon** : BFS garantit le chemin le plus court dans un graphe non pondéré.
+**Correction.** On choisit la **recherche en largeur (BFS)**. Elle explore le labyrinthe par cercles concentriques autour de l\'entrée : toutes les cases à un pas, puis à deux pas, etc. La première sortie atteinte est donc nécessairement la plus proche. La recherche en profondeur, elle, pourrait s\'enfoncer dans un long couloir et trouver d\'abord une sortie lointaine. **À retenir** : BFS garantit le chemin le plus court dans un graphe non pondéré.
 
 ### Problème 1.2
 
 Pourquoi A\\\* est-il généralement plus rapide que BFS pour aller d\'un point à un autre sur une carte ?
 
-**Correction.** BFS explore dans toutes les directions sans tenir compte du but. A\\\* utilise une **heuristique** (par exemple la distance à vol d\'oiseau) pour privilégier les directions menant vers le but. Il explore donc beaucoup moins de cases inutiles. **Leçon** : une bonne heuristique transforme une recherche aveugle en recherche orientée, bien plus efficace.
+**Correction.** BFS explore dans toutes les directions sans tenir compte du but. A\\\* utilise une **heuristique** (par exemple la distance à vol d\'oiseau) pour privilégier les directions menant vers le but. Il explore donc beaucoup moins de cases inutiles. **À retenir** : une bonne heuristique transforme une recherche aveugle en recherche orientée, bien plus efficace.
 
 ## Thème 2 --- Mathématiques de l\'apprentissage
 
@@ -2633,19 +2633,19 @@ Pourquoi A\\\* est-il généralement plus rapide que BFS pour aller d\'un point 
 
 Soit la fonction de coût f(w) = (w − 4)². On part de w = 7 avec un taux d\'apprentissage de 0,1. Effectuez deux étapes de descente de gradient.
 
-**Correction.** La dérivée est f\'(w) = 2(w − 4). **Étape 1** : en w = 7, f\'(7) = 2×3 = 6. On met à jour : w = 7 − 0,1×6 = 6,4. **Étape 2** : en w = 6,4, f\'(6,4) = 2×2,4 = 4,8. On met à jour : w = 6,4 − 0,1×4,8 = 5,92. On se rapproche bien du minimum, situé en w = 4. **Leçon** : à chaque pas, on avance vers le minimum d\'une distance proportionnelle à la pente.
+**Correction.** La dérivée est f\'(w) = 2(w − 4). **Étape 1** : en w = 7, f\'(7) = 2×3 = 6. On met à jour : w = 7 − 0,1×6 = 6,4. **Étape 2** : en w = 6,4, f\'(6,4) = 2×2,4 = 4,8. On met à jour : w = 6,4 − 0,1×4,8 = 5,92. On se rapproche bien du minimum, situé en w = 4. **À retenir** : à chaque pas, on avance vers le minimum d\'une distance proportionnelle à la pente.
 
 ### Problème 2.2
 
 Que se passe-t-il si l\'on prend un taux d\'apprentissage de 1,5 dans le problème précédent ?
 
-**Correction.** En w = 7 : w = 7 − 1,5×6 = −2. En w = −2 : f\'(−2) = 2×(−6) = −12, donc w = −2 − 1,5×(−12) = 16. On s\'éloigne de plus en plus : la descente **diverge**. **Leçon** : un taux d\'apprentissage trop grand fait osciller et diverger l\'algorithme. Le bon réglage est crucial.
+**Correction.** En w = 7 : w = 7 − 1,5×6 = −2. En w = −2 : f\'(−2) = 2×(−6) = −12, donc w = −2 − 1,5×(−12) = 16. On s\'éloigne de plus en plus : la descente **diverge**. **À retenir** : un taux d\'apprentissage trop grand fait osciller et diverger l\'algorithme. Le bon réglage est crucial.
 
 ### Problème 2.3
 
 Calculez le produit scalaire des vecteurs (2, −1, 3) et (1, 4, 2). Que conclure sur leur alignement ?
 
-**Correction.** Produit scalaire = 2×1 + (−1)×4 + 3×2 = 2 − 4 + 6 = 4. Le résultat est positif mais modéré : les vecteurs pointent globalement dans des directions proches, sans être parfaitement alignés. **Leçon** : le signe et l\'ampleur du produit scalaire renseignent sur la similarité de direction.
+**Correction.** Produit scalaire = 2×1 + (−1)×4 + 3×2 = 2 − 4 + 6 = 4. Le résultat est positif mais modéré : les vecteurs pointent globalement dans des directions proches, sans être parfaitement alignés. **À retenir** : le signe et l\'ampleur du produit scalaire renseignent sur la similarité de direction.
 
 ## Thème 3 --- Machine learning
 
@@ -2653,19 +2653,19 @@ Calculez le produit scalaire des vecteurs (2, −1, 3) et (1, 4, 2). Que conclur
 
 Un modèle obtient 98 % de bonnes réponses sur les données d\'entraînement, mais seulement 65 % sur le jeu de test. Diagnostiquez et proposez trois remèdes.
 
-**Correction.** C\'est un cas typique de **sur-apprentissage** : le modèle a mémorisé les données d\'entraînement au lieu d\'apprendre la tendance générale. Remèdes : (1) simplifier le modèle ou le **régulariser** ; (2) fournir **plus de données** d\'entraînement ; (3) utiliser la **validation croisée** et l\'arrêt précoce. **Leçon** : un grand écart entre entraînement et test est la signature du sur-apprentissage.
+**Correction.** C\'est un cas typique de **sur-apprentissage** : le modèle a mémorisé les données d\'entraînement au lieu d\'apprendre la tendance générale. Remèdes : (1) simplifier le modèle ou le **régulariser** ; (2) fournir **plus de données** d\'entraînement ; (3) utiliser la **validation croisée** et l\'arrêt précoce. **À retenir** : un grand écart entre entraînement et test est la signature du sur-apprentissage.
 
 ### Problème 3.2
 
 Pour un test de dépistage du cancer, faut-il privilégier la précision ou le rappel ? Justifiez.
 
-**Correction.** On privilégie le **rappel** : il vaut mieux détecter tous les vrais malades, quitte à avoir quelques fausses alertes (qu\'un examen complémentaire écartera), que de manquer un malade réel --- ce qui serait dramatique. **Leçon** : le choix de la métrique dépend du coût relatif des différents types d\'erreurs.
+**Correction.** On privilégie le **rappel** : il vaut mieux détecter tous les vrais malades, quitte à avoir quelques fausses alertes (qu\'un examen complémentaire écartera), que de manquer un malade réel --- ce qui serait dramatique. **À retenir** : le choix de la métrique dépend du coût relatif des différents types d\'erreurs.
 
 ### Problème 3.3
 
 Vous devez regrouper des clients sans catégories prédéfinies. Apprentissage supervisé ou non supervisé ? Quel algorithme ?
 
-**Correction.** Sans étiquettes, c\'est de l\'apprentissage **non supervisé**. On utilise un algorithme de **clustering** comme k-means, qui partitionne les clients en groupes homogènes selon leurs caractéristiques. **Leçon** : l\'absence d\'étiquettes oriente vers le non supervisé.
+**Correction.** Sans étiquettes, c\'est de l\'apprentissage **non supervisé**. On utilise un algorithme de **clustering** comme k-means, qui partitionne les clients en groupes homogènes selon leurs caractéristiques. **À retenir** : l\'absence d\'étiquettes oriente vers le non supervisé.
 
 ## Thème 4 --- Apprentissage profond
 
@@ -2673,13 +2673,13 @@ Vous devez regrouper des clients sans catégories prédéfinies. Apprentissage s
 
 Pourquoi une fonction d\'activation non linéaire est-elle indispensable dans un réseau de neurones ?
 
-**Correction.** Sans non-linéarité, empiler des couches reviendrait à une seule transformation linéaire : le réseau, si profond soit-il, ne pourrait modéliser que des relations linéaires. La fonction d\'activation non linéaire (comme la ReLU) permet au réseau de capturer des relations complexes. **Leçon** : la non-linéarité est ce qui donne sa puissance à l\'apprentissage profond.
+**Correction.** Sans non-linéarité, empiler des couches reviendrait à une seule transformation linéaire : le réseau, si profond soit-il, ne pourrait modéliser que des relations linéaires. La fonction d\'activation non linéaire (comme la ReLU) permet au réseau de capturer des relations complexes. **À retenir** : la non-linéarité est ce qui donne sa puissance à l\'apprentissage profond.
 
 ### Problème 4.2
 
 Vous devez analyser des séries temporelles de cours de bourse. CNN ou RNN ?
 
-**Correction.** Un **RNN** (ou ses variantes LSTM, GRU), car les données sont **séquentielles** et l\'ordre temporel compte : le cours d\'aujourd\'hui dépend de ceux des jours précédents. Les CNN sont adaptés aux données spatiales comme les images. **Leçon** : on choisit l\'architecture selon la structure des données.
+**Correction.** Un **RNN** (ou ses variantes LSTM, GRU), car les données sont **séquentielles** et l\'ordre temporel compte : le cours d\'aujourd\'hui dépend de ceux des jours précédents. Les CNN sont adaptés aux données spatiales comme les images. **À retenir** : on choisit l\'architecture selon la structure des données.
 
 ## Thème 5 --- IA générative et prompting
 
@@ -2687,13 +2687,13 @@ Vous devez analyser des séries temporelles de cours de bourse. CNN ou RNN ?
 
 Transformez ce prompt faible en prompt professionnel : « écris-moi quelque chose sur le changement climatique ».
 
-**Correction.** Un prompt professionnel pourrait être : « **Rôle** : tu es journaliste scientifique. **Tâche** : rédige un article de vulgarisation sur les trois principales causes du changement climatique. **Format** : 300 mots, trois paragraphes avec sous-titres. **Contraintes** : ton accessible, sans catastrophisme, fondé sur des faits. » **Leçon** : préciser rôle, tâche, format et contraintes transforme radicalement la qualité de la réponse.
+**Correction.** Un prompt professionnel pourrait être : « **Rôle** : tu es journaliste scientifique. **Tâche** : rédige un article de vulgarisation sur les trois principales causes du changement climatique. **Format** : 300 mots, trois paragraphes avec sous-titres. **Contraintes** : ton accessible, sans catastrophisme, fondé sur des faits. » **À retenir** : préciser rôle, tâche, format et contraintes transforme radicalement la qualité de la réponse.
 
 ### Problème 5.2
 
 Un assistant affirme avec aplomb une statistique précise mais introuvable ailleurs. Que faites-vous, et comment l\'éviter à l\'avenir ?
 
-**Correction.** Il s\'agit probablement d\'une **hallucination**. On ne reprend jamais cette statistique sans la vérifier dans une source fiable. Pour l\'éviter : utiliser un outil à recherche sourcée (Perplexity) ou une approche **RAG** qui ancre les réponses dans des documents réels. **Leçon** : la fluidité d\'une réponse n\'est jamais une preuve de sa véracité.
+**Correction.** Il s\'agit probablement d\'une **hallucination**. On ne reprend jamais cette statistique sans la vérifier dans une source fiable. Pour l\'éviter : utiliser un outil à recherche sourcée (Perplexity) ou une approche **RAG** qui ancre les réponses dans des documents réels. **À retenir** : la fluidité d\'une réponse n\'est jamais une preuve de sa véracité.
 
 ## Thème 6 --- Automatisation et entreprise
 
@@ -2701,13 +2701,13 @@ Un assistant affirme avec aplomb une statistique précise mais introuvable aille
 
 Une PME veut automatiser le tri de ses candidatures. Décrivez le workflow et placez la validation humaine.
 
-**Correction. Déclencheur** : réception d\'une candidature. **Traitement IA** : extraction des informations clés, évaluation par rapport aux critères du poste, classement. **Routage** : les candidatures clairement hors critères sont écartées (avec réponse polie) ; les autres sont présentées à un recruteur. **Validation humaine** : le recruteur décide qui convoquer --- jamais l\'IA seule, car un recrutement engage des personnes et comporte des risques de biais. **Leçon** : on automatise le tri, on laisse à l\'humain la décision sensible.
+**Correction. Déclencheur** : réception d\'une candidature. **Traitement IA** : extraction des informations clés, évaluation par rapport aux critères du poste, classement. **Routage** : les candidatures clairement hors critères sont écartées (avec réponse polie) ; les autres sont présentées à un recruteur. **Validation humaine** : le recruteur décide qui convoquer --- jamais l\'IA seule, car un recrutement engage des personnes et comporte des risques de biais. **À retenir** : on automatise le tri, on laisse à l\'humain la décision sensible.
 
 ### Problème 6.2
 
 Une entreprise n\'a jamais utilisé l\'IA et veut « tout transformer en six mois ». Quel conseil donnez-vous ?
 
-**Correction.** Tempérer l\'ambition. Une organisation au palier de **sensibilisation** ne saute pas directement à la transformation. On conseille : (1) former les équipes ; (2) lancer **un** projet pilote à valeur rapide et risque faible ; (3) mesurer, apprendre, puis élargir. **Leçon** : la maturité IA se construit par paliers ; vouloir tout transformer d\'emblée mène à l\'échec.
+**Correction.** Tempérer l\'ambition. Une organisation au palier de **sensibilisation** ne saute pas directement à la transformation. On conseille : (1) former les équipes ; (2) lancer **un** projet pilote à valeur rapide et risque faible ; (3) mesurer, apprendre, puis élargir. **À retenir** : la maturité IA se construit par paliers ; vouloir tout transformer d\'emblée mène à l\'échec.
 
 Entraînez-vous régulièrement sur ce type de problèmes. La capacité à raisonner sur des cas concrets, bien plus que la mémorisation, est ce qui distingue celui qui sait de celui qui croit savoir.
 
