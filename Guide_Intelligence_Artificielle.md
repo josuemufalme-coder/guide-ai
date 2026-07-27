@@ -56,7 +56,7 @@ Commençons par le commencement. Avant de construire quoi que ce soit d\'intelli
 
 *Figure 1.1 --- L\'IA englobe le machine learning, qui englobe l\'apprentissage profond.*
 
-## Introduction à l\'intelligence artificielle
+## Chapitre 1 --- Introduction à l\'intelligence artificielle
 
 ### Leçon 1 --- Qu\'est-ce que l\'intelligence artificielle ?
 
@@ -200,7 +200,7 @@ Un dernier conseil avant d\'entrer dans le vif. La progression de ce livre n\'es
 
 -   De nombreux problèmes se formulent comme une recherche dans un espace d\'états ; A\\\* est l\'algorithme de recherche informée de référence.
 
-## Programmation Python pour l\'intelligence artificielle
+## Chapitre 2 --- Programmation Python pour l\'intelligence artificielle
 
 ### Leçon 1 --- Pourquoi Python ?
 
@@ -350,7 +350,7 @@ Python doit sa domination à un écosystème de bibliothèques exceptionnel. Voi
 
 -   Un bon praticien soigne ses environnements, son versioning et la reproductibilité de son code.
 
-## Mathématiques pour l\'intelligence artificielle
+## Chapitre 3 --- Mathématiques pour l\'intelligence artificielle
 
 ### Leçon 1 --- Pourquoi des mathématiques ?
 
@@ -458,7 +458,7 @@ Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre liné
 
 -   Le théorème de Bayes met à jour nos croyances ; la théorie de l\'information mesure l\'erreur des modèles.
 
-## Fondamentaux de la Data Science et des statistiques
+## Chapitre 4 --- Fondamentaux de la Data Science et des statistiques
 
 ### Leçon 1 --- La donnée, matière première de l\'IA
 
@@ -571,7 +571,7 @@ Nous voici au cœur du sujet. Vous avez les fondations ; il est temps de répond
 
 *Figure 2.2 --- Les trois paradigmes : supervisé (données étiquetées), non supervisé (regroupement), renforcement (essai-erreur).*
 
-## Apprentissage automatique supervisé et non supervisé
+## Chapitre 5 --- Apprentissage automatique supervisé et non supervisé
 
 ### Leçon 1 --- Les trois façons d\'apprendre
 
@@ -687,7 +687,7 @@ Récapitulons la démarche que vous suivrez systématiquement, et que vous devez
 
 -   L\'objectif est de généraliser : on évalue toujours sur des données de test, et on surveille le sur-apprentissage.
 
-## Réseaux de neurones et apprentissage profond
+## Chapitre 6 --- Réseaux de neurones et apprentissage profond
 
 ### Leçon 1 --- Du neurone biologique au neurone artificiel
 
@@ -799,7 +799,7 @@ La fonction d\'activation est ce petit ingrédient qui donne toute sa puissance 
 
 -   CNN pour les images, RNN pour les séquences ; dropout et Adam font partie de la boîte à outils essentielle.
 
-## Ingénierie des données et MLOps
+## Chapitre 7 --- Ingénierie des données et MLOps
 
 ### Leçon 1 --- Le fossé entre le laboratoire et la production
 
@@ -875,7 +875,7 @@ Récapitulons le parcours d\'un modèle, de l\'idée à la production durable. C
 
 -   Un modèle déployé se surveille en continu pour détecter la dérive des données.
 
-## Statistiques avancées et modèles probabilistes
+## Chapitre 8 --- Statistiques avancées et modèles probabilistes
 
 ### Leçon 1 --- Prédire, mais aussi connaître son incertitude
 
@@ -943,7 +943,7 @@ Illustrons par un cas concret l\'importance de quantifier l\'incertitude. Deux m
 
 Vous voici aux frontières actuelles de l\'intelligence artificielle. Fort de vos fondations et de votre compréhension de l\'apprentissage profond, vous allez explorer les domaines qui font l\'actualité : le langage, l\'IA générative, la vision, l\'apprentissage par renforcement, et enfin les avancées les plus récentes --- agents autonomes, protocole MCP, multimodalité et sûreté de l\'IA. C\'est ici que les choses deviennent passionnantes.
 
-## Traitement automatique du langage naturel (NLP)
+## Chapitre 9 --- Traitement automatique du langage naturel (NLP)
 
 ### Leçon 1 --- Faire comprendre le langage à une machine
 
@@ -1031,7 +1031,7 @@ Techniquement, pour chaque mot, le modèle calcule un score d\'attention envers 
 
 -   Pré-entraînement puis fine-tuning : la recette qui a démocratisé le NLP de pointe.
 
-## IA générative et ingénierie des invites (prompting)
+## Chapitre 10 --- IA générative et ingénierie des invites (prompting)
 
 ### Leçon 1 --- La technologie qui a tout changé
 
@@ -1145,7 +1145,7 @@ Générer une bonne image suit les mêmes principes que le prompting textuel, av
 
 -   Le RAG ancre les réponses dans des sources vérifiables et réduit les hallucinations.
 
-## Vision par ordinateur
+## Chapitre 11 --- Vision par ordinateur
 
 ### Leçon 1 --- Donner des yeux aux machines
 
@@ -1215,7 +1215,7 @@ Pour mesurer la portée de la vision par ordinateur, voici ses grands domaines d
 
 -   Au-delà de la classification : détection d\'objets et segmentation pixel par pixel.
 
-## Apprentissage par renforcement
+## Chapitre 12 --- Apprentissage par renforcement
 
 ### Leçon 1 --- Apprendre par essais et erreurs
 
@@ -1283,7 +1283,7 @@ Le renforcement brille dans certains domaines et peine dans d\'autres. Savoir o�
 
 -   Le dilemme exploration/exploitation est au cœur de tout agent par renforcement.
 
-## IA avancée : agents, protocole MCP, multimodalité et sûreté
+## Chapitre 13 --- IA avancée : agents, protocole MCP, multimodalité et sûreté
 
 ### Leçon 1 --- Le visage de l\'IA en 2026
 
@@ -1393,7 +1393,7 @@ Les tendances de fond pour les années à venir : des agents de plus en plus aut
 
 Savoir construire ne suffit pas. Celui qui maîtrise vraiment l\'IA comprend aussi les conséquences de son travail : il sait peser les questions éthiques, piloter un projet jusqu\'au bout, relier la technique aux besoins réels des gens, et mener seul un projet d\'envergure. Cette partie élargit le regard --- car l\'IA n\'est jamais seulement une affaire de technique.
 
-## Éthique, régulation et enjeux sociétaux de l\'IA
+## Chapitre 14 --- Éthique, régulation et enjeux sociétaux de l\'IA
 
 ### Leçon 1 --- Pourquoi l\'éthique n\'est pas une option
 
@@ -1463,7 +1463,7 @@ Face à un dilemme éthique en IA, ne tranchez pas à l\'instinct : raisonnez av
 
 -   Les régulations (AI Act, RGPD) encadrent une IA de plus en plus puissante.
 
-## Gestion de projets d\'intelligence artificielle
+## Chapitre 15 --- Gestion de projets d\'intelligence artificielle
 
 ### Leçon 1 --- Pourquoi les projets d\'IA échouent
 
@@ -1533,7 +1533,7 @@ Un chef de projet IA doit traduire la technique en langage métier. Ne parlez pa
 
 -   Un projet d\'IA est d\'abord un projet de données, de risques et de parties prenantes.
 
-## Cas d\'usage professionnels et applications sectorielles
+## Chapitre 16 --- Cas d\'usage professionnels et applications sectorielles
 
 ### Leçon 1 --- Relier la technique à la valeur
 
@@ -1587,7 +1587,7 @@ Au-delà du catalogue, vous apprendrez à analyser un contexte métier, à repé
 
 -   Le conseil en IA suppose d\'analyser un contexte et de formuler des recommandations fondées.
 
-## Mener son propre grand projet
+## Chapitre 17 --- Mener son propre grand projet
 
 ### Pourquoi un projet d\'envergure ?
 
@@ -1631,7 +1631,7 @@ Pourquoi cette partie est-elle si importante ? Parce que la connaissance théori
 
 Une remarque importante : les outils évoluent vite, et leurs interfaces changent. Ce qui compte n\'est pas de mémoriser tel bouton de tel logiciel, mais de comprendre les **principes** --- comment bien formuler une demande, comment penser une automatisation, comment intégrer l\'IA dans une organisation. Ces principes restent valables quels que soient les outils du moment. Concentrez-vous sur eux.
 
-## Maîtriser les assistants IA : ChatGPT, Claude, Perplexity
+## Chapitre 18 --- Maîtriser les assistants IA : ChatGPT, Claude, Perplexity
 
 ### Leçon 1 --- Comprendre ce qu\'est un assistant IA
 
@@ -1735,7 +1735,7 @@ Remarquez le point commun de tous ces scénarios : l\'humain **dirige**, l\'IA *
 
 -   Méthode : itérer, donner du contexte, décomposer, et toujours vérifier les faits.
 
-## Ingénierie de prompts : l\'art de bien formuler
+## Chapitre 19 --- Ingénierie de prompts : l\'art de bien formuler
 
 ### Leçon 1 --- Pourquoi le prompt est décisif
 
@@ -1841,7 +1841,7 @@ Chaque assistant a ses particularités. Un modèle à long contexte (Claude) acc
 
 -   Se constituer une bibliothèque de prompts éprouvés fait gagner du temps et garantit la qualité.
 
-## Automatisation des tâches avec n8n
+## Chapitre 20 --- Automatisation des tâches avec n8n
 
 ### Leçon 1 --- Qu\'est-ce que l\'automatisation ?
 
@@ -1983,7 +1983,7 @@ C\'est cette capacité d\'orchestration qui transforme des outils isolés en un 
 
 -   On chaîne plusieurs IA pour automatiser des processus entiers, en gardant l\'humain dans la boucle pour les cas sensibles.
 
-## Intégrer l\'IA dans une entreprise
+## Chapitre 21 --- Intégrer l\'IA dans une entreprise
 
 ### Leçon 1 --- Le vrai défi n\'est pas technique
 
@@ -2091,7 +2091,7 @@ Pour conclure, voici une feuille de route type que vous pourriez proposer à une
 
 -   Embarquer les équipes, encadrer par une gouvernance claire et mesurer la valeur sont les clés du succès.
 
-## IA pour la productivité et la création de contenu
+## Chapitre 22 --- IA pour la productivité et la création de contenu
 
 ### Leçon 1 --- L\'IA comme multiplicateur de productivité
 
@@ -2149,7 +2149,7 @@ L\'objectif final est d\'intégrer l\'IA dans une **routine** : un ensemble d\'h
 
 -   Le professionnel augmenté orchestre recherche, rédaction et automatisation dans une routine fluide.
 
-## Études de cas : l\'automatisation IA par secteur
+## Chapitre 23 --- Études de cas : l\'automatisation IA par secteur
 
 ### Leçon 1 --- Apprendre par l\'exemple
 
@@ -2205,7 +2205,7 @@ Pour passer de l\'inspiration à l\'action, suivez une méthode : repérez une t
 
 -   Méthode : repérer la tâche, vérifier ses règles, placer les validations humaines, construire et tester pas à pas.
 
-## Créer ses propres assistants et anticiper l\'avenir
+## Chapitre 24 --- Créer ses propres assistants et anticiper l\'avenir
 
 ### Leçon 1 --- Personnaliser un assistant pour un besoin précis
 
