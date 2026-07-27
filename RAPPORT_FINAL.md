@@ -62,7 +62,7 @@ Tout se rejoue avec une commande. Rien n'est fait à la main.
 | `outils/reference.docx` | le gabarit (reconstruit dès que son générateur change) |
 | `outils/finitions_docx.py` | réglages de pagination impossibles en Markdown |
 | `outils/exporter_pdf.py` | export PDF avec calcul des champs |
-| `outils/images_nb.py` | convertit les figures en niveaux de gris |
+| `outils/images_nb.py` | tirage noir et blanc des figures (non appliqué) |
 | `outils/controle_visuel.py` | analyse de mise en page + images des pages |
 | `build.sh` | orchestre le tout et vérifie le résultat |
 
@@ -188,7 +188,7 @@ pour la **mise en page**, pas pour la **typographie**.
 
 ---
 
-## 4. Le parti pris typographique : noir et blanc intégral
+## 4. Le parti pris typographique : titres en noir
 
 Vous m'avez dit que le bleu des titres faisait « généré par l'IA ». Vous avez
 raison, et la raison est identifiable : un aplat de couleur unique appliqué
@@ -205,35 +205,35 @@ presque jamais cela — il hiérarchise par la **police**, le **corps**, la
 | **Chapitre** | Cambria 19 pt gras, aligné à gauche, filet épais (1,5 pt) sous le titre, sur page nouvelle |
 | **Leçon** | Cambria 14 pt gras, sans filet, respiration large au-dessus |
 | **Sous-partie** | Cambria 12 pt gras italique |
-| **Encadré (exercices, problèmes)** | deux filets gris fins, en retrait des deux côtés, corps 10 pt — plus d'aplat de couleur |
-| **Code** | Consolas 9 pt sur fond gris très clair, filet gris à gauche, coloration syntaxique **monochrome** (mots-clés en gras, commentaires en italique) |
+| **Encadré (exercices, problèmes)** | deux filets gris fins, en retrait des deux côtés, corps 10 pt |
 | **Légendes** | Calibri 9 pt italique, gris foncé, centré |
 
 Le contraste **serif pour les titres / sans serif pour le corps** fait à lui
 seul le travail que faisait la couleur, et il tient à l'impression comme à la
 photocopie.
 
-**Vérification.** Le PDF final ne contient que **six teintes, toutes neutres**
-(du noir au gris clair) : aucun pixel coloré dans le texte ni dans les filets.
+**Ce qui reste en couleur, et doit le rester** : les 17 figures et la coloration
+syntaxique des blocs de code. Ce sont les deux endroits du manuel où la couleur
+porte de l'information — la distinction des classes sur un nuage de points,
+celle des mots-clés et des commentaires dans un programme — et non de la
+décoration. Vérifié sur le PDF : 17 figures sur 17 en couleur.
 
-**Les 17 figures ont été converties en niveaux de gris** (`outils/images_nb.py`),
-avec un léger renforcement de contraste — sans lui, une palette vive donne des
-gris trop proches et les aplats deviennent indistincts. Les originaux en couleur
-sont conservés dans `media_couleur/` et `python3 outils/images_nb.py --couleur`
-les restaure.
+**Les encadrés d'exercices** ont perdu leur aplat bleu clair et leur barre
+colorée au profit de deux filets gris fins. Ce n'était pas un titre, mais cet
+aplat participait du même effet de gabarit automatique et jurait avec des titres
+noirs. Dites-moi si vous préférez que la teinte revienne : c'est une ligne à
+changer dans `outils/faire_reference_docx.py`.
 
-**Deux réserves sur ces figures**, à traiter quand vous les régénérerez :
-
-- La distinction par la couleur y disparaît. Sur le schéma du réseau dense, les
-  neurones d'entrée, cachés et de sortie se distinguaient par trois couleurs ;
-  en gris ils se distinguent encore, mais moins nettement. Les diagrammes
-  refaits gagneront à utiliser des **formes et des trames** plutôt que des
-  teintes.
-- Le contour des blocs colorés du schéma n8n devient un aplat gris moyen sur
-  lequel le texte blanc reste lisible, mais de justesse.
+**Un outil de secours si vous devez un jour imprimer en noir et blanc.**
+`python3 outils/images_nb.py` convertit les figures en niveaux de gris avec un
+renforcement de contraste, en gardant les originaux dans `media_couleur/` ;
+`--couleur` les restaure. Il n'est **pas** appliqué : le manuel est livré avec
+ses figures en couleur.
 
 **Coût en pages : +3** (275 → 278). Les filets et les respirations prennent un
-peu de place, la disparition des aplats en rend une partie.
+peu de place.
+
+---
 
 ## 5. Ce que je n'ai pas pu vérifier — votre relecture est nécessaire
 

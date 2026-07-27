@@ -3,6 +3,9 @@
 """
 images_nb.py --- Convertit les figures en niveaux de gris.
 
+Outil de secours, pour un tirage en noir et blanc. Le manuel est livré avec
+ses figures en couleur ; ce script n'est pas appelé par build.sh.
+
 Les originaux en couleur sont conservés dans `media_couleur/` ; `media/`,
 que la compilation utilise, reçoit les versions en niveaux de gris.
 

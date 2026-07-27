@@ -45,7 +45,7 @@ pandoc "$SOURCE" \
   --to=docx \
   --reference-doc="$MODELE" \
   --resource-path=.:media \
-  --highlight-style=monochrome \
+  --highlight-style=tango \
   --metadata lang=fr-FR \
   --output="$SORTIE"
 
