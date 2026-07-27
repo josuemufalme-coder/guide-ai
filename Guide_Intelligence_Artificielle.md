@@ -43,7 +43,7 @@ Un dernier mot, le plus important : on n\'apprend pas l\'IA en lisant, mais en f
 
   VI --- On construit ensemble         Quatre projets guidés, pas à pas, du début à la fin
 
-  VII --- S\'entraîner                 Des exercices corrigés, par thème, pour vérifier sa compréhension
+  VII --- S\'entraîner                 Soixante-quatre exercices gradués, corrigés en annexe
 
   VIII --- Pour aller plus loin        Lectures, outils, métiers, glossaire, conseils, questions fréquentes
   ---------------------------------------------------------------------------------------------------------------------------------------
@@ -4602,107 +4602,434 @@ Sur les hypothèses du script — 200 messages par jour, 4 minutes en manuel, 30
 
 Ces quatre projets, une fois réalisés, constituent le socle de votre **portfolio**. Ils prouvent, mieux que tout diplôme, que vous savez faire. Gardez-les précieusement, soignez-les, et présentez-les fièrement : ce sont eux qui convaincront un employeur ou un client.
 
-# Partie VII --- S\'entraîner : exercices corrigés
+# Partie VII --- S\'entraîner : soixante-quatre exercices
 
 On n\'apprend l\'IA qu\'en résolvant des problèmes. Ce chapitre vous propose une série d\'exercices entièrement corrigés, organisés par thème. Pour chacun : cachez d\'abord la solution, cherchez par vous-même, puis comparez. La correction détaillée vous montre non seulement la réponse, mais le raisonnement qui y mène, car c\'est le raisonnement qui compte.
+
+Les exercices sont classés par **niveau**, indiqué devant chaque énoncé.
+
+-   **Niveau 1 --- Vérifier.** On contrôle qu'une notion est comprise. Quelques minutes, aucun calcul.
+-   **Niveau 2 --- Appliquer.** On met la notion en œuvre sur un cas, souvent avec des chiffres. Dix à vingt minutes.
+-   **Niveau 3 --- Raisonner.** On affronte une situation ambiguë, où il faut diagnostiquer, arbitrer et justifier. Aucune réponse unique.
+
+**Les corrigés ne figurent plus ici.** Ils sont rassemblés en fin d'ouvrage, dans l'annexe « Corrigés des exercices ». Chaque énoncé porte le renvoi vers le sien. Ce déplacement n'est pas une coquetterie de mise en page : tant que la réponse est sous vos yeux, vous ne cherchez pas vraiment.
+
 
 ## Thème 1 --- Fondamentaux et recherche
 
 ### Problème 1.1
 
-On dispose d\'un labyrinthe et l\'on veut trouver la sortie la plus proche de l\'entrée. Quel algorithme de recherche choisir, et pourquoi ?
-
-**Correction.** On choisit la **recherche en largeur (BFS)**. Elle explore le labyrinthe par cercles concentriques autour de l\'entrée : toutes les cases à un pas, puis à deux pas, etc. La première sortie atteinte est donc nécessairement la plus proche. La recherche en profondeur, elle, pourrait s\'enfoncer dans un long couloir et trouver d\'abord une sortie lointaine. **À retenir** : BFS garantit le chemin le plus court dans un graphe non pondéré.
+> **Niveau 1.** Parmi ces systèmes, lesquels relèvent de l'apprentissage automatique et lesquels d'une programmation par règles : un thermostat programmable, un filtre anti-spam qui s'adapte, un correcteur orthographique à dictionnaire, un assistant conversationnel ?
+>
+> → *Corrigé 1.1, en annexe.*
 
 ### Problème 1.2
 
-Pourquoi A\\\* est-il généralement plus rapide que BFS pour aller d\'un point à un autre sur une carte ?
+> **Niveau 1.** Rangez dans l'ordre d'inclusion : apprentissage profond, intelligence artificielle, apprentissage automatique. Donnez un exemple de système qui appartient au premier ensemble mais pas au dernier.
+>
+> → *Corrigé 1.2, en annexe.*
 
-**Correction.** BFS explore dans toutes les directions sans tenir compte du but. A\\\* utilise une **heuristique** (par exemple la distance à vol d\'oiseau) pour privilégier les directions menant vers le but. Il explore donc beaucoup moins de cases inutiles. **À retenir** : une bonne heuristique transforme une recherche aveugle en recherche orientée, bien plus efficace.
+### Problème 1.3
 
-## Thème 2 --- Mathématiques de l\'apprentissage
+> **Niveau 2.** On dispose d\'un labyrinthe et l\'on veut trouver la sortie la plus proche de l\'entrée. Quel algorithme de recherche choisir, et pourquoi ?
+>
+> → *Corrigé 1.3, en annexe.*
+
+### Problème 1.4
+
+> **Niveau 2.** Pourquoi A\\\* est-il généralement plus rapide que BFS pour aller d\'un point à un autre sur une carte ?
+>
+> → *Corrigé 1.4, en annexe.*
+
+### Problème 1.5
+
+> **Niveau 2.** Sur le réseau de la leçon 4 du chapitre 1, la ville F a un f de 17 et n'est jamais explorée. Que se passerait-il si l'on avait donné à F une heuristique de 2 au lieu de 14 ? La réponse trouvée serait-elle encore optimale ?
+>
+> → *Corrigé 1.5, en annexe.*
+
+### Problème 1.6
+
+> **Niveau 3.** Un adversaire joue au minimax avec un arbre dont les feuilles valent 3, 12, 2, 8 de gauche à droite. Vous savez qu'il n'explorera que les trois premières feuilles avant de manquer de temps. Quel coup jouera-t-il, et pourquoi n'est-ce pas grave ici ?
+>
+> → *Corrigé 1.6, en annexe.*
+
+## Thème 2 --- Python et outils
 
 ### Problème 2.1
 
-Soit la fonction de coût f(w) = (w − 4)². On part de w = 7 avec un taux d\'apprentissage de 0,1. Effectuez deux étapes de descente de gradient.
-
-**Correction.** La dérivée est f\'(w) = 2(w − 4). **Étape 1** : en w = 7, f\'(7) = 2×3 = 6. On met à jour : w = 7 − 0,1×6 = 6,4. **Étape 2** : en w = 6,4, f\'(6,4) = 2×2,4 = 4,8. On met à jour : w = 6,4 − 0,1×4,8 = 5,92. On se rapproche bien du minimum, situé en w = 4. **À retenir** : à chaque pas, on avance vers le minimum d\'une distance proportionnelle à la pente.
+> **Niveau 1.** Que renvoie ce code, et pourquoi surprend-il ?
+>
+> ```python
+> def ajouter(element, liste=[]):
+>     liste.append(element)
+>     return liste
+> print(ajouter(1)); print(ajouter(2))
+> ```
+>
+> → *Corrigé 2.1, en annexe.*
 
 ### Problème 2.2
 
-Que se passe-t-il si l\'on prend un taux d\'apprentissage de 1,5 dans le problème précédent ?
-
-**Correction.** En w = 7 : w = 7 − 1,5×6 = −2. En w = −2 : f\'(−2) = 2×(−6) = −12, donc w = −2 − 1,5×(−12) = 16. On s\'éloigne de plus en plus : la descente **diverge**. **À retenir** : un taux d\'apprentissage trop grand fait osciller et diverger l\'algorithme. Le bon réglage est crucial.
+> **Niveau 1.** Vous devez tester un million de fois si une valeur appartient à une collection. Choisissez entre une liste et un ensemble, et justifiez.
+>
+> → *Corrigé 2.2, en annexe.*
 
 ### Problème 2.3
 
-Calculez le produit scalaire des vecteurs (2, −1, 3) et (1, 4, 2). Que conclure sur leur alignement ?
+> **Niveau 2.** Expliquez pourquoi le premier calcul est environ cinquante fois plus lent que le second, alors qu'ils donnent le même résultat.
+>
+> ```python
+> c = [x * y for x, y in zip(a, b)]      # a et b : listes d'un million d'entiers
+> c = na * nb                            # na et nb : tableaux NumPy équivalents
+> ```
+>
+> → *Corrigé 2.3, en annexe.*
 
-**Correction.** Produit scalaire = 2×1 + (−1)×4 + 3×2 = 2 − 4 + 6 = 4. Le résultat est positif mais modéré : les vecteurs pointent globalement dans des directions proches, sans être parfaitement alignés. **À retenir** : le signe et l\'ampleur du produit scalaire renseignent sur la similarité de direction.
+### Problème 2.4
 
-## Thème 3 --- Machine learning
+> **Niveau 2.** Un tableau NumPy a pour forme `(32, 28, 28)`. Que représente-t-il vraisemblablement ? Que renverra `X.mean(axis=0).shape` ?
+>
+> → *Corrigé 2.4, en annexe.*
+
+### Problème 2.5
+
+> **Niveau 3.** Vous devez traiter un fichier de trois millions de lignes qui ne tient pas en mémoire. Citez deux stratégies, et dites laquelle privilégier si les données viennent d'une base de données.
+>
+> → *Corrigé 2.5, en annexe.*
+
+### Problème 2.6
+
+> **Niveau 3.** Vous chargez un fichier de ventes et calculez `df['montant'].mean()`, qui renvoie 1 250 €. Un collègue obtient 890 € sur le même fichier. Citez trois causes possibles et la vérification à faire en premier.
+>
+> → *Corrigé 2.6, en annexe.*
+
+## Thème 3 --- Mathématiques de l'apprentissage
 
 ### Problème 3.1
 
-Un modèle obtient 98 % de bonnes réponses sur les données d\'entraînement, mais seulement 65 % sur le jeu de test. Diagnostiquez et proposez trois remèdes.
-
-**Correction.** C\'est un cas typique de **sur-apprentissage** : le modèle a mémorisé les données d\'entraînement au lieu d\'apprendre la tendance générale. Remèdes : (1) simplifier le modèle ou le **régulariser** ; (2) fournir **plus de données** d\'entraînement ; (3) utiliser la **validation croisée** et l\'arrêt précoce. **À retenir** : un grand écart entre entraînement et test est la signature du sur-apprentissage.
+> **Niveau 1.** Deux vecteurs de goûts cinématographiques valent (5, 1, 4) et (0, 5, 1). Calculez leur produit scalaire et dites ce qu'il indique.
+>
+> → *Corrigé 3.1, en annexe.*
 
 ### Problème 3.2
 
-Pour un test de dépistage du cancer, faut-il privilégier la précision ou le rappel ? Justifiez.
-
-**Correction.** On privilégie le **rappel** : il vaut mieux détecter tous les vrais malades, quitte à avoir quelques fausses alertes (qu\'un examen complémentaire écartera), que de manquer un malade réel, ce qui serait dramatique. **À retenir** : le choix de la métrique dépend du coût relatif des différents types d\'erreurs.
+> **Niveau 2.** Soit la fonction de coût f(w) = (w − 4)². On part de w = 7 avec un taux d\'apprentissage de 0,1. Effectuez deux étapes de descente de gradient.
+>
+> → *Corrigé 3.2, en annexe.*
 
 ### Problème 3.3
 
-Vous devez regrouper des clients sans catégories prédéfinies. Apprentissage supervisé ou non supervisé ? Quel algorithme ?
+> **Niveau 2.** Que se passe-t-il si l\'on prend un taux d\'apprentissage de 1,5 dans le problème précédent ?
+>
+> → *Corrigé 3.3, en annexe.*
 
-**Correction.** Sans étiquettes, c\'est de l\'apprentissage **non supervisé**. On utilise un algorithme de **clustering** comme k-means, qui partitionne les clients en groupes homogènes selon leurs caractéristiques. **À retenir** : l\'absence d\'étiquettes oriente vers le non supervisé.
+### Problème 3.4
 
-## Thème 4 --- Apprentissage profond
+> **Niveau 2.** Calculez le produit scalaire des vecteurs (2, −1, 3) et (1, 4, 2). Que conclure sur leur alignement ?
+>
+> → *Corrigé 3.4, en annexe.*
+
+### Problème 3.5
+
+> **Niveau 2.** Une maladie touche une personne sur deux cents. Un test détecte 95 % des malades et se trompe sur 10 % des personnes saines. Vous êtes positif : calculez votre probabilité d'être malade, sur une population de 100 000 personnes.
+>
+> → *Corrigé 3.5, en annexe.*
+
+### Problème 3.6
+
+> **Niveau 2.** L'entropie croisée punit plus durement une erreur commise avec assurance qu'une erreur commise dans le doute. Pourquoi est-ce une propriété souhaitable ?
+>
+> → *Corrigé 3.6, en annexe.*
+
+### Problème 3.7
+
+> **Niveau 3.** Vous entraînez un modèle sur deux variables : une surface en mètres carrés (de 20 à 200) et un nombre de pièces (de 1 à 6). La descente de gradient converge très lentement, en zigzag. Diagnostiquez et proposez le remède, puis dites dans quel cas ce remède serait inutile.
+>
+> → *Corrigé 3.7, en annexe.*
+
+## Thème 4 --- Données et statistiques
 
 ### Problème 4.1
 
-Pourquoi une fonction d\'activation non linéaire est-elle indispensable dans un réseau de neurones ?
-
-**Correction.** Sans non-linéarité, empiler des couches reviendrait à une seule transformation linéaire : le réseau, si profond soit-il, ne pourrait modéliser que des relations linéaires. La fonction d\'activation non linéaire (comme la ReLU) permet au réseau de capturer des relations complexes. **À retenir** : la non-linéarité est ce qui donne sa puissance à l\'apprentissage profond.
+> **Niveau 1.** Dans une salle, neuf personnes gagnent 2 000 € et une gagne 200 000 €. Calculez moyenne et médiane, et dites laquelle décrire la personne « typique ».
+>
+> → *Corrigé 4.1, en annexe.*
 
 ### Problème 4.2
 
-Vous devez analyser des séries temporelles de cours de bourse. CNN ou RNN ?
+> **Niveau 1.** Vous devez regrouper des clients sans catégories prédéfinies. Apprentissage supervisé ou non supervisé ? Quel algorithme ?
+>
+> → *Corrigé 4.2, en annexe.*
 
-**Correction.** Un **RNN** (ou ses variantes LSTM, GRU), car les données sont **séquentielles** et l\'ordre temporel compte : le cours d\'aujourd\'hui dépend de ceux des jours précédents. Les CNN sont adaptés aux données spatiales comme les images. **À retenir** : on choisit l\'architecture selon la structure des données.
+### Problème 4.3
 
-## Thème 5 --- IA générative et prompting
+> **Niveau 2.** Vous transformez une colonne « ville » contenant Kinshasa, Lubumbashi et Goma en 1, 2 et 3. Quel problème créez-vous, et quelle est la bonne méthode ?
+>
+> → *Corrigé 4.3, en annexe.*
+
+### Problème 4.4
+
+> **Niveau 2.** Un modèle de détection de résiliation atteint 99,7 % de justesse dès le premier essai. Pourquoi devez-vous vous en inquiéter, et que vérifiez-vous en premier ?
+>
+> → *Corrigé 4.4, en annexe.*
+
+### Problème 4.5
+
+> **Niveau 3.** Deux hôpitaux : A soigne 90 % de ses cas légers et 55,6 % de ses cas graves ; B soigne 88,9 % de ses cas légers et 50 % de ses cas graves. Globalement, A affiche 59 % de survie et B en affiche 85 %. Expliquez ce renversement et dites quel hôpital vous choisiriez.
+>
+> → *Corrigé 4.5, en annexe.*
+
+### Problème 4.6
+
+> **Niveau 3.** Vous devez estimer l'effet d'une campagne de rétention. Vous constatez que les clients contactés résilient moins que les autres. Pourquoi cela ne prouve rien, et quel dispositif apporterait une preuve ?
+>
+> → *Corrigé 4.6, en annexe.*
+
+## Thème 5 --- Apprentissage automatique
 
 ### Problème 5.1
 
-Transformez ce prompt faible en prompt professionnel : « écris-moi quelque chose sur le changement climatique ».
-
-**Correction.** Un prompt professionnel pourrait être : « **Rôle** : tu es journaliste scientifique. **Tâche** : rédige un article de vulgarisation sur les trois principales causes du changement climatique. **Format** : 300 mots, trois paragraphes avec sous-titres. **Contraintes** : ton accessible, sans catastrophisme, fondé sur des faits. » **À retenir** : préciser rôle, tâche, format et contraintes transforme radicalement la qualité de la réponse.
+> **Niveau 1.** Pour chacun de ces problèmes, dites s'il relève du supervisé, du non supervisé ou du renforcement : prédire un prix ; regrouper des clients sans catégories connues ; apprendre à un robot à marcher ; détecter des spams à partir de messages étiquetés.
+>
+> → *Corrigé 5.1, en annexe.*
 
 ### Problème 5.2
 
-Un assistant affirme avec aplomb une statistique précise mais introuvable ailleurs. Que faites-vous, et comment l\'éviter à l\'avenir ?
+> **Niveau 2.** Un modèle obtient 98 % de bonnes réponses sur les données d\'entraînement, mais seulement 65 % sur le jeu de test. Diagnostiquez et proposez trois remèdes.
+>
+> → *Corrigé 5.2, en annexe.*
 
-**Correction.** Il s\'agit probablement d\'une **hallucination**. On ne reprend jamais cette statistique sans la vérifier dans une source fiable. Pour l\'éviter : utiliser un outil à recherche sourcée (Perplexity) ou une approche **RAG** qui ancre les réponses dans des documents réels. **À retenir** : la fluidité d\'une réponse n\'est jamais une preuve de sa véracité.
+### Problème 5.3
 
-## Thème 6 --- Automatisation et entreprise
+> **Niveau 2.** Pour un test de dépistage du cancer, faut-il privilégier la précision ou le rappel ? Justifiez.
+>
+> → *Corrigé 5.3, en annexe.*
+
+### Problème 5.4
+
+> **Niveau 2.** Un détecteur de fraude analyse 10 000 transactions dont 100 sont frauduleuses. Il en signale 200, dont 80 vraies fraudes. Calculez exactitude, précision et rappel, puis dites lequel de ces trois chiffres est trompeur.
+>
+> → *Corrigé 5.4, en annexe.*
+
+### Problème 5.5
+
+> **Niveau 2.** Vous devez livrer un modèle qui prédit un chiffre d'affaires à partir de douze colonnes de tableur. Un collègue propose un réseau de neurones profond. Que répondez-vous ?
+>
+> → *Corrigé 5.5, en annexe.*
+
+### Problème 5.6
+
+> **Niveau 2.** Vous entraînez un classificateur qui rend des probabilités. Comment un même modèle, entraîné une seule fois, peut-il offrir plusieurs comportements ?
+>
+> → *Corrigé 5.6, en annexe.*
+
+### Problème 5.7
+
+> **Niveau 3.** Vous avez un jeu de test sur lequel vous comparez quinze configurations de modèle, et vous retenez la meilleure. Pourquoi le score annoncé est-il désormais optimiste, et comment corriger la démarche ?
+>
+> → *Corrigé 5.7, en annexe.*
+
+## Thème 6 --- Apprentissage profond
 
 ### Problème 6.1
 
-Une PME veut automatiser le tri de ses candidatures. Décrivez le workflow et placez la validation humaine.
-
-**Correction. Déclencheur** : réception d\'une candidature. **Traitement IA** : extraction des informations clés, évaluation par rapport aux critères du poste, classement. **Routage** : les candidatures clairement hors critères sont écartées (avec réponse polie) ; les autres sont présentées à un recruteur. **Validation humaine** : le recruteur décide qui convoquer, jamais l\'IA seule, car un recrutement engage des personnes et comporte des risques de biais. **À retenir** : on automatise le tri, on laisse à l\'humain la décision sensible.
+> **Niveau 1.** Pourquoi une fonction d\'activation non linéaire est-elle indispensable dans un réseau de neurones ?
+>
+> → *Corrigé 6.1, en annexe.*
 
 ### Problème 6.2
 
-Une entreprise n\'a jamais utilisé l\'IA et veut « tout transformer en six mois ». Quel conseil donnez-vous ?
+> **Niveau 1.** Vous devez analyser des séries temporelles de cours de bourse. CNN ou RNN ?
+>
+> → *Corrigé 6.2, en annexe.*
 
-**Correction.** Tempérer l\'ambition. Une organisation au palier de **sensibilisation** ne saute pas directement à la transformation. On conseille : (1) former les équipes ; (2) lancer **un** projet pilote à valeur rapide et risque faible ; (3) mesurer, apprendre, puis élargir. **À retenir** : la maturité IA se construit par paliers ; vouloir tout transformer d\'emblée mène à l\'échec.
+### Problème 6.3
 
-Entraînez-vous régulièrement sur ce type de problèmes. La capacité à raisonner sur des cas concrets, bien plus que la mémorisation, est ce qui distingue celui qui sait de celui qui croit savoir.
+> **Niveau 2.** Une image de 224 × 224 pixels en couleur est branchée sur une couche dense de 1 000 neurones. Calculez le nombre de paramètres, puis comparez à une couche convolutive de 64 filtres 3 × 3.
+>
+> → *Corrigé 6.3, en annexe.*
+
+### Problème 6.4
+
+> **Niveau 2.** Vous entraînez un réseau et observez : erreur d'entraînement qui descend régulièrement, erreur de validation qui descend puis remonte à partir de la vingtième époque. Diagnostiquez et citez trois remèdes.
+>
+> → *Corrigé 6.4, en annexe.*
+
+### Problème 6.5
+
+> **Niveau 2.** Pour chacune de ces prédictions, donnez l'activation de sortie et la fonction de coût : un prix ; une réponse oui/non ; une classe parmi dix.
+>
+> → *Corrigé 6.5, en annexe.*
+
+### Problème 6.6
+
+> **Niveau 3.** Votre réseau n'apprend rien : l'erreur ne bouge pas dès la première époque. Décrivez le test à faire en tout premier, et ce que son résultat vous apprendra.
+>
+> → *Corrigé 6.6, en annexe.*
+
+## Thème 7 --- Langage, vision et renforcement
+
+### Problème 7.1
+
+> **Niveau 1.** Pourquoi un plongement lexical classique attribue-t-il un seul vecteur au mot « avocat », et en quoi est-ce un problème ?
+>
+> → *Corrigé 7.1, en annexe.*
+
+### Problème 7.2
+
+> **Niveau 2.** Dans la phrase « le trophée ne rentrait pas dans la valise car il était trop grand », l'attention attribue 89 % du poids à « trophée » et 11 % à « valise ». Que se passe-t-il si l'on remplace « grand » par « petite » ?
+>
+> → *Corrigé 7.2, en annexe.*
+
+### Problème 7.3
+
+> **Niveau 2.** Une prédiction de détection encadre correctement l'objet mais avec un léger décalage, ce qui donne une intersection sur union de 45,5 %. Est-elle comptée comme juste ? Que faut-il en conclure sur la communication des résultats ?
+>
+> → *Corrigé 7.3, en annexe.*
+
+### Problème 7.4
+
+> **Niveau 2.** Dans un couloir de trois cases menant à une récompense de 10, avec un facteur d'actualisation de 0,9, combien d'épisodes complets faut-il pour que la première case connaisse une valeur non nulle ? Expliquez.
+>
+> → *Corrigé 7.4, en annexe.*
+
+### Problème 7.5
+
+> **Niveau 2.** Un système de reconnaissance affiche 99 % de justesse en laboratoire et 70 % sur le terrain. Citez trois causes possibles, sans invoquer le modèle.
+>
+> → *Corrigé 7.5, en annexe.*
+
+### Problème 7.6
+
+> **Niveau 3.** Vous concevez un robot nettoyeur récompensé sur la quantité de saleté ramassée. Quel comportement risquez-vous d'obtenir, et comment reformuler la récompense ?
+>
+> → *Corrigé 7.6, en annexe.*
+
+## Thème 8 --- IA générative et prompting
+
+### Problème 8.1
+
+> **Niveau 1.** Transformez ce prompt faible en prompt professionnel : « écris-moi quelque chose sur le changement climatique ».
+>
+> → *Corrigé 8.1, en annexe.*
+
+### Problème 8.2
+
+> **Niveau 1.** Un assistant affirme avec aplomb une statistique précise mais introuvable ailleurs. Que faites-vous, et comment l\'éviter à l\'avenir ?
+>
+> → *Corrigé 8.2, en annexe.*
+
+### Problème 8.3
+
+> **Niveau 2.** Un modèle produit les scores 5,0 pour « canapé » et 1,0 pour « clavier ». À température 0,2 il choisit « canapé » 92 % du temps, à température 2,0 seulement 44 %. Expliquez le mécanisme et dites quelle température choisir pour une extraction d'informations.
+>
+> → *Corrigé 8.3, en annexe.*
+
+### Problème 8.4
+
+> **Niveau 2.** Pourquoi la consigne « ne mens pas » ne supprime-t-elle pas les hallucinations ? Quel dispositif faut-il mettre en place à la place ?
+>
+> → *Corrigé 8.4, en annexe.*
+
+### Problème 8.5
+
+> **Niveau 2.** On vous demande d'ajouter les procédures internes de votre entreprise à un assistant. Un collègue propose un affinage du modèle. Que répondez-vous ?
+>
+> → *Corrigé 8.5, en annexe.*
+
+### Problème 8.6
+
+> **Niveau 2.** Vous demandez à un assistant une note argumentée contenant une quinzaine de chiffres. Le gain de temps annoncé est de 80 %. Pourquoi risque-t-il de s'évaporer ?
+>
+> → *Corrigé 8.6, en annexe.*
+
+### Problème 8.7
+
+> **Niveau 3.** Un RAG déçoit : les réponses sont hors sujet. Décrivez votre démarche de diagnostic, dans l'ordre.
+>
+> → *Corrigé 8.7, en annexe.*
+
+## Thème 9 --- Automatisation et entreprise
+
+### Problème 9.1
+
+> **Niveau 1.** Une PME veut automatiser le tri de ses candidatures. Décrivez le workflow et placez la validation humaine.
+>
+> → *Corrigé 9.1, en annexe.*
+
+### Problème 9.2
+
+> **Niveau 1.** Une entreprise n\'a jamais utilisé l\'IA et veut « tout transformer en six mois ». Quel conseil donnez-vous ?
+>
+> → *Corrigé 9.2, en annexe.*
+
+### Problème 9.3
+
+> **Niveau 2.** Une tâche prend 30 minutes par mois. Automatiser demande 6 heures de construction et 1 heure d'entretien mensuel. Faut-il le faire ? Et si la même tâche revenait 40 fois par jour à 4 minutes ?
+>
+> → *Corrigé 9.3, en annexe.*
+
+### Problème 9.4
+
+> **Niveau 2.** Un agent enchaîne dix étapes dont chacune réussit neuf fois sur dix. Quelle est sa probabilité de réussite globale ? Que faut-il par étape pour atteindre 90 % sur vingt étapes ?
+>
+> → *Corrigé 9.4, en annexe.*
+
+### Problème 9.5
+
+> **Niveau 2.** Dans un flux de traitement de courriels, où placez-vous la validation humaine, et où ne la placez-vous surtout pas ?
+>
+> → *Corrigé 9.5, en annexe.*
+
+### Problème 9.6
+
+> **Niveau 3.** Un flux qui traitait quarante messages par jour n'en traite plus que trois. Aucune alerte d'erreur ne s'est déclenchée. Que s'est-il probablement passé, et quelle surveillance aurait détecté la panne ?
+>
+> → *Corrigé 9.6, en annexe.*
+
+## Thème 10 --- Éthique, projets et mise en production
+
+### Problème 10.1
+
+> **Niveau 1.** Citez un domaine, autre que le recrutement, où un biais présent dans les données produirait un modèle injuste, et expliquez le mécanisme.
+>
+> → *Corrigé 10.1, en annexe.*
+
+### Problème 10.2
+
+> **Niveau 2.** Un modèle de tri de candidatures est plus exact et plus précis sur le groupe B que sur le groupe A, mais sélectionne deux fois moins de candidats du groupe B, à qualification égale. Est-il équitable ?
+>
+> → *Corrigé 10.2, en annexe.*
+
+### Problème 10.3
+
+> **Niveau 2.** Transformez l'intention « améliorer le service client grâce à l'IA » en un objectif de projet exploitable, en répondant aux cinq questions du cadrage.
+>
+> → *Corrigé 10.3, en annexe.*
+
+### Problème 10.4
+
+> **Niveau 2.** Un modèle déployé voit ses performances se dégrader sans qu'aucune erreur technique n'apparaisse. Nommez le phénomène et dites quel indicateur l'aurait révélé le plus tôt.
+>
+> → *Corrigé 10.4, en annexe.*
+
+### Problème 10.5
+
+> **Niveau 2.** Une organisation en est à sa troisième campagne de sensibilisation à l'IA sans avoir jamais mis un cas d'usage en production. À quel palier de maturité se situe-t-elle réellement, et quel est le risque ?
+>
+> → *Corrigé 10.5, en annexe.*
+
+### Problème 10.6
+
+> **Niveau 3.** Une équipe vous présente un modèle de fraude affichant 40 % de précision et 80 % de rappel, et souhaite le déployer sur un million de transactions quotidiennes. Chiffrez la charge de travail induite et formulez votre recommandation.
+>
+> → *Corrigé 10.6, en annexe.*
+
+### Problème 10.7
+
+> **Niveau 3.** Faut-il réguler l'IA au risque de freiner l'innovation, ou la laisser libre au risque de dérives ? Argumentez les deux positions, puis proposez un critère de démarcation.
+>
+> → *Corrigé 10.7, en annexe.*
 
 # Partie VIII --- Pour aller plus loin
 
@@ -4771,6 +5098,173 @@ Maîtriser ces sujets ouvre la porte à des métiers parmi les plus recherchés 
 
   Chercheur en IA                     Mener des travaux de recherche sur de nouvelles méthodes.
   ----------------------------------------------------------------------------------------------------
+
+## Corrigés des exercices
+
+Vous trouverez ici la correction des soixante-quatre problèmes de la partie VII. Chaque corrigé porte le même numéro que son énoncé.
+
+Un conseil avant de les lire : cherchez d'abord, même mal, même longtemps. Un corrigé lu avant l'effort ne laisse aucune trace ; lu après, il se fixe pour de bon. Et quand votre réponse diffère de la mienne sans être fausse pour autant, c'est un bon signe : les exercices de niveau 3 n'ont pas de solution unique.
+
+
+### Corrigés du thème 1 --- Fondamentaux et recherche
+
+**Corrigé 1.1.** Règles : le thermostat (un seuil écrit par un humain) et le correcteur à dictionnaire (une liste fixe). Apprentissage : le filtre anti-spam, qui extrait ses règles des messages que vous classez, et l'assistant conversationnel. Le critère du chapitre 1 s'applique : le comportement vient-il de règles écrites ou de régularités extraites ? **À retenir** : automatiser n'est pas apprendre.
+
+**Corrigé 1.2.** IA ⊃ apprentissage automatique ⊃ apprentissage profond. Un système expert à base de règles relève de l'IA sans relever de l'apprentissage automatique. **À retenir** : ces trois termes ne sont pas synonymes, ils s'emboîtent.
+
+**Corrigé 1.3.** On choisit la **recherche en largeur (BFS)**. Elle explore le labyrinthe par cercles concentriques autour de l\'entrée : toutes les cases à un pas, puis à deux pas, etc. La première sortie atteinte est donc nécessairement la plus proche. La recherche en profondeur, elle, pourrait s\'enfoncer dans un long couloir et trouver d\'abord une sortie lointaine. **À retenir** : BFS garantit le chemin le plus court dans un graphe non pondéré.
+
+**Corrigé 1.4.** BFS explore dans toutes les directions sans tenir compte du but. A\\\* utilise une **heuristique** (par exemple la distance à vol d\'oiseau) pour privilégier les directions menant vers le but. Il explore donc beaucoup moins de cases inutiles. **À retenir** : une bonne heuristique transforme une recherche aveugle en recherche orientée, bien plus efficace.
+
+## Thème 2 --- Mathématiques de l\'apprentissage
+
+**Corrigé 1.5.** Avec h(F) = 2, on aurait f(F) = 3 + 2 = 5, le plus petit de tous : A\* explorerait F en premier. Or la vraie distance de F à E est 20 : l'heuristique **surestime de beaucoup à l'envers**, c'est-à-dire qu'elle sous-estime grossièrement — ce qui reste admissible. A\* explorerait donc F inutilement, perdrait du temps, mais **trouverait quand même le chemin optimal**. C'est l'inverse qui casse la garantie : une heuristique qui SURESTIME la distance restante. **À retenir** : une heuristique trop optimiste coûte du temps ; une heuristique trop pessimiste coûte l'optimalité.
+
+**Corrigé 1.6.** Avec les trois premières feuilles (3, 12, 2), il évalue G à 3 et sait déjà que D vaut au plus 2. Il joue donc **G**, exactement comme s'il avait tout exploré : le 8 n'aurait rien changé. C'est précisément ce que formalise l'élagage alpha-bêta. **À retenir** : on peut souvent décider sans tout explorer, et c'est ce qui rend minimax utilisable.
+
+### Corrigés du thème 2 --- Python et outils
+
+**Corrigé 2.1.** Il affiche `[1]` puis `[1, 2]`. La liste par défaut est créée **une seule fois**, à la définition de la fonction, et conservée entre les appels. La bonne écriture est `def ajouter(element, liste=None)` puis `if liste is None: liste = []`. **À retenir** : ne jamais employer un objet modifiable comme valeur par défaut.
+
+**Corrigé 2.2.** Un **ensemble**. Chercher dans une liste exige de la parcourir, le coût croît avec sa taille ; un ensemble répond en temps quasi constant quelle que soit sa taille. Sur un million de tests, l'écart se compte en minutes contre millisecondes. **À retenir** : le jour où un `if x in ...` ralentit votre programme, la structure est en cause, pas la machine.
+
+**Corrigé 2.3.** La compréhension de liste interprète un million de fois la même instruction et manipule un million d'objets Python distincts. NumPy transmet un bloc de mémoire contigu à une routine compilée qui traite les nombres par paquets. Le gain vient de l'absence d'interprétation et de la contiguïté mémoire, pas d'un algorithme plus malin. **À retenir** : toute boucle Python sur des données numériques est un aveu d'échec ; cherchez l'opération vectorisée.
+
+**Corrigé 2.4.** Un lot de 32 images en niveaux de gris de 28 sur 28 pixels. `mean(axis=0)` moyenne **sur le lot** et renvoie donc une forme `(28, 28)` : l'image moyenne du lot. **À retenir** : `.shape` est le premier réflexe devant une erreur de dimensions.
+
+**Corrigé 2.5.** Deux stratégies : lire **par morceaux** (`chunksize` dans Pandas) en agrégeant au fil de l'eau ; ou ne charger que les **colonnes utiles** et en imposer des types économes. Mais si les données viennent d'une base, la bonne réponse est autre : **faites travailler la base**. Filtrez et agrégez en SQL, et ne ramenez que le résultat. Faire transiter trois millions de lignes par le réseau pour en garder mille est une erreur de conception, pas un problème de mémoire. **À retenir** : filtrez au plus près de la donnée.
+
+**Corrigé 2.6.** Trois causes plausibles : (1) des valeurs manquantes ignorées silencieusement par la moyenne, en proportion différente selon le filtrage appliqué ; (2) un filtre implicite — l'un a chargé toutes les lignes, l'autre un sous-ensemble ; (3) un problème d'unité ou de séparateur décimal à la lecture du fichier. **La vérification en premier : `df.isna().sum()` et `len(df)`.** Comparer ces deux nombres résout la question dans la grande majorité des cas. **À retenir** : avant de discuter d'un écart, comparez les effectifs.
+
+### Corrigés du thème 3 --- Mathématiques de l'apprentissage
+
+**Corrigé 3.1.** 5×0 + 1×5 + 4×1 = **9**. C'est faible au regard des amplitudes en jeu : les goûts ne sont pas alignés. Comparez avec (4, 2, 5), qui donne 42. **À retenir** : le produit scalaire mesure l'alignement, et c'est le calcul qui fonde les systèmes de recommandation.
+
+**Corrigé 3.2.** La dérivée est f\'(w) = 2(w − 4). **Étape 1** : en w = 7, f\'(7) = 2×3 = 6. On met à jour : w = 7 − 0,1×6 = 6,4. **Étape 2** : en w = 6,4, f\'(6,4) = 2×2,4 = 4,8. On met à jour : w = 6,4 − 0,1×4,8 = 5,92. On se rapproche bien du minimum, situé en w = 4. **À retenir** : à chaque pas, on avance vers le minimum d\'une distance proportionnelle à la pente.
+
+**Corrigé 3.3.** En w = 7 : w = 7 − 1,5×6 = −2. En w = −2 : f\'(−2) = 2×(−6) = −12, donc w = −2 − 1,5×(−12) = 16. On s\'éloigne de plus en plus : la descente **diverge**. **À retenir** : un taux d\'apprentissage trop grand fait osciller et diverger l\'algorithme. Le bon réglage est crucial.
+
+**Corrigé 3.4.** Produit scalaire = 2×1 + (−1)×4 + 3×2 = 2 − 4 + 6 = 4. Le résultat est positif mais modéré : les vecteurs pointent globalement dans des directions proches, sans être parfaitement alignés. **À retenir** : le signe et l\'ampleur du produit scalaire renseignent sur la similarité de direction.
+
+## Thème 3 --- Machine learning
+
+**Corrigé 3.5.** 500 malades, dont 475 positifs. 99 500 sains, dont 9 950 faux positifs. Total des positifs : 10 425. Probabilité d'être réellement malade : 475 / 10 425 = **4,6 %**. **À retenir** : c'est la rareté de la maladie qui commande le résultat, pas la qualité du test.
+
+**Corrigé 3.6.** Parce qu'elle apprend au modèle non seulement à répondre juste, mais à **calibrer sa confiance**. Un modèle qui se trompe en annonçant 55 % reste utilisable : on sait qu'il faut vérifier. Un modèle qui se trompe en annonçant 99 % est dangereux, car rien dans sa sortie n'avertit. **À retenir** : un modèle qui se trompe en le sachant vaut bien mieux qu'un modèle qui se trompe avec aplomb.
+
+**Corrigé 3.7.** Les deux variables vivent sur des échelles sans commune mesure : le paramètre de la surface reçoit des gradients environ trente fois plus grands, d'où la trajectoire en zigzag dans une vallée étroite. Le remède est de **centrer et réduire** chaque variable. Il serait inutile pour un arbre de décision ou une forêt aléatoire, qui ne comparent que des seuils variable par variable et se moquent des échelles. **À retenir** : normaliser est indispensable dès qu'il y a un gradient ou une distance, inutile ailleurs.
+
+### Corrigés du thème 4 --- Données et statistiques
+
+**Corrigé 4.1.** Moyenne = (9 × 2 000 + 200 000) / 10 = **21 800 €**. Médiane = **2 000 €**. La médiane décrit la personne typique ; la moyenne ne décrit personne dans cette salle. **À retenir** : sur une distribution étirée, la moyenne informe sur le total, la médiane sur l'individu.
+
+**Corrigé 4.2.** Sans étiquettes, c\'est de l\'apprentissage **non supervisé**. On utilise un algorithme de **clustering** comme k-means, qui partitionne les clients en groupes homogènes selon leurs caractéristiques. **À retenir** : l\'absence d\'étiquettes oriente vers le non supervisé.
+
+## Thème 4 --- Apprentissage profond
+
+**Corrigé 4.3.** Vous inventez un ordre et des distances qui n'existent pas : le modèle en conclura que Goma est trois fois Kinshasa. La bonne méthode est l'**encodage one-hot**, une colonne par ville. Le codage numérique direct ne se justifie que pour des catégories réellement ordonnées, comme « petit, moyen, grand ». **À retenir** : n'introduisez jamais un ordre que les données n'ont pas.
+
+**Corrigé 4.4.** Un score trop beau signale presque toujours une **fuite de données**. Vérifiez en premier qu'aucune variable ne contient l'information à prédire — une colonne « date de résiliation » ou « motif de départ » ne sera pas disponible au moment où l'on veut prédire. Vérifiez ensuite que la préparation a bien été faite **après** la séparation. **À retenir** : devant un résultat trop beau, cherchez la fuite.
+
+**Corrigé 4.5.** C'est le **paradoxe de Simpson**. A est meilleur dans les deux sous-groupes, mais il traite très majoritairement des cas graves (900 sur 1 000, contre 100 pour B) : sa moyenne globale mesure la gravité de ce qu'on lui envoie, pas la qualité de ses soins. **Vous choisiriez A**, quel que soit votre état. **À retenir** : une moyenne calculée sur des populations mélangées peut inverser la conclusion ; comparez toujours à composition comparable.
+
+**Corrigé 4.6.** Les clients contactés n'ont pas été choisis au hasard : on a probablement ciblé ceux qu'on jugeait récupérables, ou les plus fidèles. La comparaison mélange l'effet de la campagne et l'effet du ciblage. La preuve exige une **expérience contrôlée** : tirer au sort qui est contacté et qui ne l'est pas, puis comparer les deux groupes. Le hasard équilibre en moyenne toutes les variables cachées, y compris celles auxquelles on n'a pas pensé. **À retenir** : corrélation observée, hypothèse ; expérience randomisée, preuve.
+
+### Corrigés du thème 5 --- Apprentissage automatique
+
+**Corrigé 5.1.** Supervisé : prédire un prix, détecter des spams (la réponse est connue pour les exemples passés). Non supervisé : regrouper des clients. Renforcement : apprendre à marcher. **À retenir** : la question à poser est « ai-je la réponse pour mes exemples passés ? ».
+
+**Corrigé 5.2.** C\'est un cas typique de **sur-apprentissage** : le modèle a mémorisé les données d\'entraînement au lieu d\'apprendre la tendance générale. Remèdes : (1) simplifier le modèle ou le **régulariser** ; (2) fournir **plus de données** d\'entraînement ; (3) utiliser la **validation croisée** et l\'arrêt précoce. **À retenir** : un grand écart entre entraînement et test est la signature du sur-apprentissage.
+
+**Corrigé 5.3.** On privilégie le **rappel** : il vaut mieux détecter tous les vrais malades, quitte à avoir quelques fausses alertes (qu\'un examen complémentaire écartera), que de manquer un malade réel, ce qui serait dramatique. **À retenir** : le choix de la métrique dépend du coût relatif des différents types d\'erreurs.
+
+**Corrigé 5.4.** Exactitude = (80 + 9 780) / 10 000 = **98,6 %**. Précision = 80 / 200 = **40 %**. Rappel = 80 / 100 = **80 %**. **L'exactitude est trompeuse** : un modèle qui ne signalerait jamais rien afficherait 99,0 %, donc mieux, tout en étant inutile. **À retenir** : sur des classes déséquilibrées, l'exactitude n'est pas un indicateur, c'est un piège.
+
+**Corrigé 5.5.** Que sur des données tabulaires, un gradient boosting ou une forêt aléatoire sont très souvent meilleurs, s'entraînent en quelques secondes, et s'expliquent devant une direction. L'apprentissage profond domine sur les données brutes structurées par la perception — images, sons, textes —, pas sur un tableur. **À retenir** : commencez par l'outil le plus simple qui puisse répondre à la question.
+
+**Corrigé 5.6.** Par le **seuil de décision**. Le modèle rend une probabilité ; c'est vous qui décidez à partir de quelle valeur vous tranchez. Un seuil bas rend le modèle soupçonneux — plus de rappel, moins de précision ; un seuil haut fait l'inverse. Le réglage se déduit du **coût des deux erreurs**, jamais d'une formule. **À retenir** : le seuil est votre décision, pas celle du modèle.
+
+**Corrigé 5.7.** En choisissant d'après le jeu de test, vous vous êtes adapté à lui : son score cesse d'être une estimation honnête, vous avez simplement déplacé le sur-apprentissage d'un cran. Sur quinze essais, la meilleure configuration a bénéficié du hasard du découpage. La démarche correcte emploie **trois jeux** : entraînement pour ajuster, **validation** pour choisir, test pour estimer — ce dernier n'étant regardé qu'une fois, à la fin. **À retenir** : le jeu de test se garde sous clé.
+
+### Corrigés du thème 6 --- Apprentissage profond
+
+**Corrigé 6.1.** Sans non-linéarité, empiler des couches reviendrait à une seule transformation linéaire : le réseau, si profond soit-il, ne pourrait modéliser que des relations linéaires. La fonction d\'activation non linéaire (comme la ReLU) permet au réseau de capturer des relations complexes. **À retenir** : la non-linéarité est ce qui donne sa puissance à l\'apprentissage profond.
+
+**Corrigé 6.2.** Un **RNN** (ou ses variantes LSTM, GRU), car les données sont **séquentielles** et l\'ordre temporel compte : le cours d\'aujourd\'hui dépend de ceux des jours précédents. Les CNN sont adaptés aux données spatiales comme les images. **À retenir** : on choisit l\'architecture selon la structure des données.
+
+## Thème 5 --- IA générative et prompting
+
+**Corrigé 6.3.** Entrée : 224 × 224 × 3 = 150 528 valeurs. Couche dense : 150 528 × 1 000 + 1 000 ≈ **150 millions** de paramètres. Couche convolutive : 64 × (3 × 3 × 3) + 64 = **1 792**. Environ 84 000 fois moins. La raison est que le filtre est **le même partout sur l'image** : on n'apprend pas un détecteur par position. **À retenir** : sans cette économie, la vision profonde serait restée hors de portée.
+
+**Corrigé 6.4.** Sur-apprentissage caractérisé : le réseau commence à mémoriser à partir de la vingtième époque. Remèdes : **arrêt précoce** au minimum de l'erreur de validation, **dropout**, **augmentation de données**. On peut aussi réduire la taille du réseau. **À retenir** : le moment où la validation remonte est exactement celui où la mémorisation commence.
+
+**Corrigé 6.5.** Un prix : **aucune activation**, erreur quadratique. Oui/non : **sigmoïde**, entropie croisée binaire. Dix classes : **softmax**, entropie croisée. **À retenir** : sortie et coût vont par paire ; les associer autrement produit un entraînement qui stagne sans échouer franchement, donc très difficile à diagnostiquer.
+
+**Corrigé 6.6.** **Entraînez sur dix exemples seulement, jusqu'à ce que l'erreur tombe pratiquement à zéro.** Si le réseau y parvient, le code est correct et le problème vient des réglages ou des données. S'il n'y parvient pas, il y a un bug : étiquettes décalées, images mal normalisées, dimension de sortie fausse, fonction de coût inadaptée. Un réseau correct **doit** savoir mémoriser dix exemples. **À retenir** : ce test prend deux minutes et élimine la moitié des causes possibles.
+
+### Corrigés du thème 7 --- Langage, vision et renforcement
+
+**Corrigé 7.1.** Parce qu'il associe un vecteur à chaque mot du vocabulaire, indépendamment du contexte. « Avocat » reçoit donc une représentation unique, coincée entre le fruit et le juriste, qui ne convient à aucun des deux. C'est exactement ce que résolvent les **plongements contextuels**, où le vecteur d'un mot dépend de la phrase où il apparaît. **À retenir** : le passage du mot fixe au mot situé est le véritable saut du NLP moderne.
+
+**Corrigé 7.2.** Les poids **s'inversent** : environ 11 % sur « trophée » et 89 % sur « valise ». Aucun paramètre du modèle n'a changé ; seule la requête émise par le pronom s'est réorientée. **À retenir** : « comprendre le contexte » désigne ici un mécanisme de pondération, pas une compréhension au sens humain.
+
+**Corrigé 7.3.** Non : le seuil usuel étant de 50 %, elle est comptée comme un **échec**. Il faut en conclure qu'annoncer « 90 % de détection » sans préciser le seuil de recouvrement ne veut rien dire. Ce seuil est en outre une décision métier : approximatif pour compter des véhicules, exigeant pour guider un instrument chirurgical. **À retenir** : un score de détection n'a de sens qu'accompagné de son seuil.
+
+**Corrigé 7.4.** **Trois épisodes.** Au premier, seule la dernière case découvre la récompense. Au deuxième, l'avant-dernière découvre qu'elle mène à une case devenue intéressante. Au troisième seulement, l'information atteint la première case, qui vaut alors 8,1. La récompense **remonte d'une case par épisode**. **À retenir** : c'est la conséquence directe du fait que l'information est rare et arrive tard, et c'est pourquoi le renforcement exige tant d'essais.
+
+**Corrigé 7.5.** (1) Les **conditions de prise de vue** diffèrent : éclairage, distance, arrière-plan, météo. Un jeu d'entraînement pris sous un éclairage constant ne prépare pas à la pluie ou au contre-jour. (2) La **population** photographiée sur le terrain n'est pas celle du jeu d'entraînement. (3) La **qualité du capteur** ou la compression des images diffèrent. **À retenir** : devant une performance de vision, la première question est « dans quelles conditions a-t-elle été mesurée ? ».
+
+**Corrigé 7.6.** Le robot peut apprendre à **renverser la poubelle pour la ramasser à nouveau** : il optimise exactement ce que vous avez écrit, pas ce que vous vouliez dire. C'est le détournement de la récompense. Reformulez sur l'**état final** — la propreté de la pièce mesurée à la fin — plutôt que sur le flux ramassé, et pénalisez les déplacements d'objets. **À retenir** : concevoir la fonction de récompense est la partie la plus difficile et la moins technique du renforcement.
+
+### Corrigés du thème 8 --- IA générative et prompting
+
+**Corrigé 8.1.** Un prompt professionnel pourrait être : « **Rôle** : tu es journaliste scientifique. **Tâche** : rédige un article de vulgarisation sur les trois principales causes du changement climatique. **Format** : 300 mots, trois paragraphes avec sous-titres. **Contraintes** : ton accessible, sans catastrophisme, fondé sur des faits. » **À retenir** : préciser rôle, tâche, format et contraintes transforme radicalement la qualité de la réponse.
+
+**Corrigé 8.2.** Il s\'agit probablement d\'une **hallucination**. On ne reprend jamais cette statistique sans la vérifier dans une source fiable. Pour l\'éviter : utiliser un outil à recherche sourcée (Perplexity) ou une approche **RAG** qui ancre les réponses dans des documents réels. **À retenir** : la fluidité d\'une réponse n\'est jamais une preuve de sa véracité.
+
+## Thème 6 --- Automatisation et entreprise
+
+**Corrigé 8.3.** La température divise les scores **avant** la softmax : une température basse creuse les écarts et concentre la probabilité sur le meilleur candidat, une température haute les aplanit. Pour une extraction d'informations, choisissez une **température basse** : vous voulez la réponse la plus sûre et la même à chaque exécution. **À retenir** : ce qu'on appelle la créativité d'un modèle n'est rien d'autre que ce réglage.
+
+**Corrigé 8.4.** Parce que le modèle ne dispose d'aucune case « je ne sais pas » : il produit toujours une distribution sur les mots possibles et tire dedans. Quand il connaît la réponse, cette distribution est piquée ; quand il l'ignore, elle est plate, et il tire quand même. **Halluciner et répondre juste sont le même mécanisme.** Le dispositif à mettre en place est extérieur : ancrage dans des sources vérifiables (RAG), exigence de citation, et vérification automatique ou humaine des affirmations critiques. **À retenir** : aucune consigne ne corrige un phénomène qui tient à la nature du modèle.
+
+**Corrigé 8.5.** Que l'affinage impose un **comportement** — un format, un ton, une manière de répondre — bien plus qu'il n'ajoute de la **connaissance**. Pour de la connaissance, il faut un RAG : le modèle consulte les documents au moment de répondre, et ceux-ci se mettent à jour sans réentraînement. Affiner sur des procédures produit un modèle qui adopte le style de ces documents sans en restituer fidèlement le contenu. **À retenir** : RAG pour la connaissance, affinage pour le comportement.
+
+**Corrigé 8.6.** Parce que chaque affirmation factuelle doit être vérifiée, et qu'une vérification coûte quelques minutes. À trois minutes par chiffre, quinze chiffres représentent 45 minutes — davantage que la rédaction manuelle qu'on voulait éviter. Le gain est réel sur ce qui relève de la **forme**, faible ou négatif sur ce qui repose sur des **faits**. La bonne pratique est de fournir soi-même les chiffres et de laisser l'assistant rédiger autour. **À retenir** : confiez la forme, gardez les faits.
+
+**Corrigé 8.7.** **Premièrement, affichez les passages récupérés.** Neuf fois sur dix, le modèle a parfaitement répondu à partir de documents qui n'étaient pas les bons : le problème est dans la recherche, pas dans l'invite. Deuxièmement, vérifiez le **découpage** : un passage doit se comprendre seul, ce qui suppose d'y répéter le titre de son document et de découper selon la structure plutôt qu'à taille fixe. Troisièmement seulement, travaillez l'invite, en exigeant les citations et l'aveu d'ignorance. **À retenir** : dans un RAG, le maillon faible n'est presque jamais le modèle.
+
+### Corrigés du thème 9 --- Automatisation et entreprise
+
+**Corrigé 9.1.** Déclencheur** : réception d\'une candidature. **Traitement IA** : extraction des informations clés, évaluation par rapport aux critères du poste, classement. **Routage** : les candidatures clairement hors critères sont écartées (avec réponse polie) ; les autres sont présentées à un recruteur. **Validation humaine** : le recruteur décide qui convoquer, jamais l\'IA seule, car un recrutement engage des personnes et comporte des risques de biais. **À retenir** : on automatise le tri, on laisse à l\'humain la décision sensible.
+
+**Corrigé 9.2.** Tempérer l\'ambition. Une organisation au palier de **sensibilisation** ne saute pas directement à la transformation. On conseille : (1) former les équipes ; (2) lancer **un** projet pilote à valeur rapide et risque faible ; (3) mesurer, apprendre, puis élargir. **À retenir** : la maturité IA se construit par paliers ; vouloir tout transformer d\'emblée mène à l\'échec.
+
+Entraînez-vous régulièrement sur ce type de problèmes. La capacité à raisonner sur des cas concrets, bien plus que la mémorisation, est ce qui distingue celui qui sait de celui qui croit savoir.
+
+**Corrigé 9.3.** Premier cas : le gain mensuel est de 30 minutes, l'entretien coûte 60 minutes. L'automatisation fait **perdre** du temps, elle n'est jamais rentable. Second cas : 4 × 40 × 21 = 3 360 minutes par mois de gain brut, 3 300 nettes ; l'investissement est amorti en **moins d'une semaine**. **À retenir** : la fréquence prime sur la pénibilité, et c'est souvent l'inverse que dicte l'agacement.
+
+**Corrigé 9.4.** 0,9 puissance 10 ≈ **35 %**. Pour 90 % sur vingt étapes, il faut une fiabilité par étape de 0,9^(1/20) ≈ **99,47 %**. **À retenir** : raccourcir la chaîne améliore la fiabilité de façon multiplicative, bien plus efficacement que n'importe quelle optimisation du modèle.
+
+**Corrigé 9.5.** On valide **avant l'irréversible** : envoyer une réponse au client, supprimer un enregistrement, déclencher un paiement. On ne valide pas avant ce qui se rattrape en un clic, comme classer un message dans un dossier. Et l'on évite de tout faire valider : un opérateur qui approuve deux cents propositions par jour ne les lit plus, et l'on obtient le coût d'une validation humaine avec la fiabilité d'une automatisation totale. **À retenir** : routez selon la confiance, concentrez l'attention humaine là où elle sert.
+
+**Corrigé 9.6.** Le flux fonctionne parfaitement : il ne **reçoit** plus rien, parce qu'un déclencheur s'est désactivé, une authentification a expiré, ou une boîte a changé de configuration. Aucune alerte d'erreur ne peut voir cela. Seule une **alerte sur le volume attendu** le détecte. **À retenir** : l'arrêt discret est le mode d'échec le plus fréquent et le plus coûteux de l'automatisation.
+
+### Corrigés du thème 10 --- Éthique, projets et mise en production
+
+**Corrigé 10.1.** L'octroi de crédit : un modèle entraîné sur les décisions passées d'une banque reproduira les refus historiques, y compris ceux qui tenaient à des critères géographiques corrélés à l'origine. Autres exemples : la police prédictive, qui envoie patrouiller là où l'on a déjà constaté des faits, ce qui produit mécaniquement davantage de faits constatés au même endroit ; ou le tri de dossiers médicaux entraîné sur une population peu diverse. **À retenir** : le modèle ne crée pas le biais, il l'apprend et le met à l'échelle.
+
+**Corrigé 10.2.** Il dépend de la définition d'équité retenue, et **ces définitions sont mathématiquement incompatibles** : on ne peut pas égaliser simultanément taux de sélection, précision et rappel entre groupes. Ici, l'égalité des précisions est respectée et l'égalité des taux de sélection ne l'est pas — avec un rapport de 0,50, très en dessous du seuil d'alerte usuel de 0,80. Pour un tri de candidatures, c'est l'égalité des taux de sélection qui paraît défendable. **À retenir** : il faut choisir explicitement quelle équité on vise, et l'assumer.
+
+**Corrigé 10.3.** Par exemple : « Réduire de 30 % le délai de première réponse aux demandes de facturation, mesuré sur la médiane mensuelle. » **Quelle décision change ?** L'ordre de traitement de la file. **Que fait-on aujourd'hui ?** Tri manuel, délai médian mesuré sur deux semaines. **Quel seuil rend le projet utile ?** Une classification juste à 85 % au moins. **Quelles données existent ?** Douze mois de messages archivés avec leur motif. **Qui utilisera le résultat ?** Les agents du support, associés dès la conception. **À retenir** : un cadrage sans ces cinq réponses écrites n'est pas un cadrage.
+
+**Corrigé 10.4.** La **dérive des données** : le monde s'éloigne progressivement de celui sur lequel le modèle a appris. L'indicateur le plus précoce est la **dérive des entrées** — comparer, variable par variable, la distribution observée cette semaine à celle du jeu d'entraînement. Il est disponible immédiatement, sans attendre de connaître la vérité, qui peut n'arriver que des mois plus tard. **À retenir** : la performance réelle est le seul indicateur qui compte, et c'est le plus tardif ; d'où la nécessité de surveiller les entrées.
+
+**Corrigé 10.5.** Au **palier 1**, quels que soient les discours et le nombre de formations. Le risque est de s'y installer durablement : former et expérimenter est confortable, peu risqué, et peut durer des années sans créer aucune valeur. Trois questions situent une organisation bien mieux qu'un audit : combien de cas d'usage tournent en production depuis plus de six mois ? que se passe-t-il si la personne qui a construit le système part ? un métier a-t-il changé sa façon de travailler ? **À retenir** : une organisation bloquée au palier 1 n'est pas prudente, elle est bloquée.
+
+**Corrigé 10.6.** À 2 % de transactions signalées, cela fait **20 000 alertes par jour**. À deux minutes d'examen chacune, cela représente 667 heures quotidiennes, soit environ **83 analystes à plein temps**, dont six sur dix travailleraient sur de fausses alertes. Aucune organisation ne le fera. Recommandation : resserrer le seuil pour ramener le volume à un niveau tenable — 5 000 alertes exigent environ 21 analystes — en acceptant explicitement les fraudes manquées, et chiffrer ce compromis avant le déploiement. **À retenir** : une métrique de laboratoire ne devient un argument qu'une fois multipliée par le volume réel.
+
+**Corrigé 10.7.** **Pour la régulation** : les décisions automatisées affectent l'accès à l'emploi, au crédit et aux soins ; sans obligation de documentation et de recours, les personnes concernées n'ont aucun moyen de contester. **Contre** : une réglementation uniforme pèse surtout sur les petits acteurs, qui n'ont pas de service de conformité, et fige des pratiques dans un domaine mouvant. **Critère de démarcation** : réguler selon la **conséquence de l'usage** et non selon la technique employée. Un tri de candidatures relève des mêmes obligations qu'il soit fait par un réseau de neurones ou par un tableur ; un système de recommandation de films n'appelle presque rien. **À retenir** : la question n'est pas « quelle technologie ? » mais « quelle décision, et sur qui ? ».
 
 ## Glossaire des termes essentiels
 
