@@ -146,17 +146,17 @@ Avant de plonger dans le détail des cours suivants, dressons la carte du territ
 
 **L\'ESSENTIEL À RETENIR**
 
--   **Apprentissage automatique** : le cœur, où la machine apprend des données (Semestre 2).
+-   **Apprentissage automatique** : le cœur, où la machine apprend des données (chapitre 5).
 
--   **Apprentissage profond** : les réseaux de neurones, moteurs des avancées récentes (Semestre 2).
+-   **Apprentissage profond** : les réseaux de neurones, moteurs des avancées récentes (chapitre 6).
 
--   **Traitement du langage** : comprendre et produire du texte (Semestre 3).
+-   **Traitement du langage** : comprendre et produire du texte (chapitre 9).
 
--   **Vision par ordinateur** : analyser images et vidéos (Semestre 3).
+-   **Vision par ordinateur** : analyser images et vidéos (chapitre 11).
 
--   **Apprentissage par renforcement** : apprendre par essais et récompenses (Semestre 3).
+-   **Apprentissage par renforcement** : apprendre par essais et récompenses (chapitre 12).
 
--   **IA générative et agents** : produire du contenu, agir de façon autonome (Semestre 3).
+-   **IA générative et agents** : produire du contenu, agir de façon autonome (chapitres 10 et 13).
 
 -   **Robotique** : l\'IA incarnée dans le monde physique, à la croisée de plusieurs domaines.
 
@@ -376,7 +376,7 @@ Vous maîtriserez les opérations : addition, multiplication de matrices, transp
 
 **Exemple --- le produit scalaire mesure la similarité.** Considérez deux vecteurs représentant les goûts de deux personnes en cinéma. Si leur produit scalaire est élevé, leurs goûts sont alignés ; s\'il est proche de zéro, ils n\'ont rien en commun. Les systèmes de recommandation reposent directement sur cette idée.
 
-Nous étudierons aussi les **valeurs et vecteurs propres**, notions plus avancées qui fondent des techniques de réduction de dimension comme l\'analyse en composantes principales (ACP), que vous reverrez au Semestre 2.
+Nous étudierons aussi les **valeurs et vecteurs propres**, notions plus avancées qui fondent des techniques de réduction de dimension comme l\'analyse en composantes principales (ACP), que vous reverrez au chapitre 5.
 
 ### Leçon 3 --- Le calcul différentiel : comment une machine apprend
 
@@ -392,7 +392,7 @@ L\'algorithme central, que vous reverrez dans absolument tous les cours suivants
 
 **Exemple --- la métaphore du brouillard.** Imaginez que vous êtes sur une colline dans un épais brouillard et que vous voulez descendre. Vous ne voyez pas le bas, mais vous sentez la pente sous vos pieds. La stratégie : faire un pas dans la direction qui descend le plus, puis recommencer. C\'est exactement la descente de gradient. Le **taux d\'apprentissage** est la taille de vos pas : trop grands, vous risquez de dépasser le creux ; trop petits, vous mettrez une éternité à descendre.
 
-**Pont entre matières ---** Gardez bien cette image en tête. Au Semestre 2, l\'entraînement de TOUS les réseaux de neurones que nous verrons plus loin ne sera qu\'une descente de gradient à très grande échelle. Les maths d\'aujourd\'hui sont la clé du deep learning de demain.
+**Pont entre matières ---** Gardez bien cette image en tête. Au chapitre 6, l\'entraînement de TOUS les réseaux de neurones que nous verrons plus loin ne sera qu\'une descente de gradient à très grande échelle. Les maths d\'aujourd\'hui sont la clé du deep learning de demain.
 
 ### Leçon 4 --- Probabilités : raisonner dans l\'incertain
 
@@ -575,7 +575,7 @@ Nous voici au cœur du sujet. Vous avez les fondations ; il est temps de répond
 
 ### Leçon 1 --- Les trois façons d\'apprendre
 
-Il existe trois grands paradigmes d\'apprentissage, illustrés ci-dessus. Vous devez savoir dire, devant n\'importe quel problème, duquel il relève.
+Il existe trois grands paradigmes d\'apprentissage, illustrés à la figure 5.1. Vous devez savoir dire, devant n\'importe quel problème, duquel il relève.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -583,7 +583,7 @@ Il existe trois grands paradigmes d\'apprentissage, illustrés ci-dessus. Vous d
 
 -   **Non supervisé** : aucune étiquette. Objectif : découvrir une structure cachée, par exemple des groupes.
 
--   **Par renforcement** : un agent apprend par essais et erreurs en recevant des récompenses (vu au Semestre 3).
+-   **Par renforcement** : un agent apprend par essais et erreurs en recevant des récompenses (chapitre 12).
 
 ### Leçon 2 --- Apprentissage supervisé : régression et classification
 
@@ -1881,7 +1881,7 @@ Tout workflow n8n se compose de trois types d\'éléments que vous devez bien di
 
 ### Leçon 4 --- Un exemple complet : le tri intelligent des emails
 
-Étudions un cas réel, illustré ci-dessus. L\'objectif : trier et traiter automatiquement les emails entrants. Voici le déroulé du workflow.
+Étudions un cas réel, illustré à la figure 20.1. L\'objectif : trier et traiter automatiquement les emails entrants. Voici le déroulé du workflow.
 
 **Exemple --- anatomie du workflow. 1. Déclencheur** : un nouvel email arrive. **2. Classer** : un LLM analyse le message et détermine son sujet et son urgence. **3. Décision** : selon la classification, le flux bifurque (réclamation, demande d\'info, spam...). **4. Générer** : pour une demande standard, un LLM rédige une proposition de réponse. **5. Action** : la réponse est envoyée, ou transmise à un humain pour validation si le sujet est sensible. Ce qui prenait des heures se fait en quelques secondes.
 
