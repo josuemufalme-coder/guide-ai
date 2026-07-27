@@ -2157,6 +2157,12 @@ Savoir construire ne suffit pas. Celui qui maîtrise vraiment l\'IA comprend aus
 
 Le pouvoir de l\'IA s\'accompagne de responsabilités. Un modèle peut refuser un crédit, orienter un diagnostic, filtrer des candidatures. Les conséquences sur des vies humaines sont réelles. L\'éthique n\'est donc pas un supplément moral : c\'est une partie intégrante du métier.
 
+Je veux écarter d\'emblée un malentendu qui décrédibilise le sujet : l\'éthique de l\'IA n\'est pas une affaire d\'opinions personnelles sur le bien et le mal. C\'est un ensemble de **questions techniques précises**, avec des réponses mesurables. Un modèle est-il aussi performant sur tous les groupes de population ? La question se calcule. Une personne peut-elle savoir pourquoi elle a été refusée ? Cela se conçoit ou non. Les données ont-elles été collectées avec une base légale ? Cela se vérifie. Traiter ces questions relève de la même rigueur que l\'évaluation du chapitre 5, et non d\'un supplément d\'âme.
+
+Il y a d\'ailleurs une raison très prosaïque de s\'en occuper tôt. Un biais découvert après le déploiement coûte infiniment plus cher qu\'un biais mesuré pendant la conception : il faut retirer le système, refaire les données, réentraîner, et souvent rendre des comptes. Le même raisonnement que pour les tests logiciels s\'applique — **plus une erreur est trouvée tard, plus elle coûte** —, à cette différence près qu\'ici l\'erreur a affecté des personnes réelles entre-temps.
+
+Un mot enfin sur une objection que j\'entends souvent : « ce n\'est pas mon rôle, je suis technicien ». Si vous choisissez les données d\'entraînement, vous décidez qui sera bien servi par le modèle. Si vous choisissez le seuil de décision, vous arbitrez entre deux erreurs qui ne frappent pas les mêmes personnes. Si vous choisissez la métrique, vous décidez de ce qui compte comme un succès. **Ces choix sont techniques et ils sont éthiques, indissociablement.** Personne d\'autre que vous n\'est en position de les voir.
+
 ### Leçon 2 --- Les biais : quand l\'IA hérite de nos préjugés
 
 Les modèles apprennent à partir de données qui reflètent la société, biais compris. Un système entraîné sur des données biaisées peut perpétuer, voire amplifier, des discriminations.
@@ -2167,13 +2173,54 @@ Les modèles apprennent à partir de données qui reflètent la société, biais
 
 **Notion essentielle ---** Un algorithme n\'est pas neutre par nature : il hérite des biais de ses données et des choix de ses concepteurs. L\'équité doit être un objectif explicite, mesuré et vérifié --- jamais une présomption.
 
+**Exemple chiffré --- deux définitions de l\'équité qui se contredisent.** Il faut voir les nombres pour comprendre pourquoi ce sujet est difficile. Reprenons le tri de candidatures, appliqué à deux groupes de mille personnes comptant chacun deux cents candidats réellement qualifiés.
+
+| | Groupe A | Groupe B |
+|---|---:|---:|
+| Candidats | 1 000 | 1 000 |
+| Réellement qualifiés | 200 | 200 |
+| **Sélectionnés par le modèle** | **300 (30 %)** | **150 (15 %)** |
+| Exactitude | 86 % | **89 %** |
+| Précision | 60 % | **80 %** |
+| Rappel | **90 %** | 60 % |
+
+Regardez ces chiffres avec attention, car ils sont déroutants. Le modèle est **plus exact** sur le groupe B. Il y est même **plus précis** : quand il sélectionne quelqu\'un du groupe B, il a raison huit fois sur dix, contre six fois sur dix dans le groupe A. Sur ces deux critères, le groupe B est mieux traité.
+
+Et pourtant, le groupe B voit **deux fois moins** de ses membres sélectionnés — 15 % contre 30 % — alors que les deux groupes comptent exactement le même nombre de personnes qualifiées. Le rappel le confirme : neuf candidats qualifiés sur dix sont retenus dans le groupe A, six seulement sur dix dans le groupe B. Le modèle est simplement **plus exigeant** avec le groupe B, et cette exigence lui coûte quatre-vingts candidats qualifiés écartés à tort.
+
+Le rapport des taux de sélection vaut **0,50**. Une règle usuelle en matière de discrimination à l\'embauche considère qu\'un rapport inférieur à 0,80 doit alerter ; nous en sommes très loin.
+
+**La leçon est là : il n\'existe pas une équité, il en existe plusieurs, et elles sont mathématiquement incompatibles.** Vous ne pouvez pas simultanément égaliser les taux de sélection, les taux de précision et les taux de rappel entre groupes — sauf dans des cas si particuliers qu\'ils ne se rencontrent jamais. Ce n\'est pas une limite des outils actuels, c\'est un résultat démontré.
+
+Vous devrez donc **choisir**, explicitement, quelle équité vous visez, et l\'assumer. Pour un tri de candidatures, l\'égalité des taux de sélection paraît défendable. Pour un dépistage médical, l\'égalité des rappels s\'impose — on ne peut pas manquer davantage de malades dans un groupe que dans un autre. Pour l\'octroi d\'un prêt, l\'égalité des précisions se discute. Ce que vous ne pouvez pas faire, c\'est ne pas choisir : ne pas choisir, c\'est laisser les données décider à votre place, et elles décideront selon les biais du passé.
+
+Une dernière remarque, pratique. Ce tableau n\'existe que parce que quelqu\'un a **ventilé les résultats par groupe**. Une évaluation globale aurait affiché une exactitude de 87,5 % et n\'aurait rien montré du tout. **Mesurez toujours vos performances par sous-population**, pas seulement en moyenne. C\'est le geste le plus simple et le plus efficace de tout ce chapitre.
+
 ### Leçon 3 --- Transparence, explicabilité et vie privée
 
 Beaucoup de modèles sont des « boîtes noires » : on connaît leurs sorties, pas leur raisonnement. Les techniques d\'**explicabilité** rendent leurs décisions intelligibles, ce qui est indispensable dans les domaines sensibles. Par ailleurs, la **protection des données personnelles** et le **RGPD** encadrent strictement le traitement des données en Europe.
 
+Précisons ce qu\'« expliquer » veut dire, car le mot recouvre deux exigences bien différentes. L\'**explication globale** décrit le comportement d\'ensemble du modèle : quelles variables pèsent le plus, dans quel sens. Elle sert à l\'auditer et à détecter qu\'il s\'appuie sur quelque chose d\'inacceptable — un code postal servant de substitut à l\'origine, par exemple. L\'**explication locale** justifie une décision particulière : pourquoi ce dossier-ci a-t-il été refusé ? C\'est celle qu\'attend la personne concernée, et c\'est la plus difficile à produire honnêtement.
+
+Deux mises en garde s\'imposent ici, car l\'explicabilité est souvent survendue. D\'abord, **une explication n\'est pas le raisonnement du modèle** : c\'est une reconstruction approximative, produite après coup par un autre calcul. Elle peut être plausible et fausse. Ensuite, une explication convaincante **crée de la confiance sans créer de la fiabilité** — c\'est exactement le danger signalé au chapitre 10 à propos de la fluidité du langage.
+
+Une piste vaut d\'être connue, et elle est trop peu suivie : lorsque l\'enjeu impose de comprendre, **utilisez d\'emblée un modèle simple**. Un arbre de décision de faible profondeur ou une régression logistique s\'expliquent par construction, sans reconstruction ni approximation. Ils sont souvent un peu moins performants ; dans un domaine où l\'on doit motiver chaque décision, ce sacrifice est généralement le bon.
+
+Sur la protection des données, retenez au minimum les principes qui structurent la matière, car ils s\'appliquent bien au-delà de l\'Europe. On ne collecte que ce qui est nécessaire à une finalité annoncée. On ne conserve pas indéfiniment. On informe les personnes. On leur permet d\'accéder à leurs données et de les faire corriger. Et l\'on n\'utilise pas des données collectées pour un usage donné à une autre fin sans nouvelle base légale — ce dernier point étant, en pratique, celui que les projets d\'IA enfreignent le plus souvent, parce qu\'il est tentant de réutiliser un jeu de données déjà disponible.
+
+**Un point vous concerne directement, et il est mal connu : un modèle peut mémoriser ses données d\'entraînement.** Un modèle de langage entraîné sur des courriels internes peut, dans certaines conditions, restituer des fragments de ces courriels. Anonymiser le jeu de données ne suffit pas toujours, car des données croisées permettent souvent de réidentifier une personne. Traitez donc un modèle entraîné sur des données personnelles avec les mêmes précautions que ces données elles-mêmes.
+
 ### Leçon 4 --- Le cadre réglementaire et les enjeux de société
 
 Les régulations se mettent en place, notamment l\'**AI Act** européen, qui classe les systèmes par niveau de risque. J\'aborde aussi les grands enjeux : impact sur l\'emploi, **désinformation** et deepfakes, sécurité et alignement des systèmes les plus avancés.
+
+L\'approche par **niveau de risque** mérite d\'être comprise dans son principe, car elle inspire l\'essentiel des réglementations en cours d\'élaboration dans le monde, et elle survivra aux textes particuliers. L\'idée est de ne pas réglementer « l\'IA » en bloc — ce qui n\'aurait pas de sens, un filtre anti-spam et un système de tri de candidatures n\'appelant pas les mêmes précautions — mais de **graduer les obligations selon les conséquences de l\'usage**. Certains usages sont interdits. D\'autres, jugés à haut risque parce qu\'ils décident de l\'accès à l\'emploi, au crédit, à l\'éducation ou aux services essentiels, sont soumis à des obligations lourdes : documentation, évaluation des biais, supervision humaine, traçabilité. D\'autres encore n\'appellent qu\'une obligation de transparence — dire à l\'utilisateur qu\'il parle à une machine, signaler qu\'un contenu a été généré. Le reste demeure largement libre.
+
+Ce qu\'il faut en retenir, quel que soit le pays où vous exercerez, tient en une phrase : **votre obligation dépend de ce que votre système décide, pas de la technique employée**. Un simple tableur qui trierait des candidatures relèverait des mêmes exigences qu\'un réseau de neurones. Inversement, un modèle très sophistiqué qui recommande des films ne relève de presque rien. Posez-vous donc toujours la question dans ces termes : **quelle décision mon système prend-il, et sur qui ?**
+
+Sur la désinformation, je préfère être précis plutôt qu\'alarmiste. Ce que la génération automatique a changé n\'est pas la possibilité du faux — elle existait — mais son **coût**. Fabriquer un contenu trompeur convaincant demandait du temps et des compétences ; c\'est devenu quasi gratuit et instantané. Le risque n\'est donc pas seulement qu\'on croie à des faux, mais qu\'à force d\'en côtoyer, on finisse par **douter de tout**, y compris de ce qui est authentique. C\'est cet effet-là, le plus corrosif, qui menace le débat public.
+
+Sur l\'emploi enfin, deux constats et une abstention. Premier constat : la transformation touche d\'abord des **tâches**, pas des métiers entiers ; un métier composé de dix tâches dont trois s\'automatisent se transforme, il ne disparaît pas. Second constat : les métiers les plus exposés ne sont pas ceux qu\'on croyait il y a dix ans — on annonçait l\'automatisation du travail manuel répétitif, ce sont les tâches de rédaction, de synthèse et de premier niveau d\'analyse qui bougent le plus vite. Quant à l\'ampleur nette des effets, je m\'abstiendrai : les estimations sérieuses varient dans des proportions telles qu\'aucune ne mérite d\'être citée comme un fait.
 
 ### Leçon 5 --- Un cadre de décision éthique
 
@@ -2192,6 +2239,14 @@ Face à un dilemme éthique en IA, ne tranchez pas à l\'instinct : raisonnez av
 -   **Qui est responsable ?** Une décision importante doit toujours avoir un responsable humain.
 
 **Cas pratique --- appliquer le cadre.** Une banque veut automatiser l\'octroi de crédits. En appliquant le cadre : les concernés sont les demandeurs (dont des personnes fragiles) ; le risque majeur est le biais discriminatoire ; la transparence impose d\'expliquer les refus ; l\'alternative est de garder l\'humain dans la décision finale ; la responsabilité reste à la banque. La conclusion raisonnée : l\'IA peut **assister** l\'analyse, mais la décision de refus doit rester explicable et humaine. **À retenir** : un cadre transforme un malaise diffus en décision argumentée.
+
+Deux compléments à ce cadre, tirés des situations où je l\'ai vu buter.
+
+Le premier concerne la question de la responsabilité, la dernière de la liste et la plus souvent escamotée. Elle admet une formulation qui la rend inévitable : **si ce système cause un préjudice à quelqu\'un, qui reçoit la lettre de réclamation ?** Tant que cette phrase n\'a pas de réponse nominative, le système n\'est pas prêt. La supervision humaine ne suffit d\'ailleurs pas à elle seule : un opérateur à qui l\'on demande de valider deux cents décisions par jour finira par cliquer sans lire, et l\'on aura obtenu une responsabilité de façade sans aucune vigilance réelle. Pour que la supervision soit effective, il faut du temps, une information suffisante pour juger, et la possibilité concrète de contredire la machine sans avoir à se justifier.
+
+Le second concerne l\'avant-dernière question du cadre, celle de l\'alternative, que je trouve la plus salutaire. Elle mérite d\'être posée plus radicalement encore : **et si l\'on ne faisait rien ?** Beaucoup de projets d\'IA automatisent un processus dont personne n\'a vérifié qu\'il était juste au départ. Automatiser un tri de candidatures arbitraire produit un tri arbitraire, plus rapide, plus systématique et plus difficile à contester — parce qu\'il porte désormais l\'autorité du chiffre. **L\'automatisation ne corrige pas les défauts d\'un processus, elle les met à l\'échelle.** Avant de vous demander comment automatiser, demandez-vous si le processus mérite de l\'être.
+
+Un dernier mot pour vous éviter un piège d\'organisation. Ces questions ne se traitent pas en fin de projet, dans une revue de conformité qui arriverait après le développement. À ce stade, tout coûte cher à changer, et l\'on se contente de documenter ce qui existe. Posez-les **au cadrage**, en même temps que les questions de faisabilité technique. Elles ne ralentissent pas le projet : elles évitent d\'en construire un qu\'il faudra retirer.
 
 ### Exercices dirigés
 
@@ -2227,15 +2282,56 @@ Face à un dilemme éthique en IA, ne tranchez pas à l\'instinct : raisonnez av
 
 La plupart des projets d\'IA n\'échouent pas pour des raisons techniques, mais par un mauvais cadrage, des données insuffisantes ou une inadéquation au besoin réel. Savoir piloter un projet d\'IA est donc aussi important que savoir entraîner un modèle.
 
+Ce qui rend ces projets particuliers mérite d\'être nommé, car on les pilote trop souvent comme des projets logiciels ordinaires, et c\'est de là que viennent la plupart des déconvenues. Trois différences comptent vraiment.
+
+**On ne sait pas si c\'est faisable avant d\'avoir essayé.** Un développeur à qui l\'on demande un formulaire sait qu\'il y arrivera et peut estimer la durée. Personne ne peut garantir qu\'un modèle atteindra 90 % de justesse sur des données qu\'il n\'a pas encore vues. Cette incertitude est irréductible, et elle doit être annoncée : promettre un niveau de performance avant d\'avoir regardé les données est la faute la plus fréquente, et la plus lourde de conséquences.
+
+**La performance ne progresse pas linéairement avec l\'effort.** Passer de 70 % à 85 % demande souvent quelques jours ; passer de 85 % à 90 % peut demander des mois, et les derniers points sont parfois hors d\'atteinte. Un planning qui suppose une progression régulière est un planning faux. Il faut donc fixer très tôt le **seuil d\'utilité** — le niveau en dessous duquel le système ne sert à rien — et s\'arrêter dès qu\'il est franchi plutôt que de courir après la perfection.
+
+**Le projet ne se termine pas à la livraison.** Un logiciel classique livré fonctionne encore dans trois ans. Un modèle se dégrade, comme vous l\'avez vu au chapitre 7. Il faut donc budgéter l\'exploitation dès le départ, faute de quoi le projet mourra faute d\'entretien.
+
+J\'ajoute une recommandation de méthode qui découle des trois : **commencez par une étude de faisabilité courte et bornée**, deux à quatre semaines, dont la seule finalité est de répondre à « les données permettent-elles d\'atteindre le seuil d\'utilité ? ». Elle ne produit pas de système, elle produit une décision — continuer ou arrêter. Renoncer au bout d\'un mois est un succès ; renoncer au bout d\'un an est un échec coûteux.
+
 ### Leçon 2 --- Cadrer avant de coder
 
 Avant la moindre ligne de code, il faut définir clairement le problème, les **indicateurs de succès** et la valeur attendue. On utilise des méthodologies adaptées : **Agile** et **Scrum** pour itérer, et **CRISP-DM**, le processus de référence des projets de data science.
 
 **Exemple --- une bonne question de départ.** « Faisons de l\'IA » n\'est pas un projet. « Réduire de 20 % le taux de désabonnement en identifiant les clients à risque » en est un : l\'objectif est mesurable, la valeur est claire, et l\'on saura dire si le projet a réussi. Un bon cadrage est la moitié du succès.
 
+Poussons plus loin, car même cette bonne formulation reste incomplète. Un cadrage exploitable répond à cinq questions, et je vous encourage à ne jamais démarrer sans les cinq réponses écrites.
+
+**Quelle décision changera ?** Non pas « que prédit-on », mais que fera-t-on différemment une fois la prédiction disponible. Si personne ne sait répondre, le projet produira un tableau de bord que personne ne regardera. C\'est le cas le plus fréquent d\'échec silencieux.
+
+**Que fait-on aujourd\'hui, et avec quel résultat ?** Il existe toujours un processus existant, même informel — l\'intuition d\'un chef d\'équipe, une règle empirique. Mesurez-le. C\'est votre référence, celle du chapitre 5, et il arrive qu\'elle soit déjà excellente.
+
+**Quel niveau de performance rend le projet utile ?** Répondez avant de commencer, et par un chiffre. Sans ce seuil, vous n\'aurez aucun critère pour arrêter, ni pour vous déclarer satisfait.
+
+**Quelles données existent réellement ?** Non pas « quelles données seraient idéales », mais lesquelles sont accessibles, dans quel état, avec quelle antériorité, et à quelles conditions juridiques. Cette question tue plus de projets que toutes les autres, et il vaut mieux qu\'elle les tue au début.
+
+**Qui utilisera le résultat, et l\'a-t-on associé ?** Un modèle conçu sans ses utilisateurs finit dans un outil que personne n\'ouvre.
+
+Un mot sur CRISP-DM, puisque le texte le cite. Son intérêt n\'est pas dans la liste de ses six étapes mais dans la **forme de son schéma** : ce sont des flèches qui reviennent en arrière. Comprendre les données renvoie à comprendre le métier ; la modélisation renvoie à la préparation des données. Ces retours ne sont pas des accidents de parcours, ce sont le déroulement normal. Un chef de projet qui les vit comme des échecs mettra son équipe sous une pression qui la poussera à cacher les difficultés — exactement ce qu\'il ne faut pas.
+
 ### Leçon 3 --- Données, risques et passage à l\'échelle
 
 Un projet d\'IA est avant tout un projet de **données** : sont-elles disponibles, de qualité, à un coût raisonnable ? Il faut aussi gérer les **risques**, coordonner les **parties prenantes**, et préparer le passage délicat du prototype à la production à grande échelle. Enfin, on mesure le **retour sur investissement**.
+
+**Exemple chiffré --- un retour sur investissement qui dépend d\'une hypothèse invérifiée.** Le calcul de rentabilité est présenté partout comme une formalité ; il mérite d\'être fait pour comprendre où il est fragile. Prenons une entreprise de dix mille clients, chacun rapportant **1 200 $ de marge annuelle**. Un modèle identifie les mille clients les plus à risque de départ ; sa précision étant de 60 %, six cents d\'entre eux seraient réellement partis. On les contacte par une campagne de rétention à **25 $ par client**, soit 25 000 $ par an, plus 20 000 $ d\'exploitation annuelle et 60 000 $ de développement la première année.
+
+Reste une inconnue, et c\'est elle qui décide de tout : **quelle proportion des clients contactés la campagne parvient-elle réellement à retenir ?**
+
+| Taux de rétention | Clients sauvés | Gain annuel | Année 1 | En régime | Seuil de rentabilité |
+|---:|---:|---:|---:|---:|---|
+| 5 % | 30 | 36 000 $ | −69 000 $ | **−9 000 $** | jamais |
+| 10 % | 60 | 72 000 $ | −33 000 $ | +27 000 $ | 3,2 ans |
+| 20 % | 120 | 144 000 $ | **+39 000 $** | +99 000 $ | 1,6 an |
+| 30 % | 180 | 216 000 $ | +111 000 $ | +171 000 $ | 1,4 an |
+
+Le modèle est **exactement le même** dans les quatre lignes. Sa précision, son rappel, son architecture : rien ne change. Et pourtant le projet passe d\'une perte perpétuelle à une rentabilité en dix-huit mois, selon la seule valeur d\'un paramètre **qui ne dépend pas du modèle du tout** — l\'efficacité d\'une campagne commerciale.
+
+Voilà ce que je veux que vous reteniez de ce chapitre. **La rentabilité d\'un projet d\'IA se joue le plus souvent en dehors du modèle.** Un modèle excellent branché sur une action inefficace ne produit rien. Un modèle médiocre branché sur une action très efficace peut être rentable. Avant d\'investir dans la précision, demandez donc : *que fera-t-on de la prédiction, et avec quel effet ?*
+
+Et puisque ce taux est inconnu, ne le devinez pas : **mesurez-le**. Contactez cinq cents clients à risque et laissez-en cinq cents autres sans rien faire, comme au chapitre 8. Vous connaîtrez l\'effet réel en quelques semaines, pour quelques milliers de dollars, avant d\'en engager cent mille. Cette petite expérience préalable est le meilleur investissement d\'un projet d\'IA — et c\'est presque toujours celui qu\'on saute.
 
 ### Leçon 4 --- Les sept causes d\'échec et comment les éviter
 
@@ -2259,9 +2355,31 @@ Apprenons des échecs des autres. Voici les sept causes les plus fréquentes d\'
 
 **Attention --- un échec instructif.** Une entreprise investit des mois dans un modèle de prévision très précis... que personne n\'utilise, car il n\'a jamais été intégré aux outils des équipes. Le modèle était excellent ; le projet a échoué. **À retenir** : un modèle qui ne sert pas est un échec, si performant soit-il. L\'adoption compte autant que la performance.
 
+Cette liste couvre l\'essentiel ; j\'y ajoute trois causes que je rencontre souvent et qu\'on nomme rarement.
+
+**La cible mouvante.** Le projet démarre sur un objectif, puis chaque partie prenante y ajoute le sien : prédire les départs, puis aussi expliquer pourquoi, puis segmenter, puis alimenter un tableau de bord. Chaque demande est raisonnable ; leur somme rend le projet infaisable. La parade tient en une discipline : **une seule décision à améliorer par projet**, le reste attend une phase ultérieure.
+
+**Le prototype promu en production.** Une démonstration convaincante crée une pression pour livrer vite, et l\'on met en service un carnet Jupyter à peine habillé. Le chapitre 7 vous a montré tout ce qui manque alors. La parade : annoncer dès la démonstration que **le passage en production demandera un effort du même ordre** que ce qui vient d\'être montré. Cela déçoit sur le moment, et cela évite un désastre.
+
+**L\'absence de propriétaire métier.** Un projet porté uniquement par l\'équipe technique n\'a personne pour arbitrer les compromis ni pour défendre son adoption. Il faut un responsable côté métier qui ait un intérêt direct au résultat, pas seulement un correspondant qui assiste aux réunions.
+
+Un mot enfin sur l\'échec raconté ci-dessus, car il est plus riche qu\'il n\'y paraît. Le modèle de prévision était excellent, et pourtant personne ne s\'en servait. Ce n\'est pas de la mauvaise volonté : demander à quelqu\'un d\'ouvrir un outil supplémentaire, de s\'y connecter et d\'interpréter un chiffre, c\'est lui demander de changer sa journée de travail. **Un système qui exige un effort d\'adoption sera abandonné ; un système qui apparaît là où le travail se fait déjà sera utilisé.** Faites arriver la prédiction dans l\'outil que les équipes ont déjà ouvert, au moment où elles en ont besoin. Cette question d\'intégration, qui paraît secondaire, décide plus souvent du sort d\'un projet que la performance du modèle.
+
 ### Leçon 5 --- Communiquer avec les décideurs
 
 Un chef de projet IA doit traduire la technique en langage métier. Ne parlez pas de « score F1 » à un directeur : parlez de « réduction des erreurs de 30 % » et « d\'économie estimée ». Reliez toujours la technique à la valeur, et appuyez-vous sur des démonstrations concrètes plutôt que sur des concepts abstraits. C\'est ainsi qu\'on obtient l\'adhésion et les budgets.
+
+Quelques principes pour rendre ce conseil applicable, car « traduire en langage métier » reste vague tant qu\'on n\'a pas d\'exemples.
+
+**Convertissez chaque métrique en conséquence.** Ne dites pas « le rappel est de 80 % », dites « sur cent fraudes, nous en détecterons quatre-vingts et vingt passeront ». Ne dites pas « la précision est de 40 % », dites « sur dix alertes, six seront de fausses alertes, ce qui représente tant d\'heures d\'examen par jour ». Vous avez fait ce calcul au chapitre 7 : c\'est celui-là qui parle à une direction, pas le pourcentage.
+
+**Annoncez l\'incertitude d\'emblée, et par écrit.** Un chef de projet qui promet 90 % et livre 82 % a échoué. Celui qui annonce « entre 75 et 85 %, nous le saurons dans six semaines » et livre 82 % a réussi. La même réalité, deux issues opposées, et la différence tient entièrement à ce qui a été dit au départ.
+
+**Montrez plutôt que d\'expliquer.** Une démonstration de dix minutes sur les données réelles de l\'interlocuteur convainc plus que trente diapositives. Et elle fait apparaître les objections métier bien plus tôt — ce qui est un gain, même quand c\'est désagréable.
+
+**Présentez les coûts complets.** Le développement n\'est qu\'une part de la dépense : il y a l\'exploitation, la surveillance, le réentraînement, et souvent un travail d\'annotation initial que personne n\'avait chiffré. Un budget qui omet ces postes sera dépassé, et le dépassement coûtera plus cher en crédibilité que le montant lui-même.
+
+Un dernier conseil, sur un sujet dont on parle peu : **sachez annoncer un arrêt**. Un projet qui s\'arrête après une étude de faisabilité concluante à « non » a fait exactement ce qu\'on attendait de lui. Présentez-le ainsi, avec ce qui a été appris et ce que la décision a permis d\'économiser. Une équipe qui sait arrêter proprement obtient plus facilement le budget du projet suivant qu\'une équipe qui n\'arrête jamais rien.
 
 ### Exercices dirigés
 
@@ -2293,6 +2411,18 @@ Les projets d\'IA échouent surtout par mauvais cadrage, pas par faiblesse techn
 
 Ce chapitre relie tout ce que vous avez appris aux besoins réels des organisations. Connaître les algorithmes ne suffit pas : il faut savoir **où** et **comment** l\'IA crée de la valeur dans chaque secteur.
 
+Avant le panorama, donnons-nous une grille, sans quoi une liste de cas d\'usage n\'est qu\'un catalogue qu\'on oublie. La valeur créée par l\'IA prend en réalité **quatre formes**, et une seule est visible dans le débat public.
+
+**Automatiser** ce qui était fait à la main : lecture de factures, tri de courriels, saisie de formulaires. La valeur se mesure en temps libéré, elle est facile à chiffrer, et c\'est là que commencent la plupart des organisations.
+
+**Anticiper** ce qu\'on subissait : une panne, un départ de client, une rupture de stock. La valeur se mesure en coûts évités, ce qui est plus difficile à démontrer — on ne voit pas ce qui n\'est pas arrivé — mais souvent bien supérieur.
+
+**Personnaliser** à une échelle inatteignable autrement : recommandation, tarification, parcours adapté. La valeur se mesure en conversion ou en fidélisation.
+
+**Rendre possible** ce qui ne l\'était pas du tout : analyser toutes les conversations d\'un service client plutôt qu\'un échantillon, relire l\'intégralité d\'un fonds documentaire, dépister à grande échelle. C\'est la catégorie la moins explorée et souvent la plus intéressante, parce qu\'elle ne remplace personne : elle ouvre un terrain que personne n\'occupait.
+
+Gardez cette grille en tête pendant tout le chapitre. Quand on vous présentera un cas d\'usage, demandez-vous d\'abord de laquelle de ces quatre formes il relève — cela vous dira immédiatement comment en mesurer la valeur, et à qui il faut en parler.
+
 ### Leçon 2 --- Panorama sectoriel
 
 Nous passerons en revue les applications concrètes par domaine :
@@ -2311,9 +2441,29 @@ Nous passerons en revue les applications concrètes par domaine :
 
 **Cas pratique --- la maintenance prédictive.** Une usine équipe ses machines de capteurs. Un modèle apprend à reconnaître les signaux annonciateurs d\'une panne et alerte avant qu\'elle ne survienne. Résultat : moins d\'arrêts, des réparations planifiées, des économies considérables. C\'est un cas d\'usage où l\'IA crée une valeur directe et mesurable.
 
+**Exemple chiffré --- dimensionner la valeur avant de développer.** Ce cas est parfait pour montrer comment on chiffre une opportunité en dix minutes, avant d\'engager quoi que ce soit. L\'usine subit **douze arrêts non planifiés par an**, de **huit heures** en moyenne. Chaque heure d\'arrêt coûte **15 000 $** en production perdue et en personnel immobilisé.
+
+Le coût annuel du problème s\'établit donc à 12 × 8 × 15 000 = **1 440 000 $**.
+
+Aucune maintenance prédictive n\'évite tous les arrêts : certaines pannes ne donnent aucun signal avant-coureur. Retenons des hypothèses prudentes. En évitant **30 %** des arrêts, on économise **432 000 $ par an**. En en évitant **50 %**, **720 000 $**.
+
+Comparez maintenant à ce que coûte le projet : capteurs, collecte, développement, exploitation. Même en supposant plusieurs centaines de milliers de dollars la première année, la décision est évidente — et surtout, **elle se prend avant d\'écrire une ligne de code**.
+
+Trois enseignements, et ils valent pour tous les cas d\'usage de ce chapitre. D\'abord, **on dimensionne d\'abord le problème, pas la solution**. Si le coût annuel des arrêts avait été de 40 000 $, aucune sophistication technique n\'aurait rendu le projet raisonnable, et il valait mieux le savoir tout de suite. Ensuite, **le facteur décisif n\'est presque jamais la performance du modèle** : c\'est le coût unitaire du problème — ici, les 15 000 $ de l\'heure. Un modèle médiocre sur un problème coûteux rapporte plus qu\'un modèle excellent sur un problème sans enjeu. Enfin, **prenez toujours l\'hypothèse basse** dans ce type de calcul. Si le projet est rentable à 30 % d\'efficacité, il le restera à 50 %. S\'il n\'est rentable qu\'à 80 %, il ne le sera jamais.
+
 ### Leçon 3 --- Développer une posture de conseil
 
 Au-delà du catalogue, vous apprendrez à analyser un contexte métier, à repérer où l\'IA apporte réellement de la valeur, et à formuler des **recommandations stratégiques** fondées sur des retours d\'expérience réels --- y compris les échecs, souvent les plus instructifs.
+
+Cette posture s\'apprend, et elle tient en trois habitudes que je vous propose d\'adopter dès votre premier échange professionnel sur le sujet.
+
+**Écoutez le processus avant de proposer la technique.** Devant une demande — « nous voudrions un chatbot » —, la bonne réaction n\'est pas d\'évaluer la faisabilité d\'un chatbot, mais de demander qui fait quoi aujourd\'hui, combien de temps cela prend, et ce qui coince. Neuf fois sur dix, la demande exprimée n\'est pas le problème réel. Il arrive même que la meilleure recommandation soit de corriger un formulaire mal conçu, sans aucune intelligence artificielle. Formuler cela vous fera gagner davantage de crédit que n\'importe quelle prouesse technique.
+
+**Chiffrez avant de promettre.** Le calcul de la leçon précédente prend dix minutes et se fait devant l\'interlocuteur. Il transforme une conversation d\'intentions en conversation de décision, et il vous protège autant qu\'il le sert.
+
+**Dites ce que vous ne savez pas.** « Je ne peux pas vous garantir ce niveau de performance avant d\'avoir vu les données » est une phrase qui rassure les gens sérieux et qui vous distingue immédiatement de ceux qui promettent tout. C\'est aussi la seule position tenable dans la durée.
+
+Un mot sur les échecs, puisque le texte les mentionne. Ils sont plus instructifs que les réussites pour une raison précise : les réussites sont racontées après coup, avec un ordre et une logique qu\'elles n\'avaient pas sur le moment, tandis que les échecs conservent leurs causes visibles. Constituez-vous donc une petite collection de projets ratés, en notant à chaque fois **à quel moment il aurait fallu s\'arrêter**. C\'est le meilleur outil de conseil que je connaisse — et il coûte seulement l\'honnêteté d\'y inscrire aussi les vôtres.
 
 ### Exercices dirigés
 
