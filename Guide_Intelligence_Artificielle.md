@@ -854,6 +854,12 @@ Il existe trois grands paradigmes d\'apprentissage, illustrés à la figure 5.1.
 
 -   **Par renforcement** : un agent apprend par essais et erreurs en recevant des récompenses (chapitre 12).
 
+Comment reconnaître à quel paradigme on a affaire ? Une seule question suffit, et je vous conseille de vous la poser avant toute autre : **est-ce que je possède la réponse pour mes exemples passés ?** Si oui, c\'est du supervisé. Si non, mais que je cherche une structure, c\'est du non supervisé. Si non, et que la réponse ne peut venir que de l\'expérimentation, c\'est du renforcement.
+
+Le point critique, en pratique, est le coût de l\'étiquette. On l\'oublie souvent quand on découvre le domaine : le supervisé exige que quelqu\'un ait fourni la bonne réponse pour chaque exemple, ce qui veut dire des heures de travail humain. Faire annoter dix mille radiographies par des radiologues coûte cher et prend des mois. C\'est très souvent l\'étiquetage, et non l\'algorithme, qui décide de la faisabilité d\'un projet.
+
+D\'où une famille intermédiaire que ce découpage en trois laisse dans l\'ombre et qui est pourtant devenue centrale. L\'**apprentissage auto-supervisé** consiste à fabriquer les étiquettes à partir des données elles-mêmes, sans intervention humaine. Cachez un mot dans une phrase et demandez au modèle de le retrouver : vous disposez d\'un exemple étiqueté gratuit, et vous en avez autant que de mots dans la langue. C\'est exactement ainsi que sont pré-entraînés les grands modèles de langage que vous utilisez aujourd\'hui, et c\'est ce qui a permis de sortir du goulot d\'étranglement de l\'annotation manuelle. Retenez le principe : quand les étiquettes coûtent cher, la question la plus rentable est « puis-je les fabriquer à partir des données ? ».
+
 ### Leçon 2 --- Apprentissage supervisé : régression et classification
 
 Dans l\'apprentissage supervisé, on distingue deux tâches. La **régression** prédit une valeur continue (un prix, une température). La **classification** prédit une catégorie (spam ou non, malade ou sain).
@@ -863,6 +869,12 @@ Dans l\'apprentissage supervisé, on distingue deux tâches. La **régression** 
 Le modèle le plus simple est la **régression linéaire** : on cherche la droite (ou l\'hyperplan) qui passe au mieux parmi les points. La **régression logistique**, malgré son nom, sert à classer : elle estime une probabilité d\'appartenance à une classe.
 
 **Exemple --- prédire le prix d\'un appartement.** On dispose de la surface et du prix de centaines d\'appartements. La régression linéaire trouve la relation « prix ≈ a × surface + b ». Une fois a et b appris, on prédit le prix d\'un nouvel appartement à partir de sa seule surface. C\'est l\'apprentissage supervisé dans sa forme la plus pure.
+
+Une précision s\'impose sur la régression logistique, car son nom est trompeur et sa sortie mal comprise. Elle ne rend pas une classe, elle rend une **probabilité** : 0,82 signifie « 82 % de chances que ce soit un spam ». Pour trancher, il faut donc un **seuil**, et ce seuil est votre décision, pas celle du modèle. Par défaut, on prend 0,5, mais rien ne l\'impose et c\'est rarement le bon choix.
+
+Cette liberté est bien plus importante qu\'elle n\'en a l\'air, car c\'est par là qu\'on ajuste un modèle à son usage réel. Baissez le seuil à 0,3 : le modèle devient soupçonneux, il attrapera davantage de spams et enverra aussi davantage de messages légitimes en quarantaine. Montez-le à 0,8 : il ne signalera que ce dont il est sûr, et laissera passer du courrier indésirable. Aucun de ces réglages n\'est meilleur dans l\'absolu ; le bon dépend de ce qui coûte le plus cher — perdre un message important, ou en supporter quelques indésirables. Un même modèle entraîné une seule fois offre ainsi tout un éventail de comportements, et c\'est vous qui choisissez. Nous verrons à la leçon 5 comment mesurer ce compromis.
+
+Notez enfin ce qui distingue vraiment les deux tâches, au-delà de la nature de la sortie : **la fonction de coût**. Une régression mesure son erreur en écarts au carré, ce qui punit très durement les grandes erreurs. Une classification mesure la sienne en entropie croisée, qui punit l\'assurance mal placée, comme nous l\'avons vu au chapitre 3. Ce n\'est pas un détail technique : c\'est la définition même de ce que le modèle va chercher à éviter.
 
 ### Leçon 3 --- Les arbres et les méthodes d\'ensemble
 
@@ -876,11 +888,23 @@ Un **arbre de décision** pose une suite de questions binaires pour aboutir à u
 
 **Exemple --- la sagesse de la foule.** Demandez à une seule personne d\'estimer le poids d\'un bœuf : elle se trompe. Demandez à mille personnes et faites la moyenne : l\'estimation devient étonnamment juste. Les forêts aléatoires exploitent ce principe : beaucoup de modèles imparfaits, combinés, deviennent puissants.
 
+Reste à comprendre comment un arbre choisit ses questions, car cela n\'a rien d\'arbitraire. À chaque nœud, l\'algorithme essaie toutes les coupures possibles sur toutes les variables — « surface au-dessus ou en dessous de 60 m² ? », « au-dessus ou en dessous de 61 m² ? » — et retient celle qui sépare le mieux les classes. « Le mieux » se mesure par une notion de **pureté** : un groupe est pur s\'il ne contient qu\'une seule classe. L\'arbre cherche donc, à chaque étape, la question qui rend les deux paquets obtenus aussi purs que possible. Rien de plus. C\'est cette simplicité qui le rend lisible, et l\'on peut littéralement lire un arbre comme une suite de règles.
+
+La différence entre les deux méthodes d\'ensemble mérite aussi d\'être claire, car on les confond. La **forêt aléatoire** entraîne ses arbres **en parallèle et indépendamment**, chacun sur un sous-échantillon différent, puis fait voter. Les erreurs des uns compensent celles des autres, et c\'est la variance qui chute. Le **gradient boosting** procède **en série** : chaque nouvel arbre est entraîné spécifiquement sur ce que les précédents ont raté. Le premier corrige grossièrement, le deuxième affine, et ainsi de suite. C\'est plus puissant, et aussi plus risqué — un ensemble qui se concentre sur les erreurs finit par apprendre le bruit si on le laisse aller trop loin.
+
+Un fait vaut d\'être dit franchement, car il surprend ceux qui découvrent le domaine par les réseaux de neurones : **sur des données tabulaires, ces méthodes à base d\'arbres restent très souvent les meilleures**. Un tableau de clients avec trente colonnes ne se traite pas mieux avec un réseau profond ; il se traite généralement moins bien, plus lentement et de façon moins explicable. L\'apprentissage profond domine là où les données sont brutes et structurées par la perception — images, sons, textes. Sur un tableur, commencez par un gradient boosting. Vous gagnerez du temps, et souvent la comparaison.
+
 ### Leçon 4 --- Apprendre sans étiquettes
 
 En apprentissage non supervisé, les données n\'ont pas de réponse connue. Le **clustering** regroupe les données semblables : l\'algorithme **k-means** partitionne en k groupes, **DBSCAN** trouve des amas de densité variable. La **réduction de dimension** (ACP, t-SNE) résume des données complexes en peu de variables, utile pour la visualisation.
 
 **Exemple --- segmenter une clientèle.** Un commerçant possède les habitudes d\'achat de milliers de clients, sans catégories prédéfinies. Le clustering révèle spontanément des groupes (par exemple « jeunes urbains », « familles », « seniors ») qui guideront des actions marketing ciblées. Personne n\'a fourni ces étiquettes : l\'algorithme les a découvertes.
+
+Cette formule appelle une nuance que je veux vous transmettre tout de suite, car elle sépare l\'usage sérieux du clustering de son usage naïf. **L\'algorithme n\'a pas découvert « jeunes urbains »** : il a découvert trois paquets de points. C\'est vous qui les avez regardés, qui avez constaté que le premier réunit des clients jeunes achetant en centre-ville, et qui l\'avez baptisé. L\'interprétation est un acte humain, et c\'est là que se glissent les erreurs — on voit dans les groupes ce qu\'on s\'attendait à y trouver.
+
+D\'où la question qui vient toujours : **combien de groupes ?** Le k de k-means ne se devine pas, il se choisit, et l\'algorithme obéira quel que soit votre choix. Demandez-lui cinq groupes dans un nuage parfaitement homogène : il vous rendra cinq groupes, aussi nets qu\'artificiels. Deux repères aident à trancher. Le premier est technique : on trace la compacité des groupes en fonction de k et l\'on cherche le coude, ce point au-delà duquel ajouter un groupe n\'apporte plus grand-chose. Le second est le seul qui compte vraiment : **la segmentation est-elle exploitable ?** Sept segments clients qu\'aucune équipe marketing ne saura traiter différemment valent moins que trois segments dont chacun appelle une action distincte.
+
+Une différence de fond, pour finir, entre cette leçon et les précédentes. En supervisé, vous disposiez d\'un juge : la vraie réponse. Ici, il n\'y en a aucun. Il n\'existe pas de « bon » regroupement dans l\'absolu, seulement des regroupements plus ou moins utiles au problème posé. Les mêmes clients se regrouperont autrement selon qu\'on les décrit par leurs achats, leur géographie ou leur ancienneté — et aucune de ces partitions n\'est plus vraie que les autres. Le non supervisé ne donne pas de réponses ; il propose des hypothèses que vous devrez valider ailleurs.
 
 ### Leçon 5 --- La leçon la plus importante : évaluer et généraliser
 
@@ -896,15 +920,61 @@ C\'est le fameux **compromis biais-variance** : un modèle trop simple sous-appr
 
 **À ne jamais oublier ---** Un modèle qui obtient 100 % sur ses données d\'entraînement n\'est pas forcément bon : il a peut-être simplement tout mémorisé. Le seul juge valable est sa performance sur des données qu\'il n\'a jamais vues.
 
+**Exemple chiffré --- pourquoi l\'exactitude ment.** Ces métriques ne servent à rien tant qu\'on ne les a pas vues à l\'œuvre. Prenons un détecteur de fraude appliqué à 10 000 transactions, dont 100 sont réellement frauduleuses. Le modèle en signale 200 ; parmi elles, 80 sont de vraies fraudes.
+
+|  | **Fraude réelle** | **Transaction saine** |
+|---|---:|---:|
+| **Signalée** | 80 *(vrais positifs)* | 120 *(fausses alertes)* |
+| **Non signalée** | 20 *(fraudes ratées)* | 9 780 *(vrais négatifs)* |
+
+Calculons les quatre indicateurs.
+
+-   **Exactitude** : la proportion de bonnes réponses, toutes catégories confondues, soit (80 + 9 780) / 10 000 = **98,6 %**.
+
+-   **Précision** : quand le modèle crie au loup, a-t-il raison ? 80 / 200 = **40 %**. Six alertes sur dix sont fausses.
+
+-   **Rappel** : sur toutes les fraudes existantes, combien en attrape-t-il ? 80 / 100 = **80 %**. Une fraude sur cinq passe.
+
+-   **F1** : la moyenne harmonique des deux précédentes, qui ne devient élevée que si toutes deux le sont. Ici **53,3 %**.
+
+Voilà le piège, et il est de taille : ce modèle affiche **98,6 % d\'exactitude** tout en se trompant six fois sur dix quand il alerte. Pire encore — un modèle paresseux qui déclarerait « aucune fraude » pour absolument toutes les transactions obtiendrait **99,0 % d\'exactitude**, donc un meilleur score que notre détecteur, tout en étant rigoureusement inutile. Son rappel serait nul : il ne trouverait jamais rien.
+
+**Sur des classes déséquilibrées, l\'exactitude n\'est pas un indicateur, c\'est un piège.** Vous retrouvez ici, sous une autre forme, la leçon du théorème de Bayes au chapitre 3 : quand un phénomène est rare, le taux global de bonnes réponses est écrasé par la classe majoritaire et ne dit plus rien de ce qui vous intéresse.
+
+Reste à choisir entre précision et rappel, car les deux s\'opposent : resserrer le seuil améliore la précision et dégrade le rappel, l\'élargir fait l\'inverse. Le choix ne se déduit d\'aucune formule, il se déduit du **coût des deux erreurs**. Pour un dépistage médical, on privilégie le rappel : mieux vaut alarmer à tort, un examen complémentaire lèvera le doute, que manquer un malade. Pour un filtre anti-spam, on privilégie la précision : perdre un message important coûte bien plus cher que supporter quelques indésirables. Posez-vous toujours la question dans ces termes — non pas « quel modèle est le meilleur ? », mais **« laquelle des deux erreurs suis-je prêt à commettre ? »**
+
 ### Leçon 6 --- Comprendre en profondeur : un exemple chiffré de régression
 
 Reprenons la régression linéaire avec des chiffres, pour bien saisir ce qui se passe. Supposons que l\'on veuille prédire la note d\'un étudiant (sur 20) à partir du nombre d\'heures de révision. On dispose de quelques observations : 2 h → 9, 4 h → 12, 6 h → 15, 8 h → 17.
 
 Le modèle cherche une droite note = a × heures + b. L\'apprentissage consiste à trouver les valeurs de a (la pente) et b (l\'ordonnée) qui font passer la droite au plus près des points. Intuitivement, quand les heures augmentent de 2, la note augmente d\'environ 2,5 à 3 points : la pente a vaut donc à peu près 1,3. L\'algorithme ajuste a et b par descente de gradient jusqu\'à minimiser l\'erreur totale.
 
+Ne restons pas sur une intuition : calculons. Pour une droite, la solution des moindres carrés s\'obtient directement. On calcule d\'abord les moyennes — 5 heures et 13,25 points. On mesure ensuite comment les deux variables s\'écartent ensemble de leur moyenne, ce qui donne 27, puis comment les heures s\'écartent de la leur, ce qui donne 20. La pente est le rapport des deux :
+
+**a = 27 / 20 = 1,35**  puis  **b = 13,25 − 1,35 × 5 = 6,5**
+
+Les valeurs annoncées plus haut ne sont donc pas approximatives : ce sont exactement celles que l\'algorithme trouve. Vérifions maintenant ce que vaut cette droite, point par point.
+
+| Heures | Note réelle | Note prédite | Écart |
+|---:|---:|---:|---:|
+| 2 | 9 | 9,20 | −0,20 |
+| 4 | 12 | 11,90 | +0,10 |
+| 6 | 15 | 14,60 | +0,40 |
+| 8 | 17 | 17,30 | −0,30 |
+
+Les écarts, qu\'on appelle les **résidus**, ne dépassent jamais 0,4 point. Le modèle explique **99,2 %** de la variation des notes — c\'est ce que mesure le coefficient R², qui vaut 1 pour un ajustement parfait et 0 pour un modèle qui ne ferait pas mieux que prédire la moyenne partout.
+
+Ces résidus méritent qu\'on les regarde, et pas seulement qu\'on les résume. Ils font ici −0,20, +0,10, +0,40, −0,30 : ils changent de signe sans ordre apparent, ce qui est exactement le comportement attendu. Si au contraire ils avaient été tous négatifs aux extrémités et positifs au milieu, cela aurait signalé une courbure que la droite ne sait pas suivre. **Un modèle ne se juge pas seulement à son erreur moyenne, mais à la forme de ses erreurs.** C\'est un réflexe de professionnel : tracez toujours vos résidus.
+
 **Méthode --- interpréter les paramètres.** Si l\'apprentissage aboutit à note = 1,35 × heures + 6,5, on lit deux choses. **La pente 1,35** : chaque heure de révision rapporte en moyenne 1,35 point. **L\'ordonnée 6,5** : un étudiant qui ne révise pas du tout obtiendrait environ 6,5. Un modèle linéaire n\'est pas qu\'un outil de prédiction : c\'est aussi un outil d\'**interprétation** qui révèle les relations dans les données.
 
 Attention toutefois aux limites : le modèle suppose une relation **linéaire**, ce qui n\'est pas toujours vrai. Au-delà d\'un certain point, réviser davantage ne fait plus progresser autant : la vraie relation s\'aplatit. Un modèle linéaire ne capterait pas cet effet ; il faudrait alors un modèle plus riche. **Savoir reconnaître les limites de son modèle fait partie du métier.**
+
+Poussons cette mise en garde jusqu\'à l\'absurde, car l\'absurde est ici très instructif. Demandez à notre droite ce que vaut une révision de vingt heures : elle répond **33,5 sur 20**. Le modèle n\'a aucune notion de ce qu\'est une note, aucune idée qu\'un maximum existe ; il prolonge la droite, indéfiniment, parce que c\'est tout ce qu\'il sait faire.
+
+Cette réponse ridicule contient l\'un des avertissements les plus importants de ce manuel : **un modèle n\'est valable que dans le domaine où il a appris**. Nos observations couvrent 2 à 8 heures ; au-delà, la droite extrapole sans le moindre fondement, et rien dans sa sortie ne vous préviendra. Elle ne dira jamais « je n\'en sais rien ». Elle donnera un nombre, avec le même aplomb qu\'à l\'intérieur du domaine connu.
+
+Retenez-le pour tous vos projets à venir, bien au-delà de la régression linéaire : vérifiez toujours si la donnée que vous soumettez ressemble à celles de l\'entraînement. Un modèle de prix immobilier calibré sur des appartements de 20 à 150 m² vous donnera un prix pour un hangar de 3 000 m², et ce prix ne voudra rien dire. C\'est aussi de cette manière qu\'un modèle se dégrade en production, sans bruit : le monde s\'éloigne peu à peu de ce qu\'il a connu, et il continue de répondre.
 
 ### Leçon 7 --- Le déroulé complet d\'un projet supervisé
 
@@ -925,6 +995,14 @@ Récapitulons la démarche que vous suivrez systématiquement, et que vous devez
 -   **6. Itérer** : ajuster, régulariser, enrichir les données, recommencer.
 
 -   **7. Déployer et surveiller** : mettre en production et suivre les performances dans le temps.
+
+Deux conseils sur ce déroulé, tirés de ce que je vois le plus souvent échouer.
+
+Le premier concerne l\'étape 4, et c\'est la règle la plus rentable de tout le chapitre : **commencez toujours par une référence stupide**. Avant le moindre modèle, mesurez ce que donne la solution la plus bête possible — prédire toujours la moyenne pour une régression, toujours la classe majoritaire pour une classification, ou reproduire la valeur de la veille pour une série temporelle. Ce chiffre est votre point zéro. Sans lui, vous n\'avez aucun moyen de savoir si votre modèle à 87 % est excellent ou pitoyable ; avec lui, vous le savez immédiatement. Il m\'est arrivé plus d\'une fois de voir une équipe fière d\'un modèle sophistiqué qui faisait moins bien que « répéter la valeur d\'hier ». Cinq minutes de mesure auraient économisé six semaines.
+
+Le second concerne l\'étape 3, et c\'est le rôle exact des **trois** jeux de données, que beaucoup réduisent à deux. L\'entraînement sert à ajuster les paramètres. La **validation** sert à choisir entre plusieurs modèles ou réglages. Le **test**, lui, ne sert qu\'une fois, tout à la fin, pour estimer honnêtement la performance. Si vous choisissez votre modèle d\'après le jeu de test, vous vous êtes adapté à lui, et son score cesse d\'être une estimation honnête — vous avez simplement déplacé le sur-apprentissage d\'un cran. Le jeu de test se garde sous clé.
+
+Un mot enfin sur l\'étape 7, qu\'on traite trop souvent comme une formalité administrative. Un modèle déployé n\'est pas un projet terminé : c\'est un projet qui commence à vivre, et à vieillir. Les habitudes changent, les gammes de produits évoluent, un fournisseur modifie le format d\'un fichier. Rien de tout cela n\'apparaîtra comme une erreur ; les performances glisseront simplement, mois après mois. C\'est tout l\'objet du chapitre 7.
 
 ### Exercices dirigés
 
