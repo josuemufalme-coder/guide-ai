@@ -194,11 +194,7 @@ Un dernier conseil avant d\'entrer dans le vif. La progression de ce livre n\'es
 
 **L\'ESSENTIEL À RETENIR**
 
--   L\'IA cherche à faire accomplir par des machines des tâches exigeant de l\'intelligence ; toute l\'IA actuelle est « étroite ».
-
--   Deux approches : programmer le savoir (symbolique) ou l\'apprendre des données (apprentissage) : c\'est cette seconde voie qui domine.
-
--   De nombreux problèmes se formulent comme une recherche dans un espace d\'états ; A\\\* est l\'algorithme de recherche informée de référence.
+L\'IA cherche à faire accomplir par des machines des tâches exigeant de l\'intelligence ; toute l\'IA actuelle est « étroite ». Deux approches : programmer le savoir (symbolique) ou l\'apprendre des données (apprentissage) : c\'est cette seconde voie qui domine. De nombreux problèmes se formulent comme une recherche dans un espace d\'états ; A\\\* est l\'algorithme de recherche informée de référence.
 
 ## Chapitre 2 --- Programmation Python pour l\'intelligence artificielle
 
@@ -344,11 +340,7 @@ Python doit sa domination à un écosystème de bibliothèques exceptionnel. Voi
 
 **L\'ESSENTIEL À RETENIR**
 
--   Python est le langage de l\'IA pour sa simplicité et son écosystème ; la POO structure les projets complexes.
-
--   NumPy et la vectorisation sont au cœur de la performance ; Pandas est l\'outil de préparation des données.
-
--   Un bon praticien soigne ses environnements, son versioning et la reproductibilité de son code.
+Python est le langage de l\'IA pour sa simplicité et son écosystème ; la POO structure les projets complexes. NumPy et la vectorisation sont au cœur de la performance ; Pandas est l\'outil de préparation des données. Un bon praticien soigne ses environnements, son versioning et la reproductibilité de son code.
 
 ## Chapitre 3 --- Mathématiques pour l\'intelligence artificielle
 
@@ -454,9 +446,7 @@ Une image de 28×28 pixels devient un **vecteur** de 784 nombres (algèbre liné
 
 -   Tout est vecteur ou matrice : l\'algèbre linéaire est le langage des données.
 
--   Apprendre = minimiser une fonction de coût par descente de gradient ; c\'est le cœur de tout l\'apprentissage.
-
--   Le théorème de Bayes met à jour nos croyances ; la théorie de l\'information mesure l\'erreur des modèles.
+-   Apprendre = minimiser une fonction de coût par descente de gradient ; c\'est le cœur de tout l\'apprentissage. Le théorème de Bayes met à jour nos croyances ; la théorie de l\'information mesure l\'erreur des modèles.
 
 ## Chapitre 4 --- Fondamentaux de la Data Science et des statistiques
 
@@ -681,11 +671,7 @@ Récapitulons la démarche que vous suivrez systématiquement, et que vous devez
 
 **L\'ESSENTIEL À RETENIR**
 
--   Trois paradigmes : supervisé, non supervisé, renforcement.
-
--   Les méthodes d\'ensemble (forêts, boosting) combinent des modèles faibles en modèles forts.
-
--   L\'objectif est de généraliser : on évalue toujours sur des données de test, et on surveille le sur-apprentissage.
+Trois paradigmes : supervisé, non supervisé, renforcement. Les méthodes d\'ensemble (forêts, boosting) combinent des modèles faibles en modèles forts. L\'objectif est de généraliser : on évalue toujours sur des données de test, et on surveille le sur-apprentissage.
 
 ## Chapitre 6 --- Réseaux de neurones et apprentissage profond
 
@@ -793,11 +779,7 @@ La fonction d\'activation est ce petit ingrédient qui donne toute sa puissance 
 
 **L\'ESSENTIEL À RETENIR**
 
--   Un neurone pondère, somme et active ; empilés en couches, les neurones forment un réseau profond.
-
--   La rétropropagation ajuste les poids par descente de gradient : c\'est ainsi que le réseau apprend.
-
--   CNN pour les images, RNN pour les séquences ; dropout et Adam font partie de la boîte à outils essentielle.
+Un neurone pondère, somme et active ; empilés en couches, les neurones forment un réseau profond. La rétropropagation ajuste les poids par descente de gradient : c\'est ainsi que le réseau apprend. CNN pour les images, RNN pour les séquences ; dropout et Adam font partie de la boîte à outils essentielle.
 
 ## Chapitre 7 --- Ingénierie des données et MLOps
 
@@ -871,9 +853,7 @@ Récapitulons le parcours d\'un modèle, de l\'idée à la production durable. C
 
 -   Le MLOps fait passer un modèle du laboratoire à une production fiable et automatisée.
 
--   On versionne code, données et modèles ; on conteneurise et on expose via une API.
-
--   Un modèle déployé se surveille en continu pour détecter la dérive des données.
+-   On versionne code, données et modèles ; on conteneurise et on expose via une API. Un modèle déployé se surveille en continu pour détecter la dérive des données.
 
 ## Chapitre 8 --- Statistiques avancées et modèles probabilistes
 
@@ -933,11 +913,7 @@ Illustrons par un cas concret l\'importance de quantifier l\'incertitude. Deux m
 
 **L\'ESSENTIEL À RETENIR**
 
--   Un bon modèle quantifie son incertitude, il ne se contente pas de prédire.
-
--   Le raisonnement bayésien met à jour une croyance a priori en croyance a posteriori à mesure des données.
-
--   Monte-Carlo et séries temporelles élargissent la boîte à outils statistique du praticien.
+Un bon modèle quantifie son incertitude, il ne se contente pas de prédire. Le raisonnement bayésien met à jour une croyance a priori en croyance a posteriori à mesure des données. Monte-Carlo et séries temporelles élargissent la boîte à outils statistique du praticien.
 
 # Partie III --- Les grands domaines de l\'IA
 
@@ -1025,11 +1001,7 @@ Techniquement, pour chaque mot, le modèle calcule un score d\'attention envers 
 
 **L\'ESSENTIEL À RETENIR**
 
--   Le NLP transforme le texte en vecteurs (embeddings) où la géométrie reflète le sens.
-
--   Le Transformer et son mécanisme d\'attention ont révolutionné le domaine.
-
--   Pré-entraînement puis fine-tuning : la recette qui a démocratisé le NLP de pointe.
+Le NLP transforme le texte en vecteurs (embeddings) où la géométrie reflète le sens. Le Transformer et son mécanisme d\'attention ont révolutionné le domaine. Pré-entraînement puis fine-tuning : la recette qui a démocratisé le NLP de pointe.
 
 ## Chapitre 10 --- IA générative et ingénierie des invites (prompting)
 
@@ -1109,9 +1081,7 @@ Les **modèles de diffusion**, aujourd\'hui dominants, procèdent par une idée 
 
 -   Les GAN opposent deux réseaux (un générateur et un critique) qui s\'améliorent mutuellement.
 
--   Les modèles de diffusion débruitent progressivement un bruit aléatoire jusqu\'à une image.
-
--   La qualité dépend fortement du prompt : décrire le sujet, le style, l\'ambiance, le cadrage.
+-   Les modèles de diffusion débruitent progressivement un bruit aléatoire jusqu\'à une image. La qualité dépend fortement du prompt : décrire le sujet, le style, l\'ambiance, le cadrage.
 
 ### Leçon 9 --- Prompting pour la génération d\'images
 
@@ -1209,11 +1179,7 @@ Pour mesurer la portée de la vision par ordinateur, voici ses grands domaines d
 
 **L\'ESSENTIEL À RETENIR**
 
--   Les CNN extraient des caractéristiques visuelles hiérarchiques, du bord à l\'objet.
-
--   L\'apprentissage par transfert réutilise des réseaux pré-entraînés et économise données et calcul.
-
--   Au-delà de la classification : détection d\'objets et segmentation pixel par pixel.
+Les CNN extraient des caractéristiques visuelles hiérarchiques, du bord à l\'objet. L\'apprentissage par transfert réutilise des réseaux pré-entraînés et économise données et calcul. Au-delà de la classification : détection d\'objets et segmentation pixel par pixel.
 
 ## Chapitre 12 --- Apprentissage par renforcement
 
@@ -1277,11 +1243,7 @@ Le renforcement brille dans certains domaines et peine dans d\'autres. Savoir o�
 
 **L\'ESSENTIEL À RETENIR**
 
--   Le RL apprend une politique maximisant la récompense cumulée, par essais et erreurs.
-
--   Le cadre formel est le MDP ; Q-learning et DQN en sont des algorithmes clés.
-
--   Le dilemme exploration/exploitation est au cœur de tout agent par renforcement.
+Le RL apprend une politique maximisant la récompense cumulée, par essais et erreurs. Le cadre formel est le MDP ; Q-learning et DQN en sont des algorithmes clés. Le dilemme exploration/exploitation est au cœur de tout agent par renforcement.
 
 ## Chapitre 13 --- IA avancée : agents, protocole MCP, multimodalité et sûreté
 
@@ -1385,9 +1347,7 @@ Les tendances de fond pour les années à venir : des agents de plus en plus aut
 
 -   Un agent IA agit de façon autonome ; le protocole MCP le connecte universellement aux outils du monde.
 
--   Les modèles multimodaux unifient texte, image, son et vidéo dans un espace commun.
-
--   La sûreté de l\'IA (alignement, red teaming, interprétabilité) est une exigence permanente, pas un acquis.
+-   Les modèles multimodaux unifient texte, image, son et vidéo dans un espace commun. La sûreté de l\'IA (alignement, red teaming, interprétabilité) est une exigence permanente, pas un acquis.
 
 # Partie IV --- Bien faire et bien décider
 
@@ -1527,11 +1487,7 @@ Un chef de projet IA doit traduire la technique en langage métier. Ne parlez pa
 
 **L\'ESSENTIEL À RETENIR**
 
--   Les projets d\'IA échouent surtout par mauvais cadrage, pas par faiblesse technique.
-
--   On définit objectif, indicateurs et valeur avant de coder ; CRISP-DM structure la démarche.
-
--   Un projet d\'IA est d\'abord un projet de données, de risques et de parties prenantes.
+Les projets d\'IA échouent surtout par mauvais cadrage, pas par faiblesse technique. On définit objectif, indicateurs et valeur avant de coder ; CRISP-DM structure la démarche. Un projet d\'IA est d\'abord un projet de données, de risques et de parties prenantes.
 
 ## Chapitre 16 --- Cas d\'usage professionnels et applications sectorielles
 
@@ -1581,11 +1537,7 @@ Au-delà du catalogue, vous apprendrez à analyser un contexte métier, à repé
 
 **L\'ESSENTIEL À RETENIR**
 
--   L\'IA crée de la valeur différemment selon les secteurs : santé, finance, industrie, etc.
-
--   L\'enjeu est de relier une technique à un besoin métier réel et mesurable.
-
--   Le conseil en IA suppose d\'analyser un contexte et de formuler des recommandations fondées.
+L\'IA crée de la valeur différemment selon les secteurs : santé, finance, industrie, etc. L\'enjeu est de relier une technique à un besoin métier réel et mesurable. Le conseil en IA suppose d\'analyser un contexte et de formuler des recommandations fondées.
 
 ## Chapitre 17 --- Mener son propre grand projet
 
@@ -1619,9 +1571,7 @@ Si vous le pouvez, menez ce projet en lien avec un besoin réel : le vôtre, cel
 
 -   Un grand projet personnel transforme les connaissances en compétences réelles.
 
--   Suivez une démarche complète : problème, recherche, conception, réalisation, analyse, présentation.
-
--   Allez jusqu\'au bout d\'un projet, même modeste : c\'est l\'achèvement qui fait progresser.
+-   Suivez une démarche complète : problème, recherche, conception, réalisation, analyse, présentation. Allez jusqu\'au bout d\'un projet, même modeste : c\'est l\'achèvement qui fait progresser.
 
 # Partie V --- Les outils au quotidien
 
@@ -1835,11 +1785,7 @@ Chaque assistant a ses particularités. Un modèle à long contexte (Claude) acc
 
 **L\'ESSENTIEL À RETENIR**
 
--   Un bon prompt comporte rôle, contexte, tâche, format et contraintes.
-
--   Maîtriser zero-shot, few-shot, chaîne de pensée, décomposition et itération.
-
--   Se constituer une bibliothèque de prompts éprouvés fait gagner du temps et garantit la qualité.
+Un bon prompt comporte rôle, contexte, tâche, format et contraintes. Maîtriser zero-shot, few-shot, chaîne de pensée, décomposition et itération. Se constituer une bibliothèque de prompts éprouvés fait gagner du temps et garantit la qualité.
 
 ## Chapitre 20 --- Automatisation des tâches avec n8n
 
@@ -1977,11 +1923,7 @@ C\'est cette capacité d\'orchestration qui transforme des outils isolés en un 
 
 **L\'ESSENTIEL À RETENIR**
 
--   L\'automatisation couplée à l\'IA comprend, décide et s\'adapte, au lieu de suivre des règles figées.
-
--   Un workflow n8n = un déclencheur, des nœuds d\'action et de la logique ; on peut y intégrer des LLM.
-
--   On chaîne plusieurs IA pour automatiser des processus entiers, en gardant l\'humain dans la boucle pour les cas sensibles.
+L\'automatisation couplée à l\'IA comprend, décide et s\'adapte, au lieu de suivre des règles figées. Un workflow n8n = un déclencheur, des nœuds d\'action et de la logique ; on peut y intégrer des LLM. On chaîne plusieurs IA pour automatiser des processus entiers, en gardant l\'humain dans la boucle pour les cas sensibles.
 
 ## Chapitre 21 --- Intégrer l\'IA dans une entreprise
 
@@ -2087,9 +2029,7 @@ Pour conclure, voici une feuille de route type que vous pourriez proposer à une
 
 -   Le défi de l\'IA en entreprise est surtout humain et organisationnel, pas technique.
 
--   On gravit les paliers de maturité ; le premier projet doit être une victoire rapide et visible.
-
--   Embarquer les équipes, encadrer par une gouvernance claire et mesurer la valeur sont les clés du succès.
+-   On gravit les paliers de maturité ; le premier projet doit être une victoire rapide et visible. Embarquer les équipes, encadrer par une gouvernance claire et mesurer la valeur sont les clés du succès.
 
 ## Chapitre 22 --- IA pour la productivité et la création de contenu
 
@@ -2199,11 +2139,7 @@ Pour passer de l\'inspiration à l\'action, suivez une méthode : repérez une t
 
 **L\'ESSENTIEL À RETENIR**
 
--   L\'automatisation crée de la valeur dans tous les secteurs : support, ventes, finance, RH, veille.
-
--   On automatise d\'abord le répétitif, le fréquent et le peu risqué, en gardant l\'humain pour les décisions sensibles.
-
--   Méthode : repérer la tâche, vérifier ses règles, placer les validations humaines, construire et tester pas à pas.
+L\'automatisation crée de la valeur dans tous les secteurs : support, ventes, finance, RH, veille. On automatise d\'abord le répétitif, le fréquent et le peu risqué, en gardant l\'humain pour les décisions sensibles. Méthode : repérer la tâche, vérifier ses règles, placer les validations humaines, construire et tester pas à pas.
 
 ## Chapitre 24 --- Créer ses propres assistants et anticiper l\'avenir
 
@@ -2257,11 +2193,7 @@ Plus l\'IA devient puissante et facile d\'accès, plus la responsabilité de cel
 
 **L\'ESSENTIEL À RETENIR**
 
--   Personnaliser un assistant (persona, base de connaissances) décuple sa valeur pour un besoin précis.
-
--   Le professionnel orchestre plusieurs outils en un système cohérent et connecté.
-
--   La compétence la plus durable est d\'apprendre à apprendre ; la pratique doit rester responsable.
+Personnaliser un assistant (persona, base de connaissances) décuple sa valeur pour un besoin précis. Le professionnel orchestre plusieurs outils en un système cohérent et connecté. La compétence la plus durable est d\'apprendre à apprendre ; la pratique doit rester responsable.
 
 ## Bibliothèque de prompts prêts à l\'emploi
 
@@ -2355,9 +2287,7 @@ Constituez votre propre bibliothèque en partant de ces modèles. Classez-les pa
 
 -   Une bibliothèque de prompts évite de réécrire les instructions et garantit une qualité constante.
 
--   Chaque modèle conserve la structure rôle/tâche/format/contraintes, avec des variables à remplir.
-
--   On enrichit et on affine sa bibliothèque en continu à partir des résultats réels.
+-   Chaque modèle conserve la structure rôle/tâche/format/contraintes, avec des variables à remplir. On enrichit et on affine sa bibliothèque en continu à partir des résultats réels.
 
 ## Recettes d\'automatisation n8n pas à pas
 
@@ -2505,11 +2435,7 @@ Avant tout code, posez-vous les bonnes questions : que veut-on prédire (le prix
 
 **L\'ESSENTIEL À RETENIR**
 
--   Vous avez parcouru tout le cycle : comprendre, nettoyer, explorer, préparer, modéliser, évaluer.
-
--   Vous avez comparé un modèle simple et un modèle d\'ensemble, et mesuré la généralisation.
-
--   Compétences acquises : Pandas, feature engineering, scikit-learn, évaluation rigoureuse.
+Vous avez parcouru tout le cycle : comprendre, nettoyer, explorer, préparer, modéliser, évaluer. Vous avez comparé un modèle simple et un modèle d\'ensemble, et mesuré la généralisation. Compétences acquises : Pandas, feature engineering, scikit-learn, évaluation rigoureuse.
 
 ## Projet 2 --- Un classificateur d\'images
 
@@ -2535,11 +2461,7 @@ Objectif : entraîner un réseau de neurones à reconnaître des images. Vous y 
 
 **L\'ESSENTIEL À RETENIR**
 
--   Vous avez construit, entraîné et évalué un réseau de neurones convolutif.
-
--   Vous avez diagnostiqué le sur-apprentissage en suivant les courbes d\'apprentissage.
-
--   Vous avez exploité l\'apprentissage par transfert pour gagner en performance.
+Vous avez construit, entraîné et évalué un réseau de neurones convolutif. Vous avez diagnostiqué le sur-apprentissage en suivant les courbes d\'apprentissage. Vous avez exploité l\'apprentissage par transfert pour gagner en performance.
 
 ## Projet 3 --- Un assistant documentaire intelligent (RAG)
 
@@ -2569,9 +2491,7 @@ Objectif : construire un assistant qui répond à des questions en s\'appuyant s
 
 -   Vous avez construit un système RAG complet : découpage, indexation, recherche, génération.
 
--   Vous avez ancré les réponses dans des sources vérifiables et limité les hallucinations.
-
--   Compétences acquises : embeddings, base vectorielle, prompting, conception d\'application IA.
+-   Vous avez ancré les réponses dans des sources vérifiables et limité les hallucinations. Compétences acquises : embeddings, base vectorielle, prompting, conception d\'application IA.
 
 ## Projet 4 --- Une automatisation intelligente avec n8n
 
