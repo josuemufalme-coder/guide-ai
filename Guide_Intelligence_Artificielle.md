@@ -311,9 +311,17 @@ Avant d\'écrire la moindre ligne, comprenons pourquoi Python s\'est imposé com
 
 Nous supposons que vous connaissez les bases de la programmation. Ce chapitre va consolider votre maîtrise et vous rendre **autonome** avec les outils de l\'IA.
 
+Un mot d\'honnêteté, tout de suite : Python est **lent**. Sur un calcul écrit naïvement, boucle après boucle, il est des dizaines de fois plus lent qu\'un programme équivalent en C. Comment un langage lent a-t-il pu s\'imposer dans le domaine le plus gourmand en calcul de l\'informatique ? Parce qu\'en pratique, **Python ne calcule presque rien lui-même**. Il donne des ordres. Quand vous écrivez une multiplication de matrices, le calcul part vers des bibliothèques écrites en C, en Fortran ou en CUDA, compilées et optimisées depuis des décennies. Python n\'est que le chef d\'orchestre ; les musiciens sont ailleurs. C\'est cette division du travail qu\'il faut comprendre pour écrire du code d\'IA efficace, et j\'y reviendrai à la leçon 3, chiffres à l\'appui.
+
+D\'autres langages auraient pu gagner. **R** reste excellent en statistique et en visualisation, mais son écosystème d\'apprentissage profond n\'a jamais suivi. **Julia** est plus rapide et conçue pour le calcul scientifique, mais elle est arrivée trop tard, quand la masse critique d\'outils était déjà ailleurs. **C++** fait tourner l\'essentiel du calcul, sous le capot des bibliothèques Python, mais personne ne veut prototyper dans un langage où changer une idée coûte une recompilation. Python a gagné parce qu\'il était le moins mauvais compromis entre vitesse d\'écriture et vitesse d\'exécution — et parce que, une fois la bascule amorcée, chaque nouvelle bibliothèque publiée en Python rendait le choix suivant plus évident. Retenez ce mécanisme : en informatique, l\'outil qui s\'impose est rarement le meilleur dans l\'absolu, c\'est celui autour duquel la communauté s\'est agrégée.
+
 ### Leçon 2 --- Le langage : maîtriser les fondamentaux
 
 Reprenons les briques essentielles. Python manipule des **types** (entiers, flottants, chaînes, booléens) et des **structures de données** (listes, tuples, dictionnaires, ensembles). Les **structures de contrôle** (conditions, boucles) dirigent le flux. Les **fonctions** encapsulent un traitement réutilisable. Vous devez écrire tout cela sans hésitation.
+
+Avant d\'aller plus loin, fixons un point que beaucoup de débutants traversent sans le voir, et qui est la source d\'une bonne moitié des bugs que je corrige : la distinction entre objets **modifiables** et **non modifiables**. Une liste et un dictionnaire se modifient sur place ; une chaîne de caractères et un tuple, jamais. Cela paraît anodin. Cela ne l\'est pas : quand vous passez une liste à une fonction, vous ne passez pas une copie, vous passez la liste elle-même, et la fonction peut la modifier durablement. Ce comportement est parfaitement logique une fois compris, et parfaitement déroutant tant qu\'il ne l\'est pas.
+
+Choisissez ensuite vos structures pour ce qu\'elles font, pas par habitude. La **liste** est le choix par défaut, ordonnée et modifiable. Le **tuple** protège ce qui ne doit pas changer. Le **dictionnaire** associe une clé à une valeur et retrouve l\'information instantanément, quelle que soit sa taille — c\'est ce qui en fait la structure la plus utile du langage. L\'**ensemble** élimine les doublons et teste l\'appartenance en un éclair. Chercher si un élément figure dans une liste d\'un million d\'entrées demande de parcourir la liste ; la même question posée à un ensemble se répond immédiatement. Le jour où votre programme rame sur un `if x in ...`, vous saurez quoi faire.
 
 Une particularité puissante de Python est la **compréhension de liste**, qui construit une liste en une ligne. Comparez :
 
@@ -343,11 +351,19 @@ print(modele.predire(3)) \# affiche 7.0
 
 **Méthode --- lire ce code.** La classe **ModeleLineaire** décrit un modèle y = pente × x + ordonnée. Le constructeur **\_\_init\_\_** mémorise les deux paramètres. La méthode **predire** applique la formule. On crée ensuite un objet avec pente 2 et ordonnée 1, et predire(3) renvoie 2×3+1 = 7. Toute la modélisation en IA repose sur ce schéma : un objet qui contient des paramètres et sait prédire.
 
+Ce schéma n\'est pas une convention de ce manuel : c\'est celui de scikit-learn, de PyTorch et de la quasi-totalité des bibliothèques que vous utiliserez. Un objet, des paramètres à l\'intérieur, une méthode pour ajuster ces paramètres aux données et une méthode pour prédire. Quand vous écrirez `modele.fit(X, y)` puis `modele.predict(X_test)` au chapitre 5, vous ne ferez rien d\'autre que ce que vous venez de lire. Reconnaître ce motif vous fera gagner un temps considérable : la plupart des bibliothèques d\'IA se ressemblent bien plus qu\'elles n\'en ont l\'air.
+
+**Piège fréquent ---** Trois erreurs reviennent chez presque tous les débutants, et elles ne produisent aucun message d\'erreur, ce qui les rend redoutables. Écrire `def f(liste=[])` : la liste par défaut est créée **une seule fois** et se souvient de tout entre les appels. Écrire `b = a` sur une liste puis modifier `b` : `a` change aussi, car les deux noms désignent le même objet. Et comparer des flottants avec `==` : `0.1 + 0.2` ne vaut pas exactement `0.3` en arithmétique machine, et ne le vaudra jamais. Retenez ces trois pièges maintenant ; vous vous épargnerez des heures de recherche.
+
 ### Leçon 3 --- NumPy : le calcul qui fait tourner l\'IA
 
 Voici sans doute la bibliothèque la plus importante de tout votre apprentissage. **NumPy** introduit le **tableau** (array) : une grille de nombres sur laquelle on effectue des opérations globales, sans boucle. C\'est ce qu\'on appelle la **vectorisation**, et c\'est ce qui rend les calculs rapides.
 
 **Définition --- Vectorisation.** Technique consistant à appliquer une opération à un tableau entier en une seule instruction, au lieu de parcourir ses éléments un à un. Elle exploite des routines optimisées et accélère les calculs de plusieurs ordres de grandeur.
+
+Avant le code, une notion sans laquelle NumPy reste opaque : la **forme** d\'un tableau. Un tableau a un nombre de dimensions et une taille par dimension — un vecteur de 4 nombres a pour forme `(4,)`, une image en niveaux de gris de 28 sur 28 pixels a pour forme `(28, 28)`, un lot de 32 telles images a pour forme `(32, 28, 28)`. Presque toutes les erreurs que vous rencontrerez en apprentissage profond sont des erreurs de forme, et le premier réflexe à acquérir est d\'afficher `.shape` dès que quelque chose ne fonctionne pas.
+
+De là découle le **broadcasting**, le mécanisme le plus utile et le plus déroutant de NumPy. Quand deux tableaux de formes différentes se rencontrent, NumPy étire silencieusement le plus petit pour qu\'il épouse le plus grand, sans jamais le recopier en mémoire. Ajouter un nombre unique à un tableau de mille éléments fonctionne : le nombre est diffusé partout. Soustraire un vecteur de 3 moyennes à un tableau de forme `(1000, 3)` fonctionne aussi : la même ligne est retranchée de chacune des mille lignes. C\'est exactement ce que l\'on fait pour centrer des données, et c\'est pourquoi cette opération s\'écrit `X - X.mean(axis=0)` et rien de plus.
 
 import numpy as np\
 \
@@ -360,6 +376,20 @@ print(a.dot(b)) \# 300 --- produit scalaire\
 print(a.mean()) \# 2.5 --- moyenne
 
 **Pourquoi c\'est crucial ---** Un réseau de neurones effectue des milliards de multiplications de matrices. NumPy (et ses équivalents sur carte graphique) rend ces opérations quasi instantanées. Comprendre les tableaux NumPy, c\'est comprendre la mécanique interne de tout le deep learning que vous verrez plus tard.
+
+**Exemple chiffré --- ce que coûte une boucle.** Les ordres de grandeur valent mieux que les affirmations, alors mesurons. Multiplions terme à terme deux séries d\'un million d\'entiers, d\'abord avec une boucle Python, ensuite avec NumPy.
+
+| Méthode | Temps mesuré |
+|---|---|
+| Boucle Python (compréhension de liste) | **249 ms** |
+| NumPy (`a * b`) | **4,9 ms** |
+| **Rapport** | **× 51** |
+
+Cinquante et une fois plus rapide, pour un code deux fois plus court. Et l\'écart ne vient pas d\'une astuce : il vient de ce que la boucle Python interprète un million de fois la même instruction, en manipulant un million d\'objets entiers, là où NumPy transmet un bloc contigu de mémoire à une routine compilée qui traite les nombres par paquets.
+
+La mémoire raconte la même histoire. Ce million d\'entiers occupe **36 Mo** dans une liste Python — un objet complet par entier, plus un tableau de pointeurs — contre **8 Mo** dans un tableau NumPy, où huit octets par nombre suffisent, rangés les uns derrière les autres. Quatre fois et demie moins de mémoire, et surtout une mémoire contiguë, que le processeur sait parcourir sans à-coups.
+
+Ces mesures ont été prises sur une machine ordinaire, avec Python 3.11 et NumPy 2.4 ; les vôtres différeront un peu, l\'ordre de grandeur, lui, ne bougera pas. Retenez la règle qui en découle, elle vous servira toute votre carrière : **en calcul scientifique, toute boucle Python qui parcourt des données est un aveu d\'échec**. Cherchez l\'opération vectorisée équivalente. Elle existe presque toujours.
 
 ### Leçon 4 --- Pandas : dompter les données
 
@@ -377,11 +407,25 @@ par_region = df.groupby(\'region\')\[\'montant\'\].sum()
 
 **Attention --- le travail réel de préparation.** On dit souvent que la data science, c\'est **80 % de préparation et 20 % de modélisation**. Avant qu\'un modèle voie vos données, vous passerez beaucoup de temps à corriger les valeurs manquantes, supprimer les doublons, harmoniser les formats. Pandas est l\'outil de ce travail essentiel : ne le sous-estimez pas.
 
+Deux objets suffisent à comprendre Pandas. La **Series** est une colonne : une suite de valeurs munie d\'un index. Le **DataFrame** est un tableau, c\'est-à-dire un assemblage de Series partageant le même index. Cet index n\'est pas un simple numéro de ligne, et c\'est là que les débutants trébuchent : après un filtrage, les lignes conservent leurs numéros d\'origine, si bien que la troisième ligne du résultat peut porter l\'index 47. D\'où deux façons distinctes de désigner une ligne — `.loc` la cherche par son **étiquette**, `.iloc` par sa **position**. Confondre les deux produit des résultats faux sans lever la moindre erreur, ce qui en fait l\'un des pièges les plus coûteux de la bibliothèque.
+
+Le regroupement mérite aussi qu\'on s\'y arrête, car il constitue à lui seul la moitié du travail d\'analyse. `groupby` procède en trois temps, toujours les mêmes : **découper** les lignes en paquets selon une colonne, **appliquer** un calcul à chaque paquet, **recombiner** les résultats en un tableau. Quand vous écrivez `df.groupby('region')['montant'].sum()`, vous découpez par région, vous sommez les montants de chacune, et vous récupérez une valeur par région. Une fois ce schéma en tête, la plupart des questions que l\'on pose à un jeu de données se formulent en une ligne.
+
+Un dernier mot sur les valeurs manquantes, puisque c\'est là que passera votre temps. Pandas les note `NaN` et, contrairement à ce qu\'on attend, une moyenne les ignore silencieusement au lieu d\'échouer. C\'est commode et dangereux : une colonne aux trois quarts vide vous rendra une moyenne parfaitement calculée sur le quart restant, sans un mot d\'avertissement. Prenez l\'habitude de commencer toute exploration par `df.isna().sum()`. Cette seule ligne vous dira, colonne par colonne, ce qui manque — et vous évitera de bâtir un raisonnement sur du vide.
+
 ### Leçon 5 --- Visualiser et travailler proprement
 
 Avec **Matplotlib** et **Seaborn**, vous transformerez des colonnes de chiffres en graphiques parlants : histogrammes, nuages de points, courbes. Voir les données est souvent le premier pas pour les comprendre.
 
+Encore faut-il choisir le bon graphique, et la règle est plus simple qu\'on ne le croit : **le graphique découle de la question**, jamais de l\'esthétique. Vous voulez connaître la répartition d\'une variable ? Un histogramme. Comparer une grandeur entre catégories ? Un diagramme à barres. Examiner le lien entre deux variables numériques ? Un nuage de points. Suivre une évolution dans le temps ? Une courbe. Repérer des valeurs extrêmes ? Une boîte à moustaches. Cinq questions, cinq réponses : dans l\'immense majorité des cas, cela suffit.
+
+Et méfiez-vous des résumés. Une moyenne, un écart type, un coefficient de corrélation peuvent être rigoureusement identiques pour des jeux de données dont les nuages de points n\'ont rien à voir — l\'un aligné, l\'autre en forme de courbe, le troisième dominé par un unique point aberrant. Seul le tracé les distingue. C\'est la raison profonde pour laquelle on visualise avant de modéliser : non par souci de présentation, mais parce que l\'œil détecte des structures qu\'aucun indicateur ne signale.
+
 Enfin, un mot sur les **bonnes pratiques professionnelles**, que j\'exigerai de vous : isolez vos projets dans des **environnements** (venv ou conda) ; versionnez votre code avec **Git** ; écrivez des **tests** ; documentez vos fonctions. Un code d\'IA qui n\'est pas reproductible n\'a aucune valeur scientifique.
+
+Cette dernière phrase n\'est pas une formule. Un résultat qu\'on ne sait pas reproduire n\'est pas un résultat, c\'est une anecdote. Voici ce que cela exige concrètement, et ce n\'est pas grand-chose. **Un environnement isolé par projet**, pour que la mise à jour d\'une bibliothèque sur un projet ne casse pas les autres. **Les versions figées dans un fichier** de dépendances, faute de quoi votre code cessera de fonctionner le jour où une bibliothèque changera de comportement — et ce jour arrivera. **Les graines aléatoires fixées** : sans cela, deux exécutions du même entraînement donneront deux modèles différents, et vous ne saurez jamais si un écart de performance vient de votre modification ou du hasard. **Le code versionné avec Git**, y compris les essais ratés, qui documentent ce qui ne marche pas.
+
+Ajoutez-y une habitude que je vous recommande vivement : notez, dans un simple fichier texte à côté du code, ce que vous avez essayé et ce que cela a donné. Dans six mois, ce fichier vaudra plus que le code lui-même.
 
 ### Leçon 6 --- Écrire du code de qualité professionnelle
 
@@ -400,6 +444,12 @@ Savoir programmer ne suffit pas : il faut écrire un code **lisible, robuste et 
 -   **Testez votre code** : une fonction non testée est une fonction qui ne marche pas encore.
 
 **Exemple --- du code lisible.** Comparez \`def f(x): return x\*0.2\` et \`def appliquer_remise(prix): return prix \* 0.2\`. La seconde version se comprend sans contexte : le nom de la fonction et du paramètre racontent ce qu\'elle fait. Dans un projet de plusieurs milliers de lignes, cette clarté fait toute la différence. **À retenir** : on écrit le code une fois, mais on le lit cent fois.
+
+Deux outils modernes rendent ce conseil beaucoup plus facile à suivre, et ils sont peu connus des autodidactes. Les **annotations de type** permettent d\'écrire ce qu\'une fonction attend et ce qu\'elle rend : `def appliquer_remise(prix: float) -> float`. Python ne les vérifie pas à l\'exécution, mais votre éditeur, lui, les lit et vous signale l\'erreur avant même que vous lanciez le programme. Les **docstrings** documentent la fonction depuis l\'intérieur, en trois lignes qui disent ce qu\'elle fait, ce qu\'elle prend et ce qu\'elle rend. L\'une et l\'autre coûtent quelques secondes à l\'écriture et se remboursent au centuple.
+
+Un mot sur les tests, car la formule « une fonction non testée est une fonction qui ne marche pas encore » mérite d\'être rendue concrète. Tester ne signifie pas monter une usine : cela signifie écrire, à côté de votre fonction, quelques cas dont vous connaissez la réponse. Pour `appliquer_remise`, vérifier que 100 donne 20, que 0 donne 0, et que la fonction refuse un prix négatif. Trois lignes. Elles vous préviendront le jour, inévitable, où une modification apparemment sans rapport cassera ce comportement.
+
+Le cas de l\'IA est d\'ailleurs particulier, et cela vaut d\'être dit : on n\'y teste pas seulement le code, on teste aussi les **données**. Une colonne qui change d\'unité, un fichier dont l\'encodage varie, une catégorie nouvelle jamais vue à l\'entraînement — rien de tout cela n\'est un bug de programmation, et tout cela fera dérailler votre modèle en silence. Vérifier ses données à l\'entrée est le test le plus rentable d\'un projet d\'IA.
 
 ### Leçon 7 --- Panorama de l\'écosystème Python pour l\'IA
 
@@ -420,6 +470,10 @@ Python doit sa domination à un écosystème de bibliothèques exceptionnel. Voi
 -   **Hugging Face Transformers** : modèles de langage pré-entraînés. Pour le NLP et l\'IA générative.
 
 **Méthode --- le bon outil au bon moment.** Pour un projet type : Pandas pour charger et nettoyer les données, Matplotlib pour les explorer, scikit-learn pour un premier modèle simple, puis PyTorch si le problème exige un réseau profond. Chaque bibliothèque a son rôle ; les connaître toutes vous rend polyvalent. **À retenir** : un bon artisan connaît tous ses outils et choisit le bon pour chaque tâche.
+
+Une règle de méthode, maintenant, que je tiens pour la plus utile de ce chapitre : **commencez toujours par l\'outil le plus simple qui puisse répondre à la question**. Sur des données tabulaires — ce qui reste le cas le plus fréquent en entreprise — un modèle classique de scikit-learn est souvent aussi performant qu\'un réseau profond, s\'entraîne en quelques secondes sur un ordinateur portable, et s\'explique devant une direction. Sortir PyTorch pour prédire un chiffre d\'affaires à partir de douze colonnes, c\'est amener une grue pour déplacer une chaise. Le réflexe inverse — commencer par le plus impressionnant — coûte des semaines à beaucoup d\'équipes.
+
+Deux mots enfin sur ce qui ne figure pas dans la liste ci-dessus mais que vous croiserez. **Jupyter** et ses carnets sont excellents pour explorer et montrer, mauvais pour produire : le code y dépend de l\'ordre dans lequel on a exécuté les cellules, ce qui est l\'ennemi direct de la reproductibilité. Explorez dans un carnet, mais déplacez dans un fichier `.py` tout ce qui est destiné à durer. Quant à la **gestion des dépendances**, elle vous paraîtra fastidieuse jusqu\'au jour où un projet cessera de fonctionner sans que rien n\'ait changé de votre côté. Ce jour-là, vous comprendrez pourquoi j\'insiste.
 
 ### Exercices dirigés
 
