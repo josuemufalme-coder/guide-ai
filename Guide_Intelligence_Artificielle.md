@@ -41,15 +41,15 @@ Un dernier mot, le plus important : on n\'apprend pas l\'IA en lisant, mais en f
   ---------------------------------------------------------------------------------------------------------------------------------------
   **Partie**                           **De quoi il s\'agit**
   ------------------------------------ --------------------------------------------------------------------------------------------------
-  I : Les fondations                 Comprendre l\'IA, programmer en Python, les maths utiles, lire les données
+  I --- Les fondations                 Comprendre l\'IA, programmer en Python, les maths utiles, lire les données
 
   II --- Comment une machine apprend   Apprentissage automatique, apprentissage profond, mise en pratique, raisonner dans l\'incertain
 
-  III : Les grands domaines          Langage (NLP), IA générative, vision, apprentissage par renforcement, agents et sûreté
+  III --- Les grands domaines          Langage (NLP), IA générative, vision, apprentissage par renforcement, agents et sûreté
 
   IV --- Bien faire et bien décider    Éthique, conduite d\'un projet, usages réels, mener son propre projet
 
-  V : Les outils au quotidien        ChatGPT, Claude, Perplexity, l\'art des prompts, l\'automatisation avec n8n, l\'IA en entreprise
+  V --- Les outils au quotidien        ChatGPT, Claude, Perplexity, l\'art des prompts, l\'automatisation avec n8n, l\'IA en entreprise
 
   VI --- On construit ensemble         Quatre projets guidés, pas à pas, du début à la fin
 
