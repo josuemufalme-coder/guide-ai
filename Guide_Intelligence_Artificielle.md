@@ -1226,9 +1226,21 @@ Un modèle qui brille dans votre carnet Jupyter est inutile s\'il ne fonctionne 
 
 **Définition --- MLOps.** Ensemble de pratiques visant à déployer, surveiller et maintenir de façon fiable des modèles de machine learning en production, en automatisant leur cycle de vie.
 
+Ce fossé mérite d\'être décrit précisément, car on ne le franchit pas en ajoutant du sérieux : les deux situations n\'ont presque rien de commun. Dans un carnet, vous travaillez sur un jeu de données figé, vous relancez une cellule quand elle échoue, et vous êtes le seul utilisateur. En production, les données arrivent en continu et changent de forme sans prévenir, personne n\'est là pour relancer quoi que ce soit à trois heures du matin, et une réponse doit partir en quelques dizaines de millisecondes. Le modèle est identique ; tout ce qui l\'entoure est différent.
+
+Trois exigences apparaissent alors, et elles n\'existaient pas dans le carnet. La **disponibilité** : le service doit répondre, y compris quand une dépendance tombe, et répondre quelque chose de sensé plutôt que d\'échouer. La **traçabilité** : pour toute prédiction contestée — et il y en aura, surtout si elle refuse un crédit — vous devez pouvoir dire quel modèle a répondu, avec quelles données, entraîné sur quoi et quand. La **reproductibilité** : réentraîner dans six mois doit redonner le même modèle, sans quoi vous ne saurez jamais si un écart vient de vos modifications ou du hasard.
+
+Une image résume l\'affaire mieux qu\'un long développement : **le modèle représente une petite part du système, et l\'essentiel du travail est ailleurs**. Collecte, validation des données, infrastructure, surveillance, gestion des versions — voilà ce qui occupe le plus clair de l\'effort d\'une équipe qui met de l\'IA en production. Le code du modèle lui-même en constitue une fraction modeste. C\'est le contraire de ce que laissent croire les cours et les tutoriels, et c\'est la principale surprise de ceux qui passent du laboratoire à l\'entreprise.
+
 ### Leçon 2 --- Pipelines, versioning et reproductibilité
 
 Vous construirez des **pipelines** : des chaînes de traitement automatisées qui vont des données brutes au modèle entraîné. Le **versioning** ne concerne pas que le code (avec Git) : on versionne aussi les **données** et les **modèles** (avec des outils comme DVC et MLflow), afin de pouvoir reproduire exactement n\'importe quelle expérience passée.
+
+Pourquoi cette insistance sur les données, alors que Git suffit au code ? Parce qu\'un modèle est le produit de trois choses — du code, des données et des réglages — et que reproduire un résultat exige les trois. Git gère mal les fichiers volumineux et binaires ; on lui adjoint donc des outils qui versionnent les jeux de données à côté du code, en n\'y stockant qu\'une empreinte. La règle à retenir tient en une phrase : **un modèle en production doit pouvoir être relié à la version exacte des données qui l\'ont produit**. Sans cela, la première question sérieuse d\'un auditeur restera sans réponse.
+
+Le mot **pipeline** mérite lui aussi d\'être précisé, car il recouvre quelque chose de très concret. C\'est la transformation de votre notebook en une suite d\'étapes explicites, chacune prenant des entrées et produisant des sorties : charger, valider, nettoyer, construire les variables, entraîner, évaluer, enregistrer. L\'intérêt n\'est pas cosmétique. Un pipeline se relance sans intervention, s\'exécute à l\'identique sur une autre machine, et surtout **échoue à un endroit précis** quand il échoue — vous savez immédiatement quelle étape a cassé. Un carnet, lui, échoue globalement, et son résultat dépend de l\'ordre dans lequel vous avez exécuté les cellules.
+
+J\'ajoute une étape que l\'on oublie presque toujours et qui rapporte plus que toutes les autres : **la validation des données en entrée de pipeline**. Vérifiez que les colonnes attendues sont là, que les types n\'ont pas changé, que les plages de valeurs restent plausibles, qu\'aucune catégorie inconnue n\'apparaît. Le jour où un fournisseur passera les montants d\'euros en centimes, votre modèle ne protestera pas : il prédira, avec assurance, des résultats absurdes. Seule une vérification explicite à l\'entrée arrêtera l\'erreur avant qu\'elle ne se propage.
 
 ### Leçon 3 --- Conteneuriser et déployer
 
@@ -1236,11 +1248,33 @@ Pour qu\'un modèle fonctionne identiquement partout, on l\'empaquette avec son 
 
 **Cas pratique --- de l\'expérience au service.** Vous avez entraîné un modèle de détection de fraude. Pour qu\'il soit utile, la banque doit pouvoir l\'interroger en temps réel à chaque transaction. Vous l\'emballez dans un conteneur, l\'exposez via une API, et il répond désormais à des milliers de requêtes par seconde, de manière identique sur tous les serveurs.
 
+Deux notions à ranger avant d\'aller plus loin, car on les confond souvent. Le conteneur résout le problème du « ça marche sur ma machine » : il embarque le code, les bibliothèques dans leurs versions exactes et jusqu\'au système d\'exploitation, si bien que le même paquet s\'exécute identiquement sur votre portable et sur un serveur. L\'API, elle, résout un autre problème : elle définit un contrat d\'usage. Les applications qui interrogent votre modèle n\'ont pas à savoir qu\'il s\'agit d\'un gradient boosting ni quelle version de Python vous employez ; elles envoient des données, elles reçoivent une prédiction. Vous pouvez remplacer entièrement le modèle sans que personne ait à modifier une ligne, tant que le contrat tient.
+
+Reste une question que l\'on tranche trop tard, et qui commande toute l\'architecture : **avez-vous besoin d\'une réponse immédiate ?** Un score de fraude doit être rendu pendant que le paiement attend, en quelques dizaines de millisecondes — c\'est de l\'inférence en ligne, avec ses exigences de latence et de disponibilité permanente. Un score d\'appétence commercial, lui, peut parfaitement être calculé pour tous les clients chaque nuit et stocké : c\'est du traitement par lot, infiniment plus simple et moins coûteux. Beaucoup d\'équipes construisent une infrastructure temps réel exigeante pour un besoin que satisfaisait un calcul nocturne. Posez la question au début du projet, pas à la fin.
+
+Un mot enfin sur la mise en service elle-même, car on ne bascule pas un modèle d\'un coup. On l\'expose d\'abord **en parallèle** de l\'ancien, sans que ses réponses soient utilisées, simplement pour comparer sur du trafic réel. Puis on lui confie une petite fraction des requêtes. Puis on augmente. À chaque palier, on garde la possibilité de revenir en arrière instantanément. Cette prudence paraît excessive tant que rien n\'a mal tourné ; elle paraît insuffisante le jour où quelque chose tourne mal.
+
 ### Leçon 4 --- Surveiller : un modèle vivant
 
 Une fois déployé, un modèle doit être **surveillé**. Avec le temps, les données réelles s\'écartent de celles d\'entraînement : c\'est la **dérive des données** (data drift), qui dégrade silencieusement les performances. Il faut la détecter et déclencher un ré-entraînement.
 
 **Notion essentielle ---** Un modèle n\'est jamais « terminé ». Le monde change, les données évoluent, et un modèle abandonné à lui-même se dégrade sans bruit. Le MLOps transforme le modèle d\'un livrable figé en un système vivant qu\'on entretient.
+
+Encore faut-il savoir **quoi** surveiller, car « surveiller le modèle » ne veut rien dire tant qu\'on n\'a pas nommé les indicateurs. Il y en a trois familles, et elles ne se substituent pas l\'une à l\'autre.
+
+La **santé technique** d\'abord : temps de réponse, taux d\'erreur, volume de requêtes. C\'est le plus facile à mesurer et le moins informatif — un modèle peut répondre vite et se tromper systématiquement.
+
+La **dérive des entrées** ensuite : les données qui arrivent ressemblent-elles encore à celles de l\'entraînement ? On compare, variable par variable, la distribution observée cette semaine à celle du jeu d\'entraînement. C\'est l\'indicateur le plus utile en pratique, parce qu\'il est **disponible immédiatement**, sans attendre de savoir si les prédictions étaient justes.
+
+La **performance réelle** enfin, la seule qui compte vraiment — et la plus difficile à obtenir, car elle exige de connaître la vérité. Pour un modèle de fraude, elle arrive avec des semaines de retard, le temps que les contestations remontent. Pour une prévision de résiliation à six mois, elle arrive six mois plus tard. C\'est précisément pour cela que la surveillance des entrées est indispensable : elle vous alerte pendant que la performance, elle, reste inconnue.
+
+**Exemple chiffré --- ce que coûte une mauvaise précision en production.** Reprenons le détecteur de fraude du chapitre 5, celui qui signalait 2 % des transactions avec 40 % de précision. En laboratoire, ces chiffres semblaient acceptables. Déployons-le dans une banque qui traite **un million de transactions par jour**.
+
+Deux pour cent, cela fait **20 000 alertes par jour**. À deux minutes d\'examen humain par alerte — une hypothèse plutôt optimiste —, cela représente **667 heures de travail quotidien**, soit environ **83 analystes à plein temps**, dont six sur dix passeront leur journée sur de fausses alertes.
+
+Aucune banque ne fera cela. Le modèle sera donc débranché, non parce qu\'il est mauvais, mais parce que personne n\'a chiffré son coût d\'exploitation avant de le construire. En resserrant le seuil pour ne garder que 5 000 alertes quotidiennes, on redescend à **21 analystes** — un dispositif tenable, au prix de fraudes manquées.
+
+Retenez la leçon, elle vaut pour tous vos projets : **une métrique de laboratoire ne devient un argument qu\'une fois multipliée par le volume réel**. La question n\'est jamais « quelle est la précision de mon modèle ? » mais « combien d\'heures humaines ses erreurs vont-elles coûter par jour ? ». Posez-la avant de développer, pas après.
 
 ### Leçon 5 --- Le cycle de vie complet, étape par étape
 
@@ -1261,6 +1295,12 @@ Récapitulons le parcours d\'un modèle, de l\'idée à la production durable. C
 -   **Ré-entraînement** : quand la dérive l\'exige, on reprend le cycle avec des données fraîches.
 
 **Exemple --- pourquoi le cycle ne s\'arrête jamais.** Un modèle de recommandation entraîné en janvier devient moins pertinent en juin : les goûts ont changé, de nouveaux produits sont apparus. Sans surveillance ni ré-entraînement, ses performances se dégradent en silence. Le MLOps organise ce cycle perpétuel. **À retenir** : un modèle est un organisme vivant qu\'on entretient, pas un objet qu\'on livre une fois pour toutes.
+
+Une question pratique se pose alors : **quand réentraîner ?** Trois politiques existent, et le choix n\'est pas indifférent. Réentraîner **à date fixe**, chaque mois par exemple, est simple à organiser mais aveugle : on refait le travail quand rien n\'a bougé, et on arrive trop tard quand tout a changé d\'un coup. Réentraîner **sur alerte**, lorsque la dérive dépasse un seuil, est plus juste mais suppose une surveillance fiable et des seuils bien réglés. Réentraîner **en continu** convient aux domaines très mouvants, comme la recommandation, mais transforme le modèle en cible mobile difficile à auditer. En pratique, une périodicité fixe doublée d\'un déclenchement sur alerte couvre la plupart des situations.
+
+Un piège guette ceux qui automatisent le réentraînement sans y réfléchir, et il est redoutable : **la boucle de rétroaction**. Un modèle de recommandation influence ce que les clients voient, donc ce qu\'ils achètent, donc les données sur lesquelles il sera réentraîné. Il finit par apprendre de ses propres effets et par se confirmer lui-même, réduisant progressivement la diversité de ses propositions. Le même mécanisme s\'observe en police prédictive, où l\'on patrouille là où l\'on a déjà constaté des faits, ce qui produit mécaniquement davantage de faits constatés au même endroit. Ces boucles ne s\'annoncent par aucune alerte technique : toutes les métriques restent excellentes, puisque le modèle prédit de mieux en mieux un monde qu\'il a lui-même façonné. Nous y reviendrons au chapitre 14, car le problème est autant éthique que technique.
+
+Sachez enfin qu\'un réentraînement n\'est jamais une simple mise à jour : c\'est un **nouveau modèle**, qui doit repasser par la validation complète. Il arrive qu\'un modèle réentraîné sur des données plus récentes soit globalement meilleur et pourtant nettement moins bon sur un sous-groupe précis. Sans validation par segment, personne ne le verra — sauf les clients concernés.
 
 ### Exercices dirigés
 
@@ -1294,6 +1334,16 @@ Récapitulons le parcours d\'un modèle, de l\'idée à la production durable. C
 
 Un bon modèle ne se contente pas de prédire : il sait dire **à quel point** il est sûr. Une prédiction médicale ou financière sans mesure d\'incertitude est dangereuse. Ce chapitre vous apprend les approches probabilistes qui quantifient cette incertitude.
 
+Commençons par distinguer deux incertitudes que l\'on confond presque toujours, et dont les remèdes sont opposés.
+
+La première est l\'incertitude **du monde**. Elle tient au hasard des choses et ne disparaîtra jamais, quelles que soient vos données. Vous pouvez connaître parfaitement une pièce équilibrée, vous ne prédirez pas le prochain lancer. Un modèle de trafic routier ne prédira jamais l\'accident qui bloquera la voie demain matin. Accumuler des données ne réduit pas cette incertitude d\'un iota : elle fait partie du phénomène.
+
+La seconde est l\'incertitude **du modèle**. Elle vient de ce que vous n\'avez pas assez observé. Elle est en revanche parfaitement réductible : davantage de données, ou des données mieux choisies, la font diminuer.
+
+Pourquoi cette distinction est-elle décisive ? Parce qu\'elle dicte des actions contraires. Face à une forte incertitude du modèle, la bonne réponse est d\'aller chercher de l\'information — élargir l\'échantillon, interroger un expert, différer la décision. Face à une forte incertitude du monde, aucune donnée supplémentaire n\'aidera : il faut décider malgré tout, et concevoir un dispositif qui supporte de se tromper. Un modèle qui ne sait pas dire de laquelle des deux il souffre vous laisse sans conduite à tenir.
+
+C\'est aussi ce qui explique un comportement des systèmes modernes que beaucoup jugent inexplicable. Un grand modèle de langage interrogé sur un sujet qu\'il n\'a jamais rencontré répond avec le même aplomb que sur un sujet qu\'il maîtrise. Il n\'a aucune représentation de sa propre ignorance. Tout ce chapitre porte sur ce qui manque là.
+
 ### Leçon 2 --- Le raisonnement bayésien
 
 L\'**inférence bayésienne** traite les paramètres d\'un modèle comme incertains. On part d\'une croyance initiale (loi **a priori**), on observe des données, et l\'on obtient une croyance mise à jour (loi **a posteriori**). C\'est une formalisation de la manière dont nous apprenons naturellement : en révisant nos opinions à mesure que les faits arrivent.
@@ -1302,19 +1352,47 @@ L\'**inférence bayésienne** traite les paramètres d\'un modèle comme incerta
 
 **Exemple --- réviser un jugement.** Vous pensez qu\'une pièce est équilibrée (a priori). Vous la lancez dix fois et obtenez dix faces. Votre croyance se déplace : la pièce est probablement truquée (a posteriori). Plus les données s\'accumulent, plus elles l\'emportent sur votre croyance initiale. C\'est le raisonnement bayésien.
 
+Cette phrase mérite d\'être pesée, car elle contient la réponse à l\'objection qu\'on adresse toujours à cette approche : « choisir une croyance de départ, n\'est-ce pas arbitraire ? » Si. Et cela n\'a pas l\'importance qu\'on lui prête, car **les données finissent par effacer l\'a priori**. Deux personnes partant de convictions opposées sur la pièce convergeront vers la même conclusion après quelques centaines de lancers. L\'a priori ne pèse que lorsque les données sont rares — c\'est-à-dire exactement là où l\'on a besoin d\'un point de départ, et où le refuser reviendrait à prétendre ne rien savoir alors qu\'on sait quelque chose.
+
+Cet a priori est d\'ailleurs bien plus familier qu\'il n\'y paraît. Quand vous régularisez un modèle au chapitre 5 pour l\'empêcher de sur-apprendre, vous exprimez la croyance que les petits coefficients sont plus vraisemblables que les grands. Vous faites du bayésien sans le nommer.
+
+Une différence de fond avec ce que vous avez vu jusqu\'ici mérite d\'être soulignée. Un modèle classique cherche **la meilleure valeur** de chaque paramètre et la retient. Un modèle bayésien conserve **une distribution** sur les valeurs possibles, c\'est-à-dire tout un éventail de modèles pondérés par leur plausibilité. Prédire consiste alors à faire voter cet éventail. Quand les modèles plausibles s\'accordent, la prédiction est sûre ; quand ils divergent, elle est incertaine — et le désaccord lui-même devient la mesure de l\'incertitude. C\'est élégant, informatif, et coûteux : là où un modèle classique rend une réponse, celui-ci en explore un grand nombre. Ce coût explique pourquoi l\'approche reste minoritaire hors des domaines où l\'incertitude se paie cher.
+
 ### Leçon 3 --- Modèles de mélange et modèles graphiques
 
 Les **modèles de mélange** (estimés par l\'algorithme EM) supposent que les données viennent de plusieurs distributions combinées. Les **réseaux bayésiens** représentent les dépendances entre variables sous forme de graphe, permettant un raisonnement structuré dans l\'incertain.
 
+Rendons ces deux idées concrètes, car formulées ainsi elles restent des étiquettes.
+
+Un **modèle de mélange** part d\'un constat simple : vos données proviennent souvent de plusieurs populations mêlées. Mesurez la taille de mille adultes sans noter le sexe, et vous obtiendrez une distribution à deux bosses. Aucune courbe en cloche unique ne la décrira correctement — la moyenne tombera entre les deux groupes et ne décrira personne, comme au chapitre 4. Un modèle de mélange suppose deux courbes superposées et cherche leurs paramètres ainsi que la proportion de chacune. L\'algorithme EM procède par va-et-vient : il attribue provisoirement chaque observation à un groupe, recalcule les paramètres des groupes, réattribue, et recommence jusqu\'à stabilisation. Notez la parenté avec le k-means du chapitre 5 — à ceci près qu\'ici l\'appartenance n\'est pas tranchée : une observation appartient à 70 % au premier groupe et à 30 % au second, ce qui est souvent plus honnête.
+
+Un **réseau bayésien**, lui, dessine qui influence quoi. Prenons un exemple médical : la grippe cause la fièvre et la fatigue, tandis que l\'anémie cause aussi la fatigue mais pas la fièvre. Ce petit graphe permet de raisonner dans les deux sens. En avant : sachant qu\'il y a grippe, quelle probabilité de fièvre ? En arrière, et c\'est là tout l\'intérêt : sachant qu\'il y a fatigue **sans** fièvre, la grippe devient moins probable et l\'anémie plus probable. Le graphe encode explicitement la structure causale, ce que ne fait aucun des modèles vus jusqu\'ici — et c\'est pourquoi ces réseaux restent employés là où l\'on doit expliquer un raisonnement, en diagnostic médical ou en analyse de risque.
+
 ### Leçon 4 --- Monte-Carlo et séries temporelles
 
 Les **méthodes de Monte-Carlo** estiment des quantités complexes par simulation aléatoire répétée. Enfin, les **séries temporelles** modélisent des données indexées par le temps (cours de bourse, météo, demande), avec leurs techniques propres de prévision.
+
+Le principe de Monte-Carlo tient en une phrase et vaut d\'être compris une fois pour toutes : **quand un calcul est trop difficile, remplacez-le par des tirages au sort et comptez**. Vous voulez connaître la probabilité qu\'un projet dépasse son budget, sachant que chacune de ses douze tâches a une durée incertaine ? Le calcul exact est inextricable. Simulez le projet dix mille fois en tirant au hasard la durée de chaque tâche, comptez la proportion de dépassements, et vous avez votre réponse — avec, en prime, la distribution complète et non un simple chiffre moyen. C\'est cette méthode qui produit les cônes de trajectoire des prévisions cycloniques ou les fourchettes de projection financière.
+
+Les séries temporelles, elles, brisent l\'hypothèse fondatrice de tout ce que vous avez vu jusqu\'ici : que les observations sont indépendantes. Ici, la valeur d\'aujourd\'hui dépend de celle d\'hier, et trois structures se superposent presque toujours. La **tendance**, mouvement de fond sur la longue durée. La **saisonnalité**, motif qui se répète — les ventes de décembre, le pic de trafic du lundi matin. Et le **résidu**, ce qui reste une fois les deux premières retirées, et qui seul mérite d\'être modélisé finement. Séparer ces trois composantes est le premier geste de toute analyse temporelle, et il suffit souvent à répondre à la question posée.
+
+Deux avertissements, puisqu\'il s\'agit du domaine où les erreurs de méthode sont les plus fréquentes. **On ne mélange jamais les observations au hasard** pour constituer un jeu de test : on sépare dans le sens du temps, sous peine d\'entraîner sur le futur pour prédire le passé. Et **la référence à battre est bien plus exigeante qu\'il n\'y paraît** : prédire que demain ressemblera à aujourd\'hui est une stratégie redoutablement difficile à surpasser sur bien des séries. Mesurez-la avant de vous réjouir d\'un modèle sophistiqué.
 
 ### Leçon 5 --- Pourquoi l\'incertitude change tout en pratique
 
 Illustrons par un cas concret l\'importance de quantifier l\'incertitude. Deux modèles prédisent qu\'un patient a 60 % de risque de complication. Mais le premier dit « 60 %, plus ou moins 5 % », le second « 60 %, plus ou moins 40 % ». La prédiction est la même, la confiance radicalement différente. Le médecin agira tout autrement selon les cas.
 
 **Exemple --- décider sous incertitude.** Une banque évalue un prêt risqué. Un modèle classique dit « défaut probable ». Un modèle bayésien dit « défaut probable, mais avec une grande incertitude vu le peu de données sur ce profil ». Cette nuance invite à demander plus d\'informations plutôt qu\'à refuser sèchement. **À retenir** : connaître son ignorance est aussi précieux que connaître la réponse.
+
+**Exemple chiffré --- une amélioration qui n\'en est peut-être pas une.** Voici la situation la plus commune du monde professionnel. Vous testez deux versions d\'une page : la version A convertit **100 visiteurs sur 1 000**, soit 10,0 % ; la version B en convertit **120 sur 1 000**, soit 12,0 %. Deux points de mieux, un cinquième de progression. On déploie B ?
+
+Pas si vite. Ces pourcentages sont des estimations tirées d\'un échantillon, et toute estimation a une marge. Calculons-la. L\'erreur type de la différence vaut ici **1,40 point**, ce qui donne un intervalle de confiance à 95 % de **[−0,74 ; +4,74] points**.
+
+Cet intervalle **contient zéro**. Autrement dit, au vu de ces données, il reste parfaitement plausible que les deux versions soient équivalentes, voire que B soit légèrement moins bonne. Les deux points d\'écart peuvent n\'être que du hasard d\'échantillonnage.
+
+Reprenons la même expérience avec dix fois plus de visiteurs, **10 000 par version**, et supposons les mêmes taux. L\'erreur type tombe à 0,44 point, et l\'intervalle devient **[+1,13 ; +2,87] points**. Il ne contient plus zéro : cette fois, l\'amélioration est établie.
+
+Les taux observés sont rigoureusement identiques dans les deux cas. Seule la **quantité de données** a changé, et avec elle la conclusion. Retenez-en ceci : **un pourcentage sans son effectif ne vaut rien**, et un écart n\'est un résultat que s\'il survit à sa marge d\'erreur. Combien de décisions avez-vous vu prendre sur « 12 % contre 10 % » sans que personne ne demande sur combien de personnes ? C\'est très exactement ce que ce chapitre vous apprend à ne plus faire.
 
 **L\'ESSENTIEL À RETENIR**
 
