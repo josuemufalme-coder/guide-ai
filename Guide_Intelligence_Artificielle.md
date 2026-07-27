@@ -2419,7 +2419,63 @@ Sur la désinformation, je préfère être précis plutôt qu\'alarmiste. Ce que
 
 Sur l\'emploi enfin, deux constats et une abstention. Premier constat : la transformation touche d\'abord des **tâches**, pas des métiers entiers ; un métier composé de dix tâches dont trois s\'automatisent se transforme, il ne disparaît pas. Second constat : les métiers les plus exposés ne sont pas ceux qu\'on croyait il y a dix ans --- on annonçait l\'automatisation du travail manuel répétitif, ce sont les tâches de rédaction, de synthèse et de premier niveau d\'analyse qui bougent le plus vite. Quant à l\'ampleur nette des effets, je m\'abstiendrai : les estimations sérieuses varient dans des proportions telles qu\'aucune ne mérite d\'être citée comme un fait.
 
-### Leçon 5 --- Un cadre de décision éthique
+### Leçon 5 --- Le cadre juridique congolais du numérique
+
+Tout ce qui précède décrit un cadre européen. Si vous exercez en République démocratique du Congo, c'est un autre texte qui vous oblige, et il est récent : l'**Ordonnance-loi n° 23/010 du 13 mars 2023 portant Code du numérique**, ratifiée par la **loi n° 23/041 du 1ᵉʳ septembre 2023** et publiée au *Journal officiel*, numéro spécial, 64ᵉ année, du 20 mars 2023.
+
+Cette leçon en présente ce qui vous concernera directement en construisant les systèmes décrits dans ce manuel. Elle n'a pas la prétention d'un exposé juridique : elle énonce ce que dit le texte, articles à l'appui, et s'arrête là.
+
+#### Ce que le Code retient de l'intelligence artificielle
+
+Le texte ne se contente pas d'évoquer le numérique en général. Son **article 2** définit l'**intelligence artificielle** comme « un système basé sur des algorithmes et des modèles informatiques capables de réaliser des tâches qui nécessiteraient normalement l'intelligence humaine », et le **traitement automatisé** comme tout ensemble d'opérations effectuées à l'aide de procédés automatisés sur des données à caractère personnel — collecte, enregistrement, structuration, extraction, communication, effacement.
+
+Surtout, son **article 54** consacre le droit, pour toute personne, de **ne pas faire l'objet d'une décision produisant des effets juridiques la concernant sur le seul fondement d'un traitement automatisé**, profilage compris. Retenez cette phrase : c'est celle qui vous obligera le plus souvent. Un tri de candidatures, un refus de crédit, l'attribution d'une aide — dès que la décision est automatique et produit un effet de droit, ce seul article suffit à imposer l'intervention humaine que les leçons précédentes recommandaient au nom de la prudence.
+
+#### Les données personnelles
+
+Le titre II du Code, aux **articles 31 à 123**, organise la protection des données à caractère personnel. Cinq points suffisent à travailler correctement.
+
+**Sur quelle base traiter.** L'**article 39** énumère six fondements possibles : le consentement, une obligation légale, l'exécution d'un contrat, une mission d'intérêt public, la sauvegarde d'intérêts vitaux, ou l'intérêt légitime du responsable sous réserve des droits fondamentaux de la personne. Le consentement n'est donc pas la seule voie — et il n'est pas toujours la plus solide. Quand il est retenu, l'**article 40** exige qu'il soit libre, spécifique, éclairé et univoque, exprimé par une déclaration ou un acte positif clair.
+
+**Les droits des personnes.** Information, accès, rectification et effacement, opposition, limitation du traitement : **articles 48 à 53**. Le responsable dispose de **trente jours** pour répondre, renouvelables une fois sur justification.
+
+**Les formalités préalables.** C'est le point que les équipes techniques découvrent trop tard. Les **articles 68 à 75** imposent une **déclaration préalable** pour les traitements courants et une **autorisation préalable** pour les données sensibles — santé, biométrie, infractions, opinions politiques ou religieuses. L'autorité dispose de trente jours, prorogeables d'un mois.
+
+**Les violations de données.** L'**article 63** impose de notifier l'autorité dans les **soixante-douze heures** suivant la prise de connaissance, et d'informer les personnes concernées dans les meilleurs délais lorsque le risque pour leurs droits est élevé.
+
+**La sécurité.** L'**article 61** impose des mesures techniques et organisationnelles adaptées au risque : chiffrement, gestion des accès, sauvegarde, résilience.
+
+#### L'autorité qui contrôle
+
+Le Code institue en son **article 76** une **Autorité de protection des données à caractère personnel (APDP)**, distincte de l'ARPTC — laquelle conserve la régulation technique et économique des réseaux. L'**article 81** lui donne des pouvoirs réels : investigation sur pièces et sur place, injonction et mise en demeure, sanctions administratives et pécuniaires, et le pouvoir d'ordonner le verrouillage, l'effacement ou la destruction de données. Ses décisions et lignes directrices paraissent au *Journal officiel* et sur son portail. Toute personne peut la saisir par courrier ou par voie électronique, **sans avoir à se faire représenter par un avocat**.
+
+Les manquements relèvent de sanctions administratives aux articles 304 à 309, et de sanctions pénales — servitude pénale et amendes — au titre VI, à partir de l'article 310.
+
+#### Ce que cela change dans ce que vous allez construire
+
+Trois dispositions touchent directement les systèmes des chapitres 20 et 21.
+
+**Le transfert hors du territoire, d'abord, et c'est la plus importante pour vous.** Les **articles 64 à 66** posent une interdiction de principe du transfert vers un pays qui ne garantit pas un niveau de protection adéquat. Le transfert reste possible si ce niveau est assuré, sur autorisation préalable de l'APDP, par clauses contractuelles types, ou avec le consentement explicite de la personne. Or **tout workflow qui envoie le contenu d'un courriel client à un service d'IA hébergé à l'étranger effectue un tel transfert**. Ce n'est pas une nuance : c'est ce qui décide si votre automatisation est licite, et c'est un argument de plus en faveur des modèles auto-hébergés évoqués au chapitre 18.
+
+**L'imputabilité des messages automatiques, ensuite.** L'**article 142** dispose que l'émission d'un message de données à partir d'un système d'information automatisé programmé par une personne ou pour son compte **est imputable à cette personne**. Autrement dit : la réponse que votre workflow envoie à un client engage votre organisation, exactement comme si un salarié l'avait écrite. La validation humaine que je recommandais au chapitre 20 avant tout acte irréversible cesse d'être une bonne pratique pour devenir une précaution juridique.
+
+**L'hébergement, enfin.** Les **articles 105 à 110**, relatifs aux infrastructures critiques, prévoient que les données d'État, celles intéressant la sécurité nationale, les registres d'état civil et les données de santé publiques ont vocation à être hébergées sur le territoire national.
+
+À quoi s'ajoutent, selon votre secteur : pour la banque, la loi n° 005/2002 et les instructions de la Banque centrale du Congo, qui se combinent avec l'article 54 sur la décision automatisée ; pour les télécommunications, la loi n° 20/017 du 25 novembre 2020, avec l'identification obligatoire des abonnés et la confidentialité des communications ; pour la santé, le régime des données sensibles de l'article 36 ; et pour l'administration, le décret n° 22/41 du 26 novembre 2022 portant gouvernance de l'i-administration.
+
+#### Et le droit européen dans tout cela ?
+
+Il peut parfaitement s'appliquer à vous. Par son **article 3.2**, le RGPD vise toute entreprise, où qu'elle soit établie, dès lors qu'elle propose des biens ou des services — payants ou gratuits — à des personnes situées dans l'Union, ou qu'elle observe leur comportement. Une plateforme installée à Kinshasa qui permet à des résidents européens de réserver en ligne et collecte leurs données à cette fin y est directement soumise pour ces traitements.
+
+Vous pouvez donc relever des deux cadres à la fois. Ils ne sont pas contradictoires — le Code congolais reprend une architecture voisine, la RDC ayant par ailleurs signé la Convention de l'Union africaine sur la cybersécurité et la protection des données à caractère personnel, dite Convention de Malabo, et s'appuyant sur la loi type de la SADC et les directives de la CEEAC pour son alignement régional.
+
+#### Ce qui n'est pas encore stabilisé
+
+Je préfère le dire plutôt que de laisser croire à un édifice achevé. Plusieurs **décrets d'application** prévus par le Code sont en cours de finalisation, notamment celui portant création, organisation et fonctionnement de l'APDP. L'installation institutionnelle de l'autorité et sa pratique de contrôle détermineront la portée réelle de plusieurs obligations décrites ci-dessus — en particulier les formalités préalables et l'appréciation du niveau de protection adéquat pour les transferts.
+
+**Cette section arrête le droit à sa date de rédaction.** Vérifiez l'état des textes d'application avant de vous engager, et faites relire votre dispositif par un juriste : ce chapitre vous donne les bonnes questions, il ne remplace pas un avis.
+
+### Leçon 6 --- Un cadre de décision éthique
 
 Face à un dilemme éthique en IA, ne tranchez pas à l\'instinct : raisonnez avec méthode. Voici un cadre simple que vous pouvez appliquer à tout projet.
 
@@ -3298,6 +3354,8 @@ Il faut mesurer ce que ce changement d\'échelle signifie vraiment. Lorsqu\'un c
 
 Trois réflexes concrets en découlent, à appliquer dès la conception. **Filtrez avant d\'envoyer** : si le modèle n\'a besoin que de l\'objet et des trois premières lignes d\'un message pour le classer, n\'envoyez que cela plutôt que le fil complet avec ses pièces jointes. **Retirez ce qui identifie** : remplacez les noms et les coordonnées par des repères avant l\'appel externe, remettez-les après si nécessaire. **Tenez la liste** des flux qui envoient des données à l\'extérieur, avec pour chacun ce qui part, où, et pourquoi. Cette liste vous prendra une heure à établir et vous sauvera le jour où quelqu\'un vous la demandera.
 
+Cette liste n'est d'ailleurs pas seulement une précaution d'hygiène. Si vous exercez en République démocratique du Congo, le transfert de données personnelles hors du territoire est encadré par les articles 64 à 66 du Code du numérique, et l'émission d'un message par un système automatisé vous est imputable au titre de son article 142 : la réponse que votre workflow envoie engage votre organisation comme si vous l'aviez écrite. Le chapitre 14, leçon 5, détaille ce que cela implique. Prenez-en connaissance **avant** de brancher un flux sur un service hébergé à l'étranger, pas après.
+
 Un dernier point qu\'on oublie systématiquement : **les journaux d\'exécution contiennent les données traitées**. Un flux qui manipule des informations sensibles produit des journaux tout aussi sensibles, souvent conservés bien plus longtemps que nécessaire et accessibles à qui a accès à la plateforme. Vérifiez leur durée de conservation, et purgez-les.
 
 ### Leçon 9 --- Comprendre les déclencheurs en profondeur
@@ -3451,6 +3509,8 @@ Une charte n\'a de valeur que si elle est courte et qu\'elle répond aux questio
 **Ce qu\'il faut signaler**, et à qui : un contenu produit par IA diffusé à l\'extérieur, une erreur constatée, un usage nouveau non prévu par la charte.
 
 **Qui répond** en cas de problème, nominativement.
+
+Un mot sur le socle juridique de cette charte. En République démocratique du Congo, plusieurs de ces points ne relèvent pas du choix interne mais de l'obligation : la déclaration ou l'autorisation préalable de certains traitements, la notification d'une violation de données dans les soixante-douze heures, et le droit de toute personne de ne pas subir une décision fondée sur le seul traitement automatisé. La leçon 5 du chapitre 14 en donne le détail avec les articles. Une charte qui les ignore n'est pas une charte, c'est un vœu.
 
 Deux remarques sur la manière de la faire vivre. D\'abord, **une charte qui interdit tout sans rien autoriser produit de l\'usage clandestin**, ce qui est bien pire que l\'usage encadré — les gens continueront, mais avec leurs comptes personnels et sans aucune trace. Autorisez explicitement des usages, c\'est la seule façon d\'avoir de la visibilité. Ensuite, **datez-la et révisez-la**, car les outils et les règles changeront ; une charte de trois ans qui n\'a jamais été relue n\'est plus respectée par personne.
 
@@ -5120,7 +5180,23 @@ Voici les ouvrages qui m\'ont accompagné et que je vous recommande de tout cœu
 
 **Sur les ISBN.** Je ne les ai volontairement pas reportés ici, et je préfère vous dire pourquoi plutôt que d\'inscrire des chiffres approximatifs. Un ISBN est propre à **une édition et à un format donnés** : le même ouvrage en relié, en broché et en version électronique porte trois identifiants différents, et une nouvelle édition en crée un quatrième. Un ISBN erroné dans un manuel universitaire renvoie le lecteur vers un ouvrage qui n\'est pas celui que vous citez, ce qui est pire que pas d\'ISBN du tout. Relevez-les sur l\'exemplaire que vous citez réellement, ou dans le catalogue de la Bibliothèque nationale ou de l\'éditeur, et complétez cette liste avant publication.
 
-### Articles fondateurs
+### Textes juridiques
+
+Les références ci-dessous sont celles citées au chapitre 14, leçon 5. Elles ont été établies par l\'auteur ; vérifiez l\'état des textes d\'application avant de vous en prévaloir, le Code du numérique étant récent.
+
+-   **République démocratique du Congo** (2023). *Ordonnance-loi n° 23/010 du 13 mars 2023 portant Code du numérique*. Ratifiée par la loi n° 23/041 du 1ᵉʳ septembre 2023. *Journal officiel de la République démocratique du Congo*, numéro spécial, 64ᵉ année, 20 mars 2023. Le texte-cadre : définitions (art. 2), décision automatisée (art. 54), protection des données (titre II, art. 31 à 123), autorité de contrôle (art. 76 et 81), sanctions (art. 304 et suivants).
+
+-   **République démocratique du Congo** (2020). *Loi n° 20/017 du 25 novembre 2020 relative aux télécommunications et aux technologies de l\'information et de la communication*.
+
+-   **République démocratique du Congo** (2022). *Décret n° 22/41 du 26 novembre 2022 portant gouvernance de l\'i-administration en RDC*.
+
+-   **République démocratique du Congo** (2002). *Loi n° 005/2002 relative à la constitution, à l\'organisation et au fonctionnement de la Banque centrale du Congo*, complétée par les instructions administratives de la BCC en matière de contrôle interne et de conformité.
+
+-   **Union africaine** (2014). *Convention de l\'Union africaine sur la cybersécurité et la protection des données à caractère personnel*, dite Convention de Malabo. Signée par la RDC.
+
+-   **Union européenne** (2016). *Règlement (UE) 2016/679 relatif à la protection des personnes physiques à l\'égard du traitement des données à caractère personnel*, dit RGPD. Cité pour son article 3.2, qui en fixe la portée extraterritoriale.
+
+### Articles fondateurs### Articles fondateurs
 
 Les travaux ci-dessous sont ceux que le manuel évoque nommément. Je les donne dans l\'ordre où ils apparaissent dans le texte, avec le chapitre correspondant, pour que vous puissiez remonter à la source de ce que vous venez de lire. La plupart sont librement accessibles.
 

@@ -1,5 +1,15 @@
 # Cadre juridique congolais du numérique — questions à instruire
 
+> **STATUT : RÉPONDU.** L'auteur a fourni l'ensemble des réponses le 27 juillet 2026.
+> La section a été rédigée à partir de ces réponses et figure au **chapitre 14, leçon 5**.
+> Ce document est conservé comme trace de l'instruction et comme base de la mise à jour
+> qu'appellera la publication des décrets d'application.
+>
+> **Deux points restent à vérifier sur l'original au *Journal officiel*** avant publication :
+> la définition du responsable de traitement à l'article 2 (le mot « entity » figurait dans
+> la transmission, sans doute pour « entité »), et l'accord de « juridictions pénales ».
+
+
 **Destination :** chapitre 14, « Éthique, régulation et enjeux sociétaux de l'IA », en nouvelle leçon située après la leçon 4 sur le cadre réglementaire.
 
 **Pourquoi ce document existe.** Vous m'avez demandé de ne pas rédiger cette section, et vous avez eu raison. Je n'ai aucun moyen de vérifier un texte de loi congolais depuis cet environnement — l'accès réseau sortant y est filtré — et une référence législative inexacte dans un manuel universitaire est une faute lourde, bien plus grave qu'une lacune assumée. Ce document contient donc **ce que je ne peux pas écrire à votre place** : les questions auxquelles la section devra répondre, et les pistes de textes à vérifier.
