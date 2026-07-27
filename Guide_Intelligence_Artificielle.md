@@ -3296,23 +3296,65 @@ Bien utilisée, l\'IA ne remplace pas le professionnel : elle le **démultiplie*
 
 -   **Gardez pour vous** : le jugement final, la stratégie, la vérification, la relation humaine, la responsabilité.
 
+Cette répartition mérite un critère plutôt qu\'une liste, car les listes ne couvrent jamais votre cas particulier. Le mien tient en une question : **serais-je capable de reconnaître une erreur en dix secondes ?** Si oui, déléguez sans hésiter. Une reformulation maladroite se voit ; un plan bancal se voit ; un résumé qui a raté l\'essentiel se voit dès qu\'on connaît le document. Si non — parce que la réponse repose sur des faits que vous ne maîtrisez pas, ou sur un raisonnement dont vous ne pourriez pas refaire les étapes —, alors la vérification vous coûtera plus cher que le travail, et vous êtes dans le cas de figure du chapitre 18.
+
+Une deuxième question, plus subtile, mérite d\'être posée : **est-ce que faire cette tâche moi-même m\'apprend quelque chose ?** Déléguer la mise en forme d\'un tableau ne vous coûte aucune compétence. Déléguer systématiquement la structuration de vos idées vous en coûte une, progressivement et sans que vous le remarquiez. C\'est le risque évoqué au chapitre 18 : la compétence ne s\'effondre pas, elle s\'atrophie. Pour tout ce qui touche à votre cœur de métier, gardez donc la main sur la première version et servez-vous de l\'assistant comme d\'un contradicteur, pas comme d\'un rédacteur.
+
+Un mot sur la promesse d\'« une heure qui en vaut trois », car elle mérite d\'être nuancée. Le gain est réel, et il est **très inégalement réparti**. Il est spectaculaire sur les tâches de forme et de premier jet, notable sur la synthèse, faible sur l\'analyse, et négatif sur tout ce qui exige une vérification factuelle serrée. Un professionnel dont la journée est faite de rédaction courante gagnera beaucoup ; un expert dont la journée est faite de jugement gagnera peu, et le lui promettre le rendra sceptique à juste titre.
+
 ### Leçon 2 --- Rédaction et communication assistées
 
 L\'IA excelle à produire un premier jet : emails, comptes rendus, articles, présentations. La méthode professionnelle consiste à demander une **ébauche**, puis à la **retravailler** : l\'humain garde la voix, l\'IA fait gagner du temps sur la mise en forme. Jamais l\'inverse : ne publiez jamais un texte d\'IA sans le relire et l\'adapter.
 
 **Méthode --- du brouillon au texte final.** Pour un compte rendu de réunion, fournissez vos notes brutes à l\'assistant et demandez une synthèse structurée. Vous obtenez en quelques secondes une base propre, que vous corrigez et personnalisez. Le temps de rédaction passe de 45 minutes à 10. C\'est cela, le gain de productivité concret.
 
+Trois précisions pour que cette méthode produise vraiment ce résultat.
+
+**Fournissez la matière, ne la demandez pas.** La différence entre un compte rendu réussi et un texte creux tient à ce que vous mettez dans la demande. Vos notes brutes, même désordonnées, valent infiniment mieux qu\'un « rédige un compte rendu de réunion sur le budget ». L\'assistant excelle à mettre en forme une matière existante ; il invente quand elle manque, et c\'est là que naissent les erreurs.
+
+**Donnez un exemple de ce que vous écrivez d\'habitude.** Coller un compte rendu précédent, en disant « adopte ce format et ce ton », vaut mieux que trois paragraphes de consignes. C\'est le few-shot du chapitre 19, appliqué à votre style — et cela règle d\'un coup la question de la voix, qui est la principale objection contre ces outils.
+
+**Relisez en cherchant ce qui a été ajouté.** L\'erreur typique de ce genre de synthèse n\'est pas l\'omission, qui se repère facilement, mais l\'**ajout plausible** : une conclusion que personne n\'a formulée, un lien de causalité que personne n\'a établi, un consensus qui n\'existait pas. Ces phrases sont bien écrites et vraisemblables, et c\'est ce qui les rend dangereuses dans un document qui fera foi. Relisez donc en vous demandant, pour chaque affirmation : **est-ce que quelqu\'un a réellement dit cela ?**
+
 ### Leçon 3 --- Synthèse et analyse de documents
 
 Face à un long rapport, un contrat, ou des dizaines de pages, l\'IA résume, extrait les points clés, repère les risques, répond à vos questions. C\'est l\'un des usages professionnels les plus rentables. Préférez un assistant à long contexte (comme Claude) pour les documents volumineux, et vérifiez toujours les éléments critiques dans la source.
+
+Une méthode en trois questions rend cet usage nettement plus rentable qu\'une demande de résumé, et je vous invite à l\'adopter telle quelle.
+
+**Première question : de quoi parle ce document ?** Un résumé structuré, section par section, pour vous orienter. C\'est la seule étape où le mot « résume » est le bon.
+
+**Deuxième question : que dit-il sur ce qui m\'intéresse ?** C\'est ici que se joue la valeur. « Quels sont les engagements chiffrés et leurs échéances ? », « quelles clauses portent sur la résiliation ? », « qu\'est-ce qui est dit du risque de change ? ». Une question ciblée obtient une réponse vérifiable ; un résumé général obtient une paraphrase.
+
+**Troisième question : qu\'est-ce qui devrait m\'inquiéter ?** « Quelles clauses sont inhabituelles ou défavorables ? », « quelles affirmations ne sont étayées par aucune donnée ? », « qu\'est-ce que ce rapport ne dit pas et qu\'on s\'attendrait à y trouver ? ». Cette dernière question est celle qui rapporte le plus, et presque personne ne la pose.
+
+Deux précautions pour finir. **Exigez systématiquement les citations** — « pour chaque point, indique le passage exact » —, ce qui transforme une synthèse invérifiable en synthèse contrôlable en cinq minutes. Et **méfiez-vous du milieu des documents longs** : sur un texte de deux cents pages, les éléments situés au début et à la fin sont mieux restitués que ceux du centre. Si un point est décisif, posez une question qui le vise directement plutôt que de compter sur un résumé global pour le faire remonter.
 
 ### Leçon 4 --- Création visuelle et présentations
 
 Les outils de génération d\'images produisent illustrations, visuels et concepts à partir d\'une description. Pour les présentations, l\'IA aide à structurer le propos, rédiger les diapositives et suggérer des visuels. Là encore, la qualité du résultat dépend de la précision de votre demande.
 
+Un conseil qui vaut pour tout ce qui est visuel : **l\'IA est excellente pour explorer, médiocre pour finaliser**. Elle produit en dix minutes vingt directions possibles pour une illustration ou une structure de présentation, ce qui remplace avantageusement une page blanche. Elle produit rarement le visuel définitif d\'un document qui engage votre organisation — les défauts vus au chapitre 10 (texte approximatif, comptage fautif, mains difficiles) se remarquent immédiatement sur un support professionnel. Servez-vous-en pour trouver la direction, faites finaliser autrement.
+
+Sur les présentations, une remarque de fond plutôt que d\'outil. Le vrai gain n\'est pas dans la rédaction des diapositives, il est dans la **structuration du propos** — et c\'est aussi ce que vous devriez le moins déléguer, puisque c\'est là que se fait la pensée. La méthode que je recommande inverse l\'ordre habituel : écrivez d\'abord vous-même, en trois phrases, ce que votre auditoire doit avoir retenu en sortant. Demandez ensuite à l\'assistant de proposer un déroulé qui mène à ces trois phrases, puis de critiquer ce déroulé. Vous gardez la pensée, vous déléguez l\'agencement — et vous obtenez une présentation qui dit quelque chose, ce qui reste rare.
+
+Deux points de vigilance enfin, prolongements directs du chapitre 14. **Signalez les images générées** dans tout document informatif ou institutionnel ; c\'est une exigence de transparence, et bientôt une obligation dans plusieurs cadres réglementaires. Et **vérifiez les conditions d\'usage commercial** de l\'outil employé avant d\'intégrer une image générée à un support diffusé à l\'extérieur.
+
 ### Leçon 5 --- Construire son flux de travail augmenté
 
 L\'objectif final est d\'intégrer l\'IA dans une **routine** : un ensemble d\'habitudes et d\'outils qui s\'enchaînent naturellement. Recherche avec Perplexity, rédaction avec Claude ou ChatGPT, automatisation des tâches répétitives avec n8n. Le professionnel augmenté orchestre ces outils sans même y penser.
+
+Voici comment on y parvient concrètement, car « intégrer dans une routine » ne se décrète pas.
+
+**Repérez vos tâches récurrentes pendant une semaine.** Notez simplement ce que vous refaites plusieurs fois : répondre au même type de demande, préparer le même type de note, chercher le même type d\'information. Cette liste, établie sur du réel plutôt que de mémoire, est le point de départ. On sous-estime toujours la répétition de son propre travail.
+
+**Outillez-en une seule, et bien.** Rédigez la consigne, testez-la sur cinq cas, corrigez, rangez-la dans la bibliothèque du chapitre 19. Puis passez à la suivante. Trois tâches solidement outillées transforment une semaine de travail ; quinze tâches à moitié outillées ne changent rien et vous laissent le sentiment d\'avoir perdu du temps.
+
+**Placez l\'outil sur le chemin, pas à côté.** Vous avez vu au chapitre 15 qu\'un dispositif exigeant un détour est abandonné. Si votre assistant est accessible depuis l\'endroit où vous travaillez déjà, vous l\'utiliserez ; s\'il faut ouvrir un onglet, se reconnecter et recoller le contexte, vous ne le ferez qu\'une fois sur trois.
+
+**Réexaminez tous les trimestres.** Les outils changent, vos tâches aussi. Une routine figée devient une contrainte au bout d\'un an. Une demi-heure de revue par trimestre suffit à écarter ce qui ne sert plus et à intégrer ce qui est apparu.
+
+Un dernier mot, qui vaut avertissement. L\'expression « professionnel augmenté » suggère un état permanent ; c\'est en réalité une **pratique**, qui se maintient par l\'attention. La dérive la plus commune est de laisser l\'outil décider du travail : on rédige ce que l\'assistant sait bien produire, on choisit les angles qu\'il propose, on ne pose plus les questions auxquelles il répond mal. L\'augmentation devient alors un rétrécissement, et il est d\'autant plus difficile à voir qu\'il s\'accompagne d\'un sentiment d\'efficacité. **Gardez régulièrement une tâche que vous faites entièrement seul** — c\'est le meilleur moyen de mesurer ce que vous avez délégué.
 
 ### Exercices dirigés
 
@@ -3348,27 +3390,73 @@ L\'objectif final est d\'intégrer l\'IA dans une **routine** : un ensemble d\'h
 
 Rien ne vaut des cas concrets pour comprendre la valeur de l\'automatisation intelligente. Ce chapitre passe en revue des scénarios réels, secteur par secteur, en détaillant à chaque fois le problème, la solution automatisée et les bénéfices. Inspirez-vous-en pour vos propres projets.
 
+Une manière de lire ces cas les rendra beaucoup plus utiles. Chacun est présenté en trois temps — problème, solution, bénéfice — et cette présentation, commode, escamote systématiquement deux choses que je vous invite à reconstituer vous-même à chaque fois.
+
+**Ce qui a été difficile.** Aucun de ces flux n\'a fonctionné du premier coup. Les cas particuliers, les formats inattendus, les exceptions qui représentent 5 % des volumes et 80 % du travail de conception : rien de cela n\'apparaît dans un récit de réussite. Quand vous lirez « le flux analyse chaque message », demandez-vous ce qui se passe quand le message est vide, quand il est en trois langues, quand il contient une pièce jointe de trente pages.
+
+**Ce qui a été mesuré, et comment.** « Temps de réponse divisé » ne dit ni par combien, ni sur quel périmètre, ni comparé à quoi. Vous savez depuis le chapitre 21 qu\'une mesure prise après coup ne vaut rien. Prenez donc ces bénéfices pour des ordres de grandeur plausibles, pas pour des résultats établis.
+
+Une dernière recommandation avant d\'entrer dans les cas : **lisez-les comme des variations d\'un même motif**. Vous verrez qu\'ils font tous la même chose — recevoir une information non structurée, la classer, en extraire des éléments, décider d\'une suite, agir — et que seuls le vocabulaire métier et les outils connectés changent. Comprendre ce motif unique vaut mieux que retenir cinq exemples : il s\'applique à des dizaines de situations que ce chapitre ne mentionne pas.
+
 ### Leçon 2 --- Support client
 
 **Cas pratique --- le tri et la réponse automatisés. Problème** : une équipe support croule sous les messages. **Solution** : un workflow analyse chaque message (sujet, urgence, sentiment), répond automatiquement aux demandes simples, et transmet les cas complexes à un humain avec un résumé. **Bénéfice** : temps de réponse divisé, agents recentrés sur les cas à valeur ajoutée, clients plus satisfaits.
+
+Ce cas est le plus répandu et celui où l\'on se trompe le plus souvent de conception. Trois points décident de sa réussite.
+
+**Le taux de réponse automatique doit être choisi, pas subi.** La tentation est de laisser le flux répondre à tout ce qu\'il croit comprendre. Il vaut infiniment mieux qu\'il ne réponde qu\'aux catégories dont il est très sûr — souvent deux ou trois motifs qui représentent la moitié du volume — et qu\'il prépare une proposition pour tout le reste. Un client qui reçoit une réponse automatique à côté du sujet est plus mécontent qu\'un client qui attend deux heures.
+
+**Le résumé transmis à l\'agent vaut souvent plus que la réponse automatique.** C\'est le bénéfice qu\'on chiffre le moins et qui se remarque le plus : l\'agent qui prend un dossier reçoit le motif, l\'historique, le ton du client et les éléments déjà vérifiés. Il commence à travailler au lieu de commencer à lire.
+
+**Prévoyez la sortie de boucle.** Un client qui répond « non, ce n\'est pas ma question » doit atteindre un humain immédiatement, sans repasser par la classification. C\'est la mesure de protection la plus importante du dispositif, et celle qu\'on oublie systématiquement.
 
 ### Leçon 3 --- Ventes et marketing
 
 **Cas pratique --- qualification automatique des prospects. Problème** : trier des centaines de prospects entrants. **Solution** : un flux enrichit chaque fiche, évalue le potentiel (lead scoring) à l\'aide d\'un LLM, et déclenche la bonne relance au bon moment. **Bénéfice** : les commerciaux se concentrent sur les prospects les plus prometteurs, le taux de conversion augmente.
 
+Ce cas est celui où l\'on confond le plus souvent **prédire** et **décider**, et la distinction mérite d\'être posée nettement. Un score de potentiel n\'est pas une consigne de ne pas rappeler : c\'est un ordre de traitement. Une équipe qui cesse purement et simplement de contacter les prospects mal notés fabrique une prophétie autoréalisatrice — les prospects mal notés ne convertissent plus, puisque personne ne les appelle, ce qui confirme le modèle au prochain réentraînement. Vous reconnaissez la boucle de rétroaction du chapitre 7. La parade est simple et se paie très bien : **gardez une petite fraction de prospects mal notés dans le circuit normal**. Ils vous donneront la seule mesure honnête de la qualité de votre score, et vous éviteront de découvrir un jour que le modèle s\'est enfermé.
+
+Deux points de conception, ensuite. **L\'enrichissement des fiches à partir de sources externes** est le maillon qui pose le plus de questions de conformité : vous collectez des données sur des personnes identifiables, et cela suppose une base légale, une information et une durée de conservation. Vérifiez-le avant de construire, pas après. Et **la relance automatique doit rester reconnaissable** : un message automatique qui se fait passer pour un message personnel est mal perçu quand on s\'en aperçoit, et l\'on s\'en aperçoit toujours.
+
+Un dernier mot sur ce que ce cas mesure vraiment. Un score de potentiel est appris sur vos conversions passées : il reproduit donc le profil de vos clients actuels. C\'est efficace pour vendre davantage à ceux qui vous ressemblent déjà, et rigoureusement aveugle aux marchés que vous n\'avez jamais servis. **Un bon score optimise l\'existant ; il ne trouve pas ce qui manque.** Gardez-le en tête si votre enjeu est de vous développer plutôt que de rentabiliser.
+
 ### Leçon 4 --- Administration et finance
 
 **Cas pratique --- traitement automatisé des factures. Problème** : saisir manuellement des centaines de factures. **Solution** : l\'IA lit chaque facture, en extrait les informations clés, les vérifie et les enregistre dans le système comptable, en signalant les anomalies. **Bénéfice** : gain de temps massif, moins d\'erreurs de saisie, traçabilité améliorée.
 
+Ce cas mérite une attention particulière, car c\'est le seul de la série où une erreur se traduit directement en argent et en obligations comptables. Trois exigences en découlent.
+
+**Ne validez pas seulement le format, validez la cohérence.** Qu\'un montant soit bien un nombre ne dit rien. Que la somme des lignes égale le total, que la TVA corresponde au taux annoncé, que le fournisseur existe dans votre référentiel : voilà des contrôles automatiques qui attrapent l\'essentiel des erreurs d\'extraction, et ils ne coûtent que quelques lignes.
+
+**Faites du seuil de confiance un paramètre métier.** Sous un certain montant, une extraction douteuse peut passer en traitement automatique avec contrôle a posteriori ; au-delà, elle doit être vue par un humain. C\'est le routage par confiance du chapitre 20, appliqué à un enjeu financier.
+
+**Conservez l\'original et la trace de l\'extraction.** En cas de litige ou de contrôle, vous devrez pouvoir montrer le document source, ce qui en a été extrait, par quelle version du système, et qui a validé. Cette exigence de traçabilité n\'est pas une précaution de confort : dans beaucoup de contextes, elle est ce qui rend l\'automatisation juridiquement admissible.
+
 ### Leçon 5 --- Ressources humaines et veille
 
 **Cas pratique --- présélection et veille automatisées. RH** : un flux trie les candidatures selon des critères objectifs et planifie les entretiens. **Veille** : chaque matin, un workflow collecte les actualités d\'un secteur, les résume et envoie une synthèse aux équipes. Dans les deux cas, l\'humain garde la décision finale, mais part d\'un travail déjà mâché.
+
+Il faut ici que je sois plus net que le texte ci-dessus, car ces deux cas ne sont pas de même nature.
+
+**La veille automatisée est un excellent premier projet** : fréquente, sans enjeu, entièrement corrigible, et son utilité se constate dès la première semaine. Une seule mise en garde, qui n\'est pas technique : une veille qui résume tout finit par n\'être plus lue. Préférez un dispositif qui sélectionne sévèrement — cinq éléments par jour, avec la raison pour laquelle chacun compte — plutôt qu\'un condensé exhaustif que personne n\'ouvre au bout d\'un mois.
+
+**La présélection de candidatures, elle, n\'est pas un cas d\'usage comme les autres**, et je vous invite à la traiter avec les précautions du chapitre 14. « Trier selon des critères objectifs » suppose que ces critères soient explicites, vérifiables et justifiables devant un candidat qui les contesterait — ce qui exclut de laisser un modèle établir lui-même ce qui distingue un bon profil, puisqu\'il le déduirait de vos recrutements passés et de leurs biais. Dans plusieurs cadres réglementaires, ce type d\'usage relève de la catégorie à haut risque, avec obligation de documentation, d\'évaluation des biais et de supervision humaine effective.
+
+La ligne de partage est simple à formuler : **automatiser ce qui fait gagner du temps sans décider à la place de quelqu\'un** — extraire les informations d\'un dossier, vérifier qu\'il est complet, planifier un entretien, envoyer un accusé de réception — est sans difficulté. **Automatiser l\'écartement d\'une candidature** en est une tout autre, et elle demande un projet à part entière, pas un flux construit en deux après-midi.
 
 ### Leçon 6 --- Concevoir sa propre automatisation
 
 Pour passer de l\'inspiration à l\'action, suivez une méthode : repérez une tâche **répétitive et chronophage**, vérifiez qu\'elle suit des **règles identifiables**, décidez où l\'humain doit rester dans la boucle, puis construisez le flux progressivement en le testant à chaque étape. Commencez petit, fiabilisez, puis élargissez.
 
 **Règle d\'or ---** Automatisez d\'abord les tâches répétitives, fréquentes et à faible risque. Gardez l\'humain au cœur des décisions sensibles. Une automatisation utile et fiable vaut mieux qu\'une automatisation ambitieuse et fragile.
+
+Complétons cette méthode par les deux étapes qu\'on saute le plus souvent, et qui font pourtant toute la différence.
+
+**Avant de construire : faites la tâche à la main, en vous observant.** Traitez vous-même trente cas réels en notant chaque décision que vous prenez et sur quoi vous vous appuyez. Vous découvrirez presque toujours que le processus comporte des règles implicites que personne n\'avait formulées — « quand ça vient de ce client-là, on vérifie toujours deux fois », « si le montant est rond, c\'est souvent une erreur ». Ces règles tacites sont exactement ce qu\'une automatisation ignore, et ce sont elles qui produisent les échecs inexplicables. Une demi-journée d\'observation évite des semaines de correction.
+
+**Après avoir construit : faites tourner en parallèle sans agir.** Pendant deux semaines, laissez le flux traiter les cas réels et produire ses décisions, mais sans les exécuter — vous comparez simplement ce qu\'il aurait fait à ce que l\'humain a fait. Vous obtenez ainsi une mesure honnête de sa fiabilité, sur des données réelles et sans aucun risque. C\'est la mise en service progressive du chapitre 7, et c\'est le meilleur usage possible de deux semaines.
+
+Un dernier critère de sélection, qui complète la règle d\'or ci-dessus et que j\'aimerais que vous reteniez : **automatisez ce qui est ennuyeux pour celui qui le fait, jamais ce qui est intéressant pour lui**. Ce n\'est pas seulement une question d\'acceptation sociale, même si elle compte. C\'est aussi que les tâches ennuyeuses sont typiquement celles dont les règles sont stables et le volume élevé — c\'est-à-dire, exactement, celles qui s\'automatisent bien.
 
 ### Exercices dirigés
 
@@ -3410,9 +3498,33 @@ Au-delà de l\'usage général, on peut **configurer un assistant** pour une tâ
 
 **Cas pratique --- un assistant de support sur mesure.** Une entreprise crée un assistant nourri de sa documentation produit et de sa FAQ, avec pour consigne de répondre dans un ton courtois et de toujours citer la source. Chaque agent du support l\'utilise : les réponses sont rapides, cohérentes et fiables. On a transformé un outil générique en expert maison. **À retenir** : la personnalisation décuple la valeur d\'un assistant.
 
+Comment s\'y prend-on concrètement ? Quatre étapes suffisent, et l\'ordre compte.
+
+**Partez d\'une tâche réelle et étroite**, pas d\'un rôle général. « Assistant de support » est trop vague pour être bien configuré ; « répondre aux questions sur la garantie et les retours » se paramètre précisément et se teste. Vous élargirez ensuite.
+
+**Rédigez la consigne comme un mode d\'emploi destiné à un nouvel arrivant.** Le rôle, le ton, ce qu\'il faut toujours faire, ce qu\'il ne faut jamais faire, et surtout **la conduite à tenir quand l\'information manque**. C\'est la sixième composante du chapitre 19, et c\'est celle qui distingue un assistant fiable d\'un assistant qui invente.
+
+**Fournissez une base documentaire propre plutôt qu\'abondante.** Vous avez vu au chapitre 10 que le maillon faible d\'un dispositif de ce type est la recherche : dix documents à jour et bien découpés produisent de meilleures réponses que deux cents documents dont la moitié sont périmés. Et purgez les versions obsolètes, sinon l\'assistant citera l\'ancienne procédure avec une parfaite assurance.
+
+**Constituez un jeu d\'essai avant de diffuser.** Vingt à trente questions réelles, avec la bonne réponse pour chacune. Vous les rejouerez à chaque modification de la consigne ou de la base — sans quoi vous ne saurez jamais si une amélioration en est vraiment une.
+
+Un point d\'organisation, pour finir, car c\'est là que la valeur se perd. Un assistant partagé doit avoir un **propriétaire** : quelqu\'un qui reçoit les signalements d\'erreur, met à jour la base documentaire et fait vivre le jeu d\'essai. Sans cela, la documentation vieillit, les réponses se dégradent, la confiance s\'érode, et l\'outil est abandonné en six mois — non parce qu\'il était mauvais, mais parce que personne n\'en avait la charge.
+
 ### Leçon 2 --- Combiner les outils en un système
 
 Le vrai professionnel ne se contente pas d\'un outil : il **assemble** un système. Un assistant personnalisé pour la rédaction, un workflow n8n pour l\'automatisation, un outil de recherche pour la veille, le tout connecté via des protocoles comme MCP. C\'est cette orchestration qui crée un avantage décisif.
+
+Encore faut-il assembler dans le bon ordre, faute de quoi l\'orchestration devient une collection d\'outils qui ne se parlent pas. Je propose de raisonner en trois couches, et de les construire dans cet ordre.
+
+**La couche des sources** d\'abord : où vivent vos informations — documents, messagerie, base clients, tableurs. Tant que celles-ci ne sont pas accessibles proprement, tout le reste est cosmétique. C\'est la couche la moins gratifiante et celle qui décide de tout.
+
+**La couche des traitements** ensuite : les assistants configurés et les modèles que vous appelez. C\'est celle qui change le plus vite, et c\'est précisément pour cela qu\'il faut la garder **remplaçable** — un traitement doit pouvoir être changé sans reconstruire ce qui l\'entoure.
+
+**La couche d\'orchestration** enfin : ce qui déclenche, enchaîne, contrôle et journalise. C\'est votre chapitre 20, et c\'est ce qui transforme des outils en système.
+
+Deux mises en garde valent d\'être répétées ici. La première : **chaque connexion ajoutée est une dépendance de plus**, et le calcul de fiabilité du chapitre 13 s\'applique implacablement à un système personnel comme à un agent industriel. Un assemblage de six outils a six raisons de tomber en panne, et il tombera en panne un jour où vous en aurez besoin. La seconde : **un système que vous seul comprenez n\'est un avantage que tant que vous êtes là**. Si votre assemblage sert à une équipe, documentez-le et faites-le connaître à au moins une autre personne. C\'est la différence entre un actif et une dette.
+
+Une dernière remarque sur les standards d\'interconnexion évoqués ci-dessus. Leur intérêt réel n\'est pas la commodité mais la **réversibilité** : brancher un outil selon un protocole ouvert plutôt que par une intégration propriétaire, c\'est se garder la possibilité d\'en changer. Dans un domaine où les fournisseurs apparaissent et disparaissent aussi vite, cette liberté vaut souvent mieux qu\'un gain de fonctionnalités.
 
 ### Leçon 3 --- Se tenir à jour dans un domaine qui bouge vite
 
@@ -3420,9 +3532,31 @@ L\'IA évolue à une vitesse inédite. Les outils d\'aujourd\'hui seront dépass
 
 **Le seul conseil vraiment durable ---** N\'apprenez pas seulement des outils, apprenez à apprendre. Les modèles, les interfaces, les noms changeront ; les principes que vous avez vus dans ce manuel (apprentissage, prompting, automatisation, intégration) resteront. Maîtrisez les principes, et vous vous adapterez à tout outil futur.
 
+Ce conseil est juste, et je voudrais le rendre praticable, car « apprendre à apprendre » ne dit pas quoi faire lundi matin.
+
+**Distinguez trois rythmes.** Les **principes** — ce qu\'est l\'apprentissage, pourquoi un modèle se trompe, comment on évalue — ne changent pas d\'une décennie à l\'autre : apprenez-les une fois, en profondeur, et n\'y revenez que pour les approfondir. Les **capacités** — ce que les modèles savent faire — évoluent par paliers de quelques mois : une revue trimestrielle suffit largement. Les **outils** — noms, interfaces, tarifs — changent en permanence : ne les suivez que pour ceux que vous utilisez réellement.
+
+**Testez au lieu de lire.** Une heure passée à essayer une nouveauté sur une tâche que vous connaissez bien vous en apprendra davantage que dix articles à son sujet. Vous saurez ce qu\'elle change pour vous, ce qu\'aucun compte rendu extérieur ne peut vous dire. Et gardez pour cela **une tâche de référence** — la même à chaque fois, dont vous connaissez la bonne réponse : c\'est votre jeu d\'évaluation personnel, et il vaut tous les classements publics.
+
+**Protégez-vous du bruit.** Le domaine produit un flot d\'annonces dont l\'immense majorité ne changera rien à votre travail. Une règle simple : ne vous intéressez à une nouveauté que si vous pouvez énoncer **quelle tâche précise elle vous permettrait de mieux faire**. Si vous n\'y arrivez pas, laissez passer ; ce qui compte vraiment reviendra à vous.
+
+**Écrivez ce que vous apprenez.** Une note de dix lignes après chaque essai — ce que j\'ai testé, ce que ça a donné, ce que j\'en retiens — vaut plus, au bout d\'un an, que des centaines d\'articles parcourus. C\'est aussi le seul moyen de constater vos propres progrès, qui autrement passent inaperçus.
+
 ### Leçon 4 --- Vers une pratique responsable
 
 Plus l\'IA devient puissante et facile d\'accès, plus la responsabilité de celui qui l\'emploie grandit. Utilisez ces outils pour créer de la valeur, jamais pour tromper ou nuire. Vérifiez vos sources, respectez la vie privée, soyez transparent sur l\'usage de l\'IA, et gardez toujours l\'humain au centre. C\'est ainsi qu\'on bâtit une pratique à la fois performante et digne de confiance.
+
+Puisque nous arrivons au terme de ce parcours, je voudrais donner à ce principe une forme que vous puissiez réellement appliquer, plutôt qu\'une déclaration d\'intention. Quatre engagements me paraissent suffire, et ils tiennent en quatre phrases.
+
+**Je ne présente pas comme mien ce que je n\'ai pas fait.** Utiliser un assistant pour rédiger n\'a rien de honteux ; laisser croire qu\'un texte, une analyse ou un code sont entièrement de votre main quand ils ne le sont pas est une autre affaire. La règle vaut pour un rapport professionnel comme pour un travail universitaire, et l\'usage de ces outils se déclare de plus en plus souvent.
+
+**Je ne diffuse pas ce que je n\'ai pas vérifié.** C\'est l\'engagement le plus exigeant, parce qu\'il coûte du temps précisément là où l\'outil promettait d\'en faire gagner. Vous avez vu au chapitre 18 que ce coût est réel et chiffrable. Il n\'en reste pas moins que reprendre à son compte une affirmation invérifiée, c\'est en devenir l\'auteur.
+
+**Je ne confie pas à un tiers ce qui ne m\'appartient pas.** Les données de vos clients, de vos patients, de vos collègues ne sont pas les vôtres. Le chapitre 20 vous a montré que l\'automatisation change l\'échelle du problème sans en changer la nature.
+
+**Je reste capable de faire sans.** C\'est le plus discret des quatre et peut-être le plus important. Un professionnel qui ne sait plus construire un raisonnement, rédiger une note ou lire un contrat sans assistance a échangé une compétence contre une dépendance. Gardez-en la maîtrise, ne serait-ce que pour pouvoir juger ce que l\'outil vous propose.
+
+Voilà le point où je voulais vous amener. Ces outils sont remarquables et ils ne décident de rien : **c\'est celui qui les emploie qui répond de ce qu\'ils produisent.** Vous avez maintenant de quoi comprendre ce qu\'ils font, mesurer ce qu\'ils valent, et repérer où ils se trompent. C\'est exactement ce qu\'il faut pour vous en servir sans leur être soumis — et c\'est tout ce que je souhaitais vous transmettre.
 
 ### Exercices dirigés
 
