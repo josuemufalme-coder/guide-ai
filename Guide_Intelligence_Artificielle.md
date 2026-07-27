@@ -62,7 +62,13 @@ Commençons par le commencement. Avant de construire quoi que ce soit d\'intelli
 
 Commençons par la question la plus simple et la plus difficile : qu\'appelle-t-on « intelligence artificielle » ? Intuitivement, c\'est la capacité d\'une machine à accomplir des tâches qui, réalisées par un humain, exigeraient de l\'intelligence : comprendre une langue, reconnaître un visage, conduire une voiture, jouer aux échecs. Mais cette définition est mouvante : ce qui paraissait relever de l\'IA hier (une calculatrice, un correcteur orthographique) nous semble banal aujourd\'hui. C\'est ce qu\'on appelle « l\'effet IA » : dès qu\'une tâche est maîtrisée, on cesse de la considérer comme intelligente.
 
+Cette instabilité a une conséquence pratique : mieux vaut se donner un critère qu\'une frontière. Le mien tient en une question. Le comportement du système vient-il de règles que quelqu\'un a écrites, ou de régularités qu\'il a lui-même extraites de données ? Un tableur qui calcule une moyenne applique une formule ; il n\'apprend rien. Une chaîne de montage automatisée répète une séquence programmée ; elle n\'apprend rien non plus. Automatiser n\'est pas apprendre, et c\'est cette confusion qui fait qu\'on appelle aujourd\'hui « intelligence artificielle » à peu près n\'importe quel logiciel un peu récent.
+
 **Définition --- Intelligence artificielle.** Domaine de l\'informatique visant à créer des systèmes capables d\'accomplir des tâches qui requièrent normalement l\'intelligence humaine : perception, raisonnement, apprentissage, décision et action.
+
+Une confusion revient sans cesse, y compris chez des professionnels : « intelligence artificielle », « apprentissage automatique » et « apprentissage profond » ne sont pas synonymes. Ils s\'emboîtent. L\'intelligence artificielle est le domaine tout entier, systèmes à règles compris. L\'apprentissage automatique en est la partie où la machine tire ses règles des données. L\'apprentissage profond est une famille de méthodes d\'apprentissage automatique, celle des réseaux de neurones à plusieurs couches. La figure 1.1 le montre d\'un coup d\'œil, sous la forme de trois cercles emboîtés. Gardez cette image : vous la retrouverez partout.
+
+Rendons cela concret avec trois systèmes que vous connaissez. Un thermostat programmable déclenche le chauffage sous 19 °C : une règle écrite par un humain, qui ne changera jamais d\'elle-même. Un filtre anti-spam apprend, à partir des messages que vous classez, ce qui distingue un courriel indésirable : personne n\'a écrit la règle, elle a été extraite. Un assistant conversationnel produit un texte plausible mot après mot à partir de milliards de phrases lues : là encore rien n\'a été écrit à la main, mais l\'échelle et la nature de ce qui est appris n\'ont plus rien à voir. Les trois relèvent de l\'IA au sens large. Un seul relève de l\'apprentissage profond.
 
 Retenez d\'emblée une distinction capitale, que nous reverrons tout au long de ce manuel.
 
@@ -72,6 +78,8 @@ Retenez d\'emblée une distinction capitale, que nous reverrons tout au long de 
 
 -   **IA forte (ou générale)** : une intelligence comparable à celle de l\'humain, capable de s\'adapter à n\'importe quel problème. Elle reste à ce jour hypothétique.
 
+Un mot sur ce vocabulaire, car il induit en erreur. « Faible » ne signifie pas « médiocre ». Un système qui bat les meilleurs joueurs du monde au jeu de go est une IA faible : surhumain sur une tâche, et rigoureusement incapable de faire quoi que ce soit d\'autre, pas même d\'expliquer les règles du jeu. La faiblesse dont il s\'agit est une faiblesse de **portée**, jamais de performance.
+
 ### Leçon 2 --- Une brève histoire pour comprendre le présent
 
 Pour comprendre où nous en sommes, il faut savoir d\'où nous venons. L\'histoire de l\'IA n\'est pas linéaire : elle alterne emballements et désillusions. La connaître vous évitera de reproduire les erreurs d\'optimisme du passé.
@@ -80,7 +88,13 @@ Tout commence avec une question posée par Alan Turing en 1950 : « Les machines
 
 Suivent les premières décennies de l\'**IA symbolique** : on tente de coder l\'intelligence sous forme de règles logiques explicites. Les succès sont réels mais limités, et les promesses non tenues provoquent deux « hivers de l\'IA » (années 1970, puis fin des années 1980), durant lesquels les financements s\'effondrent. Le renouveau vient dans les années 1990 avec une idée différente : plutôt que de programmer les règles, **laissons la machine les apprendre à partir de données**. C\'est l\'approche statistique. Enfin, à partir de 2012, l\'**apprentissage profond** explose, porté par trois facteurs conjugués : des masses de données, des processeurs graphiques (GPU) puissants, et des algorithmes améliorés.
 
+Arrêtons-nous sur ces hivers, car ils ne sont pas une anecdote de manuel. Les deux fois, le scénario a été le même : des promesses publiques très supérieures aux résultats, puis un retournement brutal des financements quand l\'écart est devenu visible. Ce que j\'en retire, et que je vous invite à en retirer, c\'est une règle de lecture plutôt qu\'une leçon d\'histoire. Chaque fois qu\'une technologie vous est présentée comme sur le point de tout résoudre, demandez : sur quelle tâche précise, avec quelles données, et mesurée comment ? Ces trois questions vous protégeront mieux que n\'importe quelle expertise technique.
+
 **Exemple --- le tournant de 2012.** En 2012, un réseau de neurones profond nommé AlexNet remporte une compétition de reconnaissance d\'images avec une marge spectaculaire sur toutes les méthodes classiques. Ce moment marque le début de la révolution actuelle : il prouve que, **avec assez de données et de puissance de calcul**, les réseaux profonds surpassent les approches programmées à la main.
+
+On présente volontiers 2012 comme une percée théorique. C\'en est fort peu une. Les réseaux de neurones et la rétropropagation datent des années 1980, les couches convolutives aussi. Ce qui a changé, ce sont les conditions matérielles. Les jeux de données annotés se comptaient désormais en millions d\'images et non plus en milliers. Les processeurs graphiques, conçus pour le jeu vidéo, se sont révélés être exactement l\'outil qu\'il fallait pour multiplier des matrices en parallèle. Et quelques ajustements techniques ont rendu l\'entraînement des réseaux profonds enfin stable.
+
+Une idée ancienne, rendue praticable. C\'est un schéma que vous croiserez souvent en intelligence artificielle : la théorie précède l\'usage de plusieurs décennies, et c\'est l\'ingénierie qui décide du moment. Cela vaut aussi pour aujourd\'hui — les idées qui feront la prochaine rupture sont probablement déjà publiées quelque part, en attente des conditions qui les rendront praticables.
 
 ### Leçon 3 --- Les deux grandes façons de faire de l\'IA
 
@@ -90,9 +104,28 @@ Il existe deux philosophies pour construire un système intelligent. Vous devez 
 
 Ici, l\'ingénieur encode explicitement la connaissance sous forme de règles. Un **système expert** médical contiendra par exemple des règles du type « SI fièvre ET toux ALORS suspecter une grippe ». Cette approche a deux grandes qualités : elle est **transparente** (on peut expliquer chaque décision) et **prévisible**. Mais elle est rigide : impossible d\'écrire à la main toutes les règles du monde réel, avec ses innombrables exceptions.
 
+Si cette approche a plafonné, ce n\'est pas faute d\'intelligence chez ses concepteurs : c\'est de l\'arithmétique. Chaque règle ajoutée peut interagir avec toutes les précédentes. À cent règles, un expert garde encore la maîtrise de l\'ensemble. À mille, plus personne ne sait prédire l\'effet d\'une modification, et le système devient impossible à faire évoluer sans le casser ailleurs. C\'est ce mur de maintenance, bien plus que les performances brutes, qui a eu raison des grands systèmes experts.
+
 #### b) L\'approche par apprentissage : montrer des exemples
 
 Ici, on ne programme aucune règle. On fournit à la machine de nombreux exemples, et elle découvre seule les régularités. Pour lui apprendre à reconnaître un chat, on ne décrit pas un chat : on lui montre des milliers de photos étiquetées « chat » ou « pas chat », et elle en déduit ce qui caractérise un chat. C\'est l\'**apprentissage automatique**, qui domine aujourd\'hui.
+
+Le prix de cette souplesse est double, et autant l\'avoir en tête tout de suite. D\'abord il faut des données, en quantité et en qualité : sans exemples, l\'approche par apprentissage n\'a rien à se mettre sous la dent. Ensuite on perd la transparence. Le système à règles pouvait justifier chaque décision en citant la règle appliquée ; le modèle appris, lui, répond sans savoir dire pourquoi. Ce n\'est pas un détail de spécialiste : dans un hôpital, une banque ou une administration, l\'obligation de motiver une décision peut à elle seule disqualifier la meilleure approche par apprentissage.
+
+Voici les deux approches face à face, sur les quatre critères qui décident en pratique.
+
+| | Approche symbolique | Approche par apprentissage |
+|---|---|---|
+| **Ce qu\'il faut fournir** | des règles, écrites par un expert | des exemples, en grand nombre |
+| **Transparence** | totale : chaque décision se retrace | faible : le modèle ne se justifie pas |
+| **Adaptation** | manuelle, il faut réécrire les règles | automatique, on réentraîne |
+| **Mode d\'échec** | ne sait pas répondre hors de ses règles | répond avec assurance, même à tort |
+
+Regardez la dernière ligne : c\'est la plus importante et la moins connue. Les deux approches échouent, mais pas de la même manière. Un système à règles qui rencontre un cas non prévu se tait, ce qui est inconfortable mais honnête. Un modèle appris, lui, répond toujours, et rien dans le ton de sa réponse ne distingue une certitude d\'une invention. C\'est pourquoi une approche par apprentissage exige toujours un dispositif de contrôle en aval, là où un système à règles se contentait d\'une liste d\'exceptions.
+
+Ce tableau vous donne une grille de décision, pas un verdict. Je rencontre encore des projets où le symbolique est le bon choix : domaine étroit et stable, peu de données disponibles, obligation légale de justifier chaque décision. Inversement, dès que le monde réel entre par la fenêtre avec ses exceptions, l\'apprentissage l\'emporte.
+
+Et rien n\'oblige à choisir. Les systèmes les plus solides que je vois en entreprise combinent les deux : un modèle appris fait le gros du travail, et une couche de règles explicites encadre ses sorties, interdit certaines décisions ou impose une validation humaine au-delà d\'un seuil. Un détecteur de fraude qui apprend des transactions passées, doublé d\'une règle absolue « au-delà de tel montant, un humain valide », est plus sûr que l\'un ou l\'autre pris isolément. Retenez cette combinaison : c\'est très souvent elle, la bonne réponse.
 
 **Exemple --- filtrer les courriels indésirables.** Approche symbolique : écrire des règles (« si le message contient le mot gagnant, le marquer comme spam »). Fragile, vite contournée. Approche par apprentissage : montrer au système des milliers de courriels déjà classés « spam » ou « légitime » ; il apprend tout seul les caractéristiques d\'un spam, et s\'adapte quand les spammeurs changent de tactique.
 
@@ -116,17 +149,81 @@ Voici les trois algorithmes de recherche que vous devez connaître et savoir imp
 
 **Méthode --- comprendre l\'heuristique d\'A\\\*.** Pour aller d\'une ville à une autre, A\\\* combine deux informations : la distance déjà parcourue (certaine) et une estimation de la distance restante (l\'heuristique, par exemple la distance à vol d\'oiseau). En additionnant les deux, l\'algorithme privilégie les chemins qui semblent à la fois courts et bien orientés vers le but. Une bonne heuristique accélère énormément la recherche.
 
+**Exemple chiffré --- A\\\* sur un petit réseau routier.** Passons du principe au calcul. Six villes, reliées par des routes dont je vous donne les longueurs en kilomètres. Nous partons de **A** et voulons rejoindre **E**.
+
+| Route | A–B | A–C | A–F | B–C | B–D | C–D | C–E | D–E | F–E |
+|---|---|---|---|---|---|---|---|---|---|
+| **Distance** | 5 | 2 | 3 | 1 | 5 | 8 | 12 | 3 | 20 |
+
+L\'heuristique est la distance à vol d\'oiseau jusqu\'à E. On la lit sur une carte sans rien savoir des routes, ce qui est précisément l\'intérêt : elle est gratuite à obtenir.
+
+| Ville | A | B | C | D | E | F |
+|---|---|---|---|---|---|---|
+| **h (vol d\'oiseau vers E)** | 10 | 7 | 9 | 3 | 0 | 14 |
+
+A\\\* classe les villes à explorer par **f = g + h**, où *g* est la distance réellement parcourue depuis A et *h* l\'estimation de ce qui reste. Déroulons, étape par étape.
+
+1.  **On part de A** : g = 0, h = 10, donc f = 10. On l\'explore, ce qui révèle trois voisins — B (g = 5, f = 12), C (g = 2, f = 11) et F (g = 3, f = 17).
+
+2.  **Le plus petit f est celui de C** (11). On explore C. On y découvre un meilleur chemin vers B : g = 2 + 1 = 3, donc f = 3 + 7 = **10**. On découvre aussi D (g = 10, f = 13) et E (g = 14, f = 14).
+
+3.  **Le plus petit f est maintenant celui de B** (10). On explore B, qui offre un meilleur chemin vers D : g = 3 + 5 = 8, donc f = 8 + 3 = **11**.
+
+4.  **Le plus petit f est celui de D** (11). On explore D, qui donne E avec g = 8 + 3 = 11, donc f = **11**.
+
+5.  **E a le plus petit f** : le chemin est trouvé.
+
+Résultat : **A → C → B → D → E, soit 11 km.**
+
+Deux observations méritent votre attention. D\'abord, **F n\'a jamais été exploré**. Son f de 17 l\'a maintenu au fond de la file du début à la fin : l\'heuristique a compris toute seule que partir vers F, c\'était s\'éloigner du but. C\'est exactement ce qu\'on attend d\'une recherche informée, et c\'est ce qui la distingue d\'une recherche aveugle.
+
+Ensuite, comparez avec la recherche en largeur. La BFS minimise le **nombre d\'étapes**, pas la distance. Elle aurait retourné A → C → E : deux routes seulement, mais 14 km. Le chemin d\'A\\\* en compte quatre et fait 11 km. Sur six villes l\'écart semble anecdotique, et il l\'est ; ce qui ne l\'est pas, c\'est le principe. « Le moins d\'étapes » et « le moins cher » sont deux problèmes différents, et les confondre est une erreur que je vois régulièrement.
+
+Une condition, enfin, et elle est essentielle : l\'heuristique ne doit **jamais surestimer** la distance restante. Le vol d\'oiseau convient parce qu\'aucune route ne saurait être plus courte que la ligne droite. Si vous choisissez une heuristique trop optimiste, A\\\* reste rapide mais cesse de garantir le meilleur chemin. Voilà le compromis à connaître : plus l\'heuristique serre la vérité, moins on explore ; dès qu\'elle la dépasse, on perd l\'optimalité.
+
 ### Leçon 5 --- Représenter la connaissance et anticiper l\'adversaire
+
+#### a) Représenter ce que l\'on sait
 
 Comment une machine peut-elle « raisonner » ? Une réponse classique passe par la **logique**. En logique propositionnelle, on manipule des affirmations vraies ou fausses et des règles d\'inférence. La logique des prédicats, plus riche, permet de parler d\'objets et de leurs relations. Ces outils fondent le raisonnement symbolique.
 
+Un exemple vaut mieux qu\'un exposé. Donnons à la machine deux faits — « Socrate est un homme », « tout homme est mortel » — et la règle d\'inférence qui autorise à conclure. Elle produit un fait nouveau : « Socrate est mortel ». Rien de magique, mais observez ce qui vient de se passer : le système a fabriqué une connaissance qui ne figurait pas dans sa base. C\'est cela, raisonner au sens symbolique — dériver mécaniquement du vrai à partir du vrai. Enchaînez quelques milliers de ces pas et vous obtenez un système expert.
+
+La limite apparaît vite. La logique classique ne sait pas dire « probablement », et le monde réel est fait de « probablement ». « Les oiseaux volent » est vrai, sauf pour l\'autruche, le manchot, le poussin et l\'oiseau blessé. Coder toutes les exceptions, c\'est exactement le mur dont je vous parlais à la leçon précédente.
+
+Cela ne rend pas la représentation des connaissances obsolète : elle a changé de forme. Les **graphes de connaissances** en sont l\'héritage vivant. Au lieu de règles logiques, on y stocke des faits reliés entre eux, du type « Kinshasa — est la capitale de — République démocratique du Congo ». Cette forme passe mieux à l\'échelle, s\'interroge efficacement, et sert aujourd\'hui à ancrer les réponses des modèles de langage dans des faits vérifiables plutôt que dans leurs souvenirs d\'entraînement. Vous retrouverez cette idée au chapitre 10, sous le nom de génération augmentée par récupération.
+
+#### b) Anticiper un adversaire
+
 Dans les jeux à deux joueurs (échecs, dames), l\'IA doit anticiper les coups de l\'adversaire. L\'algorithme **minimax** explore l\'arbre des coups possibles en supposant que l\'adversaire joue toujours au mieux de ses intérêts : le joueur cherche à maximiser son score, l\'adversaire à le minimiser, d\'où le nom. C\'est la base historique des programmes d\'échecs.
+
+Déroulons un arbre minuscule pour que le mécanisme cesse d\'être abstrait. C\'est à vous de jouer ; deux coups plus tard la partie s\'arrête, et vous évaluez la position finale par un score, d\'autant plus élevé qu\'elle vous est favorable.
+
+Vous avez deux coups possibles, **G** et **D**. Après chacun, l\'adversaire en a deux à son tour. Les quatre positions finales valent, de gauche à droite : **3, 12, 2 et 8**.
+
+-   Si vous jouez **G**, l\'adversaire choisit entre 3 et 12. Il minimise : il prendra **3**.
+
+-   Si vous jouez **D**, il choisit entre 2 et 8. Il prendra **2**.
+
+-   Vous maximisez : entre 3 et 2, vous jouez **G**. La partie vaut **3**.
+
+Notez bien le raisonnement, car il est contre-intuitif : vous ne jouez pas le coup qui mène au meilleur résultat possible — le 12 est de loin la position la plus enviable, et elle est hors d\'atteinte. Vous jouez celui dont le **pire** résultat est le moins mauvais. Minimax est un algorithme prudent, qui suppose en face un adversaire parfait.
+
+Reste un problème, et il est de taille : le nombre de positions explose. Aux échecs, examiner tous les coups sur dix demi-coups dépasse toute machine concevable. D\'où l\'**élagage alpha-bêta**, qui est ce qui rend minimax utilisable. Son idée tient en une phrase : dès qu\'une branche est prouvée pire qu\'une branche déjà examinée, inutile de la finir.
+
+Reprenez notre arbre. G vaut 3, c\'est acquis. On passe à D et l\'on évalue sa première position : **2**. L\'adversaire, qui minimise, obtiendra donc **au plus 2** en D — c\'est déjà moins bon que les 3 garantis par G. Le dernier score, le 8, n\'a plus besoin d\'être évalué : quoi qu\'il vaille, il ne sera jamais choisi. Sur quatre positions l\'économie est dérisoire. Sur un arbre de profondeur dix, elle divise le travail par plusieurs ordres de grandeur, et c\'est elle qui a permis aux programmes d\'échecs de battre les meilleurs joueurs humains bien avant que l\'apprentissage profond n\'existe.
 
 ### Leçon 6 --- Applications, limites et idées reçues
 
 Terminons ce premier chapitre par un regard lucide sur ce que l\'IA peut et ne peut pas faire. Beaucoup d\'erreurs viennent d\'attentes mal calibrées.
 
 L\'IA d\'aujourd\'hui **excelle** dans des tâches bien délimitées avec beaucoup de données : reconnaître des images, traduire, recommander, détecter des fraudes, générer du texte. Elle **peine** en revanche sur le raisonnement de bon sens, la compréhension causale profonde, l\'adaptation à des situations vraiment nouvelles, et tout ce qui demande une véritable compréhension du monde physique et social.
+
+Traduisons cela en applications réelles, secteur par secteur, pour que vous voyiez où la valeur se crée. En santé, l\'analyse d\'imagerie signale au radiologue les zones suspectes. En finance, la détection de fraude repère en temps réel des schémas de transaction anormaux. Dans l\'industrie, la maintenance prédictive annonce la panne avant qu\'elle ne survienne. Dans le commerce, la recommandation oriente des millions de choix quotidiens. Dans l\'administration, la lecture automatique de documents supprime des heures de saisie. Le point commun de cette liste mérite d\'être vu, car c\'est lui qui compte : à chaque fois, la tâche est répétitive, abondamment documentée par des données passées, et tolérante à une marge d\'erreur qu\'un humain vient encadrer.
+
+Venons-en aux limites, que je préfère nommer précisément plutôt que d\'évoquer vaguement « les limites de l\'IA ». Un modèle **hallucine** : il produit une réponse fausse avec la même assurance qu\'une réponse juste, et rien dans sa formulation ne vous alerte. Il **dérive** : entraîné sur le monde d\'hier, il se dégrade silencieusement à mesure que le monde change. Il est **fragile** : une modification imperceptible d\'une image peut suffire à lui faire changer d\'avis. Il **hérite** de ce qu\'on lui a montré, biais compris. Et il **coûte** : en données annotées, en calcul, en énergie, en compétences rares.
+
+De tout cela je tire un critère que vous pouvez appliquer dès demain devant n\'importe quelle proposition de projet. Posez quatre questions. La tâche est-elle bien délimitée, avec une réponse qu\'on saurait reconnaître comme juste ? Dispose-t-on d\'exemples passés en nombre suffisant ? Une erreur occasionnelle est-elle rattrapable, ou irréversible ? Sait-on mesurer le résultat autrement qu\'à l\'impression ? Quatre oui, le projet mérite d\'être tenté. Un seul non franc, et vous venez d\'épargner six mois à votre organisation.
 
 **L\'ESSENTIEL À RETENIR**
 
@@ -137,6 +234,8 @@ L\'IA d\'aujourd\'hui **excelle** dans des tâches bien délimitées avec beauco
 -   **Idée reçue** : « Plus de données résout tout. » → La qualité des données compte autant que la quantité.
 
 -   **Idée reçue** : « L\'IA va bientôt être consciente. » → Rien dans les systèmes actuels ne va dans ce sens ; c\'est de la science-fiction.
+
+La dernière de ces idées reçues est la plus tenace, et elle mérite qu\'on s\'y arrête. Un système qui écrit « je ressens » n\'éprouve rien : il produit la suite de mots la plus plausible compte tenu de ce qu\'il a lu, et les textes qu\'il a lus sont pleins d\'humains qui ressentent. Confondre la fluidité du langage avec la présence d\'une intériorité est l\'erreur la plus naturelle du monde. C\'est précisément parce qu\'elle est naturelle qu\'il faut s\'en défier.
 
 **Garder l\'esprit critique ---** Face à l\'enthousiasme médiatique, gardez la tête froide. L\'IA est un outil puissant mais limité, ni magique ni menaçant en soi. Comprendre précisément ses capacités et ses limites est la marque d\'un véritable professionnel --- et c\'est tout l\'objet de ce manuel.
 
@@ -160,11 +259,19 @@ Avant de plonger dans le détail des chapitres suivants, dressons la carte du te
 
 -   **Robotique** : l\'IA incarnée dans le monde physique, à la croisée de plusieurs domaines.
 
-Ces domaines ne sont pas étanches : un assistant vocal combine langage et génération ; une voiture autonome mêle vision, renforcement et décision. La force d\'un expert est de comprendre comment ils s\'articulent. C\'est précisément ce que ce manuel va vous apprendre, brique par brique.
+Cette liste se retient mieux si vous la lisez comme une question de **nature de données** plutôt que comme un catalogue de disciplines. Le traitement du langage travaille sur des suites de mots ; la vision sur des grilles de pixels ; le renforcement, lui, ne travaille pas sur des données figées mais sur une interaction, où chaque action modifie ce qui sera observé ensuite. L\'apprentissage automatique et l\'apprentissage profond, eux, ne sont pas des domaines d\'application : ce sont les **méthodes** que les autres emploient. C\'est pourquoi ils occupent le centre de la carte et non un secteur.
+
+Ces domaines ne sont pas étanches : un assistant vocal combine langage et génération ; une voiture autonome mêle vision, renforcement et décision. La force d\'un expert est de comprendre comment ils s\'articulent. Décomposons pour cela un objet que vous croisez tous les jours. Quand vous parlez à un assistant vocal, votre voix est d\'abord transcrite en texte : c\'est de la reconnaissance de la parole. Le texte est ensuite interprété pour en extraire une intention : traitement du langage. L\'assistant décide alors s\'il répond directement ou s\'il appelle un service extérieur, la météo par exemple : décision, et de plus en plus raisonnement d\'agent. La réponse est enfin rédigée puis synthétisée en voix : génération. Un seul geste de votre part, quatre sous-domaines mobilisés en chaîne. Aucun ingénieur ne les maîtrise tous au même niveau ; en revanche, tous ceux qui construisent ce genre de système savent où passent les frontières. C\'est ce repérage que je veux vous donner. C\'est précisément ce que ce manuel va vous apprendre, brique par brique.
 
 ### Leçon 8 --- Comment aborder la suite du livre
 
 Un dernier conseil avant d\'entrer dans le vif. La progression de ce livre n\'est pas arbitraire : chaque partie prépare la suivante. Les mathématiques que nous verrons éclaireront l\'apprentissage profond ; l\'apprentissage automatique fondera les grands domaines comme le langage ou la vision ; et la partie sur les outils transformera toutes ces connaissances en savoir-faire concret. Ne brûlez pas les étapes : chaque notion maîtrisée rend la suivante plus facile.
+
+Soyons clairs sur les prérequis, car mieux vaut une déception maintenant qu\'un abandon au chapitre 6. Vous n\'avez besoin d\'aucune connaissance préalable en intelligence artificielle. En mathématiques, un niveau de fin de secondaire suffit pour démarrer : savoir ce qu\'est une fonction, lire un graphique, manipuler des pourcentages. Le reste — vecteurs, matrices, dérivées — est repris depuis le début au chapitre 3. En programmation, savoir ce qu\'est une variable et une boucle vous fera gagner du temps, mais le chapitre 2 ne suppose rien d\'autre que la volonté de taper du code et de le voir échouer quelques fois.
+
+Sur le rythme, voici ce que je conseille, à ajuster selon votre disponibilité. Un chapitre par session de travail, pas davantage. Lisez d\'abord les leçons d\'un bout à l\'autre sans vous arrêter, pour voir où le chapitre vous emmène. Reprenez ensuite les passages qui ont résisté. Puis, seulement, faites les exercices — et faites-les avant de regarder les corrigés, sans quoi vous n\'aurez que l\'illusion d\'avoir compris. Comptez deux à trois heures pour un chapitre bien travaillé.
+
+Un mot enfin sur les blocages, parce qu\'il y en aura. Quand une notion résiste, ne relisez pas la même phrase dix fois : cherchez plutôt à l\'expliquer à voix haute, comme si quelqu\'un vous écoutait. C\'est le test le plus honnête qui soit, et il localise le trou en trente secondes. Souvent, d\'ailleurs, la difficulté d\'un chapitre vient d\'une lacune laissée deux chapitres plus tôt. Ne vous interdisez jamais de revenir en arrière : ce n\'est pas du retard, c\'est la manière dont on apprend.
 
 **Votre état d\'esprit pour réussir ---** Abordez ce livre avec curiosité et patience. Vous ne comprendrez pas tout du premier coup, et c\'est normal. Revenez en arrière, refaites les exercices, reliez les notions entre elles. La maîtrise vient de la répétition et de la pratique, pas de la lecture passive. Vous êtes au début d\'un beau voyage.
 
