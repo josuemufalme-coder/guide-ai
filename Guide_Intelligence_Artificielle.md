@@ -1436,6 +1436,12 @@ Vous voici aux frontières actuelles de l\'intelligence artificielle. Fort de vo
 
 Le langage est le propre de l\'humain, et le faire traiter par une machine est l\'un des plus grands défis de l\'IA. Le **NLP** (Natural Language Processing) est à l\'origine des traducteurs automatiques, des assistants vocaux et des agents conversationnels.
 
+Ce qui rend le langage si difficile mérite d\'être nommé, car ce sont exactement les obstacles que les techniques de ce chapitre cherchent à franchir. Le langage est **ambigu** : « avocat » désigne un fruit ou un juriste, et rien dans le mot ne le dit. Il est **contextuel** : la même phrase change de sens selon ce qui précède. Il est largement **implicite** — « il fait froid ici » est souvent une demande de fermer la fenêtre, jamais un relevé de température. Il est **irrégulier**, truffé d\'exceptions, d\'idiotismes et de tournures qu\'aucune règle ne prévoit. Et il **évolue** sans cesse, à un rythme que les modèles figés ne suivent pas.
+
+L\'histoire du domaine se lit comme une suite de réponses à ces obstacles. On a d\'abord écrit des **règles de grammaire** à la main, dans les années 1960 et 1970 : cela fonctionnait sur des phrases de laboratoire et s\'effondrait sur la langue réelle, pour la raison exposée au chapitre 3 — les exceptions sont trop nombreuses pour être écrites. On est ensuite passé aux **méthodes statistiques**, qui comptaient les cooccurrences de mots dans de grands corpus : plus robuste, mais sans mémoire du contexte lointain. Puis sont venus les **réseaux récurrents**, capables de lire une phrase en gardant une trace du passé, mais lentement et avec une mémoire qui s\'estompe. Le **Transformer**, enfin, a levé cette dernière limite en 2017.
+
+Retenez ce mouvement d\'ensemble, car il éclaire tout le chapitre : on est passé de règles écrites par des linguistes à des régularités extraites de textes, puis à des représentations qui tiennent compte du contexte. À chaque étape, on a demandé moins de savoir explicite et davantage de données.
+
 ### Leçon 2 --- Transformer les mots en nombres
 
 Une machine ne comprend que des nombres. La première étape est donc de **représenter le texte numériquement**. On le découpe en unités (**tokenisation**), puis on associe à chaque mot un vecteur, son **plongement** (embedding), de sorte que des mots de sens proche aient des vecteurs proches.
@@ -1443,6 +1449,12 @@ Une machine ne comprend que des nombres. La première étape est donc de **repr�
 **Définition --- Plongement lexical (embedding).** Représentation d\'un mot par un vecteur de nombres, appris de telle façon que la proximité géométrique entre vecteurs reflète la proximité de sens entre les mots.
 
 **Notion essentielle ---** Dans l\'espace des plongements, on peut faire de l\'« arithmétique du sens » : le vecteur de « roi » moins « homme » plus « femme » donne approximativement « reine ». Le sens devient géométrie, une idée stupéfiante et féconde.
+
+Deux précisions techniques s\'imposent, car ce résumé élégant cache deux difficultés bien réelles.
+
+La première concerne le découpage. On ne travaille presque jamais mot par mot, pour une raison pratique : le vocabulaire d\'une langue est immense et perpétuellement ouvert. Un modèle qui n\'aurait appris que des mots entiers serait démuni devant « antimicrobien », un nom propre inconnu ou une faute de frappe. On découpe donc en **sous-mots** : les formes fréquentes gardent leur unité, les rares se décomposent en fragments réutilisables. « Antimicrobien » devient quelque chose comme « anti + micro + bien ». Le vocabulaire reste ainsi de taille raisonnable tout en pouvant représenter n\'importe quelle suite de caractères. C\'est aussi ce qui explique pourquoi l\'on facture ces modèles au *token* et non au mot, et pourquoi le français, moins bien découpé que l\'anglais, y consomme davantage de jetons à contenu égal.
+
+La seconde limite est plus profonde. Un plongement classique attribue **un vecteur unique à chaque mot**, quel que soit son emploi. « Avocat » reçoit donc une seule représentation, coincée entre le fruit et le juriste, qui ne convient à aucun des deux. C\'est exactement le mur sur lequel ces méthodes ont buté, et ce que résolvent les **plongements contextuels** : le vecteur d\'un mot y est calculé en fonction de la phrase où il apparaît, si bien que l\'avocat du tribunal et celui de la salade n\'ont plus la même représentation. Cette bascule, du mot fixe au mot situé, est le véritable saut du NLP moderne — et c\'est précisément ce que produit le mécanisme d\'attention de la leçon suivante.
 
 ### Leçon 3 --- La révolution Transformer
 
@@ -1454,11 +1466,31 @@ En 2017, une architecture a tout changé : le **Transformer**, fondé sur le mé
 
 **Exemple --- le rôle de l\'attention.** Dans la phrase « la banque était au bord de la rivière », le mot « banque » est ambigu. L\'attention permet au modèle de regarder « rivière » pour comprendre qu\'il s\'agit d\'une berge, et non d\'un établissement financier. Cette capacité à relier les mots entre eux fait toute la puissance des Transformers.
 
+Il faut mesurer ce que cette architecture a remplacé pour comprendre son succès. Les réseaux récurrents lisaient une phrase **mot après mot**, dans l\'ordre. Deux conséquences en découlaient. D\'abord une lenteur incompressible : impossible de paralléliser un traitement séquentiel par construction, et donc impossible d\'exploiter les cartes graphiques, qui ne valent que par le calcul simultané. Ensuite une mémoire qui s\'effiloche : pour relier un pronom à un nom situé quarante mots plus tôt, le signal devait traverser quarante étapes successives, et il s\'affaiblissait en chemin.
+
+Le Transformer supprime les deux obstacles d\'un seul geste : il regarde **tous les mots en même temps** et calcule directement le lien entre chaque paire, quelle que soit la distance qui les sépare. Deux mots éloignés de quarante positions sont aussi accessibles l\'un à l\'autre que deux mots voisins. Et comme tout se calcule simultanément, l\'entraînement exploite pleinement le matériel. C\'est cette conjonction — meilleure modélisation **et** meilleure exploitation du calcul — qui explique la bascule, bien plus que la seule élégance de l\'idée.
+
+Reste un problème que cette description soulève immédiatement : si le modèle regarde tous les mots à la fois, comment sait-il lequel vient avant l\'autre ? « Le chien mord l\'homme » et « L\'homme mord le chien » contiennent exactement les mêmes mots. La réponse est l\'**encodage de position** : on ajoute à chaque plongement une signature numérique indiquant sa place dans la phrase. L\'ordre n\'est donc plus porté par le traitement, il est porté par les données elles-mêmes. C\'est un détail d\'implémentation, et pourtant sans lui l\'architecture entière ne fonctionnerait pas.
+
+Un dernier point, qui a des conséquences très concrètes sur votre facture et sur ce que vous pouvez faire. Calculer le lien entre **chaque paire** de mots signifie que le coût croît comme le **carré** de la longueur du texte : doubler la longueur quadruple le calcul. C\'est la raison pour laquelle les modèles ont longtemps été limités à quelques milliers de mots de contexte, et pourquoi allonger cette fenêtre reste l\'un des grands chantiers du domaine.
+
 ### Leçon 4 --- Pré-entraînement et fine-tuning
 
 Les modèles modernes (BERT, GPT) sont d\'abord **pré-entraînés** sur d\'immenses corpus, acquérant une connaissance générale de la langue. On les **affine** (fine-tuning) ensuite sur une tâche précise, avec peu de données. Ce transfert d\'apprentissage a démocratisé le NLP de haut niveau.
 
 Vous appliquerez ces modèles à des tâches concrètes : classification de texte, reconnaissance d\'entités nommées, résumé, traduction, question-réponse.
+
+Comprenons d\'abord pourquoi ce découpage en deux temps a tout changé, car c\'est l\'idée économique majeure du domaine. Le pré-entraînement coûte une fortune : il demande des masses de texte et des semaines de calcul sur des milliers de processeurs. Mais il ne se fait **qu\'une fois**, et surtout il ne réclame aucune annotation humaine — le modèle apprend en prédisant des mots masqués dans des textes existants, comme nous l\'avons vu au chapitre 5 sous le nom d\'auto-supervision. L\'affinage, lui, coûte quelques centaines d\'exemples annotés et quelques minutes de calcul. Avant cette bascule, chaque tâche exigeait de repartir de zéro avec des dizaines de milliers d\'exemples étiquetés. Après, il suffit d\'en fournir quelques centaines. C\'est ce qui a mis le NLP de haut niveau à la portée d\'une PME.
+
+Une troisième voie est apparue depuis, et elle a déplacé les équilibres. Les grands modèles de langage savent accomplir une tâche **sans aucun affinage**, simplement parce qu\'on la leur décrit dans l\'invite — éventuellement avec deux ou trois exemples. Vous disposez donc aujourd\'hui de trois régimes, et savoir choisir est devenu une compétence en soi.
+
+| Approche | Ce qu\'elle exige | Quand la préférer |
+|---|---|---|
+| **Invite seule** | rien, sinon une bonne consigne | prototype, tâche standard, faible volume |
+| **Affinage** | quelques centaines d\'exemples annotés | format très spécifique, gros volumes, coût unitaire à réduire |
+| **Pré-entraînement** | des millions de textes, un budget considérable | domaine ou langue mal couverts, et de bonnes raisons |
+
+Mon conseil est constant : **commencez toujours par l\'invite**. Elle vous donne un résultat exploitable en une heure, et vous dira si la tâche est faisable avant d\'investir dans l\'annotation. L\'affinage se justifie ensuite, quand le volume rend le coût par appel déterminant ou quand la sortie doit respecter un format que la consigne seule n\'obtient pas de façon fiable.
 
 ### Leçon 5 --- Les tâches concrètes du NLP, expliquées
 
@@ -1478,9 +1510,21 @@ Voyons concrètement ce que le NLP permet de faire, car ces tâches sont à la b
 
 **Exemple --- la reconnaissance d\'entités en action.** Donnez à un modèle la phrase « Marie Dupont a signé le contrat à Paris le 3 mars pour 50 000 euros ». Le modèle extrait : personne = Marie Dupont, lieu = Paris, date = 3 mars, montant = 50 000 euros. Cette capacité automatise l\'analyse de contrats, de courriers ou de formulaires à grande échelle. **À retenir** : des tâches qui occupaient des heures de lecture humaine deviennent instantanées.
 
+Ces tâches prennent tout leur sens quand on les enchaîne, et c\'est ainsi qu\'on les rencontre en entreprise. Prenez le traitement des réclamations d\'un service client. Une **classification** trie d\'abord le message par motif — livraison, facturation, produit défectueux — et le route vers la bonne équipe. Une seconde classification estime le ton, ce qui permet de faire remonter en priorité les clients excédés. Une **reconnaissance d\'entités** extrait le numéro de commande, la date et le montant, et va chercher le dossier correspondant sans qu\'un humain le saisisse. Un **résumé** condense un fil de vingt messages en cinq lignes pour le conseiller qui prend le relais. Une **question-réponse** sur la base documentaire propose enfin la réponse type applicable.
+
+Cinq briques, un processus complet, et un conseiller qui reçoit un dossier préparé au lieu d\'un courriel brut. Aucune de ces briques n\'est spectaculaire prise isolément ; c\'est leur composition qui transforme le travail.
+
+J\'en tire une remarque de méthode que je crois importante. Devant un besoin exprimé en langage courant — « on aimerait automatiser le traitement des réclamations » —, votre premier réflexe doit être de le **décomposer en tâches de NLP identifiables**. C\'est ce découpage qui rend le projet réalisable, chiffrable et testable brique par brique. Les projets qui échouent sont presque toujours ceux qu\'on a attaqués d\'un bloc.
+
 ### Leçon 6 --- Évaluer un modèle de langage
 
 Comment savoir si un modèle de NLP est bon ? On le teste sur des données de référence avec des métriques adaptées à chaque tâche. Pour la classification, on mesure l\'exactitude et le score F1 ; pour la traduction et le résumé, on compare la sortie à des références humaines. Mais aucune métrique automatique n\'est parfaite : l\'évaluation humaine reste souvent irremplaçable pour juger la vraie qualité d\'un texte généré.
+
+Précisons, car cette phrase mérite d\'être étayée. Pour la traduction et le résumé, les métriques classiques comparent la sortie du modèle à une ou plusieurs références rédigées par des humains, en mesurant les suites de mots communes. C\'est calculable instantanément, reproductible, et c\'est ce qui a permis au domaine de progresser en se comparant. Mais le principe même porte sa faiblesse : **on mesure un recouvrement de mots, pas une équivalence de sens**. Une traduction impeccable qui emploie des synonymes est pénalisée ; une phrase qui reprend les mots de la référence en inversant une négation est récompensée alors qu\'elle dit le contraire. Ces métriques sont des indicateurs de tendance sur de gros volumes, pas des juges de qualité sur un texte donné.
+
+Le problème s\'est aggravé avec les modèles génératifs. Pour une question ouverte, il n\'existe pas une bonne réponse mais des centaines, et toute métrique fondée sur la comparaison à une référence unique devient insensée. On s\'est donc tourné vers deux autres méthodes. La **comparaison par paires** demande à des humains laquelle de deux réponses ils préfèrent — plus facile et plus fiable que de noter une réponse isolée, car juger un écart est plus simple que juger dans l\'absolu. Et l\'on emploie de plus en plus un **modèle comme juge** : un grand modèle évalue les réponses d\'un autre selon des critères explicites. C\'est rapide et bon marché, mais gardez en tête ses biais — un juge automatique favorise les réponses longues, bien mises en forme, et celles qui ressemblent à ce qu\'il produirait lui-même.
+
+Ma recommandation pratique tient en une phrase : **construisez votre propre jeu d\'évaluation**. Une trentaine de cas représentatifs de votre usage réel, avec ce que vous attendez pour chacun, vous apprendra plus sur la qualité d\'un modèle que n\'importe quel classement public. Ces classements mesurent des capacités générales sur des tâches standardisées ; vous, vous avez un problème particulier.
 
 ### Leçon 7 --- L\'attention, expliquée simplement
 
@@ -1489,6 +1533,34 @@ Le mécanisme d\'attention est si central qu\'il mérite une explication intuiti
 **Exemple --- résoudre une ambiguïté.** Dans « Le trophée ne rentrait pas dans la valise car il était trop grand », à quoi renvoie « il » ? Au trophée, évidemment --- pas à la valise. L\'attention permet au modèle de relier « il » à « trophée » en pondérant fortement ce lien. Changez « grand » en « petite », et l\'attention reliera « elle » à « valise ». Cette capacité à tisser des liens entre les mots, où qu\'ils soient dans la phrase, est la clé de la compréhension du langage. **À retenir** : l\'attention donne au modèle le sens du contexte.
 
 Techniquement, pour chaque mot, le modèle calcule un score d\'attention envers tous les autres, puis construit une représentation qui mélange l\'information des mots les plus pertinents. Répété sur plusieurs « têtes » d\'attention en parallèle, ce mécanisme capture des relations riches et variées. C\'est ce qui a rendu les Transformers si puissants.
+
+**Exemple chiffré --- l\'attention calculée à la main.** Reprenons la phrase du trophée et de la valise, et calculons réellement les poids. Je simplifie à l\'extrême — deux dimensions au lieu de plusieurs centaines — mais la mécanique est exactement celle-ci.
+
+Représentons nos deux candidats dans un espace à deux dimensions, où la première mesure « objet volumineux » et la seconde « contenant » :
+
+**trophée = (3, 0)**  et  **valise = (0, 3)**
+
+Le mot « il », dans un contexte qui parle de quelque chose de **trop grand**, émet une requête orientée vers la dimension du volume : **(1, 0)**.
+
+**Premier temps : les scores.** On mesure la compatibilité par produit scalaire.
+
+- il · trophée = 1×3 + 0×0 = **3**
+- il · valise = 1×0 + 0×3 = **0**
+
+**Deuxième temps : la mise à l\'échelle.** On divise par la racine carrée de la dimension, ici √2 ≈ 1,414, pour éviter que les scores ne deviennent trop écartés dans les grandes dimensions. On obtient **2,121** et **0**.
+
+**Troisième temps : la softmax**, qui transforme ces scores en poids sommant à 1. On calcule exp(2,121) = 8,339 et exp(0) = 1, dont la somme fait 9,339.
+
+- poids sur trophée = 8,339 / 9,339 = **89,3 %**
+- poids sur valise = 1 / 9,339 = **10,7 %**
+
+**Quatrième temps : la moyenne pondérée.** La nouvelle représentation de « il » devient 0,893 × (3, 0) + 0,107 × (0, 3) = **(2,68 ; 0,32)**. Elle ressemble désormais bien davantage à « trophée » qu\'à « valise ».
+
+Maintenant, changeons un seul mot de la phrase. « Elle ne rentrait pas dans la valise car elle était trop **petite** » : la requête s\'oriente vers la dimension du contenant, soit **(0, 1)**. Les mêmes calculs donnent **10,7 %** sur trophée et **89,3 %** sur valise. La représentation obtenue devient (0,32 ; 2,68).
+
+Rien n\'a changé dans le modèle. Aucun poids n\'a été réappris. **Seule la requête a tourné, et le pronom s\'est rattaché à l\'autre nom.** C\'est cela, « comprendre le contexte » — non pas une compréhension au sens humain, mais un mécanisme de pondération qui produit, à l\'arrivée, le bon rattachement.
+
+Deux remarques pour terminer. La première : dans un vrai Transformer, les vecteurs ne sont pas les plongements bruts mais trois projections apprises — requête, clé et valeur — dont le rôle est exactement celui que vous venez de voir, à ceci près que le modèle apprend lui-même comment poser ses questions. La seconde : ce calcul est effectué **pour chaque mot envers tous les autres**, sur des dizaines de têtes en parallèle, chacune spécialisée dans un type de relation — l\'une suit les accords grammaticaux, l\'autre les rattachements de pronoms, une troisième les relations de coordination. Multipliez ce petit tableau par des milliards, et vous avez un modèle de langage.
 
 ### Exercices dirigés
 
