@@ -1285,13 +1285,13 @@ Le renforcement brille dans certains domaines et peine dans d\'autres. Savoir o�
 
 ## Chapitre 13 --- IA avancée : agents, protocole MCP, multimodalité et sûreté
 
-### Leçon 1 --- Le visage de l\'IA en 2026
+### Leçon 1 --- Le visage actuel de l\'IA
 
 Ce chapitre vous amène à la pointe absolue du domaine. Nous y traitons les avancées qui définissent l\'IA d\'aujourd\'hui : les **agents autonomes**, le **protocole MCP** qui les connecte au monde, les modèles **multimodaux**, et la **sûreté de l\'IA**, devenue une discipline centrale.
 
 ### Leçon 2 --- Les agents IA autonomes
 
-Un **agent IA** dépasse la simple conversation : il poursuit un objectif en planifiant une suite d\'actions, en utilisant des outils et en s\'adaptant aux résultats. Là où un modèle se contente de répondre, l\'agent **agit** : il interroge des bases, exécute du code, navigue sur le web. L\'année 2026 marque le passage des interfaces de conversation aux véritables **workflows agentiques**.
+Un **agent IA** dépasse la simple conversation : il poursuit un objectif en planifiant une suite d\'actions, en utilisant des outils et en s\'adaptant aux résultats. Là où un modèle se contente de répondre, l\'agent **agit** : il interroge des bases, exécute du code, navigue sur le web. Le domaine est en train de passer des interfaces de conversation aux véritables **workflows agentiques**.
 
 Le cycle d\'un agent comporte quatre temps : **perception** de l\'état, **planification** (découpage de l\'objectif en sous-tâches), **action** (appel d\'outils), puis **observation** des résultats pour ajuster la suite.
 
@@ -1845,13 +1845,13 @@ Chaque assistant a ses particularités. Un modèle à long contexte (Claude) acc
 
 ### Leçon 1 --- Qu\'est-ce que l\'automatisation ?
 
-L\'**automatisation** consiste à faire exécuter par une machine des tâches répétitives qui occupaient un humain : trier des emails, copier des données d\'un outil à un autre, envoyer des notifications, générer des rapports. Couplée à l\'IA, l\'automatisation ne se contente plus de suivre des règles fixes : elle peut **comprendre, décider et s\'adapter**. C\'est la grande révolution de 2026.
+L\'**automatisation** consiste à faire exécuter par une machine des tâches répétitives qui occupaient un humain : trier des emails, copier des données d\'un outil à un autre, envoyer des notifications, générer des rapports. Couplée à l\'IA, l\'automatisation ne se contente plus de suivre des règles fixes : elle peut **comprendre, décider et s\'adapter**. C\'est là que se joue la rupture.
 
 **Définition --- Automatisation des flux de travail.** Mise en place de chaînes de tâches qui s\'exécutent automatiquement à partir d\'un déclencheur, sans intervention humaine, en reliant entre eux différents outils et services.
 
 ### Leçon 2 --- Présentation de n8n
 
-**n8n** est une plateforme d\'automatisation visuelle, à la fois sans code et personnalisable. On y construit des **workflows** en reliant des **nœuds** (briques de traitement) dans un éditeur graphique. Sa force en 2026 : il intègre nativement les modèles d\'IA (ChatGPT, Claude...), permettant de bâtir des automatisations **intelligentes**. De plus, on peut l\'héberger soi-même, ce qui garantit le contrôle de ses données.
+**n8n** est une plateforme d\'automatisation visuelle, à la fois sans code et personnalisable. On y construit des **workflows** en reliant des **nœuds** (briques de traitement) dans un éditeur graphique. Sa force : il intègre nativement les modèles d\'IA (ChatGPT, Claude...), permettant de bâtir des automatisations **intelligentes**. De plus, on peut l\'héberger soi-même, ce qui garantit le contrôle de ses données.
 
 **L\'ESSENTIEL À RETENIR**
 
