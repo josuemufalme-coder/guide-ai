@@ -390,6 +390,24 @@ L'autre voie, si le coût compte, est de passer les figures en niveaux de gris :
 `python3 outils/images_nb.py` le fait, mais les schémas y perdent la
 distinction par la couleur.
 
+### Le fond perdu : un avertissement, pas une erreur
+
+Lulu signale ensuite qu'« une marge blanche à fond perdu a été ajoutée à votre
+fichier ». C'est une **information**, pas un rejet, et elle est normale : notre
+intérieur est au format fini exact, sans fond perdu, ce qui est le bon choix
+**tant qu'aucun élément n'atteint le bord coupé**.
+
+Mesuré sur les 284 pages : **l'élément le plus proche d'un bord est à
+12,5 mm**, soit quatre fois la profondeur de coupe. Rien ne saigne, rien ne
+sera rogné.
+
+`Lulu_interieur.pdf` reste donc le fichier à envoyer. Pour ceux qui préfèrent
+ne voir aucun avertissement, `python3 outils/lulu.py --fond-perdu` produit en
+plus `Lulu_interieur_fond_perdu.pdf` : les mêmes pages centrées sur un format
+de 216,36 × 303,35 mm, qui redonne exactement le format fini après rognage.
+Je ne le recommande pas — ajouter un fond perdu là où rien ne saigne n'apporte
+rien et introduit une occasion de se tromper de cote.
+
 ### Contrôle rejoué
 
 `python3 outils/controle_impression.py <fichier.pdf>` rejoue les trois

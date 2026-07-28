@@ -25,6 +25,7 @@ papier et le nombre de pages choisis. Deux facons de les fournir :
 
     --dos 18.2                   largeur du dos en millimetres
     --format 442.6x303.4         dimensions totales du volet, en millimetres
+    --fond-perdu                 produit en plus un interieur avec fond perdu
 
 Usage :
     python3 outils/lulu.py
@@ -43,6 +44,7 @@ INTERIEUR_SOURCE = RACINE / "Guide_Intelligence_Artificielle_publiable.pdf"
 COUVERTURE_SOURCE = RACINE / "Couverture_proposition.pdf"
 SORTIE_INTERIEUR = RACINE / "Lulu_interieur.pdf"
 SORTIE_COUVERTURE = RACINE / "Lulu_couverture.pdf"
+SORTIE_INT_FP = RACINE / "Lulu_interieur_fond_perdu.pdf"
 
 MM = 72 / 25.4
 ROGNE_L, ROGNE_H = 210 * MM, 297 * MM
@@ -73,6 +75,51 @@ def fabrique_interieur():
     pages = doc.page_count
     doc.close()
     return total, pages
+
+
+def marge_minimale(doc):
+    """Distance la plus courte entre un element et le bord d'une page."""
+    mini = float("inf")
+    for page in doc:
+        L, H = page.rect.width, page.rect.height
+        boites = [b[:4] for b in page.get_text("blocks") if len(b) > 4]
+        for info in page.get_images(full=True):
+            boites += [tuple(r) for r in page.get_image_rects(info[0])]
+        for trace in page.get_drawings():
+            r = trace["rect"]
+            boites.append((r.x0, r.y0, r.x1, r.y1))
+        for x0, y0, x1, y1 in boites:
+            mini = min(mini, x0, y0, L - x1, H - y1)
+    return mini
+
+
+def interieur_avec_fond_perdu(fp=FOND_PERDU_COUV):
+    """Variante du bloc interieur preparee pour le fond perdu.
+
+    Chaque page est posee au centre d'une page plus grande de 2 x fp dans les
+    deux sens. Apres rognage de fp sur chaque bord, on retrouve exactement le
+    format fini. A n'utiliser que si l'on veut faire taire l'avertissement de
+    Lulu : tant qu'aucun element n'atteint le bord, le fichier au format fini
+    est le bon choix, et c'est celui que l'imprimeur attend."""
+    src = fitz.open(SORTIE_INTERIEUR)
+    out = fitz.open()
+    for page in src:
+        neuve = out.new_page(width=page.rect.width + 2 * fp,
+                             height=page.rect.height + 2 * fp)
+        neuve.draw_rect(neuve.rect, color=None, fill=(1, 1, 1))
+        neuve.show_pdf_page(fitz.Rect(fp, fp, fp + page.rect.width,
+                                      fp + page.rect.height), src, page.number)
+    out.set_metadata({
+        "title": "Comprendre et pratiquer l'intelligence artificielle",
+        "author": "MUFALME BULENDA Josué",
+        "subject": "Bloc interieur avec fond perdu — ISBN 978-0-557-99817-3",
+    })
+    out.save(SORTIE_INT_FP, garbage=4, deflate=True, clean=True)
+    l, h = out[0].rect.width / MM, out[0].rect.height / MM
+    n = out.page_count
+    out.close()
+    src.close()
+    return n, l, h
 
 
 def source_sans_reperes():
@@ -171,6 +218,17 @@ def main():
     avant, pages = fabrique_interieur()
     print(f"  {SORTIE_INTERIEUR.name} — {pages} pages "
           f"(les 2 pages de couverture ont ete retirees de {avant})")
+
+    controle = fitz.open(SORTIE_INTERIEUR)
+    marge = marge_minimale(controle) / MM
+    controle.close()
+    print(f"    element le plus proche du bord : {marge:.1f} mm "
+          f"({'aucun fond perdu necessaire' if marge > FOND_PERDU_COUV / MM else 'ATTENTION : dans la zone de coupe'})")
+
+    if "--fond-perdu" in sys.argv:
+        n, l, h = interieur_avec_fond_perdu()
+        print(f"  {SORTIE_INT_FP.name} — {n} pages, {l:.2f} x {h:.2f} mm "
+              f"(format fini + 3,175 mm sur chaque bord)")
 
     print("\n  largeur du dos selon le papier, pour "
           f"{pages} pages :")
