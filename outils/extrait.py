@@ -15,9 +15,11 @@ Ce qu'il contient, et pourquoi :
     page qui donne envie, bien plus qu'un resume ;
   - le plan des huit parties, qui montre l'etendue en un coup d'oeil ;
   - la premiere page de la table des matieres, pour le niveau de detail ;
-  - l'ouverture de la partie I et LE CHAPITRE 1 EN ENTIER. Un extrait qui
-    s'arrete au milieu d'une demonstration frustre ; un chapitre complet
-    prouve la maniere ;
+  - LA PARTIE I EN ENTIER, soit ses quatre premiers chapitres. Un extrait qui
+    s'arrete au milieu d'une demonstration frustre ; une partie complete
+    prouve la maniere, et elle forme un tout : les fondations. On y trouve
+    les schemas, les exemples chiffres deroules a la main et les blocs de
+    code, c'est-a-dire tout ce qui distingue ce manuel d'un cours theorique ;
   - une page de fin, la seule qui soit composee ici, qui dit ce que contient
     l'ouvrage complet ;
   - la quatrieme de couverture.
@@ -49,9 +51,9 @@ ISBN = "978-0-557-99817-3"
 COUVERTURE = 1
 LIMINAIRES = [2, 4, 5]        # faux-titre, page de titre, page de droits
 AVANT_PROPOS = [6, 7, 8]      # avant-propos, plan des parties, debut de la table
-PARTIE_I = 22
-CHAPITRE_1 = list(range(23, 35))
-QUATRIEME = None              # derniere page, calculee a l'ouverture
+# Partie I : page d'ouverture puis les chapitres 1 a 4, jusqu'a la veille de
+# l'ouverture de la partie II.
+PARTIE_I = list(range(22, 63))
 
 
 def page_de_fin(doc, gabarit):
@@ -78,9 +80,9 @@ def page_de_fin(doc, gabarit):
             page.insert_text((x, y), texte, fontname=nom, fontfile=polices[nom],
                              fontsize=corps, color=couleur)
 
-    centre("VOUS VENEZ DE LIRE LE PREMIER CHAPITRE", 30 * MM, "Fng", 9,
+    centre("VOUS VENEZ DE LIRE LA PREMIÈRE PARTIE", 30 * MM, "Fng", 9,
            (0.72, 0.76, 0.84), 2.4)
-    centre("Il en reste vingt-trois.", 48 * MM, "Fs", 20, (1, 1, 1))
+    centre("Il en reste sept.", 48 * MM, "Fs", 20, (1, 1, 1))
 
     def filet(y):
         f = page.new_shape()
@@ -93,11 +95,14 @@ def page_de_fin(doc, gabarit):
     cadre = fitz.Rect(g, y, d, y + 40 * MM)
     reste = page.insert_textbox(
         cadre,
-        "Le chapitre que vous venez de lire est représentatif de tout "
-        "l’ouvrage : on part d’une question simple, on déroule un exemple "
-        "que l’on refait soi-même, et l’on termine par des exercices. "
-        "Le reste du livre procède de la même façon, des fondations "
-        "jusqu’aux usages professionnels.",
+        "Ces quatre chapitres sont représentatifs de tout l’ouvrage : on part "
+        "d’une question simple, on déroule un exemple que l’on refait "
+        "soi-même, et l’on termine par des exercices. Les vingt chapitres "
+        "qui suivent procèdent de la même façon et vous mènent des "
+        "fondations que vous venez de poser jusqu’aux usages professionnels "
+        "— l’apprentissage automatique et profond, le langage, la vision, "
+        "l’IA générative, l’éthique et le droit, l’automatisation, et quatre "
+        "projets menés de bout en bout.",
         fontname="Fs", fontfile=SERIF, fontsize=12, color=(0.13, 0.13, 0.13),
         align=3, lineheight=1.45)
     y = cadre.y1 - reste + 14 * MM
@@ -144,8 +149,7 @@ def page_de_fin(doc, gabarit):
 def main():
     sortie = Path(sys.argv[1]) if len(sys.argv) > 1 else SORTIE
     src = fitz.open(SOURCE)
-    pages = ([COUVERTURE] + LIMINAIRES + AVANT_PROPOS
-             + [PARTIE_I] + CHAPITRE_1)
+    pages = [COUVERTURE] + LIMINAIRES + AVANT_PROPOS + PARTIE_I
     out = fitz.open()
     for n in pages:
         out.insert_pdf(src, from_page=n - 1, to_page=n - 1)
@@ -164,7 +168,9 @@ def main():
     out.close()
     src.close()
     print(f"  {sortie.name} — {n} pages, {sortie.stat().st_size / 1024:.0f} Ko")
-    print(f"  pages prélevées dans l'ouvrage : {pages}")
+    print(f"  pages prélevées : {pages[0]}, {pages[1]}-{pages[3]}, "
+          f"{pages[4]}-{pages[6]}, puis {PARTIE_I[0]}-{PARTIE_I[-1]} "
+          f"(partie I complète, chapitres 1 à 4)")
     return 0
 
 
