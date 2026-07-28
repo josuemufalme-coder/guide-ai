@@ -15,13 +15,12 @@ Ce qu'il contient, et pourquoi :
     page qui donne envie, bien plus qu'un resume ;
   - le plan des huit parties, qui montre l'etendue en un coup d'oeil ;
   - la premiere page de la table des matieres, pour le niveau de detail ;
-  - LES CINQ PREMIERS CHAPITRES : la partie I en entier, soit les quatre
-    chapitres des fondations, puis l'ouverture de la partie II et son premier
-    chapitre, celui ou l'on voit enfin une machine apprendre. Un extrait qui
-    s'arrete au milieu d'une demonstration frustre ; des chapitres complets
-    prouvent la maniere. On y trouve les schemas, les exemples chiffres
-    deroules a la main et les blocs de code, c'est-a-dire tout ce qui
-    distingue ce manuel d'un cours theorique ;
+  - LES DEUX PREMIERES PARTIES EN ENTIER, soit les huit premiers chapitres :
+    les fondations, puis comment une machine apprend. Le decoupage suit les
+    divisions de l'ouvrage et non un compte de pages : aucun chapitre, aucune
+    partie n'est coupe en son milieu. On y trouve les schemas, les exemples
+    chiffres deroules a la main et les blocs de code, c'est-a-dire tout ce
+    qui distingue ce manuel d'un cours theorique ;
   - une page de fin, la seule qui soit composee ici, qui dit ce que contient
     l'ouvrage complet ;
   - la quatrieme de couverture.
@@ -59,8 +58,9 @@ AVANT_PROPOS = [6, 7, 8]      # avant-propos, plan des parties, debut de la tabl
 #   22       ouverture de la partie I
 #   23-62    chapitres 1 a 4
 #   63       ouverture de la partie II
-#   64-73    chapitre 5
-CHAPITRES = list(range(22, 74))
+#   64-94    chapitres 5 a 8
+# La partie III s'ouvre page 95 : on s'arrete juste avant.
+CHAPITRES = list(range(22, 95))
 
 
 def page_de_fin(doc, gabarit):
@@ -87,9 +87,9 @@ def page_de_fin(doc, gabarit):
             page.insert_text((x, y), texte, fontname=nom, fontfile=polices[nom],
                              fontsize=corps, color=couleur)
 
-    centre("VOUS VENEZ DE LIRE CINQ CHAPITRES", 30 * MM, "Fng", 9,
+    centre("VOUS VENEZ DE LIRE LES DEUX PREMIÈRES PARTIES", 30 * MM, "Fng", 9,
            (0.72, 0.76, 0.84), 2.4)
-    centre("Il en reste dix-neuf.", 48 * MM, "Fs", 20, (1, 1, 1))
+    centre("Il en reste six.", 48 * MM, "Fs", 20, (1, 1, 1))
 
     def filet(y):
         f = page.new_shape()
@@ -102,14 +102,13 @@ def page_de_fin(doc, gabarit):
     cadre = fitz.Rect(g, y, d, y + 40 * MM)
     reste = page.insert_textbox(
         cadre,
-        "Ces cinq chapitres sont représentatifs de tout l’ouvrage : on part "
-        "d’une question simple, on déroule un exemple que l’on refait "
-        "soi-même, et l’on termine par des exercices. Les dix-neuf chapitres "
-        "qui suivent procèdent de la même façon et vous mènent des "
-        "fondations que vous venez de poser jusqu’aux usages professionnels "
-        "— l’apprentissage profond, le langage, la vision, l’IA générative, "
-        "les agents, l’éthique et le droit, l’automatisation, et quatre "
-        "projets menés de bout en bout.",
+        "Vous avez maintenant les fondations, et vous savez comment une "
+        "machine apprend. C’est le plus difficile, et c’est fait. Les six "
+        "parties qui suivent procèdent de la même façon — une question "
+        "simple, un exemple que l’on refait soi-même, des exercices — et "
+        "vous mènent jusqu’aux usages professionnels : le langage, la "
+        "vision, l’IA générative, les agents, l’éthique et le droit, "
+        "l’automatisation, et quatre projets menés de bout en bout.",
         fontname="Fs", fontfile=SERIF, fontsize=12, color=(0.13, 0.13, 0.13),
         align=3, lineheight=1.45)
     y = cadre.y1 - reste + 14 * MM
@@ -176,7 +175,7 @@ def main():
     src.close()
     print(f"  {sortie.name} — {n} pages, {sortie.stat().st_size / 1024:.0f} Ko")
     print(f"  pages prélevées : liminaires, puis {CHAPITRES[0]}-{CHAPITRES[-1]} "
-          f"(partie I complète et chapitre 5)")
+          f"(parties I et II complètes, chapitres 1 à 8)")
     return 0
 
 
