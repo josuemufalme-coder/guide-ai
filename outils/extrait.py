@@ -15,11 +15,13 @@ Ce qu'il contient, et pourquoi :
     page qui donne envie, bien plus qu'un resume ;
   - le plan des huit parties, qui montre l'etendue en un coup d'oeil ;
   - la premiere page de la table des matieres, pour le niveau de detail ;
-  - LA PARTIE I EN ENTIER, soit ses quatre premiers chapitres. Un extrait qui
-    s'arrete au milieu d'une demonstration frustre ; une partie complete
-    prouve la maniere, et elle forme un tout : les fondations. On y trouve
-    les schemas, les exemples chiffres deroules a la main et les blocs de
-    code, c'est-a-dire tout ce qui distingue ce manuel d'un cours theorique ;
+  - LES CINQ PREMIERS CHAPITRES : la partie I en entier, soit les quatre
+    chapitres des fondations, puis l'ouverture de la partie II et son premier
+    chapitre, celui ou l'on voit enfin une machine apprendre. Un extrait qui
+    s'arrete au milieu d'une demonstration frustre ; des chapitres complets
+    prouvent la maniere. On y trouve les schemas, les exemples chiffres
+    deroules a la main et les blocs de code, c'est-a-dire tout ce qui
+    distingue ce manuel d'un cours theorique ;
   - une page de fin, la seule qui soit composee ici, qui dit ce que contient
     l'ouvrage complet ;
   - la quatrieme de couverture.
@@ -51,9 +53,14 @@ ISBN = "978-0-557-99817-3"
 COUVERTURE = 1
 LIMINAIRES = [2, 4, 5]        # faux-titre, page de titre, page de droits
 AVANT_PROPOS = [6, 7, 8]      # avant-propos, plan des parties, debut de la table
-# Partie I : page d'ouverture puis les chapitres 1 a 4, jusqu'a la veille de
-# l'ouverture de la partie II.
-PARTIE_I = list(range(22, 63))
+# De l'ouverture de la partie I a la fin du chapitre 5. Les bornes sont des
+# frontieres de l'ouvrage, pas un compte de pages : aucun chapitre n'est
+# coupe en son milieu.
+#   22       ouverture de la partie I
+#   23-62    chapitres 1 a 4
+#   63       ouverture de la partie II
+#   64-73    chapitre 5
+CHAPITRES = list(range(22, 74))
 
 
 def page_de_fin(doc, gabarit):
@@ -80,9 +87,9 @@ def page_de_fin(doc, gabarit):
             page.insert_text((x, y), texte, fontname=nom, fontfile=polices[nom],
                              fontsize=corps, color=couleur)
 
-    centre("VOUS VENEZ DE LIRE LA PREMIÈRE PARTIE", 30 * MM, "Fng", 9,
+    centre("VOUS VENEZ DE LIRE CINQ CHAPITRES", 30 * MM, "Fng", 9,
            (0.72, 0.76, 0.84), 2.4)
-    centre("Il en reste sept.", 48 * MM, "Fs", 20, (1, 1, 1))
+    centre("Il en reste dix-neuf.", 48 * MM, "Fs", 20, (1, 1, 1))
 
     def filet(y):
         f = page.new_shape()
@@ -95,13 +102,13 @@ def page_de_fin(doc, gabarit):
     cadre = fitz.Rect(g, y, d, y + 40 * MM)
     reste = page.insert_textbox(
         cadre,
-        "Ces quatre chapitres sont représentatifs de tout l’ouvrage : on part "
+        "Ces cinq chapitres sont représentatifs de tout l’ouvrage : on part "
         "d’une question simple, on déroule un exemple que l’on refait "
-        "soi-même, et l’on termine par des exercices. Les vingt chapitres "
+        "soi-même, et l’on termine par des exercices. Les dix-neuf chapitres "
         "qui suivent procèdent de la même façon et vous mènent des "
         "fondations que vous venez de poser jusqu’aux usages professionnels "
-        "— l’apprentissage automatique et profond, le langage, la vision, "
-        "l’IA générative, l’éthique et le droit, l’automatisation, et quatre "
+        "— l’apprentissage profond, le langage, la vision, l’IA générative, "
+        "les agents, l’éthique et le droit, l’automatisation, et quatre "
         "projets menés de bout en bout.",
         fontname="Fs", fontfile=SERIF, fontsize=12, color=(0.13, 0.13, 0.13),
         align=3, lineheight=1.45)
@@ -149,7 +156,7 @@ def page_de_fin(doc, gabarit):
 def main():
     sortie = Path(sys.argv[1]) if len(sys.argv) > 1 else SORTIE
     src = fitz.open(SOURCE)
-    pages = [COUVERTURE] + LIMINAIRES + AVANT_PROPOS + PARTIE_I
+    pages = [COUVERTURE] + LIMINAIRES + AVANT_PROPOS + CHAPITRES
     out = fitz.open()
     for n in pages:
         out.insert_pdf(src, from_page=n - 1, to_page=n - 1)
@@ -168,9 +175,8 @@ def main():
     out.close()
     src.close()
     print(f"  {sortie.name} — {n} pages, {sortie.stat().st_size / 1024:.0f} Ko")
-    print(f"  pages prélevées : {pages[0]}, {pages[1]}-{pages[3]}, "
-          f"{pages[4]}-{pages[6]}, puis {PARTIE_I[0]}-{PARTIE_I[-1]} "
-          f"(partie I complète, chapitres 1 à 4)")
+    print(f"  pages prélevées : liminaires, puis {CHAPITRES[0]}-{CHAPITRES[-1]} "
+          f"(partie I complète et chapitre 5)")
     return 0
 
 
