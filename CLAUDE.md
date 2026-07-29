@@ -53,30 +53,58 @@ Je sollicite votre haute bienveillance pour l'approbation de cette acquisition.
 Votre Aut trouve en Ann, le devis détaillé y relatif.
 ```
 
-Champs reconnus : `OBJET` (obligatoire), `DESTINATAIRE`, `DATE`, `NUMERO`, `ANNEE`,
-`OUVERTURE`, `CLOTURE`, `SIGNATAIRE`, `FONCTION`. Valeur `aucune` pour supprimer
-l'ouverture ou la clôture. Balisage dans le corps : `**gras**`, `__souligné__`, `- puce`.
-
-### Valeurs par défaut
+### Champs et valeurs par défaut
 
 | Champ | Défaut |
 |---|---|
+| `OBJET` | **obligatoire** |
+| `REF` | absent — ajoute une ligne `RÉF. : …` sous l'objet |
 | `DESTINATAIRE` | `Au Dir AdmLog` |
+| `DESTINATAIRE2` | vide — 2ᵉ ligne du bloc destinataire, ex. `à Kinshasa/Gombe` |
 | `DATE` | vide — portée à la main |
 | `NUMERO` | vide — porté à la main |
 | `ANNEE` | deux derniers chiffres de l'année courante |
+| `SALUTATION` | absente — ex. `Monsieur le Directeur,` (hors numérotation) |
 | `OUVERTURE` | `Honneur de vous saluer et vous transmettre ce dont l’objet repris en marge.` |
 | `CLOTURE` | `Profonds respects.` |
+| `CLOTURE_NUMEROTEE` | `oui` (comme le modèle) ; `non` pour une clôture hors numérotation |
 | `SIGNATAIRE` / `FONCTION` | `MUFALME BULENDA Josué` / `Chef Div Numérique` |
+
+Valeur `aucune` sur `OUVERTURE`, `CLOTURE` ou `SALUTATION` pour les supprimer.
+
+### Balisage du corps
+
+| Écrire | Donne |
+|---|---|
+| `**gras**` | gras |
+| `__souligné__` | souligné |
+| `# I. TITRE DE SECTION` | titre en gras, **hors** numérotation |
+| `* sous-point` | numérotation en lettres `a.`, `b.`, `c.` (`numId 7`, retrait 1080) |
+| `- élément` | puce tiret (`numId 1`, retrait 1440) |
 
 ### Ce qui est automatique
 
 - **Numérotation des paragraphes** (`1.`, `2.`, `3.` en gras) : gérée par Word via
-  `numId 2`. Ne jamais écrire les numéros dans le texte.
+  `numId 2`. Ne jamais écrire les numéros dans le texte. Les titres, sous-points et puces
+  sont hors de cette séquence, qui reprend donc son cours après eux — c'est ce qui permet
+  une numérotation continue à travers des sections I / II / III.
 - **Séparateurs** entre paragraphes : posés par le générateur, à l'identique du modèle
-  (le premier, après la formule d'ouverture, est plus serré que les autres).
+  (le premier, après la formule d'ouverture, est plus serré que les autres). Pas de
+  séparateur entre deux éléments consécutifs d'une même liste.
 - **Typographie française** : apostrophe courbe, espace insécable avant `: ; ! ?` et dans
   `« … »`, points de suspension. Une heure du type `10:30` n'est pas touchée.
+
+### Quand l'auteur envoie un brouillon `.docx`
+
+Il fournit le **contenu**, jamais la forme. À jeter systématiquement : son tableau
+d'en-tête (République / Ministère / RAD / Coordination…), qui fait doublon avec le logo du
+document officiel, ainsi que ses polices, ses alignements et sa numérotation écrite en
+dur. À reprendre : objet, référence, interpellation, texte des paragraphes, titres de
+section, formule de politesse.
+
+Attention en lisant son XML : le gras s'y écrit parfois `<w:b w:val="false"/>`. Tester la
+valeur de l'attribut, pas la seule présence de l'élément, sinon tout le document paraît
+en gras.
 
 ### Ce qu'il ne faut pas faire
 

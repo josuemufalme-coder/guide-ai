@@ -20,17 +20,22 @@ Format du fichier d'entree (.txt, UTF-8) :
 
     Ce document, joint en annexe ...
 
-Les champs sont optionnels sauf OBJET. Les paragraphes du corps sont separes par
-une ligne vide. La formule d'ouverture et la formule de politesse sont ajoutees
-automatiquement (voir DEFAUTS ci-dessous) ; on peut les remplacer avec les
-champs OUVERTURE: et CLOTURE:, ou les supprimer avec la valeur "aucune".
+Champs reconnus (tous optionnels sauf OBJET) : OBJET, REF, DESTINATAIRE,
+DESTINATAIRE2, DATE, NUMERO, ANNEE, SALUTATION, OUVERTURE, CLOTURE,
+CLOTURE_NUMEROTEE, SIGNATAIRE, FONCTION. La formule d'ouverture et la formule de
+politesse sont ajoutees automatiquement (voir DEFAUTS ci-dessous) ; valeur
+"aucune" pour les supprimer.
 
-Enrichissements dans le corps :
-    **gras**        -> gras
-    __souligne__    -> souligne
-    - element       -> puce (numId 1, tiret), retrait subordonne
-Les paragraphes ordinaires sont numerotes 1., 2., 3. automatiquement par Word,
-exactement comme dans le modele d'origine.
+Les paragraphes du corps sont separes par une ligne vide. Balisage :
+    **gras**            -> gras
+    __souligne__        -> souligne
+    # Titre de section  -> titre en gras, hors numerotation
+    * sous-point        -> numerotation en lettres a., b., c. (numId 7)
+    - element           -> puce (numId 1, tiret)
+Les paragraphes ordinaires sont numerotes 1., 2., 3. automatiquement par Word
+(numId 2), exactement comme dans le modele d'origine. Les titres, les
+sous-points et les puces sont hors de cette sequence, qui reprend donc son cours
+apres eux.
 """
 import argparse
 import datetime
@@ -52,13 +57,18 @@ DEFAUTS = {
     'NUMERO': '    ',                      # laisse en blanc pour la main
     'ANNEE': '',                           # deux chiffres, deduit de l'annee courante
     'DESTINATAIRE': 'Au Dir AdmLog',
+    'DESTINATAIRE2': '',                   # 2e ligne, ex. « à Kinshasa/Gombe »
     'OBJET': '',
+    'REF': '',                             # ligne « RÉF. : » sous l'objet
+    'SALUTATION': '',                      # ex. « Monsieur le Directeur, »
     'OUVERTURE': 'Honneur de vous saluer et vous transmettre ce dont l’objet repris en marge.',
     'CLOTURE': 'Profonds respects.',
+    'CLOTURE_NUMEROTEE': 'oui',            # « non » pour sortir la clôture de la numérotation
     'SIGNATAIRE': 'MUFALME BULENDA Josué',
     'FONCTION': 'Chef Div Numérique',
 }
 CHAMPS = set(DEFAUTS)
+NON = ('aucune', 'aucun', 'non', '')
 
 
 # --------------------------------------------------------------------------- #
@@ -74,7 +84,7 @@ def lire_entree(chemin):
     champs = {}
     restes = []
     for ligne in entete.split('\n'):
-        m = re.match(r'^([A-ZÉÈÀ_]+)\s*:\s*(.*)$', ligne.strip())
+        m = re.match(r'^([A-ZÉÈÀ_0-9]+)\s*:\s*(.*)$', ligne.strip())
         if m and m.group(1) in CHAMPS:
             champs[m.group(1)] = m.group(2).strip()
         elif ligne.strip():
@@ -175,13 +185,58 @@ def frag(nom):
     return open(os.path.join(FRAGMENTS, nom), encoding='utf8').read()
 
 
+def _sans_numerotation(p):
+    return re.sub(r'<w:numPr>.*?</w:numPr>', '', p, flags=re.S)
+
+
+def _retrait(p, gauche, suspendu=360):
+    """Pose un retrait explicite ; dans un pPr, <w:ind> vient apres <w:spacing>."""
+    return re.sub(r'(<w:spacing\b[^>]*/>)',
+                  r'\1<w:ind w:left="%d" w:hanging="%d"/>' % (gauche, suspendu),
+                  p, count=1)
+
+
+def _numero_gras(p):
+    """Rend le marqueur de liste gras (il herite du rPr de la marque de paragraphe)."""
+    return re.sub(r'(<w:rPr><w:rFonts\b[^>]*/>)', r'\1<w:b/><w:bCs/>', p, count=1)
+
+
+def paragraphe_simple(sk_par, rpr, texte):
+    """Paragraphe du corps, numerote 1., 2., 3. par Word (numId 2, comme le modele)."""
+    return sk_par.replace('{{RUNS}}', runs(texte, rpr))
+
+
+def titre_section(sk_par, rpr, texte):
+    """Titre de section, en gras, hors numerotation."""
+    p = _sans_numerotation(sk_par)
+    return p.replace('{{RUNS}}', runs('**' + texte + '**', rpr))
+
+
+def sous_point(sk_par, rpr, texte):
+    """Sous-point a., b., c. : numId 7 (lettres minuscules), retrait subordonne."""
+    p = sk_par.replace('<w:numId w:val="2"/>', '<w:numId w:val="7"/>')
+    p = _numero_gras(_retrait(p, 1080))
+    return p.replace('{{RUNS}}', runs(texte, rpr))
+
+
 def puce(sk_par, rpr, texte):
     """Paragraphe a puce : numId 1 (tiret) et retrait subordonne."""
     p = sk_par.replace('<w:numId w:val="2"/>', '<w:numId w:val="1"/>')
-    # dans un pPr, <w:ind> vient apres <w:spacing> (ordre impose par le schema)
-    p = re.sub(r'(<w:spacing\b[^>]*/>)', r'\1<w:ind w:left="1440" w:hanging="360"/>',
-               p, count=1)
+    return _retrait(p, 1440).replace('{{RUNS}}', runs(texte, rpr))
+
+
+def non_numerote(sk_par, rpr, texte):
+    """Paragraphe du corps sorti de la numerotation (interpellation, cloture)."""
+    p = _sans_numerotation(sk_par)
     return p.replace('{{RUNS}}', runs(texte, rpr))
+
+
+# balisage de debut de ligne -> fabricant de paragraphe
+MARQUES = (
+    ('# ', titre_section),
+    ('* ', sous_point),
+    ('- ', puce),
+)
 
 
 def construire_corps(champs, paragraphes):
@@ -191,27 +246,51 @@ def construire_corps(champs, paragraphes):
 
     blocs = []
     separe = True            # un separateur a-t-il deja ete pose ?
+
+    salutation = champs.get('SALUTATION', DEFAUTS['SALUTATION'])
+    if salutation.lower() not in NON:
+        blocs.append(non_numerote(sk_par, rpr_par, salutation))
+        separe = False
+
     ouverture = champs.get('OUVERTURE', DEFAUTS['OUVERTURE'])
-    if ouverture.lower() not in ('aucune', 'aucun', 'non', ''):
+    if ouverture.lower() not in NON:
+        if not separe:
+            blocs.append(espace)
         blocs.append(sk_ouv.replace('{{RUNS}}', runs(ouverture, rpr_ouv)))
         # le modele resserre le separateur qui suit la formule d'ouverture
         blocs.append(frag('espace_ouverture.xml'))
+        separe = True
 
-    precedent_puce = False
+    marque_precedente = None
     for p in paragraphes:
-        est_puce = p.startswith('- ')
-        if blocs and not separe and not (est_puce and precedent_puce):
+        marque = next((m for m, _ in MARQUES if p.startswith(m)), None)
+        fabrique = dict(MARQUES).get(marque, paragraphe_simple)
+        # pas de ligne vide entre deux elements consecutifs d'une meme liste
+        colle = marque in ('* ', '- ') and marque == marque_precedente
+        if blocs and not separe and not colle:
             blocs.append(espace)
         separe = False
-        blocs.append(puce(sk_par, rpr_par, p[2:]) if est_puce
-                     else sk_par.replace('{{RUNS}}', runs(p, rpr_par)))
-        precedent_puce = est_puce
+        blocs.append(fabrique(sk_par, rpr_par, p[len(marque):] if marque else p))
+        marque_precedente = marque
 
     cloture = champs.get('CLOTURE', DEFAUTS['CLOTURE'])
-    if cloture.lower() not in ('aucune', 'aucun', 'non', ''):
+    if cloture.lower() not in NON:
         blocs.append(espace)
-        blocs.append(sk_par.replace('{{RUNS}}', runs(cloture, rpr_par)))
+        numerotee = champs.get('CLOTURE_NUMEROTEE',
+                               DEFAUTS['CLOTURE_NUMEROTEE']).lower() not in NON
+        blocs.append((paragraphe_simple if numerotee else non_numerote)
+                     (sk_par, rpr_par, cloture))
     return ''.join(blocs)
+
+
+def ligne_reference(texte):
+    """Ligne « RÉF. : … » calquee sur le paragraphe OBJET (label gras, contenu normal)."""
+    label = frag('objet.label.rpr.xml')
+    corps = frag('objet.texte.rpr.xml').replace('<w:b/>', '').replace('<w:bCs/>', '')
+    return frag('objet.xml').replace(
+        '{{RUNS}}',
+        '<w:r>' + label + '<w:t xml:space="preserve">RÉF. : </w:t></w:r>'
+        + runs(texte, corps))
 
 
 # --------------------------------------------------------------------------- #
@@ -233,7 +312,12 @@ def generer(champs, paragraphes, sortie):
     cible = next(s for s in scan.top_paragraphs(xml) if '{{CORPS}}' in xml[s[0]:s[1]])
     xml = xml[:cible[0]] + corps + xml[cible[1]:]
 
-    for jeton in ('DATE', 'NUMERO', 'ANNEE', 'DESTINATAIRE', 'OBJET',
+    # ligne « RÉF. : … » inseree juste apres le paragraphe OBJET
+    if v['REF']:
+        objet = next(s for s in scan.top_paragraphs(xml) if '{{OBJET}}' in xml[s[0]:s[1]])
+        xml = xml[:objet[1]] + ligne_reference(v['REF']) + xml[objet[1]:]
+
+    for jeton in ('DATE', 'NUMERO', 'ANNEE', 'DESTINATAIRE', 'DESTINATAIRE2', 'OBJET',
                   'SIGNATAIRE', 'FONCTION'):
         texte = v[jeton] if jeton in ('NUMERO', 'ANNEE') else typo(v[jeton])
         xml = xml.replace('{{%s}}' % jeton, echapper(texte))
@@ -262,19 +346,20 @@ def apercu(xml):
                  .replace('&quot;', '"').replace('&apos;', "'").replace('&amp;', '&'))
 
     lignes = []
-    n = 0
+    n = lettre = 0
     for a, b in scan.top_paragraphs(xml):
         f = xml[a:b]
-        t = dechapper(scan.text_of(f))
-        numerote = '<w:numId w:val="2"/>' in f
-        pucee = '<w:numId w:val="1"/>' in f
-        if numerote:
+        t = dechapper(scan.text_of(f)).strip()
+        if '<w:numId w:val="2"/>' in f:
             n += 1
-            lignes.append('%d. %s' % (n, t.strip()))
-        elif pucee:
-            lignes.append('     - %s' % t.strip())
-        elif t.strip():
-            lignes.append(re.sub(r'[ \t]{2,}', '  ', t))
+            lignes.append('%d.  %s' % (n, t))
+        elif '<w:numId w:val="7"/>' in f:
+            lignes.append('    %s.  %s' % (chr(ord('a') + lettre), t))
+            lettre += 1
+        elif '<w:numId w:val="1"/>' in f:
+            lignes.append('       -  %s' % t)
+        elif t:
+            lignes.append(re.sub(r'[ \t]{2,}', '  ', dechapper(scan.text_of(f))))
     return '\n'.join(lignes)
 
 

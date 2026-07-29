@@ -50,10 +50,14 @@ def write(name, data):
 
 sk_ouv, rpr_ouv = skeleton(12, 1)   # formule d'ouverture (ind droite 322, line 240)
 sk_par, rpr_par = skeleton(16, 0)   # paragraphe de corps (after 160, line 259)
+sk_obj = skeleton(10, 0)[0]         # paragraphe OBJET (retraits 142 / -567, justifie)
 write('ouverture.xml', sk_ouv)
 write('ouverture.rpr.xml', rpr_ouv)
 write('paragraphe.xml', sk_par)
 write('paragraphe.rpr.xml', rpr_par)
+write('objet.xml', sk_obj)
+write('objet.label.rpr.xml', rpr_of(frag(10)[slice(*scan.top_runs(frag(10))[0])]))   # gras 14 pt
+write('objet.texte.rpr.xml', rpr_of(frag(10)[slice(*scan.top_runs(frag(10))[3])]))   # gras 12 pt
 write('espace.xml', frag(15))            # separateur standard (line 259)
 write('espace_ouverture.xml', frag(13))  # separateur apres la formule d'ouverture (line 240)
 
@@ -70,6 +74,10 @@ edits.append((P[2], collapse(2, 7, 18,
     'N˚ {{NUMERO}}/MDNAC/RAD/Coord Nat/DAL/Div Num/{{ANNEE}}')))
 # destinataire
 edits.append((P[7], collapse(7, 0, 8, '           {{DESTINATAIRE}}', rpr_from=8)))
+# 2e ligne du destinataire (paragraphe vide du modele, retrait firstLine 5387)
+f8 = frag(8)
+rpr8 = re.search(r'<w:rPr>.*?</w:rPr>', pPr_of(f8), re.S).group(0)
+edits.append((P[8], f8.replace('</w:p>', make_run(rpr8, '{{DESTINATAIRE2}}') + '</w:p>')))
 # objet
 edits.append((P[10], collapse(10, 3, 5, '{{OBJET}}', rpr_from=3)))
 # corps : tout le bloc p12..p22 devient un seul paragraphe porteur du jeton
@@ -97,7 +105,7 @@ zin.close()
 
 # ---- controle ---------------------------------------------------------------
 txt = scan.text_of(new)
-for tok in ['{{DATE}}', '{{NUMERO}}', '{{ANNEE}}', '{{DESTINATAIRE}}', '{{OBJET}}',
+for tok in ['{{DATE}}', '{{NUMERO}}', '{{ANNEE}}', '{{DESTINATAIRE}}', '{{DESTINATAIRE2}}', '{{OBJET}}',
             '{{CORPS}}', '{{SIGNATAIRE}}', '{{FONCTION}}']:
     assert txt.count(tok) == 1, (tok, txt.count(tok))
 print('gabarit ecrit :', dst)
