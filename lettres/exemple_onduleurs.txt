@@ -1,0 +1,18 @@
+OBJET: demande d'acquisition de trois onduleurs pour la salle serveurs
+DESTINATAIRE: Au Dir AdmLog
+DATE: 29 juillet 2026
+NUMERO: 087
+---
+En effet, les coupures répétées de courant survenues au cours du mois écoulé ont provoqué **deux arrêts brutaux** des serveurs abritant la Base de Données Nationale des Réservistes, avec un risque réel de corruption des données.
+
+La Division Numérique a évalué le besoin minimal à trois onduleurs de 3 kVA, soit :
+
+- un onduleur pour le serveur de production ;
+- un onduleur pour le serveur de sauvegarde ;
+- un onduleur pour l'équipement réseau.
+
+Le coût total estimé s'élève à 4 500 USD, détail joint en annexe. Cette dépense reste inférieure au coût d'une seule reconstitution de la base en cas de perte.
+
+Je sollicite votre haute bienveillance pour l'approbation de cette acquisition.
+
+Votre Aut trouve en Ann, le devis détaillé y relatif.
