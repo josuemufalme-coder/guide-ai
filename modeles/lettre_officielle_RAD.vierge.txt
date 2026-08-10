@@ -1,0 +1,10 @@
+OBJET: [remplacer par l'objet de la lettre]
+DESTINATAIRE: Au Dir AdmLog
+---
+[Premier paragraphe. Le numéro 2. est posé par Word : ne l'écrivez pas. Pour ajouter un paragraphe, placez le curseur en fin de ligne et appuyez sur Entrée deux fois — une fois pour la ligne de séparation, une fois pour le paragraphe, qui prendra son numéro tout seul.]
+
+[Deuxième paragraphe.]
+
+[Troisième paragraphe. Supprimez les paragraphes inutiles : la numérotation se réajuste seule.]
+
+Votre Aut trouve en Ann, [désignation de la pièce jointe] y relatif.
