@@ -175,6 +175,25 @@ def _baliser(contenu, marque):
             + (contenu[len(contenu) - droite:] if droite else ""))
 
 
+def lire_schemas(chemin):
+    """Les schémas arrêtés avec l'auteure, page par page.
+
+    Le PDF ne peut pas les fournir : deux des trois y sont défectueux, et
+    l'extraction rend leurs traits de liaison en caractères invalides. Leur
+    contenu est donc une donnée du dépôt, pas un produit de la reconstitution.
+    """
+    schemas, page = {}, None
+    for ligne in chemin.read_text(encoding="utf-8").split("\n"):
+        if ligne.startswith("#"):
+            continue
+        if ligne.startswith("= page "):
+            page = int(ligne.removeprefix("= page ").strip())
+            schemas[page] = []
+        elif page is not None and ligne.strip():
+            schemas[page].append(ligne.rstrip())
+    return schemas
+
+
 def lignes_mises_en_page(pdfs):
     """Les lignes de `pdftotext -layout`, page par page, alignement conservé.
 
@@ -486,9 +505,10 @@ def type_encadre(titre):
     return TYPE_PAR_DEFAUT
 
 
-def rendre(blocs, mise_en_page=None):
+def rendre(blocs, mise_en_page=None, traces=None):
     """Rend le Markdown du livre, découpé en unités (liminaires, chapitres)."""
     mise_en_page = mise_en_page or {}
+    traces = traces or {}
     unites = []
     courante = {"titre": "Liminaires", "rang": "00", "lignes": [], "pages": set(),
                 "mots_source": 0, "mots_schema": 0}
@@ -577,12 +597,11 @@ def rendre(blocs, mise_en_page=None):
             # Un schéma comporte des lignes espacées — flèches, cases — que le
             # découpage en blocs sépare. Une même page ne porte qu'un schéma.
             if page != derniere_page_de_schema:
-                courante["lignes"].append(
-                    f'\n::: {{.todo-schema page="{page}"}}\n'
-                    f"Schéma de la page {page} du PDF, à reprendre en figure"
-                    " vectorielle.\nContenu exact à fournir : l'extraction le rend"
-                    " en caractères invalides.\n:::")
-                schemas.append((page, []))
+                trace = traces.get(page)
+                if trace:
+                    courante["lignes"].append("\n```schema page=" + str(page)
+                                              + "\n" + "\n".join(trace) + "\n```")
+                schemas.append((page, [], trace or []))
                 derniere_page_de_schema = page
             schemas[-1][1].extend(l.texte_brut() for l in bloc.lignes)
             courante["mots_schema"] += sum(len(l.texte_brut().split())
@@ -752,12 +771,16 @@ def main():
     analyseur = argparse.ArgumentParser(description=__doc__)
     analyseur.add_argument("pdfs", nargs="+", type=Path)
     analyseur.add_argument("--sortie", type=Path, default=Path("src"))
+    analyseur.add_argument("--schemas", type=Path, default=Path("figures/schemas.txt"),
+                           help="les tracés arrêtés avec l'auteure")
     analyseur.add_argument("--liste", action="store_true",
                            help="n'écrit rien, énumère les unités trouvées")
     options = analyseur.parse_args()
 
     pages = lire_pages(options.pdfs)
-    unites, schemas = rendre(assembler(pages), lignes_mises_en_page(options.pdfs))
+    traces = lire_schemas(options.schemas) if options.schemas.exists() else {}
+    unites, schemas = rendre(assembler(pages), lignes_mises_en_page(options.pdfs),
+                             traces)
 
     print(f"{'fichier':<52} {'mots .md':>9} {'mots PDF':>9} {'écart':>7}"
           f" {'schéma':>7}  pages")
@@ -778,16 +801,25 @@ def main():
             (options.sortie / nom).write_text(corps, encoding="utf-8")
 
     if schemas and not options.liste:
-        archive = Path("qa/schemas-a-reprendre.txt")
+        archive = Path("qa/schemas-substitutions.txt")
         archive.write_text(
-            "Schémas laissés en attente par la reconstitution.\n"
-            "L'extraction les rend en caractères invalides ; ils sont conservés ici\n"
-            "à titre de preuve, hors du manuscrit, et attendent le contenu exact\n"
-            "de l'auteure.\n"
-            + "".join(f"\n--- page {page} du PDF ---\n" + "\n".join(lignes) + "\n"
-                      for page, lignes in schemas),
+            "# Substitution des schémas.\n"
+            "#\n"
+            "# Pour chacun des trois schémas, ce que l'extraction du PDF portait et ce\n"
+            "# que le manuscrit porte désormais. Deux des trois étaient défectueux dans\n"
+            "# le PDF d'origine ; le tracé retenu est celui de figures/schemas.txt.\n"
+            "#\n"
+            "# Le contrôle d'intégrité s'appuie sur ce relevé : il en déduit quels mots\n"
+            "# de la référence sont légitimement absents et quels mots du manuscrit sont\n"
+            "# légitimement nouveaux.\n"
+            + "".join(
+                f"\n= page {page}\n-- extraction --\n" + "\n".join(extrait)
+                + "\n-- manuscrit --\n" + "\n".join(trace) + "\n"
+                for page, extrait, trace in schemas),
             encoding="utf-8")
-        print(f"\n{len(schemas)} schéma(s) en attente : {archive}")
+        manquants = [p for p, _, trace in schemas if not trace]
+        etat = f", {len(manquants)} sans tracé : {manquants}" if manquants else ""
+        print(f"\n{len(schemas)} schéma(s) intégré(s){etat} — relevé : {archive}")
 
 
 if __name__ == "__main__":

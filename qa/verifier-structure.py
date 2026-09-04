@@ -16,7 +16,11 @@ le Markdown en a fait :
     encadrés      titres d'encadré en gras   contre  `::: {.encadre`
     tableaux      régions tabulaires         contre  tableaux Markdown
     notes         appels en exposant         contre  `[^n]`
-    schémas       lignes en chasse fixe      contre  `::: {.todo-schema`
+    schémas       lignes en chasse fixe      contre  blocs ```schema
+
+Il vérifie en outre que chaque ligne de schéma tient dans la justification : un
+bloc en chasse fixe qui déborde la mesure est le défaut même de la page 27 du
+PDF d'origine, et rien n'empêche de le réintroduire sans un contrôle.
 
 Tout écart est une anomalie à examiner : soit la reconstitution s'est trompée,
 soit le livre lui-même porte une irrégularité qu'il faut connaître.
@@ -102,16 +106,46 @@ def obtenu(chemin):
     compte = compteur()
     compte["sections"] = len(re.findall(r"^## ", texte, re.M))
     compte["encadres"] = len(re.findall(r"^::: \{\.encadre", texte, re.M))
-    compte["schemas"] = set(re.findall(r'todo-schema page="(\d+)"', texte))
+    compte["schemas"] = set(re.findall(r"```schema page=(\d+)", texte))
     compte["notes"] = len(re.findall(r"\[\^\d+\]", texte))
     compte["items"] = len(re.findall(r"^(?:- |\d{1,2}\. )", texte, re.M))
     # Un tableau est un bloc de lignes commençant par « | » ; on compte les blocs.
     compte["tableaux"] = len(re.findall(r"(?:^\|.*\n)(?:^\|.*\n)+", texte, re.M))
-    # Le texte de substitution d'un schéma est de moi : il ne compte pas.
-    sans_schema = re.sub(r":::\s*\{\.todo-schema.*?:::", " ", texte, flags=re.S)
+    # Le tracé d'un schéma n'est pas de la prose : il ne compte pas en paragraphes.
+    sans_schema = re.sub(r"```schema.*?```", " ", texte, flags=re.S)
     ordinaire = re.compile(r"^(?!#|:::|\||- |\d{1,2}\. |<!--)\S")
     compte["paragraphes"] = sum(1 for l in sans_schema.split("\n") if ordinaire.match(l))
     return compte
+
+
+PT_MM = 25.4 / 72
+CHASSE = 0.6          # avance d'une chasse fixe classique, en cadratins
+JUSTIFICATION_ACTUELLE, CORPS_ACTUEL = 111.5, 9.96
+JUSTIFICATION_CIBLE, CORPS_CIBLE = 105, 11      # bas de la fourchette de la phase 1
+
+
+def capacite(justification_mm, corps_pt):
+    return int(justification_mm / (corps_pt * CHASSE * PT_MM))
+
+
+def largeur_des_schemas(dossier):
+    """Contrôle que chaque ligne de schéma tient dans la mesure."""
+    actuelle = capacite(JUSTIFICATION_ACTUELLE, CORPS_ACTUEL)
+    cible = capacite(JUSTIFICATION_CIBLE, CORPS_CIBLE)
+    print(f"\nschémas — capacité d'un bloc en chasse fixe : {actuelle} signes"
+          f" aujourd'hui, {cible} après la phase 1")
+    debordements = 0
+    for fichier in sorted(dossier.glob("*.md")):
+        for bloc in re.finditer(r"```schema page=(\d+)\n(.*?)```", fichier.read_text(
+                encoding="utf-8"), re.S):
+            page, trace = bloc.group(1), bloc.group(2).rstrip("\n").split("\n")
+            large = max(len(l) for l in trace)
+            verdict = ("déborde de %d" % (large - actuelle) if large > actuelle
+                       else "tient" if large <= cible
+                       else "tient aujourd'hui, débordera de %d" % (large - cible))
+            print(f"  page {page:>3} : {large:>2} signes — {verdict}")
+            debordements += large > actuelle
+    return debordements
 
 
 def main():
@@ -149,6 +183,7 @@ def main():
         print(f"  {nom:<42} {'  '.join(ligne)}   {sorted(schemas_a) or ''}{marque}")
         anomalies += bool(ecarts)
 
+    anomalies += largeur_des_schemas(options.source)
     print("\nLecture : « obtenu/attendu » quand les deux diffèrent, sinon la valeur seule.")
     print("structure : " + ("CONFORME" if not anomalies
                             else f"{anomalies} chapitre(s) à examiner"))

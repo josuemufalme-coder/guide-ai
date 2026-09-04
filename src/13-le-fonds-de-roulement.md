@@ -22,10 +22,11 @@ C’est pourquoi le fonds de roulement mesure la **santé financière à court t
 
 ## Le cycle : le temps, c’est de l’argent
 
-::: {.todo-schema page="114"}
-Schéma de la page 114 du PDF, à reprendre en figure vectorielle.
-Contenu exact à fournir : l'extraction le rend en caractères invalides.
-:::
+```schema page=114
+ARGENT → ACHAT DE STOCK → VENTE → CRÉANCE CLIENT
+   ↑                                        │
+   └──── paiement des fournisseurs ←──── ARGENT
+```
 
 Le cycle du fonds de roulement, c’est **le temps qui s’écoule entre le moment où vous payez et le moment où vous êtes payé.** Plus ce délai est long, plus il vous faut d’argent immobilisé pour tenir. Plus il est court, moins vous avez besoin de capital pour réaliser le même chiffre d’affaires.
 

@@ -27,10 +27,11 @@ Retenez surtout la dernière. C’est de loin la plus fréquente, et c’est cel
 
 L’identification d’une opportunité suit un cycle. Ce cycle, vous le parcourrez plusieurs fois — et vous continuerez à le parcourir longtemps après avoir créé votre entreprise.
 
-::: {.todo-schema page="24"}
-Schéma de la page 24 du PDF, à reprendre en figure vectorielle.
-Contenu exact à fournir : l'extraction le rend en caractères invalides.
-:::
+```schema page=24
+OBSERVER ET PLANIFIER  →  TESTER À PETITE ÉCHELLE
+         ↑                          ↓
+    AGIR EN GRAND      ←        APPRENDRE
+```
 
 **Observer et planifier.** Partez d’une situation qui ne fonctionne pas bien et demandez-vous comment elle pourrait être améliorée. Formulez ensuite une proposition précise : qui en bénéficierait, en quoi ce serait mieux, ce que cela coûterait.
 
@@ -70,10 +71,11 @@ Ici, le cinquième principe se heurte à une difficulté que les livres importé
 
 Une idée entrepreneuriale ne tombe pas du ciel. Elle naît de la rencontre entre deux choses : **ce dont vous disposez** et **ce dont les autres manquent**. Ce sont les deux portes d’entrée du processus, et vous pouvez commencer par l’une ou par l’autre.
 
-::: {.todo-schema page="27"}
-Schéma de la page 27 du PDF, à reprendre en figure vectorielle.
-Contenu exact à fournir : l'extraction le rend en caractères invalides.
-:::
+```schema page=27
+VOS RESSOURCES ┐
+               ├→ IDÉE ENTREPRENEURIALE →
+LE MARCHÉ      ┘   ÉVALUATION → ACTION
+```
 
 Ce chapitre traite des deux : d’abord ce que vous possédez déjà, ensuite ce que le marché réclame sans le dire.
 

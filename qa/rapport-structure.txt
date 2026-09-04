@@ -20,5 +20,10 @@ chapitre                                       secti    parag    items    encad 
   80-cloture-vos-quatre-vingt-dix-premiers-jours.md   0       10       11        0        0        0       
   90-notes-et-sources.md                       0        2        5        0        0        0       
 
+schémas — capacité d'un bloc en chasse fixe : 52 signes aujourd'hui, 45 après la phase 1
+  page  24 : 49 signes — tient aujourd'hui, débordera de 4
+  page  27 : 41 signes — tient
+  page 114 : 48 signes — tient aujourd'hui, débordera de 3
+
 Lecture : « obtenu/attendu » quand les deux diffèrent, sinon la valeur seule.
 structure : CONFORME

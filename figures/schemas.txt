@@ -1,0 +1,29 @@
+# Schémas du livre, contenu arrêté avec l'auteure.
+#
+# Les trois schémas sont composés en art ASCII dans le PDF d'origine, et deux
+# d'entre eux y sont défectueux : la page 27 déborde la justification et son
+# accolade est un caractère manquant ; la page 114 a perdu ses traits de liaison
+# et sa flèche de retour ne relie plus rien. Les versions ci-dessous sont celles
+# que l'auteure a rétablies.
+#
+# La règle B6 du cahier des charges les destine à devenir des figures
+# vectorielles en phase 4. Ce fichier en est la spécification : c'est ici que se
+# lit le tracé à reproduire, pas dans le PDF.
+#
+# Une ligne « = page N » ouvre un schéma ; les lignes suivantes en sont le tracé,
+# à la colonne près. Les lignes commençant par « # » sont des commentaires.
+
+= page 24
+OBSERVER ET PLANIFIER  →  TESTER À PETITE ÉCHELLE
+         ↑                          ↓
+    AGIR EN GRAND      ←        APPRENDRE
+
+= page 27
+VOS RESSOURCES ┐
+               ├→ IDÉE ENTREPRENEURIALE →
+LE MARCHÉ      ┘   ÉVALUATION → ACTION
+
+= page 114
+ARGENT → ACHAT DE STOCK → VENTE → CRÉANCE CLIENT
+   ↑                                        │
+   └──── paiement des fournisseurs ←──── ARGENT

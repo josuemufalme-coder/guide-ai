@@ -94,12 +94,22 @@ ni l'une ni l'autre. L'audit les disait « constants » ; ils ne le sont pas.
 Il revient dans les seize chapitres, sans exception, sous le même intitulé — la
 phase 4 le retrouvera seule si elle décide d'en faire un encadré.
 
-**Schémas.** Les trois schémas en art ASCII (pages 24, 27 et 114 du PDF) ne sont
-pas reconstitués : l'extraction les rend en caractères invalides et les
-redessiner au jugé reviendrait à inventer. Ils laissent un bloc
-`::: {.todo-schema page="24"}` et attendent le contenu exact de l'auteure. Leur
-état d'extraction est conservé à titre de preuve dans
-`qa/schemas-a-reprendre.txt`, hors du manuscrit.
+**Schémas.** Les trois schémas en art ASCII (pages 24, 27 et 114 du PDF) ne
+viennent pas du PDF : deux d'entre eux y sont défectueux, et l'extraction rend
+leurs traits de liaison en caractères invalides. Leur tracé est une donnée du
+dépôt, arrêtée avec l'auteure, et vit dans `figures/schemas.txt` ; le manuscrit
+les porte en blocs ```` ```schema page=24 ````, où l'alignement survit.
+
+`qa/schemas-substitutions.txt` relève, pour chacun, ce que l'extraction portait
+et ce que le manuscrit porte : c'est sur ce relevé que le contrôle d'intégrité
+sait quels mots sont légitimement remplacés.
+
+La règle B6 les destine à devenir des figures vectorielles en phase 4.
+`figures/schemas.txt` en est la spécification. Le contrôle de structure vérifie
+que chaque ligne tient dans la mesure — un bloc en chasse fixe qui déborde est
+le défaut même de la page 27 qu'on corrige. Aucune ne déborde aujourd'hui ; deux
+déborderont après la phase 1, qui resserre la justification, ce qui ôte tout
+caractère facultatif au passage en vectoriel.
 
 **Notes.** Les cinq appels de notes existent dans le texte, contrairement à ce
 qu'affirme le point B7 de l'audit ; ils sont composés en exposant à 6,65 pt et

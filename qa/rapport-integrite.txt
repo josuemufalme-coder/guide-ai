@@ -88,7 +88,7 @@ reconstitué : 22791 mots
 
 --- bilan global ---
   mots de la référence, mise en page retirée : 22794
-  dont mis en attente (schémas)              : 47
+  dont schémas, comparés à part              : 47
   mots de la reconstitution                  : 22791
   mots présents d'un seul côté : 19 / 18
       référence seule      : 'écoutezle.' ×1

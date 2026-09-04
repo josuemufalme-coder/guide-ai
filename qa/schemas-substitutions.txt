@@ -1,0 +1,39 @@
+# Substitution des schémas.
+#
+# Pour chacun des trois schémas, ce que l'extraction du PDF portait et ce
+# que le manuscrit porte désormais. Deux des trois étaient défectueux dans
+# le PDF d'origine ; le tracé retenu est celui de figures/schemas.txt.
+#
+# Le contrôle d'intégrité s'appuie sur ce relevé : il en déduit quels mots
+# de la référence sont légitimement absents et quels mots du manuscrit sont
+# légitimement nouveaux.
+
+= page 24
+-- extraction --
+OBSERVER ET PLANIFIER → TESTER À PETITE ÉCHELLE
+↑ ↓
+AGIR EN GRAND ← APPRENDRE
+-- manuscrit --
+OBSERVER ET PLANIFIER  →  TESTER À PETITE ÉCHELLE
+         ↑                          ↓
+    AGIR EN GRAND      ←        APPRENDRE
+
+= page 27
+-- extraction --
+VOS RESSOURCES �
+�→ IDÉE ENTREPRENEURIALE → ÉVALUATION → ACTION
+LE MARCHÉ �
+-- manuscrit --
+VOS RESSOURCES ┐
+               ├→ IDÉE ENTREPRENEURIALE →
+LE MARCHÉ      ┘   ÉVALUATION → ACTION
+
+= page 114
+-- extraction --
+ARGENT → ACHAT DE STOCK → VENTE → CRÉANCE CLIENT → ARGENT
+↑ �
+������������� paiement des fournisseurs ←�������������������
+-- manuscrit --
+ARGENT → ACHAT DE STOCK → VENTE → CRÉANCE CLIENT
+   ↑                                        │
+   └──── paiement des fournisseurs ←──── ARGENT
