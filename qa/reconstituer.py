@@ -42,6 +42,7 @@ import html
 import re
 import subprocess
 import sys
+import unicodedata
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -507,10 +508,14 @@ def nom_de_fichier(unite, rang):
             return f"{nom}.md"
     numero = re.match(r"Chapitre\s+(\d+)", titre)
     base = re.sub(r"^(?:Chapitre\s+\d+|Clôture)\s*—\s*", "", titre)
-    base = re.sub(r"[^\w\s-]", "", base.lower())
+    # Les noms de fichiers restent en ASCII : ils seront cités dans des sources
+    # LuaLaTeX et dans un Makefile, où les accents se paient tôt ou tard.
+    base = unicodedata.normalize("NFD", base.lower())
+    base = "".join(c for c in base if unicodedata.category(c) != "Mn")
+    base = re.sub(r"[^a-z0-9\s-]", "", base)
     base = re.sub(r"\s+", "-", base.strip())[:44].strip("-")
     prefixe = f"{int(numero.group(1)):02d}" if numero else "80-cloture"
-    return f"{prefixe}-{base}.md" if numero else f"{prefixe}-{base}.md"
+    return f"{prefixe}-{base}.md"
 
 
 def main():
