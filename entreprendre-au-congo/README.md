@@ -13,7 +13,7 @@ Il fait autorité. En cas de divergence avec ce fichier-ci, c'est lui qui tranch
 | Phase | Objet | État |
 | --- | --- | --- |
 | 0 | Mise en place, découpage, contrôle d'intégrité | **en cours de validation** |
-| 1 | Gabarit typographique (césure, police, justification) | à venir |
+| 1 | Gabarit typographique (césure, police, justification) | **spécimens livrés, D2/D3/D5 en attente** |
 | 2 | Normalisation typographique du texte source | à venir |
 | 3 | Appareil de notes | à venir |
 | 4 | Figures et tableaux | à venir |
@@ -61,6 +61,47 @@ un spécimen de comparaison.
 Le conteneur de travail étant éphémère, `make setup` est à rejouer à chaque
 session. C'est aussi ce qui vérifie, à chaque fois, le critère d'acceptation
 « s'exécute sur une machine vierge ».
+
+## Phase 1 — ce que la mesure a établi
+
+**La géométrie.** Les trois cibles du cahier — justification 100–105 mm, marges
+20/15 mm, 60–66 signes — sont incompatibles en A5 : 148 − 20 − 15 rend 113 mm,
+la justification actuelle. Le compte de signes étant le critère maître, la
+géométrie retenue est 24 mm de gouttière et 19 mm en extérieure, soit 105 mm,
+la gouttière restant plus large que l'extérieure.
+
+**Le corps.** Il n'est pas réglé mais mesuré, par `qa/accorder-corps.py`, sur la
+cible de 60 à 66 signes. Résultat : EB Garamond 12,75 pt, Libertinus 11,75 pt,
+Source Serif Pro 10,75 pt — au-delà des 10,5 à 11 pt du cahier pour deux d'entre
+elles. La raison tient à la police d'origine : DejaVu Serif est très large, les
+polices de labeur sont étroites, et à corps égal elles logent bien plus de signes
+sur la même mesure. Resserrer la justification retire des signes, changer de
+police en ajoute, et le second effet l'emporte.
+
+**Le taux de césure.** Le critère de sortie — 12 à 25 % — n'est pas atteint :
+7 à 10 % sur un corpus de neuf chapitres. La cause est mesurée, non supposée :
+
+| réglage de `microtype` | taux de césure |
+| --- | ---: |
+| protrusion **et expansion** (ce que le cahier exige) | 7,2 % |
+| protrusion seule (ce que XeLaTeX sait faire) | 15,5 % |
+| aucun | 15,0 % |
+
+L'expansion de caractères permet à TeX d'ajuster la chasse plutôt que de couper
+les mots. Le critère de 12 à 25 % décrit donc une chaîne **sans** expansion,
+c'est-à-dire celle que le cahier écarte. Les deux exigences de la phase 1
+s'excluent, et le taux de césure n'est de toute façon qu'un indice de ce qui
+importe : une justification régulière, sans lézarde. L'expansion l'obtient mieux
+que la césure.
+
+**La ponctuation haute.** De 38 lignes rejetées dans le fichier d'origine à une
+seule, dont la cause est dans la source et non dans le gabarit : un guillemet
+fermant précédé d'une espace ordinaire, au chapitre 15. C'est le travail de la
+phase 2.
+
+**Une fonte défectueuse écartée.** La graisse d'EB Garamond du paquet Debian ne
+pèse que 43 Ko contre 422 pour la romaine : c'est un tronçon sans lettres
+accentuées, qui composait « Ralit congolaise ». Celle de TeX Live est complète.
 
 ## Conventions du manuscrit
 

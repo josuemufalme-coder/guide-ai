@@ -22,7 +22,8 @@ APT := texlive-luatex texlive-lang-french texlive-latex-extra texlive-fonts-extr
        texlive-pictures texlive-plain-generic latexmk fonts-ebgaramond \
        poppler-utils python3-pip
 
-.PHONY: aide setup reconstituer integrite structure mesures qa livre epub relecture tout propre
+.PHONY: aide setup reconstituer integrite structure mesures qa specimen cesure \
+        couverture livre epub relecture tout propre
 
 aide:
 	@echo "cibles :"
@@ -32,6 +33,9 @@ aide:
 	@echo "  structure     vérifie l'agencement : titres, encadrés, tableaux"
 	@echo "  mesures       relève césure, ponctuation haute, gabarit"
 	@echo "  qa            integrite + mesures, rapports archivés dans qa/"
+	@echo "  specimen      la double page dans les trois polices  (phase 1)"
+	@echo "  cesure        les critères de sortie sur neuf chapitres"
+	@echo "  couverture    les quatre propositions de première"
 	@echo "  livre         interieur.pdf            (phase 1)"
 	@echo "  epub          livre.epub               (phase 9)"
 	@echo "  relecture     relecture.pdf            (phase 9)"
@@ -57,6 +61,16 @@ mesures: | $(BUILD)
 structure: | $(BUILD)
 	python3 $(QA)/verifier-structure.py $(PDFS) --source $(SRC) \
 	  | tee $(QA)/rapport-structure.txt
+
+specimen: | $(BUILD)
+	python3 $(QA)/composer-specimen.py --sortie $(BUILD)/specimen
+
+cesure: | $(BUILD)
+	python3 $(QA)/mesurer-cesure.py --sortie $(BUILD)/cesure \
+	  | tee $(QA)/rapport-cesure.txt
+
+couverture: | $(BUILD)
+	python3 couverture/composer.py --sortie $(BUILD)/couverture
 
 qa: integrite structure mesures
 
