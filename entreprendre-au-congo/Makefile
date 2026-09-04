@@ -22,7 +22,7 @@ APT := texlive-luatex texlive-lang-french texlive-latex-extra texlive-fonts-extr
        texlive-pictures texlive-plain-generic latexmk fonts-ebgaramond \
        poppler-utils python3-pip
 
-.PHONY: aide setup reconstituer integrite structure mesures qa specimen cesure \
+.PHONY: aide setup reconstituer integrite structure mesures qa specimen composition \
         couverture livre epub relecture tout propre
 
 aide:
@@ -34,7 +34,7 @@ aide:
 	@echo "  mesures       relève césure, ponctuation haute, gabarit"
 	@echo "  qa            integrite + mesures, rapports archivés dans qa/"
 	@echo "  specimen      la double page dans les trois polices  (phase 1)"
-	@echo "  cesure        les critères de sortie sur neuf chapitres"
+	@echo "  composition   les quatre mesures : débordements, césures, veuves"
 	@echo "  couverture    les quatre propositions de première"
 	@echo "  livre         interieur.pdf            (phase 1)"
 	@echo "  epub          livre.epub               (phase 9)"
@@ -65,9 +65,10 @@ structure: | $(BUILD)
 specimen: | $(BUILD)
 	python3 $(QA)/composer-specimen.py --sortie $(BUILD)/specimen
 
-cesure: | $(BUILD)
-	python3 $(QA)/mesurer-cesure.py --sortie $(BUILD)/cesure \
-	  | tee $(QA)/rapport-cesure.txt
+composition: | $(BUILD)
+	python3 $(QA)/mesurer-cesure.py --sortie $(BUILD)/cesure > /dev/null
+	python3 $(QA)/mesurer-composition.py $(BUILD)/cesure/specimen-*.pdf \
+	  | tee $(QA)/rapport-composition.txt
 
 couverture: | $(BUILD)
 	python3 couverture/composer.py --sortie $(BUILD)/couverture

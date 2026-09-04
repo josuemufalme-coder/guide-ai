@@ -21,6 +21,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "style"))
 from gabarit import GEOMETRIE, POLICES, PREAMBULE      # noqa: E402
 
+# Signes par ligne relevés sur le corpus de neuf chapitres par
+# qa/mesurer-composition.py : médiane, puis 90e centile.
+SIGNES = {"garamond": "62 / 66", "libertinus": "62 / 66", "sourceserif": "62 / 66"}
+
 ECHAPPEMENTS = {"&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#",
                 "_": r"\_", "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}",
                 "^": r"\textasciicircum{}", "\\": r"\textbackslash{}"}
@@ -109,7 +113,7 @@ def compte_de_pages(pdf):
     return 0
 
 
-def composer(clef, police, corps_tex, sortie, courant):
+def composer(clef, police, corps_tex, sortie, courant, regie=None):
     # Les marqueurs sont @nom@ et non %(nom)s : le pour-cent ouvre un commentaire
     # en LaTeX, et les deux syntaxes ne cohabitent pas.
     corps = police["corps"]
@@ -127,6 +131,7 @@ def composer(clef, police, corps_tex, sortie, courant):
         "italique": police["italique"], "gras": police["gras"],
         "linespread": f"{police['interlignage'] / corps / 1.2:.4f}",
         "courant": courant,
+        "regie": regie or "",
     }
     preambule = PREAMBULE
     for nom, valeur in valeurs.items():
@@ -210,7 +215,12 @@ def main():
 
     print(f"  départ : {depuis or 'début du chapitre'}")
     for clef, police in POLICES.items():
-        pdf = composer(clef, police, corps_tex, options.sortie, courant)
+        # La ligne de régie nomme, en pied de page, ce que la double page donne
+        # à juger : une police ne se juge pas à un corps qui ne sera pas le sien.
+        regie = (f"{police['nom']} \\quad {police['corps']:g}/"
+                 f"{police['interlignage']:g} pt \\quad 105 mm \\quad "
+                 f"{SIGNES[clef]} signes")
+        pdf = composer(clef, police, corps_tex, options.sortie, courant, regie)
         if not pdf:
             continue
         pages = compte_de_pages(pdf)

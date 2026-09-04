@@ -78,8 +78,9 @@ polices de labeur sont étroites, et à corps égal elles logent bien plus de si
 sur la même mesure. Resserrer la justification retire des signes, changer de
 police en ajoute, et le second effet l'emporte.
 
-**Le taux de césure.** Le critère de sortie — 12 à 25 % — n'est pas atteint :
-7 à 10 % sur un corpus de neuf chapitres. La cause est mesurée, non supposée :
+**Le taux de césure, abandonné et remplacé.** Le critère de sortie — 12 à 25 % —
+n'est pas atteignable : 7 à 10 % sur un corpus de neuf chapitres. La cause est
+mesurée, non supposée :
 
 | réglage de `microtype` | taux de césure |
 | --- | ---: |
@@ -90,9 +91,24 @@ police en ajoute, et le second effet l'emporte.
 L'expansion de caractères permet à TeX d'ajuster la chasse plutôt que de couper
 les mots. Le critère de 12 à 25 % décrit donc une chaîne **sans** expansion,
 c'est-à-dire celle que le cahier écarte. Les deux exigences de la phase 1
-s'excluent, et le taux de césure n'est de toute façon qu'un indice de ce qui
-importe : une justification régulière, sans lézarde. L'expansion l'obtient mieux
-que la césure.
+s'excluent.
+
+Quatre mesures le remplacent, relevées par `qa/mesurer-composition.py` à chaque
+composition — jamais une seule fois :
+
+| mesure | seuil | corpus de neuf chapitres |
+| --- | --- | --- |
+| boîtes débordantes | zéro | **0** pour les trois polices |
+| lignes de mauvaisité > 1000 | seuil annoncé, imposé à `\hbadness` | 1 à 2 sur ~1 070 |
+| césures consécutives | deux au plus | **2** pour les trois |
+| veuves et lignes creuses en tête | zéro | **0** |
+| orphelines en pied | zéro | **0** |
+| mot coupé en dernier mot de page | zéro | **0** |
+
+Deux réglages ont été nécessaires pour y parvenir : `\clubpenalty` et
+`\widowpenalty` à 10000, qui interdisent les veuves au lieu de les décourager,
+et une réserve d'élasticité (`\emergencystretch`) qui laisse TeX relâcher un
+paragraphe plutôt que de laisser une ligne déborder la mesure.
 
 **La ponctuation haute.** De 38 lignes rejetées dans le fichier d'origine à une
 seule, dont la cause est dans la source et non dans le gabarit : un guillemet

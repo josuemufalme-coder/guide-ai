@@ -1,6 +1,0 @@
-corpus : 9 chapitres, environ 9436 mots
-
-police                 corps  lignes   césure  signes  ponct. haute
-  EB Garamond        12.75 pt     915    8.85%      66             1   ← hors cible
-  Libertinus Serif   11.75 pt     914    7.22%      66             1   ← hors cible
-  Source Serif Pro   10.75 pt     908    9.69%      66             2   ← hors cible

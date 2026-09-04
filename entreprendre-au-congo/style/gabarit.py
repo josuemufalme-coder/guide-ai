@@ -96,6 +96,24 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 \lefthyphenmin=2
 \righthyphenmin=3
 
+%% Veuves et orphelines : interdites, non découragées. Une ligne seule en tête
+%% ou en pied de page est un défaut de composition, pas un compromis.
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+%% Le seuil de mauvaisité annoncé : au-delà de 1000, une ligne est visiblement
+%% lâche. LaTeX consigne alors un avertissement, que qa/mesurer-composition.py
+%% relève et dénombre.
+\hbadness=1000
+\vbadness=1000
+\hfuzz=0.1pt
+
+%% Une réserve d'élasticité en dernier recours : plutôt que de laisser une ligne
+%% déborder la justification, TeX peut relâcher un peu l'espacement d'un
+%% paragraphe entier. Sans elle, une poignée de lignes sortent de la mesure.
+\emergencystretch=2em
+
 %% --- Microtypographie ------------------------------------------------------
 %% XeLaTeX ne fait que la protrusion ; LuaLaTeX fait aussi l'expansion, ce qui
 %% resserre la justification sans écarter les mots. C'est la seconde moitié de
@@ -111,6 +129,9 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
   \par\addvspace{\onelineskip}%
   \begingroup
   \leftskip=5mm \rightskip=5mm
+  %% L'encadré compose sur une mesure plus étroite : ce qui passe dans le corps
+  %% peut y déborder. Une réserve d'élasticité plus large lui est propre.
+  \emergencystretch=3em
   {\color{filet}\hrule height 0.4pt}%
   \vspace{0.6\onelineskip}%
   \small
@@ -134,6 +155,11 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 \makeevenfoot{livre}{\small\thepage}{}{}
 \makeoddfoot{livre}{}{}{\small\thepage}
 \pagestyle{livre}
+
+%% Ligne de régie du spécimen, hors du bloc de texte : elle nomme ce que la
+%% double page donne à juger. Elle n'appartient pas au livre.
+\makeoddfoot{livre}{}{\scriptsize\color{filet}@regie@}{\small\thepage}
+\makeevenfoot{livre}{\small\thepage}{\scriptsize\color{filet}@regie@}{}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.55\onelineskip}
