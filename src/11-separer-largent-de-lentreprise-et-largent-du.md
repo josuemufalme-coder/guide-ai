@@ -29,8 +29,7 @@ Trois raisons, et chacune suffirait.
 **Vous ne pouvez plus réinvestir ni emprunter.** L’argent prélevé est un argent qui ne devient jamais une machine, un stock, un local. Et sans traçabilité des recettes, aucune institution financière ne vous suivra, quelle que soit la réalité de votre activité.
 
 ::: {.encadre type="aparte" titre="La pression sociale"}
-Il faut nommer ce que les livres importés passent sous silence. Ici, l’entrepreneur qui réussit devient le recours de son entourage : la
-scolarité d’un neveu, un deuil, une maladie, une aide à un frère. Ces demandes sont légitimes, et les refuser toutes vous couperait de votre milieu.
+Il faut nommer ce que les livres importés passent sous silence. Ici, l’entrepreneur qui réussit devient le recours de son entourage : la scolarité d’un neveu, un deuil, une maladie, une aide à un frère. Ces demandes sont légitimes, et les refuser toutes vous couperait de votre milieu.
 Mais elles doivent être honorées par votre salaire, pas par la caisse. La différence est capitale : ce que vous donnez sur votre salaire est un choix personnel, limité et assumé ; ce que vous prenez dans la caisse est un prélèvement sans limite, qui grandit avec les demandes et finit par dévorer l’outil de travail. Une entreprise détruite ne pourra plus aider personne.
 Un moyen simple de tenir cette ligne : dire, tranquillement et systématiquement, que l’entreprise a ses comptes et que vous, vous avez un salaire — comme dans n’importe quelle société. Cette phrase se répète sans blesser, et elle finit par être admise.
 :::

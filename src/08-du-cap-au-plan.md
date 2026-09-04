@@ -3,9 +3,9 @@
 Un objectif indique une destination. Il ne dit pas comment y aller. Ce chapitre transforme vos objectifs en un chemin daté, en actions exécutables, et en réponses préparées aux obstacles qui viendront.
 
 ## Les trois phases de la planification
-**1. Recueillir les informations.** Avant de décider, allez chercher ce que vous ne savez pas : les prix pratiqués, les fournisseurs disponibles, les délais réels, les autorisations exigées, les habitudes des clients. Un plan bâti sur des suppositions s’effondre dès la première semaine d’exécution. La plupart de ces informations ne coûtent rien d’autre que des déplacements et des conversations.
-**2. Fixer les étapes et prévoir les obstacles.** Découpez le chemin en étapes datées. Puis, pour chaque étape, posez-vous la question que l’on évite : *qu’est-ce qui peut m’empêcher de la franchir ?* Et pour chaque risque identifié, préparez une réponse.
-**3. Descendre à la semaine.** Transformez la prochaine étape en actions concrètes réparties sur des plans hebdomadaires. Une action concrète commence par un verbe et peut être exécutée par une seule personne dans une seule journée : « appeler trois fournisseurs de sacs », « déposer le dossier au guichet », « livrer l’échantillon au client X ». « Améliorer la production » n’est pas une action, c’est encore un souhait.
+1. **Recueillir les informations.** Avant de décider, allez chercher ce que vous ne savez pas : les prix pratiqués, les fournisseurs disponibles, les délais réels, les autorisations exigées, les habitudes des clients. Un plan bâti sur des suppositions s’effondre dès la première semaine d’exécution. La plupart de ces informations ne coûtent rien d’autre que des déplacements et des conversations.
+2. **Fixer les étapes et prévoir les obstacles.** Découpez le chemin en étapes datées. Puis, pour chaque étape, posez-vous la question que l’on évite : *qu’est-ce qui peut m’empêcher de la franchir ?* Et pour chaque risque identifié, préparez une réponse.
+3. **Descendre à la semaine.** Transformez la prochaine étape en actions concrètes réparties sur des plans hebdomadaires. Une action concrète commence par un verbe et peut être exécutée par une seule personne dans une seule journée : « appeler trois fournisseurs de sacs », « déposer le dossier au guichet », « livrer l’échantillon au client X ». « Améliorer la production » n’est pas une action, c’est encore un souhait.
 
 ## Le plan de développement
 
@@ -47,7 +47,7 @@ Vos plans ne se réaliseront pas toujours comme prévu. Ce n’est ni du pessimi
 
 Pour chaque obstacle que vous jugez possible, écrivez une phrase construite ainsi :
 
-::: {.encadre}
+::: {.encadre type="aparte"}
 **Si* (obstacle précis) *alors* (action précise que je déclenche)*.
 :::
 
@@ -63,12 +63,11 @@ La raison est simple : la deuxième solution échoue souvent pour la même cause
 
 Reprenons l’exemple du papier :
 
-| 1 | Réponse Commander chez un second fournisseur, dans un autre marché | Dépend de Un autre circuit d’approvisionnement |
+|  | Réponse | Dépend de |
 | --- | --- | --- |
+| 1 | Commander chez un second fournisseur, dans un autre marché | Un autre circuit d’approvisionnement |
 | 2 | Utiliser une matière de remplacement déjà testée | Ma préparation technique |
-| 3 | Réduire le format et honorer d’abord les commandes | Moi seul |
-
-déjà payées
+| 3 | Réduire le format et honorer d’abord les commandes déjà payées | Moi seul |
 
 La troisième réponse est la plus précieuse, car elle ne dépend de personne d’autre que vous. Efforcez-vous d’en avoir toujours une de ce type.
 

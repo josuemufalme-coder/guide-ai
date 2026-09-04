@@ -8,7 +8,7 @@ Ce n’est pas un paradoxe. C’est un problème de fonds de roulement, et c’e
 
 ## De quoi parle-t-on
 
-::: {.encadre}
+::: {.encadre type="aparte"}
 Fonds de roulement = actif à court terme − passif à court terme
 :::
 
@@ -29,8 +29,9 @@ Contenu exact à fournir : l'extraction le rend en caractères invalides.
 
 Le cycle du fonds de roulement, c’est **le temps qui s’écoule entre le moment où vous payez et le moment où vous êtes payé.** Plus ce délai est long, plus il vous faut d’argent immobilisé pour tenir. Plus il est court, moins vous avez besoin de capital pour réaliser le même chiffre d’affaires.
 
-| Paie son fournisseur | Entreprise A à la livraison | Entreprise B à 30 jours |
+|  | Entreprise A | Entreprise B |
 | --- | --- | --- |
+| Paie son fournisseur | à la livraison | à 30 jours |
 | Garde son stock | 45 jours | 15 jours |
 | Est payée par ses clients | à 30 jours | au comptant |
 | Argent immobilisé | 75 jours | aucun |
@@ -38,9 +39,9 @@ Le cycle du fonds de roulement, c’est **le temps qui s’écoule entre le mome
 Les deux vendent la même chose, au même prix, avec la même marge. La première doit financer soixante-quinze jours d’activité sur ses fonds propres ou par emprunt. La seconde n’a besoin d’aucun capital de roulement — ses clients financent son activité. C’est la même entreprise sur le papier, et deux situations financières sans rapport.
 
 ## Les trois leviers
-**1. Allonger le délai fournisseur.** Négociez des conditions de paiement : trente jours plutôt que le comptant, un paiement échelonné, un règlement après livraison. Chaque jour gagné est un jour de trésorerie disponible, sans intérêt. C’est le levier le plus efficace et le moins utilisé — parce qu’il faut oser demander, et parce qu’il se mérite : seul un client qui paie ponctuellement obtient des conditions.
-**2. Accélérer la rotation du stock.** Un stock qui tourne vite libère de l’argent ; un stock qui dort en consomme. Chaque article qui reste trois mois en rayon, c’est de l’argent que vous avez payé et qui ne travaille pas — sans compter les pertes, la casse et la démodation. Achetez plus souvent en plus petites quantités, quitte à perdre une remise sur volume : le calcul est presque toujours favorable pour une petite structure.
-**3. Réduire le délai de paiement des clients.** Facturez immédiatement — un jour de retard de facturation est un jour de retard de paiement. Relancez sans attendre et sans gêne. Encouragez le règlement rapide par une remise modeste. Et n’accordez du crédit qu’à des clients que vous avez choisis.
+1. **Allonger le délai fournisseur.** Négociez des conditions de paiement : trente jours plutôt que le comptant, un paiement échelonné, un règlement après livraison. Chaque jour gagné est un jour de trésorerie disponible, sans intérêt. C’est le levier le plus efficace et le moins utilisé — parce qu’il faut oser demander, et parce qu’il se mérite : seul un client qui paie ponctuellement obtient des conditions.
+2. **Accélérer la rotation du stock.** Un stock qui tourne vite libère de l’argent ; un stock qui dort en consomme. Chaque article qui reste trois mois en rayon, c’est de l’argent que vous avez payé et qui ne travaille pas — sans compter les pertes, la casse et la démodation. Achetez plus souvent en plus petites quantités, quitte à perdre une remise sur volume : le calcul est presque toujours favorable pour une petite structure.
+3. **Réduire le délai de paiement des clients.** Facturez immédiatement — un jour de retard de facturation est un jour de retard de paiement. Relancez sans attendre et sans gêne. Encouragez le règlement rapide par une remise modeste. Et n’accordez du crédit qu’à des clients que vous avez choisis.
 
 ::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Le crédit client est ici le principal destructeur de trésorerie des petites entreprises, et il n’est presque jamais une décision réfléchie : il s’installe par la relation. On livre à un parent, à un voisin, à un membre de l’église, à un fonctionnaire qui promet de régler après le paiement de son salaire. Refuser paraît discourtois, alors on accepte. Puis on n’ose pas relancer, parce qu’on connaît la personne.

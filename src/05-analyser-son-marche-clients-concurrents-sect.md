@@ -73,8 +73,8 @@ Ne cherchez pas la précision comptable. Cherchez l’ordre de grandeur, et la l
 Se comparer à ses concurrents et s’en différencier porte un nom : le **positionnement**. Attention à ne pas le confondre avec la publicité — le positionnement n’est pas ce que vous dites de vous. C’est **la place que vous occupez dans l’esprit de votre client** : ce qu’il pense de vous, spontanément, quand il vous compare aux autres.
 
 Il se construit en trois temps.
-**1. Choisissez les attributs qui comptent pour votre clientèle.** Pas ceux qui vous tiennent à cœur : ceux qu’elle regarde. Qualité, prix, délai, proximité, présentation, garantie, facilité de paiement.
-**2. Comparez-vous, attribut par attribut.** Notez honnêtement vos performances et celles des autres.
+1. **Choisissez les attributs qui comptent pour votre clientèle.** Pas ceux qui vous tiennent à cœur : ceux qu’elle regarde. Qualité, prix, délai, proximité, présentation, garantie, facilité de paiement.
+2. **Comparez-vous, attribut par attribut.** Notez honnêtement vos performances et celles des autres.
 
 | Attribut | Moi | Concurrent A | Concurrent B |
 | --- | --- | --- | --- |
@@ -82,7 +82,7 @@ Il se construit en trois temps.
 | Qualité perçue | Bonne | Faible | Bonne |
 | Délai | 2 jours | 5 jours | 1 jour |
 | Facilité de paiement | Comptant | Crédit | Comptant |
-**3. Occupez une place claire.** Cherchez la case où vous êtes bon et où les autres sont faibles, et faites-en votre affaire. Dans l’exemple ci-dessus, la position évidente est : *la bonne qualité livrée en deux jours, à un prix raisonnable* — ni le moins cher, ni le plus rapide, mais le meilleur équilibre.
+3. **Occupez une place claire.** Cherchez la case où vous êtes bon et où les autres sont faibles, et faites-en votre affaire. Dans l’exemple ci-dessus, la position évidente est : *la bonne qualité livrée en deux jours, à un prix raisonnable* — ni le moins cher, ni le plus rapide, mais le meilleur équilibre.
 
 Une position claire se résume en une phrase que le client pourrait dire de vous. Si vous ne parvenez pas à écrire cette phrase, votre positionnement n’existe pas encore.
 
@@ -99,8 +99,7 @@ Comprendre le vôtre, c’est répondre à cinq questions.
 
 ::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Ne comptez pas sur des statistiques officielles complètes et à jour pour dimensionner votre marché : elles sont rares, partielles, et une grande partie de l’activité se déroule dans l’informel, donc hors des comptages.
-Vous devrez fabriquer vos propres chiffres, et c’est faisable. Comptez les points de vente de votre quartier, comptez les clients
-servis, interrogez trente personnes dans votre zone sur leur fréquence d’achat, demandez à un grossiste combien d’unités il écoule par semaine. Vous obtiendrez une estimation imparfaite mais honnête — et infiniment plus fiable qu’un chiffre trouvé sur internet et calculé pour un autre pays.
+Vous devrez fabriquer vos propres chiffres, et c’est faisable. Comptez les points de vente de votre quartier, comptez les clients servis, interrogez trente personnes dans votre zone sur leur fréquence d’achat, demandez à un grossiste combien d’unités il écoule par semaine. Vous obtiendrez une estimation imparfaite mais honnête — et infiniment plus fiable qu’un chiffre trouvé sur internet et calculé pour un autre pays.
 Notez vos hypothèses de calcul par écrit. Le jour où vous présenterez votre plan d’affaires à une banque ou à un bailleur, pouvoir expliquer *comment* vous êtes arrivé à votre estimation vaudra bien davantage que le chiffre lui-même.
 :::
 

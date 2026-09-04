@@ -1,19 +1,16 @@
 référence   : 23311 mots
-reconstitué : 22838 mots
+reconstitué : 22791 mots
 écarts — mise en page  : 88
-écarts — schéma        : 2
-écarts — ordre         : 8
+écarts — schéma        : 5
+écarts — ordre         : 4
 écarts — correction    : 18
-écarts — réel          : 2
+écarts — réel          : 1
 
 --- ÉCARTS RÉELS ---
 
-  [delete] après « …ou par l’autre. VOS RESSOURCES � �→ »
-      référence   : LE MARCHÉ IDÉE ENTREPRENEURIALE → ÉVALUATION →
-      reconstitué : IDÉE ENTREPRENEURIALE → ÉVALUATION → ACTION LE MARCHÉ
-
-  [insert] après « …STOCK → VENTE → CRÉANCE CLIENT → »
-      reconstitué : ARGENT
+  [delete] après « …des autres. Reprenons l’exemple du papier : »
+      référence   : 1 Réponse Dépend de Commander chez Un autre circuit un second d’approvisionnement fournisseur, dans un autre marché 2 Utiliser une Ma préparation matière de technique remplacement déjà testée 3 Réduire le format Moi seul et honorer d’abord 
+      reconstitué : Réponse Dépend de 1 Commander chez un second fournisseur, dans un autre marché Un autre circuit d’approvisionnement 2 Utiliser une matière de remplacement déjà testée Ma préparation technique 3 Réduire le format et honorer d’abord les comma
 
 --- corrections ---
 
@@ -90,8 +87,9 @@ reconstitué : 22838 mots
       reconstitué : parlez-leur
 
 --- bilan global ---
-  mots de la référence, mise en page retirée : 22841
-  mots de la reconstitution                  : 22838
+  mots de la référence, mise en page retirée : 22794
+  dont mis en attente (schémas)              : 47
+  mots de la reconstitution                  : 22791
   mots présents d'un seul côté : 19 / 18
       référence seule      : 'écoutezle.' ×1
       référence seule      : 'fontils' ×1

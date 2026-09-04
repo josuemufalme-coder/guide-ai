@@ -18,10 +18,10 @@ Ce que l’absence de comptes vous coûte, en revanche, est certain :
 ## Le minimum vital : quatre cahiers
 
 Commencez petit, mais commencez. Quatre registres suffisent pour tenir une petite entreprise.
-**1. Le cahier de caisse.** Chaque mouvement d’argent, dans l’ordre : date, objet, entrée, sortie, solde. C’est le registre le plus important. Tenu quotidiennement, il prend cinq minutes.
-**2. Le cahier des créances.** Ce que les clients vous doivent : nom, montant, date, échéance, date de règlement.
-**3. Le cahier des dettes.** Ce que vous devez : fournisseur, montant, échéance.
-**4. Le cahier de stock.** Entrées, sorties, solde. Il révèle les pertes et les vols mieux que toute surveillance.
+1. **Le cahier de caisse.** Chaque mouvement d’argent, dans l’ordre : date, objet, entrée, sortie, solde. C’est le registre le plus important. Tenu quotidiennement, il prend cinq minutes.
+2. **Le cahier des créances.** Ce que les clients vous doivent : nom, montant, date, échéance, date de règlement.
+3. **Le cahier des dettes.** Ce que vous devez : fournisseur, montant, échéance.
+4. **Le cahier de stock.** Entrées, sorties, solde. Il révèle les pertes et les vols mieux que toute surveillance.
 
 À ces quatre registres, ajoutez le classement de vos pièces : factures, reçus, bons de livraison, dans une simple chemise par mois. Sans pièces, vos cahiers ne prouvent rien.
 
@@ -59,8 +59,7 @@ Deux conseils pratiques. D’abord, tenez vos quatre cahiers dès le premier jou
 ::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Abordons franchement la crainte de l’administration.
 L’argument « si je tiens des comptes, on viendra me taxer » est compréhensible, et il n’est pas entièrement faux. Mais il conduit à un piège : sans comptes, vous ne pouvez rien contester. Face à une taxation d’office établie sur une estimation, celui qui n’a aucun document ne peut opposer que sa parole. Celui qui a ses cahiers et ses pièces peut discuter des chiffres. **La comptabilité** protège autant qu’elle expose.
-Un second point, plus important encore : sans comptes, vous êtes définitivement enfermé dans la petite échelle. Ni crédit bancaire, ni marché avec une grande entreprise, ni appel d’offres, ni partenaire sérieux. Beaucoup d’entrepreneurs congolais
-compétents restent petits pour cette seule raison. C’est un choix qui se comprend à court terme et qui coûte tout à long terme.
+Un second point, plus important encore : sans comptes, vous êtes définitivement enfermé dans la petite échelle. Ni crédit bancaire, ni marché avec une grande entreprise, ni appel d’offres, ni partenaire sérieux. Beaucoup d’entrepreneurs congolais compétents restent petits pour cette seule raison. C’est un choix qui se comprend à court terme et qui coûte tout à long terme.
 :::
 
 ::: {.encadre type="a-faire" titre="À faire cette semaine"}

@@ -115,8 +115,7 @@ Alors pensez autrement. Sortez des sentiers battus, examinez les solutions que p
 
 ::: {.encadre type="aparte" titre="Une mise au point nécessaire"}
 Être différent ne veut pas dire inventer ce qui n’a jamais existé. On confond souvent les deux, et cette confusion paralyse beaucoup de porteurs de projets, persuadés qu’il leur faut une idée révolutionnaire pour commencer.
-C’est faux, et c’est même une mauvaise stratégie pour un premier projet : une activité totalement inédite exige d’éduquer le marché, ce qui coûte cher et prend du temps. La grande majorité des
-entreprises solides font une chose connue, mais la font autrement et mieux. Visez la différence, pas l’inédit.
+C’est faux, et c’est même une mauvaise stratégie pour un premier projet : une activité totalement inédite exige d’éduquer le marché, ce qui coûte cher et prend du temps. La grande majorité des entreprises solides font une chose connue, mais la font autrement et mieux. Visez la différence, pas l’inédit.
 :::
 
 ## Seconde porte : le marché, ou l’art de voir les problèmes autrement

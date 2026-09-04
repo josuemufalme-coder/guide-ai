@@ -57,17 +57,16 @@ Et n’oubliez pas le cas le plus fréquent : la **faiblesse que vous êtes le s
 
 L’ensemble de cet examen se résume dans un tableau à quatre cases. Deux concernent votre entreprise, deux concernent l’extérieur.
 
-| Interne | (vous) | Favorable Forces | Défavorable Faiblesses |
-| --- | --- | --- | --- |
-
-**Externe** (le marché) Opportunités Menaces
+|  | Favorable | Défavorable |
+| --- | --- | --- |
+| Interne (vous) | Forces | Faiblesses |
+| Externe (le marché) | Opportunités | Menaces |
 
 Les **opportunités** sont les évolutions extérieures dont vous pourriez tirer parti : un quartier qui se construit, un concurrent qui ferme, une matière devenue accessible, une demande nouvelle. Les **menaces** sont les évolutions extérieures qui peuvent vous nuire : un nouvel entrant, une réglementation, une hausse durable des coûts, un changement d’habitude chez vos clients.
 
 Ne confondez pas les colonnes. Une force ou une faiblesse est **en vous** et vous pouvez agir dessus. Une opportunité ou une menace est **hors de vous** et vous ne pouvez que vous y adapter. Confondre les deux conduit à s’attribuer les mérites du marché quand il porte, et à accuser le marché quand la faute est chez soi.
 
-::: {.encadre}
-Le tableau ne sert à rien tant qu’on n’en tire pas des décisions
+::: {.encadre type="aparte" titre="Le tableau ne sert à rien tant qu’on n’en tire pas des décisions"}
 C’est l’erreur la plus répandue avec cet outil : on remplit quatre listes, on les trouve satisfaisantes, et l’on referme le cahier. Un tableau rempli n’a jamais fait vendre un seul produit.
 Croisez les cases pour en sortir des actions :
 - **Force + Opportunité** : que puis-je saisir dès maintenant avec ce que j’ai déjà ? C’est votre priorité immédiate.

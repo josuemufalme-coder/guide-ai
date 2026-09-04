@@ -43,12 +43,8 @@ Interrogez plutôt le passé et le présent, qui sont vérifiables :
 
 | Au lieu de demander | Demandez |
 | --- | --- |
-
-« Aimeriez-vous ce produit ? » « Comment faites-vous
-
-| « Achèteriez-vous à tel prix ? | aujourd’hui ? » « Combien avez-vous payé la |
-| --- | --- |
-| » | dernière fois ? » |
+| « Aimeriez-vous ce produit ? » | « Comment faites-vous aujourd’hui ? » |
+| « Achèteriez-vous à tel prix ? » | « Combien avez-vous payé la dernière fois ? » |
 | « Ce serait utile, non ? » | « Qu’est-ce qui vous gêne le plus là-dedans ? » |
 | « Vous en pensez quoi ? » | « Quand cela vous est-il arrivé la dernière fois ? » |
 
@@ -74,8 +70,7 @@ Quelques formes de test peu coûteuses : vendre à dix personnes avant d’en vi
 Trois précautions propres à notre contexte.
 **Le compliment n’est pas un engagement.** La courtoisie est une valeur forte dans nos échanges : on ne décourage pas quelqu’un qui se lance. Attendez-vous à beaucoup d’encouragements sincères et sans conséquence. Une commande vaut cent compliments.
 **Testez là où vous vendrez.** Un produit qui séduit vos collègues du bureau ne dit rien de ce qu’en pensera le marché du quartier où vous comptez vous installer. Le pouvoir d’achat, les habitudes et les circuits changent d’une commune à l’autre.
-**Attention aux premiers clients qui sont des proches.** Ils achètent pour vous soutenir, pas parce qu’ils ont besoin du
-produit. Ce sont de faux signaux, et ils sont dangereux parce qu’ils arrivent au moment où l’on cherche à être rassuré. Comptez séparément les ventes faites à des inconnus : ce sont les seules qui prouvent quelque chose.
+**Attention aux premiers clients qui sont des proches.** Ils achètent pour vous soutenir, pas parce qu’ils ont besoin du produit. Ce sont de faux signaux, et ils sont dangereux parce qu’ils arrivent au moment où l’on cherche à être rassuré. Comptez séparément les ventes faites à des inconnus : ce sont les seules qui prouvent quelque chose.
 :::
 
 ## Chercher aussi ailleurs

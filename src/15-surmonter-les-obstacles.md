@@ -19,11 +19,11 @@ Les obstacles se rangent en quatre familles, et chacune appelle une réponse dif
 ## La méthode en cinq temps
 
 Face à une difficulté sérieuse, résistez à la réaction immédiate — qui est presque toujours de payer, d’emprunter ou de baisser le prix. Procédez plutôt ainsi.
-**1. Nommer le problème réel.** « Je manque d’argent » n’est pas un problème, c’est un symptôme. Le problème est peut-être que trois clients ne vous ont pas payé, que votre stock dort, ou que votre prix ne couvre pas vos coûts. Tant que le problème n’est pas nommé correctement, aucune solution ne peut fonctionner.
-**2. Distinguer ce qui dépend de vous.** Séparez ce sur quoi vous pouvez agir de ce que vous devez subir. L’énergie de beaucoup d’entrepreneurs se consume à commenter ce qu’ils ne peuvent pas changer.
-**3. Chercher trois solutions indépendantes.** Comme nous l’avons vu : si vos trois réponses dépendent du même fournisseur, de la même route ou de la même personne, vous n’en avez qu’une.
-**4. Agir vite sur le plus urgent, méthodiquement sur le reste.** Une difficulté de trésorerie se traite en jours. Une faiblesse d’organisation se traite en mois.
-**5. Consigner.** Notez l’obstacle, ce que vous avez fait, ce que cela a donné. C’est le carnet des obstacles du chapitre 8. Un problème qui revient trois fois n’est pas un accident : c’est une faiblesse d’organisation, et il appelle une correction de fond, pas une réparation de plus.
+1. **Nommer le problème réel.** « Je manque d’argent » n’est pas un problème, c’est un symptôme. Le problème est peut-être que trois clients ne vous ont pas payé, que votre stock dort, ou que votre prix ne couvre pas vos coûts. Tant que le problème n’est pas nommé correctement, aucune solution ne peut fonctionner.
+2. **Distinguer ce qui dépend de vous.** Séparez ce sur quoi vous pouvez agir de ce que vous devez subir. L’énergie de beaucoup d’entrepreneurs se consume à commenter ce qu’ils ne peuvent pas changer.
+3. **Chercher trois solutions indépendantes.** Comme nous l’avons vu : si vos trois réponses dépendent du même fournisseur, de la même route ou de la même personne, vous n’en avez qu’une.
+4. **Agir vite sur le plus urgent, méthodiquement sur le reste.** Une difficulté de trésorerie se traite en jours. Une faiblesse d’organisation se traite en mois.
+5. **Consigner.** Notez l’obstacle, ce que vous avez fait, ce que cela a donné. C’est le carnet des obstacles du chapitre 8. Un problème qui revient trois fois n’est pas un accident : c’est une faiblesse d’organisation, et il appelle une correction de fond, pas une réparation de plus.
 
 ## L’échec
 

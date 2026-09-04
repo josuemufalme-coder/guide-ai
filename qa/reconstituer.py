@@ -58,15 +58,18 @@ STYLES = {
 TITRE_PARTIE, TITRE_OUVRAGE, TITRE_CHAPITRE = 31, 26, 22
 TITRE_SECTION, CORPS, ENCADRE, LIMINAIRE = 18, 15, 13, 12
 
-# Un écart vertical supérieur à 1,8 fois la hauteur de la ligne ouvre un bloc.
-# Vérifié sur tout l'ouvrage : corps 22/23 contre 31 ; encadré 20/21 contre 29 ;
-# titre de chapitre 34 ; titre de partie 47.
-FACTEUR_BLOC = 1.8
+# Un bloc s'ouvre quand l'écart vertical dépasse d'un cinquième l'interligne
+# de la taille de ligne considérée. L'interligne est mesuré sur tout l'ouvrage,
+# taille par taille, plutôt que déduit du corps : la page de copyright, composée
+# en 7,97 pt, a le même interligne que le corps de 9,96 pt, et un seuil calculé
+# sur la hauteur seule la découperait ligne à ligne.
+FACTEUR_BLOC = 1.20
 TOLERANCE_LIGNE = 3        # écart de `top` en deçà duquel deux fragments partagent une ligne
 ESPACE_ENTRE_FRAGMENTS = 1 # écart horizontal en deçà duquel deux fragments se touchent
 RETRAIT_CONTINUATION = 8   # au-delà, la ligne poursuit l'item précédent
 FIN_DE_PHRASE = (".", "!", "?", "»", ":", ";")
 SEUIL_COLONNE = 25         # écart horizontal minimal entre deux cellules d'un tableau
+SEUIL_COLONNE_VOISINE = 14 # le même, assoupli, pour une ligne jouxtant un tableau
 TOLERANCE_COLONNE = 8      # écart en deçà duquel deux cellules sont dans la même colonne
 PUCE = "•"
 ITEM_NUMEROTE = re.compile(r"^\d{1,2}\.\s")
@@ -170,6 +173,31 @@ def _baliser(contenu, marque):
     droite = len(contenu) - len(contenu.rstrip())
     return (contenu[:gauche] + marque + contenu.strip() + marque
             + (contenu[len(contenu) - droite:] if droite else ""))
+
+
+def lignes_mises_en_page(pdfs):
+    """Les lignes de `pdftotext -layout`, page par page, alignement conservé.
+
+    `pdftohtml` colle parfois deux cellules voisines en un seul fragment quand
+    l'espace qui les sépare est étroit : « à la livraisonà 30 jours ». La sortie
+    `-layout`, elle, restitue les blancs, ce qui rend les colonnes lisibles.
+    Elle sert donc de seconde source, pour les tableaux seulement.
+    """
+    par_page = {}
+    for pdf in pdfs:
+        sortie = subprocess.run(
+            ["pdftotext", "-layout", "-enc", "UTF-8", str(pdf), "-"],
+            capture_output=True, text=True, check=True).stdout
+        pages = sortie.split("\f")
+        if pages and not pages[-1].strip():
+            pages.pop()          # pdftotext termine par un saut de page
+        for page in pages:
+            par_page[len(par_page) + 1] = page.split("\n")
+    return par_page
+
+
+def sans_blancs(texte):
+    return "".join(texte.split())
 
 
 def lire_pages(pdfs):
@@ -278,14 +306,37 @@ def colonnes_de_page(page):
     if not reperes:
         return set()
     fers = {f.gauche for i in reperes for f in page[i].fragments}
+    aligne = lambda l: any(abs(l.gauche - f) <= TOLERANCE_COLONNE for f in fers)
     retenu = set(reperes)
-    for i, ligne in enumerate(page):
-        if i in retenu or ligne.hauteur != CORPS:
-            continue
-        voisin = any(abs(i - j) <= 2 for j in reperes)
-        aligne = any(abs(ligne.gauche - f) <= TOLERANCE_COLONNE for f in fers)
-        if voisin and aligne and ligne.gauche > min(fers) + SEUIL_COLONNE:
+
+    # Entre la première et la dernière ligne à colonnes, toute ligne alignée sur
+    # une colonne appartient au tableau — y compris celles dont deux cellules se
+    # touchent, que la détection par écart horizontal laisse passer.
+    for i in range(min(reperes), max(reperes) + 1):
+        if page[i].hauteur == CORPS and aligne(page[i]):
             retenu.add(i)
+
+    # Le tableau s'ouvre parfois sur un en-tête dont les cellules se touchent et
+    # se clôt sur des lignes de continuation. Une ligne voisine lui appartient si
+    # elle est alignée sur une colonne et si, soit elle est en retrait du fer du
+    # texte — c'est une continuation de cellule —, soit elle porte encore un
+    # écart de colonne, fût-il resserré. La prose, elle, ne dépasse pas huit
+    # points entre deux mots.
+    def voisine_du_tableau(ligne):
+        if ligne.hauteur != CORPS or not aligne(ligne):
+            return False
+        if ligne.gauche > min(fers) + SEUIL_COLONNE:
+            return True
+        return any(b.gauche - a.droite > SEUIL_COLONNE_VOISINE
+                   for a, b in zip(ligne.fragments, ligne.fragments[1:]))
+
+    for sens in (-1, 1):
+        depart = (min(reperes) - 1) if sens < 0 else (max(reperes) + 1)
+        for i in range(depart, -1 if sens < 0 else len(page), sens):
+            if voisine_du_tableau(page[i]):
+                retenu.add(i)
+            else:
+                break
     return retenu
 
 
@@ -294,13 +345,35 @@ def est_ouverture_item(ligne):
     return texte.startswith(PUCE) or bool(ITEM_NUMEROTE.match(texte))
 
 
-def est_titre_encadre(ligne):
-    """Dans un encadré, une ligne entièrement en gras en est le titre."""
-    return (ligne.hauteur == ENCADRE
-            and all(f.style == "gras" for f in ligne.fragments))
+def est_titre_encadre(bloc, suivant=None):
+    """Un bloc d'encadré tout en gras est-il le titre de cet encadré ?
+
+    Deux conditions. Il est composé entièrement en gras — sur une ligne ou sur
+    deux, un titre pouvant déborder. Et il est suivi d'un corps : un encadré qui
+    ne contient qu'un énoncé en gras — une formule, une phrase mise en exergue —
+    n'a pas de titre, il est cet énoncé. Sans cette seconde condition, l'encadré
+    se retrouve avec un titre d'une phrase entière et un corps vide.
+    """
+    lignes = getattr(bloc, "lignes", [bloc])
+    tout_en_gras = all(
+        l.hauteur == ENCADRE and all(f.style == "gras" for f in l.fragments)
+        for l in lignes)
+    return tout_en_gras and suivant is not None and suivant.genre == "encadre"
 
 
-def blocs_de_page(page, bord, blocs, continuation, page_suivante=None):
+def interlignes(pages):
+    """L'interligne dominant, taille de ligne par taille de ligne."""
+    ecarts = collections.defaultdict(collections.Counter)
+    for page in pages:
+        for precedente, ligne in zip(page, page[1:]):
+            if precedente.hauteur == ligne.hauteur:
+                ecart = ligne.top - precedente.top
+                if 0 < ecart < 80:
+                    ecarts[ligne.hauteur][ecart] += 1
+    return {hauteur: compte.most_common(1)[0][0] for hauteur, compte in ecarts.items()}
+
+
+def blocs_de_page(page, bords, blocs, continuation, sauts, page_suivante=None):
     """Ajoute les blocs d'une page à la suite, en gérant le report de paragraphe.
 
     Un bloc s'ouvre quand le genre change, quand la ligne ouvre un item de liste,
@@ -334,17 +407,18 @@ def blocs_de_page(page, bord, blocs, continuation, page_suivante=None):
                      or (not centre and genre != "tableau" and not poursuit_un_item
                          and ligne.gauche < precedente.gauche - RETRAIT_CONTINUATION)
                      or (genre != "tableau"
-                         and ligne.top - precedente.top > FACTEUR_BLOC * ligne.hauteur))
+                         and ligne.top - precedente.top
+                         > FACTEUR_BLOC * sauts.get(ligne.hauteur, ligne.hauteur * 1.45)))
 
         if ouvre or not blocs:
             blocs.append(Bloc(genre, [ligne], item=item))
         else:
             blocs[-1].lignes.append(ligne)
 
-    return paragraphe_se_poursuit(page, bord, page_suivante)
+    return paragraphe_se_poursuit(page, bords, page_suivante)
 
 
-def paragraphe_se_poursuit(page, bord, page_suivante):
+def paragraphe_se_poursuit(page, bords, page_suivante):
     """Le paragraphe de fin de page se poursuit-il sur la page suivante ?
 
     Une ligne pleine est le premier indice : dans un texte justifié, la dernière
@@ -354,14 +428,17 @@ def paragraphe_se_poursuit(page, bord, page_suivante):
     toujours un paragraphe neuf.
     """
     derniere = page[-1] if page else None
-    if not derniere or genre_de(derniere) not in ("corps", "encadre"):
+    genre = genre_de(derniere) if derniere else None
+    if genre not in ("corps", "encadre"):
         return False
-    if derniere.droite < bord - 8:
+    # Un encadré est composé sur une justification plus étroite : sa ligne pleine
+    # n'atteint jamais le bord du corps de texte. Chaque genre a donc son bord.
+    if derniere.droite < bords[genre] - 8:
         return False
     texte = derniere.texte_brut().rstrip()
     if not texte.endswith(FIN_DE_PHRASE):
         return True
-    suite = next((l for l in (page_suivante or []) if genre_de(l) == "corps"), None)
+    suite = next((l for l in (page_suivante or []) if genre_de(l) == genre), None)
     premier = suite.texte_brut().lstrip() if suite else ""
     return bool(premier) and not premier[0].isupper()
 
@@ -378,14 +455,18 @@ def assembler(pages):
     """Rend la suite des blocs du livre, hors mise en page et table des matières."""
     propres = [nettoyer(p) for p in pages]
     propres = [p for p in propres if not est_table_des_matieres(p)]
-    corps = [l for p in propres for l in p if genre_de(l) == "corps"]
-    bord = collections.Counter(l.droite for l in corps).most_common(1)[0][0]
+    bords = {}
+    for genre in ("corps", "encadre"):
+        droites = [l.droite for p in propres for l in p if genre_de(l) == genre]
+        bords[genre] = collections.Counter(droites).most_common(1)[0][0]
 
+    sauts = interlignes(propres)
     blocs, continuation = [], False
     for index, page in enumerate(propres):
         if page:
             suivante = propres[index + 1] if index + 1 < len(propres) else None
-            continuation = blocs_de_page(page, bord, blocs, continuation, suivante)
+            continuation = blocs_de_page(page, bords, blocs, continuation, sauts,
+                                         suivante)
     return blocs
 
 
@@ -405,8 +486,9 @@ def type_encadre(titre):
     return TYPE_PAR_DEFAUT
 
 
-def rendre(blocs):
+def rendre(blocs, mise_en_page=None):
     """Rend le Markdown du livre, découpé en unités (liminaires, chapitres)."""
+    mise_en_page = mise_en_page or {}
     unites = []
     courante = {"titre": "Liminaires", "rang": "00", "lignes": [], "pages": set(),
                 "mots_source": 0, "mots_schema": 0}
@@ -424,15 +506,20 @@ def rendre(blocs):
     def ouvrir_encadre(titre=None):
         nonlocal dans_encadre
         fermer_encadre()
-        attributs = f'.encadre type="{type_encadre(titre)}"' if titre else ".encadre"
-        entete = f'{{{attributs} titre="{titre}"}}' if titre else "{.encadre}"
+        # Quelques encadrés n'ont pas de titre : ce sont des apartés muets, une
+        # phrase mise en exergue. Ils reçoivent un type comme les autres.
+        if titre:
+            entete = f'{{.encadre type="{type_encadre(titre)}" titre="{titre}"}}'
+        else:
+            entete = f'{{.encadre type="{TYPE_PAR_DEFAUT}"}}'
         courante["lignes"].append(f"\n::: {entete}")
         dans_encadre = True
 
-    for bloc in blocs:
+    for rang_bloc, bloc in enumerate(blocs):
         texte = bloc.texte()
         if not texte:
             continue
+        suivant = blocs[rang_bloc + 1] if rang_bloc + 1 < len(blocs) else None
         # Une ouverture de partie précède le chapitre qu'elle introduit : elle est
         # mise en attente et posée en tête de l'unité suivante — ses mots avec
         # elle, faute de quoi ils se compteraient dans le chapitre précédent.
@@ -460,7 +547,7 @@ def rendre(blocs):
             continue
 
         if bloc.genre == "encadre":
-            if est_titre_encadre(bloc.lignes[0]) and len(bloc.lignes) == 1:
+            if est_titre_encadre(bloc, suivant):
                 ouvrir_encadre(texte.strip("*"))
                 continue
             if not dans_encadre:
@@ -472,7 +559,7 @@ def rendre(blocs):
         if bloc.genre == "section":
             courante["lignes"].append(f"\n## {texte}")
         elif bloc.genre == "tableau":
-            rendu = _tableau(bloc)
+            rendu = _tableau(bloc, mise_en_page)
             precedent = courante["lignes"][-1] if courante["lignes"] else ""
             entete = rendu.strip().split("\n")[0]
             if precedent.strip().startswith("|") and entete in precedent:
@@ -510,54 +597,104 @@ def rendre(blocs):
     return unites, schemas
 
 
-def _tableau(bloc):
+def colonnes_communes(lignes, tolerance=3):
+    """Les positions de début de colonne, déduites des débuts de mots.
+
+    Une cellule commence là où un mot commence après au moins deux espaces. Les
+    positions relevées sur toutes les lignes se regroupent en colonnes : c'est
+    la grille du tableau, et elle permet de découper même les lignes où deux
+    cellules ne sont séparées que par une espace.
+    """
+    debuts = []
+    for ligne in lignes:
+        for correspondance in re.finditer(r"(?:^|\s{2,})(\S)", ligne):
+            debuts.append(correspondance.start(1))
+    colonnes = []
+    for debut in sorted(debuts):
+        if not colonnes or debut - colonnes[-1] > tolerance:
+            colonnes.append(debut)
+    return colonnes
+
+
+def decouper(ligne, colonnes):
+    """Découpe une ligne selon la grille, en rattachant chaque mot à sa colonne.
+
+    Le rattachement se fait mot à mot, non par groupe séparé de deux espaces :
+    il arrive que deux cellules voisines ne soient séparées que d'une seule
+    espace — « Enregistrement Documents » —, et seule la grille dit alors où
+    passe la frontière.
+    """
+    cellules = [""] * len(colonnes)
+    for mot in re.finditer(r"\S+", ligne):
+        index = max((i for i, c in enumerate(colonnes) if mot.start() >= c - 3),
+                    default=0)
+        cellules[index] += (" " if cellules[index] else "") + mot.group()
+    return cellules
+
+
+def _tableau(bloc, mise_en_page):
     """Rend un bloc tabulaire en tableau Markdown.
 
-    Les colonnes sont déduites des fers à gauche des cellules, groupés à la
-    tolérance près. Une ligne dont la première cellule n'est pas dans la colonne
-    de gauche poursuit la rangée précédente : c'est une cellule sur plusieurs
-    lignes, non une rangée nouvelle.
+    Le contenu vient de `pdftotext -layout`, dont l'alignement en colonnes est
+    fiable. Une rangée s'ouvre sur une ligne dont la première cellule est
+    remplie ; les autres poursuivent la rangée précédente, cellule par cellule.
+    L'en-tête peut tenir sur deux lignes : elles se suivent alors à l'interligne
+    ordinaire, tandis qu'un filet sépare l'en-tête du corps et creuse l'écart.
     """
-    fers = sorted({f.gauche for l in bloc.lignes for f in l.fragments})
-    colonnes = []
-    for fer in fers:
-        if not colonnes or fer - colonnes[-1] > TOLERANCE_COLONNE:
-            colonnes.append(fer)
+    page = mise_en_page.get(bloc.lignes[0].page, [])
+    index_par_texte = {sans_blancs(l): l for l in page if l.strip()}
+    lignes = [index_par_texte.get(sans_blancs(l.texte_brut())) for l in bloc.lignes]
+    if any(l is None for l in lignes):
+        return "\n" + bloc.texte()   # ligne introuvable : on ne devine pas
+
+    colonnes = colonnes_communes(lignes)
     if len(colonnes) < 2:
         return "\n" + bloc.texte()
 
-    rangees = []
-    for ligne in bloc.lignes:
-        cellules = [""] * len(colonnes)
-        for fragment in ligne.fragments:
-            index = max(i for i, c in enumerate(colonnes)
-                        if fragment.gauche >= c - TOLERANCE_COLONNE)
-            cellules[index] += (" " if cellules[index] else "") + fragment.texte.strip()
-        commence = ligne.fragments[0].gauche <= colonnes[0] + TOLERANCE_COLONNE
-        if commence or not rangees:
+    # Une rangée s'ouvre à l'écart vertical, non à la présence d'une première
+    # cellule : un guillemet fermant seul en tête de ligne poursuit la rangée
+    # précédente, il ne l'ouvre pas. L'interligne les sépare sans ambiguïté —
+    # vingt-deux points entre deux lignes d'une même cellule, vingt-huit et plus
+    # entre deux rangées.
+    rangees, ouvertures = [], []
+    for index, (ligne, source) in enumerate(zip(lignes, bloc.lignes)):
+        cellules = decouper(ligne, colonnes)
+        nouvelle = index == 0 or source.top - bloc.lignes[index - 1].top >= 25
+        if nouvelle:
             rangees.append(cellules)
+            ouvertures.append(source)
         else:
             for i, cellule in enumerate(cellules):
                 if cellule:
                     rangees[-1][i] += (" " if rangees[-1][i] else "") + cellule
 
-    # Un en-tête peut tenir sur deux lignes (« Étape ou / jalon ») : la première
-    # ne commence alors pas dans la colonne de gauche et coiffe la suivante.
-    if len(rangees) > 1 and not rangees[0][0]:
-        for i, cellule in enumerate(rangees[0]):
-            if cellule:
-                rangees[1][i] = (cellule + " " + rangees[1][i]).strip()
-        rangees.pop(0)
+    # Un en-tête sur deux lignes se suit à l'interligne ; le filet qui le sépare
+    # du corps creuse l'écart. Vingt-cinq points font la frontière.
+    if len(rangees) > 1 and not rangees[0][0].strip():
+        ecart = ouvertures[1].top - ouvertures[0].top
+        if ecart < 25:
+            for i, cellule in enumerate(rangees[0]):
+                if cellule:
+                    rangees[1][i] = (cellule + " " + rangees[1][i]).strip()
+            rangees.pop(0)
 
     entete, corps = rangees[0], rangees[1:]
-    lignes = ["| " + " | ".join(entete) + " |",
-              "|" + "|".join(" --- " for _ in entete) + "|"]
-    lignes += ["| " + " | ".join(r) + " |" for r in corps]
-    return "\n" + "\n".join(lignes)
+    rendu = ["| " + " | ".join(entete) + " |",
+             "|" + "|".join(" --- " for _ in entete) + "|"]
+    rendu += ["| " + " | ".join(r) + " |" for r in corps]
+    return "\n" + "\n".join(rendu)
 
 
 def _item(bloc, texte):
-    """Rend un item de liste : puce ou numéro, avec ses lignes de continuation."""
+    """Rend un item de liste : puce ou numéro.
+
+    Le livre compose souvent le numéro à l'intérieur de l'attaque en gras —
+    « **1. La clientèle.** ». Laissé tel quel, l'item commence par une astérisque
+    et cesse d'être une liste pour Markdown. Le numéro ressort donc du gras, qui
+    ne couvre plus que l'attaque : la matière est la même, la structure revient.
+    """
+    texte = re.sub(r"^\*\*(\d{1,2}\.)\*\*\s+", r"\1 ", texte)   # « **1.** La méthode… »
+    texte = re.sub(r"^\*\*(\d{1,2}\.)\s+", r"\1 **", texte)      # « **1. La clientèle.**… »
     return re.sub(r"^" + PUCE + r"\s*", "- ", texte)
 
 
@@ -620,7 +757,7 @@ def main():
     options = analyseur.parse_args()
 
     pages = lire_pages(options.pdfs)
-    unites, schemas = rendre(assembler(pages))
+    unites, schemas = rendre(assembler(pages), lignes_mises_en_page(options.pdfs))
 
     print(f"{'fichier':<52} {'mots .md':>9} {'mots PDF':>9} {'écart':>7}"
           f" {'schéma':>7}  pages")

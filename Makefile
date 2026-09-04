@@ -22,13 +22,14 @@ APT := texlive-luatex texlive-lang-french texlive-latex-extra texlive-fonts-extr
        texlive-pictures texlive-plain-generic latexmk fonts-ebgaramond \
        poppler-utils python3-pip
 
-.PHONY: aide setup reconstituer integrite mesures qa livre epub relecture tout propre
+.PHONY: aide setup reconstituer integrite structure mesures qa livre epub relecture tout propre
 
 aide:
 	@echo "cibles :"
 	@echo "  setup         installe la chaîne (LuaLaTeX, poppler, polices)"
 	@echo "  reconstituer  régénère src/*.md depuis le PDF de contrôle"
 	@echo "  integrite     vérifie que la reconstitution ne perd aucun signe"
+	@echo "  structure     vérifie l'agencement : titres, encadrés, tableaux"
 	@echo "  mesures       relève césure, ponctuation haute, gabarit"
 	@echo "  qa            integrite + mesures, rapports archivés dans qa/"
 	@echo "  livre         interieur.pdf            (phase 1)"
@@ -53,7 +54,11 @@ integrite: | $(BUILD)
 mesures: | $(BUILD)
 	python3 $(QA)/mesure-typo.py $(PDFS) | tee $(QA)/mesures-pdf-existant.txt
 
-qa: integrite mesures
+structure: | $(BUILD)
+	python3 $(QA)/verifier-structure.py $(PDFS) --source $(SRC) \
+	  | tee $(QA)/rapport-structure.txt
+
+qa: integrite structure mesures
 
 $(BUILD):
 	@mkdir -p $(BUILD)

@@ -78,9 +78,7 @@ Une source de financement se juge sur cinq critères, jamais sur un seul.
 | Le délai | Quand l’argent sera-t-il disponible ? Un financement obtenu trop tard ne sert à rien. |
 | Les exigences | Que faut-il fournir : garantie, apport, documents, enregistrement ? |
 | La rigidité | Que se passe-t-il si je ne peux pas payer une échéance ? |
-| Le prix non financier | Que perds-je d’autre : une part de propriété, du pouvoir de décision, une relation |
-
-familiale ?
+| Le prix non financier | Que perds-je d’autre : une part de propriété, du pouvoir de décision, une relation familiale ? |
 
 La dernière ligne est celle que l’on oublie, et souvent la plus lourde.
 

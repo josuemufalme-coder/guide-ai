@@ -1,0 +1,24 @@
+chapitre                                       secti    parag    items    encad    table    notes   schémas
+  00a-liminaires.md                            2        6        0        0        0        0       
+  00b-introduction.md                          6       17        8        0        0        0       
+  01-developper-une-vision-pour-son-entreprise.md   5       13       14        3        0        0       
+  02-identifier-une-opportunite.md            15       46       26        3        0        1       ['24', '27']
+  03-valider-lidee-avant-dengager-son-argent.md   8       31       20        2        1        0       
+  04-une-entreprise-orientee-vers-le-marche.md   7       23       13        3        0        0       
+  05-analyser-son-marche-clients-concurrents-sect.md   9       25       40        3        1        0       
+  06-le-produit-et-lavantage-concurrentiel.md   9       26       25        4        0        0       
+  07-fixer-le-cap.md                           6       24       16        2        0        1       
+  08-du-cap-au-plan.md                         9       26       19        3        2        0       
+  09-la-gestion-strategique.md                 7       30       14        4        2        0       
+  10-trouver-le-capital-de-depart.md           9       47       14        4        1        2       
+  11-separer-largent-de-lentreprise-et-largent-du.md   5       15       11        2        0        0       
+  12-fixer-ses-prix.md                         5       18       15        3        0        0       
+  13-le-fonds-de-roulement.md                  6       14       16        3        1        0       ['114']
+  14-la-comptabilite-et-le-controle-de-gestion.md   6       21       17        3        0        1       
+  15-surmonter-les-obstacles.md                5       18       14        2        0        0       
+  16-le-plan-daffaires.md                      5       13       22        3        0        0       
+  80-cloture-vos-quatre-vingt-dix-premiers-jours.md   0       10       11        0        0        0       
+  90-notes-et-sources.md                       0        2        5        0        0        0       
+
+Lecture : « obtenu/attendu » quand les deux diffèrent, sinon la valeur seule.
+structure : CONFORME

@@ -38,7 +38,7 @@ Pour les découvrir, il n’existe pas de méthode secrète : demandez et observ
 
 Au chapitre 2, nous sommes partis de vos ressources. Ici, nous partons du marché. Ces deux points de départ ne se contredisent pas, à condition de leur donner le bon rôle :
 
-::: {.encadre}
+::: {.encadre type="aparte"}
 C’est le marché qui décide de ce qui vaut la peine d’être fait. Ce sont vos ressources qui décident de ce que vous pouvez faire, et par où commencer.
 :::
 
@@ -59,10 +59,10 @@ Le second : croire qu’un client qui vous félicite est un client qui achètera
 ## Les quatre dimensions de votre stratégie
 
 Toute réflexion marketing sérieuse examine quatre dimensions. Traitez-les dans cet ordre, et écrivez vos réponses.
-**1. La clientèle.** Qui servez-vous exactement ? Que veut-elle, que peut-elle payer, où l’atteint-on, quand achète-t-elle ?
-**2. Le produit ou le service.** Que proposez-vous concrètement, et en quoi cela répond-il au besoin et au désir identifiés ? Rappelez-vous les quatre conditions du chapitre 2 : attrayant, abordable, disponible, fiable.
-**3. La concurrence.** Qui répond déjà à ce besoin — y compris autrement que vous ne l’imaginez ? Que font-ils bien, que font-ils mal, que vous reproche-t-on chez eux ? Et surtout : pourquoi un client les quitterait-il pour vous ?
-**4. Le secteur.** Dans quel environnement travaillez-vous ? Qui fournit la matière, comment circulent les marchandises, quelles règles s’appliquent, quelles sont les saisons et les périodes creuses, qu’est-ce qui est en train d’y changer ?
+1. **La clientèle.** Qui servez-vous exactement ? Que veut-elle, que peut-elle payer, où l’atteint-on, quand achète-t-elle ?
+2. **Le produit ou le service.** Que proposez-vous concrètement, et en quoi cela répond-il au besoin et au désir identifiés ? Rappelez-vous les quatre conditions du chapitre 2 : attrayant, abordable, disponible, fiable.
+3. **La concurrence.** Qui répond déjà à ce besoin — y compris autrement que vous ne l’imaginez ? Que font-ils bien, que font-ils mal, que vous reproche-t-on chez eux ? Et surtout : pourquoi un client les quitterait-il pour vous ?
+4. **Le secteur.** Dans quel environnement travaillez-vous ? Qui fournit la matière, comment circulent les marchandises, quelles règles s’appliquent, quelles sont les saisons et les périodes creuses, qu’est-ce qui est en train d’y changer ?
 
 Ces quatre dimensions ne sont pas un exercice d’école. Elles se répondent les unes aux autres : un même produit n’a pas le même prix selon la clientèle, ni le même intérêt selon ce que fait déjà la concurrence.
 

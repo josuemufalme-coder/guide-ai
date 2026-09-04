@@ -42,7 +42,7 @@ build/       les sorties — jamais versionnées
 ```
 make setup          installe la chaîne sur une machine vierge
 make reconstituer   régénère src/*.md depuis le PDF de contrôle
-make qa             contrôle d'intégrité et mesures typographiques
+make qa             intégrité, structure et mesures typographiques
 make aide           la liste complète
 ```
 
@@ -104,6 +104,26 @@ redessiner au jugé reviendrait à inventer. Ils laissent un bloc
 **Notes.** Les cinq appels de notes existent dans le texte, contrairement à ce
 qu'affirme le point B7 de l'audit ; ils sont composés en exposant à 6,65 pt et
 rendus `[^1]` à `[^5]`.
+
+## Les trois contrôles
+
+`make qa` en enchaîne trois, tous rejouables et archivés dans `qa/`.
+
+**Intégrité** (`verifier-integrite.py`) compte les signes : il prouve qu'aucun
+mot de l'auteure n'est perdu ni inventé. Verdict actuel : *aucun signe perdu ni
+ajouté*.
+
+**Structure** (`verifier-structure.py`) compte les éléments : sections,
+paragraphes, items, encadrés, tableaux, notes, schémas — ce que le PDF porte
+face à ce que le Markdown en a fait. C'est le contrôle qui manquait, et il
+importe : les défauts les plus coûteux ne perdent aucun mot. Un titre fabriqué
+au milieu d'une phrase en gras, deux paragraphes soudés à un saut de page, une
+cellule de tableau versée dans la mauvaise colonne — l'intégrité les laisse
+passer, une relecture les rate une fois sur deux. Verdict actuel : *conforme*.
+
+**Mesures** (`mesure-typo.py`) relève la césure, la ponctuation haute rejetée et
+le gabarit sur le PDF composé. Il servira de juge aux critères de sortie
+chiffrés de la phase 1.
 
 ## Le double comptage
 
