@@ -1,0 +1,23 @@
+fichier                                               mots .md  mots PDF   écart  schéma  pages
+  00a-liminaires.md                                        120       120       0          1–2
+  00b-introduction.md                                      796       796       0          9–13
+  01-developper-une-vision-pour-son-entreprise.md          824       824       0          17–20
+  02-identifier-une-opportunite.md                        2713      2708      +5      28  23–34
+  03-valider-lidee-avant-dengager-son-argent.md           1294      1294       0          35–40
+  04-une-entreprise-orientee-vers-le-marche.md            1264      1265      -1          43–48
+  05-analyser-son-marche-clients-concurrents-sect.md      1491      1491       0          49–56
+  06-le-produit-et-lavantage-concurrentiel.md             1414      1416      -2          57–63
+  07-fixer-le-cap.md                                      1297      1301      -4          67–72
+  08-du-cap-au-plan.md                                    1546      1547      -1          73–80
+  09-la-gestion-strategique.md                            1399      1409     -10          81–87
+  10-trouver-le-capital-de-depart.md                      2453      2459      -6          91–101
+  11-separer-largent-de-lentreprise-et-largent-du.md       905       906      -1          105–108
+  12-fixer-ses-prix.md                                     859       860      -1          109–112
+  13-le-fonds-de-roulement.md                             1073      1071      +2      19  113–117
+  14-la-comptabilite-et-le-controle-de-gestion.md         1013      1013       0          119–123
+  15-surmonter-les-obstacles.md                            922       924      -2          127–131
+  16-le-plan-daffaires.md                                  971       971       0          135–139
+  80-cloture-vos-quatre-vingt-dix-premiers-jours.md        394       394       0          141–142
+  90-notes-et-sources.md                                   310       310       0          143–144
+
+3 schéma(s) intégré(s) — relevé : qa/schemas-substitutions.txt

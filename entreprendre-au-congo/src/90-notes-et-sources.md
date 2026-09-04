@@ -1,0 +1,10 @@
+# Notes et sources
+
+Ce livre s’appuie sur des notions de gestion et d’entrepreneuriat qui appartiennent au fonds commun de la discipline, ainsi que sur l’expérience et les observations de l’auteure en République démocratique du Congo. Les précisions ci-dessous signalent l’origine de certains éléments et les points que le lecteur doit vérifier par lui-même.
+1. La méthode des objectifs SMART est un outil de gestion largement diffusé, dont les composantes varient selon les auteurs. La variante retenue ici — Simple, Mesurable, Ambitieux, Réaliste, Temporel — a été préférée parce qu’elle maintient une tension utile entre ambition et réalisme, là où d’autres versions font double emploi.
+2. Le cadre de l’initiative personnelle — autodémarrage, orientation vers l’avenir, franchissement des obstacles — est issu des travaux de recherche en psychologie du travail et de l’entrepreneuriat, et il est largement employé dans les programmes de formation entrepreneuriale menés en Afrique subsaharienne. Il est repris ici sous une formulation propre à cet ouvrage.
+3. Les constats relatifs à la contagion émotionnelle dans les campagnes de financement participatif proviennent de travaux de recherche sur le sujet. Ils décrivent des tendances observées, non des garanties de résultat.
+4. Le droit comptable applicable en République démocratique du Congo relève du cadre OHADA (SYSCOHADA). Les seuils, les régimes et les obligations déclaratives évoluent : le lecteur doit se référer aux textes en vigueur et consulter un professionnel de la comptabilité pour sa situation particulière.
+5. Les dispositifs publics d’appui, les fonds de garantie, les conditions d’accès au crédit et les procédures d’enregistrement des entreprises changent régulièrement. Aucune indication de ce livre ne remplace une vérification directe auprès des institutions concernées au moment de la démarche.
+
+**Avertissement général.** Cet ouvrage propose une méthode de travail, non un conseil juridique, fiscal ou financier personnalisé. Pour toute décision engageante — statut juridique, obligations fiscales, contrat de financement —, consultez un professionnel qualifié.
