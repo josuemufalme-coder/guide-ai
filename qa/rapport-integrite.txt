@@ -1,0 +1,118 @@
+référence   : 23311 mots
+reconstitué : 22838 mots
+écarts — mise en page  : 88
+écarts — schéma        : 2
+écarts — ordre         : 8
+écarts — correction    : 18
+écarts — réel          : 2
+
+--- ÉCARTS RÉELS ---
+
+  [delete] après « …ou par l’autre. VOS RESSOURCES � �→ »
+      référence   : LE MARCHÉ IDÉE ENTREPRENEURIALE → ÉVALUATION →
+      reconstitué : IDÉE ENTREPRENEURIALE → ÉVALUATION → ACTION LE MARCHÉ
+
+  [insert] après « …STOCK → VENTE → CRÉANCE CLIENT → »
+      reconstitué : ARGENT
+
+--- corrections ---
+
+  [replace] après « …défendez pas votre idée devant lui : »
+      référence   : écoutezle.
+      reconstitué : écoutez-le.
+
+  [replace] après « …ne l’imaginez ? Que font-ils bien, que »
+      référence   : fontils
+      reconstitué : font-ils
+
+  [replace] après « …entreprise en position favorable face aux autres. »
+      référence   : Posezvous
+      reconstitué : Posez-vous
+
+  [replace] après « …Écrivez en une phrase votre avantage concurrentiel. »
+      référence   : Faitesla
+      reconstitué : Faites-la
+
+  [replace] après « …gros client. Vous avez trente secondes. Que »
+      référence   : ditesvous
+      reconstitué : dites-vous
+
+  [replace] après « …vous demandez à votre interlocuteur : un »
+      référence   : rendezvous,
+      reconstitué : rendez-vous,
+
+  [replace] après « …l’échéance dans votre calendrier ou votre téléphone. »
+      référence   : Revenezy à date fixe — chaque semaine, à la même heure. Chapitre 7 — Fixer le cap
+      reconstitué : Revenez-y à date fixe — chaque semaine, à la même heure.
+
+  [replace] après « …que ce soit. C’est précisément dans ces »
+      référence   : momentslà
+      reconstitué : moments-là
+
+  [replace] après « …problème que vous avez déjà rencontré ce »
+      référence   : moisci.
+      reconstitué : mois-ci.
+
+  [replace] après « …avez besoin ? À quel coût ? »
+      référence   : Faudrat-il
+      reconstitué : Faudra-t-il
+
+  [replace] après « …vos fournisseurs. C’est la source la plus »
+      référence   : sousutilisée.
+      reconstitué : sous-utilisée.
+
+  [replace] après « …projet est aussi perçu comme nouveau ou »
+      référence   : singulier3 . Entreprendre au Congo
+      reconstitué : singulier3.
+
+  [replace] après « …institutions au moment où vous en avez »
+      référence   : besoin5 .
+      reconstitué : besoin5.
+
+  [replace] après « …compte mobile distinct de votre compte personnel. »
+      référence   : Faitesy
+      reconstitué : Faites-y
+
+  [replace] après « …qui laisse une marge de négociation, et »
+      référence   : fixezvous
+      reconstitué : fixez-vous
+
+  [replace] après « …seuils et des conditions définis par les »
+      référence   : textes4 .
+      reconstitué : textes4.
+
+  [replace] après « …problème, c’est un symptôme. Le problème est »
+      référence   : peutêtre
+      reconstitué : peut-être
+
+  [replace] après « …personnes qui exercent une activité comparable et »
+      référence   : parlezleur
+      reconstitué : parlez-leur
+
+--- bilan global ---
+  mots de la référence, mise en page retirée : 22841
+  mots de la reconstitution                  : 22838
+  mots présents d'un seul côté : 19 / 18
+      référence seule      : 'écoutezle.' ×1
+      référence seule      : 'fontils' ×1
+      référence seule      : 'Posezvous' ×1
+      référence seule      : 'Faitesla' ×1
+      référence seule      : 'ditesvous' ×1
+      référence seule      : 'rendezvous,' ×1
+      référence seule      : 'Revenezy' ×1
+      référence seule      : 'momentslà' ×1
+      référence seule      : 'moisci.' ×1
+      référence seule      : 'Faudrat-il' ×1
+      reconstitution seule : 'peut-être' ×1
+      reconstitution seule : 'Posez-vous' ×1
+      reconstitution seule : 'font-ils' ×1
+      reconstitution seule : 'fixez-vous' ×1
+      reconstitution seule : 'mois-ci.' ×1
+      reconstitution seule : 'écoutez-le.' ×1
+      reconstitution seule : 'Faites-la' ×1
+      reconstitution seule : 'dites-vous' ×1
+      reconstitution seule : 'rendez-vous,' ×1
+      reconstitution seule : 'Revenez-y' ×1
+  aucun signe perdu ni ajouté : la reconstitution porte exactement la matière du livre
+
+intégrité : VÉRIFIÉE

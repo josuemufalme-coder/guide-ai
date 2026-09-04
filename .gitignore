@@ -1,0 +1,10 @@
+# Sorties de compilation : jamais versionnées (cahier des charges, §4).
+build/
+*.aux
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+__pycache__/
