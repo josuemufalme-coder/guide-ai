@@ -46,6 +46,22 @@ make qa             contrôle d'intégrité et mesures typographiques
 make aide           la liste complète
 ```
 
+## Chaîne installée
+
+`make setup` a été exécuté et vérifié : `lualatex`, `latexmk`, `memoir`,
+`microtype`, `babel-french`, `pdfx`, `tikz`, `booktabs`, `fontspec`, `lineno`,
+`poppler-utils`.
+
+Les trois polices de labeur que le cahier met en concurrence sont disponibles
+pour le spécimen de la phase 1 : **EB Garamond**, **Libertinus Serif** et
+**Source Serif Pro** — cette dernière étant la version antérieure de Source
+Serif 4, seule présente dans TeX Live ; l'écart entre les deux ne change rien à
+un spécimen de comparaison.
+
+Le conteneur de travail étant éphémère, `make setup` est à rejouer à chaque
+session. C'est aussi ce qui vérifie, à chaque fois, le critère d'acceptation
+« s'exécute sur une machine vierge ».
+
 ## Une particularité à connaître
 
 Le fichier Markdown source d'origine n'existe plus. Le §2 du cahier prévoit ce
