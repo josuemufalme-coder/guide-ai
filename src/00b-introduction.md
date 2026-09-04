@@ -33,13 +33,9 @@ Le présent ouvrage se situe entre ces deux ensembles. Il retient les principes 
 
 L’ouvrage repose sur deux propositions, qui en constituent la ligne directrice.
 
-### Première proposition : la compétence professionnelle constitue le préalable de l’activité entrepreneuriale.
+**Première proposition : la compétence professionnelle constitue le préalable de l’activité entrepreneuriale.** La maîtrise d’un métier n’est pas un complément de la démarche entrepreneuriale, mais son fondement. Un avantage commercial fondé sur la seule capacité de persuasion ne résiste pas à la répétition de la relation client : on peut vendre une fois par le discours, on ne vit pas d’une seule vente. Les techniques exposées ici — identification d’opportunités, analyse de marché, politique de prix, gestion financière — supposent l’existence de ce socle et ne s’y substituent pas.
 
-La maîtrise d’un métier n’est pas un complément de la démarche entrepreneuriale, mais son fondement. Un avantage commercial fondé sur la seule capacité de persuasion ne résiste pas à la répétition de la relation client : on peut vendre une fois par le discours, on ne vit pas d’une seule vente. Les techniques exposées ici — identification d’opportunités, analyse de marché, politique de prix, gestion financière — supposent l’existence de ce socle et ne s’y substituent pas.
-
-### Seconde proposition : le marché congolais offre des opportunités réelles, sous condition de rigueur de
-
-**gestion.** Le nombre de besoins non satisfaits et de segments insuffisamment servis y demeure élevé. Leur exploitation exige toutefois l’application des disciplines exposées dans cet ouvrage : tenue des comptes, rémunération formalisée du dirigeant, respect des engagements, développement progressif de l’activité. L’ambition sans progression méthodique demeure sans effet ; la progression sans ambition ne dépasse pas la subsistance.
+**Seconde proposition : le marché congolais offre des opportunités réelles, sous condition de rigueur de gestion.** Le nombre de besoins non satisfaits et de segments insuffisamment servis y demeure élevé. Leur exploitation exige toutefois l’application des disciplines exposées dans cet ouvrage : tenue des comptes, rémunération formalisée du dirigeant, respect des engagements, développement progressif de l’activité. L’ambition sans progression méthodique demeure sans effet ; la progression sans ambition ne dépasse pas la subsistance.
 
 ## Structure et méthode
 

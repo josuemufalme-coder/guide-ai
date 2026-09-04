@@ -37,9 +37,7 @@ Une action mal formulée ne sera pas faite. Passez chacune au crible de cinq que
 
 Si l’une de ces réponses manque, l’action n’est pas prête.
 
-### Et si l’objectif reste trop gros pour être découpé ainsi,
-
-**c’est qu’il faut des sous-objectifs.** Un objectif complexe se scinde en deux ou trois objectifs intermédiaires, chacun avec ses propres actions. Un objectif que vous n’arrivez pas à traduire en actions de la semaine n’est pas ambitieux : il est encore trop vague.
+**Et si l’objectif reste trop gros pour être découpé ainsi, c’est qu’il faut des sous-objectifs.** Un objectif complexe se scinde en deux ou trois objectifs intermédiaires, chacun avec ses propres actions. Un objectif que vous n’arrivez pas à traduire en actions de la semaine n’est pas ambitieux : il est encore trop vague.
 
 ## Prévoir les obstacles
 
@@ -49,7 +47,7 @@ Vos plans ne se réaliseront pas toujours comme prévu. Ce n’est ni du pessimi
 
 Pour chaque obstacle que vous jugez possible, écrivez une phrase construite ainsi :
 
-::: encadre
+::: {.encadre}
 **Si* (obstacle précis) *alors* (action précise que je déclenche)*.
 :::
 
@@ -74,7 +72,7 @@ déjà payées
 
 La troisième réponse est la plus précieuse, car elle ne dépend de personne d’autre que vous. Efforcez-vous d’en avoir toujours une de ce type.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Ici, la préparation des obstacles n’est pas un raffinement de méthode : c’est une question de survie. Coupures de courant, ruptures d’approvisionnement, variation du taux de change, pluies qui bloquent une route, tracasseries administratives, retard d’un client qui devait vous payer — ces événements ne sont pas des exceptions, ils font partie du décor. Un plan qui ne les prévoit pas n’est pas optimiste, il est incomplet.
 Deux conséquences pratiques. D’abord, préparez systématiquement vos « si… alors » pour vos trois dépendances critiques : l’énergie, l’approvisionnement, et le client dont vous dépendez le plus. Ensuite, planifiez court. Dans un environnement instable, un plan détaillé à douze mois est une fiction ; un objectif à quatre-vingt-dix jours découpé en plans hebdomadaires reste pilotable. Vous garderez évidemment un cap à un an — mais votre outil de travail quotidien, c’est la semaine.
 :::
@@ -95,7 +93,7 @@ Tenez donc, à la fin de votre cahier, un registre en trois colonnes : **l’obs
 
 Relisez-le chaque trimestre. Vous y verrez apparaître deux choses : les réponses qui fonctionnent chez vous, et les problèmes qui reviennent — ceux-là ne sont pas des accidents, ce sont des faiblesses de votre organisation, et ils réclament une correction de fond plutôt qu’une réparation de plus.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Tracez votre plan de développement sur une double page : les trois prochains mois, un jalon daté par quinzaine, et les jalons déjà franchis.
 2. Prenez les trois obstacles les plus probables et écrivez pour chacun une phrase « si… alors », puis trois solutions indépendantes.
 3. Ouvrez votre carnet des obstacles. La première entrée est celle d’un problème que vous avez déjà rencontré ce mois-ci.

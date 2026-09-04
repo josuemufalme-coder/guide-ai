@@ -12,9 +12,7 @@ Cette pratique est répandue au point de paraître normale. Elle est probablemen
 
 ## Deux domaines distincts
 
-Le principe tient en une phrase : **votre entreprise et votre**
-
-### foyer sont deux domaines distincts. Les sorties de l’entreprise ne doivent pas servir à couvrir vos besoins personnels.
+Le principe tient en une phrase : **votre entreprise et votre foyer sont deux domaines distincts. Les sorties de l’entreprise ne doivent pas servir à couvrir vos besoins personnels.**
 
 Cela ne signifie pas que vous ne devez rien prendre. Cela signifie que vous devez prendre **autrement** : non pas au fil des besoins, mais sous la forme d’un **salaire**, décidé à l’avance, d’un montant fixe, versé à date fixe.
 
@@ -30,7 +28,7 @@ Trois raisons, et chacune suffirait.
 
 **Vous ne pouvez plus réinvestir ni emprunter.** L’argent prélevé est un argent qui ne devient jamais une machine, un stock, un local. Et sans traçabilité des recettes, aucune institution financière ne vous suivra, quelle que soit la réalité de votre activité.
 
-::: encadre "La pression sociale"
+::: {.encadre type="aparte" titre="La pression sociale"}
 Il faut nommer ce que les livres importés passent sous silence. Ici, l’entrepreneur qui réussit devient le recours de son entourage : la
 scolarité d’un neveu, un deuil, une maladie, une aide à un frère. Ces demandes sont légitimes, et les refuser toutes vous couperait de votre milieu.
 Mais elles doivent être honorées par votre salaire, pas par la caisse. La différence est capitale : ce que vous donnez sur votre salaire est un choix personnel, limité et assumé ; ce que vous prenez dans la caisse est un prélèvement sans limite, qui grandit avec les demandes et finit par dévorer l’outil de travail. Une entreprise détruite ne pourra plus aider personne.
@@ -44,7 +42,7 @@ Un moyen simple de tenir cette ligne : dire, tranquillement et systématiquement
 4. **Tenez un cahier de caisse**, avec pour chaque mouvement : la date, l’objet, l’entrée ou la sortie, et le solde. Une seule ligne par opération suffit.
 5. **Si vous devez prendre exceptionnellement au-delà de votre salaire**, inscrivez-le comme un prêt personnel, avec une date de remboursement. Le seul fait de l’écrire réduit fortement la fréquence de ces prélèvements.
 
-::: encadre "Un exercice qui ouvre les yeux"
+::: {.encadre type="aparte" titre="Un exercice qui ouvre les yeux"}
 Pendant trente jours, notez chaque somme prise dans la caisse pour un usage personnel, sans rien changer à vos habitudes. Ne vous jugez pas : notez.
 Faites le total à la fin du mois. La plupart de ceux qui font cet exercice découvrent un montant très supérieur à ce qu’ils imaginaient — et supérieur, souvent, au salaire qu’ils auraient pu s’attribuer. C’est ce chiffre qui convainc, bien mieux qu’un discours.
 :::

@@ -62,6 +62,70 @@ Le conteneur de travail étant éphémère, `make setup` est à rejouer à chaqu
 session. C'est aussi ce qui vérifie, à chaque fois, le critère d'acceptation
 « s'exécute sur une machine vierge ».
 
+## Conventions du manuscrit
+
+Validées avec l'auteure au chapitre 1. Elles valent pour les seize chapitres.
+
+**Titres.** Le livre n'a que trois tailles de titre — 20,66 pt pour les parties,
+14,35 pt pour les chapitres, 11,96 pt pour les sections. Il n'existe donc aucun
+troisième niveau : `#` pour le chapitre, `##` pour la section, rien d'autre. Une
+ligne de corps entièrement en gras est une attaque en gras dont la phrase passe
+à la ligne, jamais un sous-titre.
+
+**Parties.** Posées en commentaire en tête du premier chapitre de la partie :
+`<!-- Deuxième partie — TROUVER ET VALIDER -->`. La phase 1 en fera un `\part`.
+
+**Encadrés.** Le livre en compte trois familles que la composition ne distingue
+pas — même cadre, même corps de 8,97 pt, même titre en gras. Le type est donc
+noté ici, en phase 0, faute de quoi l'information serait définitivement perdue :
+
+```
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
+::: {.encadre type="aparte" titre="Le piège des formules creuses"}
+```
+
+Décompte : 15 « Réalité congolaise », 15 « À faire cette semaine », 13 apartés.
+Trois anomalies, vérifiées dans le PDF et fidèlement reportées : le chapitre 7
+n'a pas de « Réalité congolaise », le chapitre 10 en a deux, le chapitre 11 n'a
+ni l'une ni l'autre. L'audit les disait « constants » ; ils ne le sont pas.
+
+**« Ce qu'il faut retenir »** est composé en titre de section et le reste : `##`.
+Il revient dans les seize chapitres, sans exception, sous le même intitulé — la
+phase 4 le retrouvera seule si elle décide d'en faire un encadré.
+
+**Schémas.** Les trois schémas en art ASCII (pages 24, 27 et 114 du PDF) ne sont
+pas reconstitués : l'extraction les rend en caractères invalides et les
+redessiner au jugé reviendrait à inventer. Ils laissent un bloc
+`::: {.todo-schema page="24"}` et attendent le contenu exact de l'auteure. Leur
+état d'extraction est conservé à titre de preuve dans
+`qa/schemas-a-reprendre.txt`, hors du manuscrit.
+
+**Notes.** Les cinq appels de notes existent dans le texte, contrairement à ce
+qu'affirme le point B7 de l'audit ; ils sont composés en exposant à 6,65 pt et
+rendus `[^1]` à `[^5]`.
+
+## Le double comptage
+
+`make reconstituer` livre, pour chaque chapitre, le nombre de mots du Markdown
+face au nombre de mots des lignes du PDF qui l'ont produit. Un écart significatif
+signale un passage tombé — ce qu'une relecture ne rattrape pas.
+
+Le comptage porte sur les lignes versées dans le chapitre, non sur ses pages :
+une page porte souvent la fin d'un chapitre et le début du suivant, et la
+compter deux fois masquerait précisément ce que le contrôle cherche.
+
+Trois causes d'écart résiduel sont connues et attendues :
+
+- les mots des schémas mis en attente, isolés dans leur propre colonne ;
+- les quinze mots composés que l'extraction avait coupés en deux et que la
+  reconstitution recolle (`écoutez-` + `le` comptent pour deux dans le PDF, pour
+  un dans le Markdown) ;
+- l'en-tête d'un tableau répété en tête de page, que la reconstitution ne garde
+  qu'une fois.
+
+Au-delà, tout écart demande une explication.
+
 ## Une particularité à connaître
 
 Le fichier Markdown source d'origine n'existe plus. Le §2 du cahier prévoit ce

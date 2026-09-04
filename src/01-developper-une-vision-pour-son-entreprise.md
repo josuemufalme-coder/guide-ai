@@ -25,7 +25,7 @@ Une bonne vision est :
 - **Stimulante** — elle vous oblige à grandir.
 - **Tournée vers l’avenir** — elle décrit une destination, pas la situation actuelle.
 
-::: encadre "Le piège des formules creuses"
+::: {.encadre type="aparte" titre="Le piège des formules creuses"}
 « Être leader dans notre domaine », « offrir des services de qualité à nos clients », « être une référence en Afrique ». Ces phrases se ressemblent toutes, et c’est le signe qu’elles ne disent rien.
 Deux tests simples. **Le test de la substitution** : remplacez le nom de votre entreprise par celui d’un concurrent — si la phrase tient encore, elle n’est pas votre vision. **Le test du contraire** : si personne de sensé ne défendrait la position inverse, vous n’avez pas fait de choix. Personne ne veut « offrir des services de mauvaise qualité » : cette vision n’engage à rien.
 Une vision utile exclut quelque chose. Elle dit ce que vous ne ferez pas autant que ce que vous ferez.
@@ -35,13 +35,13 @@ Une vision utile exclut quelque chose. Elle dit ce que vous ne ferez pas autant 
 
 Une vision qui ne se traduit ni en décisions ni en comportements devient un mensonge affiché au mur — et vos employés le remarqueront avant vous. Si votre vision place la qualité au premier rang, elle doit vous conduire à refuser une commande que vous ne pouvez pas honorer correctement. Si elle parle de formation, elle doit apparaître dans votre budget.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Une remarque directe. Ici, l’exercice de la vision a mauvaise réputation, et pour une raison compréhensible : il a été galvaudé par des discours qui promettent la grandeur sans les moyens de l’atteindre. On a vu trop de plaques ambitieuses devant des ateliers vides.
 Ce n’est pas une raison pour s’en passer, mais pour l’utiliser autrement. Votre vision peut être ambitieuse — elle doit l’être — à condition d’être adossée à des jalons réels : un plan de développement, des étapes datées, des résultats vérifiables. L’ambition sans étapes est du rêve ; les étapes sans ambition sont de la survie. C’est la combinaison des deux qui fait une entreprise.
 C’est ici que se rejoignent les deux convictions de ce livre : voir grand, et commencer petit en respectant chaque étape. Ces deux exigences ne s’opposent pas — elles se protègent l’une l’autre.
 :::
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Écrivez votre vision en sept mots ou moins.
 2. Appliquez-lui le test de la substitution et celui du contraire. Réécrivez-la s’il le faut.
 3. Dites-la à cinq personnes. Demandez à chacune ce qu’elle en retient. Si les réponses divergent, la phrase n’est pas claire.

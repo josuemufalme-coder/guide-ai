@@ -65,6 +65,7 @@ FACTEUR_BLOC = 1.8
 TOLERANCE_LIGNE = 3        # écart de `top` en deçà duquel deux fragments partagent une ligne
 ESPACE_ENTRE_FRAGMENTS = 1 # écart horizontal en deçà duquel deux fragments se touchent
 RETRAIT_CONTINUATION = 8   # au-delà, la ligne poursuit l'item précédent
+FIN_DE_PHRASE = (".", "!", "?", "»", ":", ";")
 SEUIL_COLONNE = 25         # écart horizontal minimal entre deux cellules d'un tableau
 TOLERANCE_COLONNE = 8      # écart en deçà duquel deux cellules sont dans la même colonne
 PUCE = "•"
@@ -94,7 +95,8 @@ class Fragment:
 class Ligne:
     """Les fragments qui partagent une même ligne de base."""
 
-    def __init__(self, fragments):
+    def __init__(self, fragments, page=0):
+        self.page = page
         self.fragments = sorted(fragments, key=lambda f: f.gauche)
         self.top = min(f.top for f in fragments)
         self.gauche = self.fragments[0].gauche
@@ -140,7 +142,11 @@ class Ligne:
     def texte_balise(self):
         """Le texte de la ligne, italiques, gras et appels de notes en Markdown."""
         suites = self.suites_de_style()
-        uniforme = len({s for s, _ in suites if _.strip()}) <= 1
+        # Un titre composé tout entier dans un seul style n'a pas à être balisé :
+        # son niveau le dit déjà. Une ligne de corps, si. Une phrase en gras qui
+        # occupe une ligne entière reste du gras, et doit le rester dans le texte.
+        uniforme = (self.hauteur != CORPS
+                    and len({s for s, c in suites if c.strip()}) <= 1)
         morceaux = []
         for style, contenu in suites:
             if not contenu.strip():
@@ -184,7 +190,8 @@ def lire_pages(pdfs):
                 clef = next((c for c in groupes if abs(c - fragment.top) <= TOLERANCE_LIGNE),
                             fragment.top)
                 groupes[clef].append(fragment)
-            pages.append([Ligne(g) for _, g in sorted(groupes.items())])
+            numero = len(pages) + 1
+            pages.append([Ligne(g, numero) for _, g in sorted(groupes.items())])
     return pages
 
 
@@ -239,11 +246,9 @@ def genre_de(ligne):
     if ligne.hauteur >= CORPS:
         if ligne.style_dominant == "mono":
             return "schema"
-        # Un gras qui n'occupe pas toute la ligne est une attaque en gras dans un
-        # paragraphe, pas un titre. Ne sont des sous-titres que les lignes
-        # entièrement composées en gras.
-        if all(f.style == "gras" for f in ligne.fragments):
-            return "sous-titre"
+        # Le livre n'a que trois tailles de titre : partie, chapitre, section.
+        # Une ligne de corps entièrement en gras n'est donc jamais un titre —
+        # c'est une attaque en gras dont la phrase passe à la ligne.
         return "corps"
     if ligne.hauteur >= ENCADRE:
         return "encadre"
@@ -295,7 +300,7 @@ def est_titre_encadre(ligne):
             and all(f.style == "gras" for f in ligne.fragments))
 
 
-def blocs_de_page(page, bord, blocs, continuation):
+def blocs_de_page(page, bord, blocs, continuation, page_suivante=None):
     """Ajoute les blocs d'une page à la suite, en gérant le report de paragraphe.
 
     Un bloc s'ouvre quand le genre change, quand la ligne ouvre un item de liste,
@@ -336,9 +341,29 @@ def blocs_de_page(page, bord, blocs, continuation):
         else:
             blocs[-1].lignes.append(ligne)
 
+    return paragraphe_se_poursuit(page, bord, page_suivante)
+
+
+def paragraphe_se_poursuit(page, bord, page_suivante):
+    """Le paragraphe de fin de page se poursuit-il sur la page suivante ?
+
+    Une ligne pleine est le premier indice : dans un texte justifié, la dernière
+    ligne d'un paragraphe est en principe courte. Mais il arrive qu'elle
+    remplisse la mesure par coïncidence. Second indice, décisif : une ligne qui
+    s'achève sur une ponctuation forte et que suit une capitale ouvre presque
+    toujours un paragraphe neuf.
+    """
     derniere = page[-1] if page else None
-    return bool(derniere and genre_de(derniere) in ("corps", "encadre")
-                and derniere.droite >= bord - 8)
+    if not derniere or genre_de(derniere) not in ("corps", "encadre"):
+        return False
+    if derniere.droite < bord - 8:
+        return False
+    texte = derniere.texte_brut().rstrip()
+    if not texte.endswith(FIN_DE_PHRASE):
+        return True
+    suite = next((l for l in (page_suivante or []) if genre_de(l) == "corps"), None)
+    premier = suite.texte_brut().lstrip() if suite else ""
+    return bool(premier) and not premier[0].isupper()
 
 
 def est_table_des_matieres(page):
@@ -357,18 +382,38 @@ def assembler(pages):
     bord = collections.Counter(l.droite for l in corps).most_common(1)[0][0]
 
     blocs, continuation = [], False
-    for page in propres:
+    for index, page in enumerate(propres):
         if page:
-            continuation = blocs_de_page(page, bord, blocs, continuation)
+            suivante = propres[index + 1] if index + 1 < len(propres) else None
+            continuation = blocs_de_page(page, bord, blocs, continuation, suivante)
     return blocs
+
+
+# Le livre a trois familles d'encadrés, que la composition ne distingue pas :
+# même cadre, même corps de 8,97 pt, même titre en gras. L'information de type
+# n'est donc pas récupérable depuis le Markdown une fois la phase 0 close — elle
+# se note maintenant ou elle est perdue.
+TYPES_ENCADRE = {"Réalité congolaise": "realite-congolaise",
+                 "À faire cette semaine": "a-faire"}
+TYPE_PAR_DEFAUT = "aparte"
+
+
+def type_encadre(titre):
+    for intitule, genre in TYPES_ENCADRE.items():
+        if titre.startswith(intitule):
+            return genre
+    return TYPE_PAR_DEFAUT
 
 
 def rendre(blocs):
     """Rend le Markdown du livre, découpé en unités (liminaires, chapitres)."""
     unites = []
-    courante = {"titre": "Liminaires", "rang": "00", "lignes": []}
+    courante = {"titre": "Liminaires", "rang": "00", "lignes": [], "pages": set(),
+                "mots_source": 0, "mots_schema": 0}
     dans_encadre = False
     partie_en_attente = []
+    schemas = []
+    derniere_page_de_schema = None
 
     def fermer_encadre():
         nonlocal dans_encadre
@@ -379,16 +424,18 @@ def rendre(blocs):
     def ouvrir_encadre(titre=None):
         nonlocal dans_encadre
         fermer_encadre()
-        courante["lignes"].append(f'\n::: encadre "{titre}"' if titre else "\n::: encadre")
+        attributs = f'.encadre type="{type_encadre(titre)}"' if titre else ".encadre"
+        entete = f'{{{attributs} titre="{titre}"}}' if titre else "{.encadre}"
+        courante["lignes"].append(f"\n::: {entete}")
         dans_encadre = True
 
     for bloc in blocs:
         texte = bloc.texte()
         if not texte:
             continue
-
-        # Une ouverture de partie précède le chapitre qu'elle introduit :
-        # elle est mise en attente et posée en tête de l'unité suivante.
+        # Une ouverture de partie précède le chapitre qu'elle introduit : elle est
+        # mise en attente et posée en tête de l'unité suivante — ses mots avec
+        # elle, faute de quoi ils se compteraient dans le chapitre précédent.
         if bloc.genre == "partie":
             partie_en_attente.append(texte)
             continue
@@ -396,10 +443,19 @@ def rendre(blocs):
         if bloc.genre == "chapitre":
             fermer_encadre()
             unites.append(courante)
-            courante = {"titre": texte, "rang": None, "lignes": []}
+            courante = {"titre": texte, "rang": None, "lignes": [],
+                        "pages": {l.page for l in bloc.lignes},
+                        "mots_source": 0, "mots_schema": 0}
             if partie_en_attente:
-                courante["lignes"].append(f"<!-- {' '.join(partie_en_attente)} -->\n")
+                entete = " ".join(partie_en_attente)
+                courante["lignes"].append(f"<!-- {entete} -->\n")
+                courante["mots_source"] += len(entete.split())
                 partie_en_attente = []
+
+        courante["pages"].update(l.page for l in bloc.lignes)
+        courante["mots_source"] += sum(len(l.texte_brut().split()) for l in bloc.lignes)
+
+        if bloc.genre == "chapitre":
             courante["lignes"].append(f"# {texte}")
             continue
 
@@ -415,8 +471,6 @@ def rendre(blocs):
         fermer_encadre()
         if bloc.genre == "section":
             courante["lignes"].append(f"\n## {texte}")
-        elif bloc.genre == "sous-titre":
-            courante["lignes"].append(f"\n### {texte}")
         elif bloc.genre == "tableau":
             rendu = _tableau(bloc)
             precedent = courante["lignes"][-1] if courante["lignes"] else ""
@@ -428,9 +482,24 @@ def rendre(blocs):
             else:
                 courante["lignes"].append(rendu)
         elif bloc.genre == "schema":
-            courante["lignes"].append("\n```schema\n"
-                                      + "\n".join(l.texte_brut() for l in bloc.lignes)
-                                      + "\n```")
+            nonlocal_page = bloc.lignes[0].page
+            # Les schémas sont en chasse fixe et leurs flèches sortent déjà en
+            # caractères invalides à l'extraction. Les reconstituer au jugé
+            # reviendrait à inventer. Ils attendent le contenu exact de l'auteure.
+            page = nonlocal_page
+            # Un schéma comporte des lignes espacées — flèches, cases — que le
+            # découpage en blocs sépare. Une même page ne porte qu'un schéma.
+            if page != derniere_page_de_schema:
+                courante["lignes"].append(
+                    f'\n::: {{.todo-schema page="{page}"}}\n'
+                    f"Schéma de la page {page} du PDF, à reprendre en figure"
+                    " vectorielle.\nContenu exact à fournir : l'extraction le rend"
+                    " en caractères invalides.\n:::")
+                schemas.append((page, []))
+                derniere_page_de_schema = page
+            schemas[-1][1].extend(l.texte_brut() for l in bloc.lignes)
+            courante["mots_schema"] += sum(len(l.texte_brut().split())
+                                           for l in bloc.lignes)
         elif bloc.item:
             courante["lignes"].append(_item(bloc, texte))
         else:
@@ -438,7 +507,7 @@ def rendre(blocs):
 
     fermer_encadre()
     unites.append(courante)
-    return unites
+    return unites, schemas
 
 
 def _tableau(bloc):
@@ -518,6 +587,30 @@ def nom_de_fichier(unite, rang):
     return f"{prefixe}-{base}.md"
 
 
+def demarquer(markdown):
+    """Le texte du Markdown, ses marques retirées, pour un comptage comparable.
+
+    Le comptage se fait contre les lignes du PDF réellement versées dans le
+    chapitre, non contre ses pages : une page porte souvent la fin d'un chapitre
+    et le début du suivant, et la compter deux fois masquerait précisément ce que
+    le contrôle cherche — un passage tombé.
+    """
+    # Ce que la marque porte est du texte de l'auteure et doit rester compté :
+    # le titre d'un encadré, celui d'une partie, la puce d'une liste. Ce qui est
+    # pure syntaxe disparaît. Sans cette symétrie, le chiffre ne veut rien dire.
+    # Le texte de substitution d'un schéma est de moi, pas de l'auteure : il ne
+    # se compte pas. Les mots du schéma manquants sont rapportés à part.
+    texte = re.sub(r":::\s*\{\.todo-schema.*?:::", " ", markdown, flags=re.S)
+    texte = re.sub(r"<!--(.*?)-->", r"\1", texte, flags=re.S)
+    texte = re.sub(r'^:::.*?titre="([^"]*)".*$', r"\1", texte, flags=re.M)
+    texte = re.sub(r"^:::.*$", " ", texte, flags=re.M)
+    texte = re.sub(r"^#{1,6}\s*", "", texte, flags=re.M)
+    texte = re.sub(r"^(\s*)-\s+", r"\1" + PUCE + " ", texte, flags=re.M)
+    texte = re.sub(r"^\|[\s|:-]+\|\s*$", " ", texte, flags=re.M)
+    texte = texte.replace("|", " ").replace("**", "").replace("*", "")
+    return texte
+
+
 def main():
     analyseur = argparse.ArgumentParser(description=__doc__)
     analyseur.add_argument("pdfs", nargs="+", type=Path)
@@ -526,19 +619,38 @@ def main():
                            help="n'écrit rien, énumère les unités trouvées")
     options = analyseur.parse_args()
 
-    unites = rendre(assembler(lire_pages(options.pdfs)))
+    pages = lire_pages(options.pdfs)
+    unites, schemas = rendre(assembler(pages))
 
+    print(f"{'fichier':<52} {'mots .md':>9} {'mots PDF':>9} {'écart':>7}"
+          f" {'schéma':>7}  pages")
     for rang, unite in enumerate(unites):
-        corps = "\n".join(unite["lignes"]).strip() + "\n"
-        corps = re.sub(r"\n{3,}", "\n\n", corps)
+        corps = re.sub(r"\n{3,}", "\n\n", "\n".join(unite["lignes"]).strip()) + "\n"
         nom = nom_de_fichier(unite, rang)
-        mots = len(corps.split())
-        if options.liste:
-            print(f"  {nom:<52} {mots:>6} mots")
-            continue
-        options.sortie.mkdir(parents=True, exist_ok=True)
-        (options.sortie / nom).write_text(corps, encoding="utf-8")
-        print(f"  écrit {nom:<52} {mots:>6} mots")
+        mots_md = len(demarquer(corps).split())
+        numeros = unite["pages"]
+        mots_pdf = unite["mots_source"]
+        ecart = mots_md - mots_pdf
+        etendue = f"{min(numeros)}–{max(numeros)}" if numeros else "—"
+        signe = f"{ecart:+d}" if ecart else "0"
+        attente = unite["mots_schema"] or ""
+        print(f"  {nom:<50} {mots_md:>9} {mots_pdf:>9} {signe:>7}"
+              f" {attente:>7}  {etendue}")
+        if not options.liste:
+            options.sortie.mkdir(parents=True, exist_ok=True)
+            (options.sortie / nom).write_text(corps, encoding="utf-8")
+
+    if schemas and not options.liste:
+        archive = Path("qa/schemas-a-reprendre.txt")
+        archive.write_text(
+            "Schémas laissés en attente par la reconstitution.\n"
+            "L'extraction les rend en caractères invalides ; ils sont conservés ici\n"
+            "à titre de preuve, hors du manuscrit, et attendent le contenu exact\n"
+            "de l'auteure.\n"
+            + "".join(f"\n--- page {page} du PDF ---\n" + "\n".join(lignes) + "\n"
+                      for page, lignes in schemas),
+            encoding="utf-8")
+        print(f"\n{len(schemas)} schéma(s) en attente : {archive}")
 
 
 if __name__ == "__main__":

@@ -47,7 +47,7 @@ L’examen du dedans est le plus difficile, parce qu’il exige une honnêteté 
 
 **Vos faiblesses** sont ce qui vous manque : le capital, une main-d’œuvre qualifiée, une capacité de production limitée, une compétence que vous n’avez pas, un local inadapté, l’absence de comptabilité, une méconnaissance des démarches administratives.
 
-::: encadre "Comment ne pas se mentir"
+::: {.encadre type="aparte" titre="Comment ne pas se mentir"}
 Une force n’est une force que si elle est **reconnue par le client** et **supérieure à celle du voisin**. « Je travaille dur » n’est pas une force : tout le monde travaille dur. « Je suis le seul de la commune à savoir réparer ce type de machine » en est une.
 Trois moyens de rendre cet examen honnête : demandez à trois personnes qui vous connaissent professionnellement de le remplir pour vous ; regardez ce que les clients vous disent spontanément, en bien comme en mal ; et comparez chaque force annoncée à un concurrent précis.
 Et n’oubliez pas le cas le plus fréquent : la **faiblesse que vous êtes le seul à ne pas voir**. Si trois personnes vous ont fait la même remarque cette année, ce n’est plus une opinion, c’est une donnée.
@@ -66,7 +66,7 @@ Les **opportunités** sont les évolutions extérieures dont vous pourriez tirer
 
 Ne confondez pas les colonnes. Une force ou une faiblesse est **en vous** et vous pouvez agir dessus. Une opportunité ou une menace est **hors de vous** et vous ne pouvez que vous y adapter. Confondre les deux conduit à s’attribuer les mérites du marché quand il porte, et à accuser le marché quand la faute est chez soi.
 
-::: encadre
+::: {.encadre}
 Le tableau ne sert à rien tant qu’on n’en tire pas des décisions
 C’est l’erreur la plus répandue avec cet outil : on remplit quatre listes, on les trouve satisfaisantes, et l’on referme le cahier. Un tableau rempli n’a jamais fait vendre un seul produit.
 Croisez les cases pour en sortir des actions :
@@ -77,7 +77,7 @@ Croisez les cases pour en sortir des actions :
 Chaque croisement doit produire une action datée, avec un responsable. Sinon vous avez fait un exercice, pas une stratégie.
 :::
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Deux remarques sur cet exercice appliqué ici.
 D’abord, la faiblesse la plus fréquente n’est pas le manque de capital — c’est ce que tout le monde cite en premier, mais c’est rarement la cause réelle des fermetures. Ce sont l’absence de comptabilité et la confusion entre l’argent de l’entreprise et celui du ménage. Une entreprise sous-capitalisée mais bien tenue survit ; une entreprise bien financée dont on vide la caisse ne survit pas.
 Ensuite, les menaces d’ici sont largement prévisibles : instabilité des prix, dépendance à un fournisseur unique, coupures d’énergie, tracasseries, clients qui paient en retard. Elles ne sont pas des accidents. Inscrivez-les dans votre tableau et préparez-leur des réponses, comme nous l’avons vu avec la méthode « si… alors ».
@@ -91,7 +91,7 @@ Cet examen n’a de valeur que s’il débouche sur une orientation claire, form
 
 Beaucoup d’entreprises ne meurent pas d’un échec. Elles meurent d’avoir accepté trop d’occasions sans rapport les unes avec les autres.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Remplissez la matrice de profil concurrentiel avec deux concurrents réels et cinq facteurs pondérés.
 2. Remplissez les quatre cases. Faites vérifier vos forces par trois personnes qui vous connaissent professionnellement.
 3. Tirez-en quatre actions datées, une par croisement.

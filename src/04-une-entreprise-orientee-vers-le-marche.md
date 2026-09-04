@@ -4,9 +4,7 @@
 
 ## Ce n’est pas vous qui décidez
 
-Commençons par la phrase la plus dure de ce livre, et la plus utile : **ce n’est pas vous qui décidez si votre produit est**
-
-### bon. C’est votre client.
+Commençons par la phrase la plus dure de ce livre, et la plus utile : **ce n’est pas vous qui décidez si votre produit est bon. C’est votre client.**
 
 Vous pouvez avoir travaillé des mois, soigné chaque détail, investi votre épargne et l’avis favorable de toute votre famille : si le client ne paie pas, le produit n’est pas bon. Non pas techniquement mauvais — il peut être excellent — mais mauvais au seul sens qui compte pour une entreprise : il ne trouve pas preneur.
 
@@ -40,7 +38,7 @@ Pour les découvrir, il n’existe pas de méthode secrète : demandez et observ
 
 Au chapitre 2, nous sommes partis de vos ressources. Ici, nous partons du marché. Ces deux points de départ ne se contredisent pas, à condition de leur donner le bon rôle :
 
-::: encadre
+::: {.encadre}
 C’est le marché qui décide de ce qui vaut la peine d’être fait. Ce sont vos ressources qui décident de ce que vous pouvez faire, et par où commencer.
 :::
 
@@ -52,7 +50,7 @@ Un marché n’est jamais acquis. Les habitudes évoluent, les revenus varient, 
 
 L’entreprise orientée vers le marché ne fait donc pas cet exercice une fois pour toutes, au démarrage. Elle le refait en permanence. Concrètement : parlez à vos clients régulièrement, et pas seulement quand ils achètent. Demandez à ceux qui ne reviennent pas pourquoi ils ne reviennent pas — c’est l’information la plus précieuse et la moins recherchée. Notez ce que l’on vous réclame et que vous n’avez pas.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Deux réflexes à corriger ici.
 Le premier : décider de son offre d’après ce que l’on voit ailleurs — sur internet, dans un pays voisin, chez une connaissance de la diaspora — sans vérifier que le client d’ici a le même besoin, le même pouvoir d’achat et les mêmes habitudes. Ce qui fonctionne à Dubaï ou à Bruxelles ne se transpose pas mécaniquement à Kinshasa ou à Lubumbashi.
 Le second : croire qu’un client qui vous félicite est un client qui achètera. La politesse est une valeur forte dans nos échanges, et vos proches vous encourageront presque toujours. Le seul avis fiable est celui de quelqu’un qui sort son argent. Une commande vaut cent compliments.
@@ -68,7 +66,7 @@ Toute réflexion marketing sérieuse examine quatre dimensions. Traitez-les dans
 
 Ces quatre dimensions ne sont pas un exercice d’école. Elles se répondent les unes aux autres : un même produit n’a pas le même prix selon la clientèle, ni le même intérêt selon ce que fait déjà la concurrence.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Décrivez votre client principal en dix lignes, comme une personne réelle. Si vous n’y arrivez pas, c’est que vous ne le connaissez pas encore : allez lui parler.
 2. Faites deux colonnes : ce dont il a besoin, ce dont il a envie. Remplissez-les à partir de ce que vous avez entendu, pas de ce que vous supposez.
 3. Allez voir trois concurrents en client. Notez ce qu’ils font mieux que vous, et ce qu’on leur reproche.

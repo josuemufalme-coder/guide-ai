@@ -26,7 +26,7 @@ On peut segmenter selon :
 - **La localisation** : milieu urbain ou rural, quartier, commune, proximité d’un axe.
 - **Tout autre critère propre à votre activité** : profession, taille du ménage, équipement possédé, habitude de consommation, moment d’achat.
 
-::: encadre "Un segment n’est utile qu’à quatre conditions"
+::: {.encadre type="aparte" titre="Un segment n’est utile qu’à quatre conditions"}
 Découper pour découper ne sert à rien. Un segment ne vous est utile que s’il est :
 1. **Distinct** — ses membres achètent réellement différemment des autres. Si deux groupes se comportent pareil, ce n’est qu’un seul segment.
 2. **Identifiable** — vous savez reconnaître qui en fait partie.
@@ -73,10 +73,7 @@ Ne cherchez pas la précision comptable. Cherchez l’ordre de grandeur, et la l
 Se comparer à ses concurrents et s’en différencier porte un nom : le **positionnement**. Attention à ne pas le confondre avec la publicité — le positionnement n’est pas ce que vous dites de vous. C’est **la place que vous occupez dans l’esprit de votre client** : ce qu’il pense de vous, spontanément, quand il vous compare aux autres.
 
 Il se construit en trois temps.
-
-### 1. Choisissez les attributs qui comptent pour votre
-
-**clientèle.** Pas ceux qui vous tiennent à cœur : ceux qu’elle regarde. Qualité, prix, délai, proximité, présentation, garantie, facilité de paiement.
+**1. Choisissez les attributs qui comptent pour votre clientèle.** Pas ceux qui vous tiennent à cœur : ceux qu’elle regarde. Qualité, prix, délai, proximité, présentation, garantie, facilité de paiement.
 **2. Comparez-vous, attribut par attribut.** Notez honnêtement vos performances et celles des autres.
 
 | Attribut | Moi | Concurrent A | Concurrent B |
@@ -100,14 +97,14 @@ Comprendre le vôtre, c’est répondre à cinq questions.
 4. **Quelles sont les tendances ?** Ce qui est en train de changer dans les habitudes, les techniques, les circuits.
 5. **Quels facteurs extérieurs pèsent sur lui ?** Facteurs économiques (pouvoir d’achat, taux de change), réglementaires (autorisations, taxes, normes), techniques (nouveaux outils), politiques.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Ne comptez pas sur des statistiques officielles complètes et à jour pour dimensionner votre marché : elles sont rares, partielles, et une grande partie de l’activité se déroule dans l’informel, donc hors des comptages.
 Vous devrez fabriquer vos propres chiffres, et c’est faisable. Comptez les points de vente de votre quartier, comptez les clients
 servis, interrogez trente personnes dans votre zone sur leur fréquence d’achat, demandez à un grossiste combien d’unités il écoule par semaine. Vous obtiendrez une estimation imparfaite mais honnête — et infiniment plus fiable qu’un chiffre trouvé sur internet et calculé pour un autre pays.
 Notez vos hypothèses de calcul par écrit. Le jour où vous présenterez votre plan d’affaires à une banque ou à un bailleur, pouvoir expliquer *comment* vous êtes arrivé à votre estimation vaudra bien davantage que le chiffre lui-même.
 :::
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Écrivez qui est votre client et qui est votre consommateur. Si ce sont deux personnes différentes, notez ce que chacune attend.
 2. Choisissez un segment prioritaire et justifiez-le avec les quatre conditions.
 3. Remplissez le tableau de positionnement avec deux concurrents réels. Puis écrivez, en une phrase, la place que vous voulez occuper.

@@ -8,7 +8,7 @@ Ce n’est pas un paradoxe. C’est un problème de fonds de roulement, et c’e
 
 ## De quoi parle-t-on
 
-::: encadre
+::: {.encadre}
 Fonds de roulement = actif à court terme − passif à court terme
 :::
 
@@ -22,17 +22,12 @@ C’est pourquoi le fonds de roulement mesure la **santé financière à court t
 
 ## Le cycle : le temps, c’est de l’argent
 
-```schema
-ARGENT → ACHAT DE STOCK → VENTE → CRÉANCE CLIENT → ARGENT
-↑ �
-������������� paiement des fournisseurs ←�������������������
-```
+::: {.todo-schema page="114"}
+Schéma de la page 114 du PDF, à reprendre en figure vectorielle.
+Contenu exact à fournir : l'extraction le rend en caractères invalides.
+:::
 
-Le cycle du fonds de roulement, c’est **le temps qui s’écoule**
-
-### entre le moment où vous payez et le moment où vous
-
-**êtes payé.** Plus ce délai est long, plus il vous faut d’argent immobilisé pour tenir. Plus il est court, moins vous avez besoin de capital pour réaliser le même chiffre d’affaires.
+Le cycle du fonds de roulement, c’est **le temps qui s’écoule entre le moment où vous payez et le moment où vous êtes payé.** Plus ce délai est long, plus il vous faut d’argent immobilisé pour tenir. Plus il est court, moins vous avez besoin de capital pour réaliser le même chiffre d’affaires.
 
 | Paie son fournisseur | Entreprise A à la livraison | Entreprise B à 30 jours |
 | --- | --- | --- |
@@ -47,7 +42,7 @@ Les deux vendent la même chose, au même prix, avec la même marge. La premièr
 **2. Accélérer la rotation du stock.** Un stock qui tourne vite libère de l’argent ; un stock qui dort en consomme. Chaque article qui reste trois mois en rayon, c’est de l’argent que vous avez payé et qui ne travaille pas — sans compter les pertes, la casse et la démodation. Achetez plus souvent en plus petites quantités, quitte à perdre une remise sur volume : le calcul est presque toujours favorable pour une petite structure.
 **3. Réduire le délai de paiement des clients.** Facturez immédiatement — un jour de retard de facturation est un jour de retard de paiement. Relancez sans attendre et sans gêne. Encouragez le règlement rapide par une remise modeste. Et n’accordez du crédit qu’à des clients que vous avez choisis.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Le crédit client est ici le principal destructeur de trésorerie des petites entreprises, et il n’est presque jamais une décision réfléchie : il s’installe par la relation. On livre à un parent, à un voisin, à un membre de l’église, à un fonctionnaire qui promet de régler après le paiement de son salaire. Refuser paraît discourtois, alors on accepte. Puis on n’ose pas relancer, parce qu’on connaît la personne.
 Vous vous retrouvez à financer gratuitement des gens qui, eux, ne financent pas votre fournisseur. Trois protections simples :
 - **Une règle écrite et annoncée d’avance** : un plafond par client, un délai maximum, aucun nouveau crédit tant que le précédent n’est pas soldé. Une règle générale se refuse moins difficilement qu’une personne.
@@ -62,7 +57,7 @@ Le fonds de roulement ne se règle pas une fois pour toutes. C’est un cycle sa
 
 Prenez donc l’habitude, avant toute décision d’achat ou de vente à crédit, de poser une seule question : **quand cet argent reviendra-t-il ?** Un achat au comptant qui vous prive de liquidités pendant deux mois peut être une mauvaise affaire, même avec une remise. Une vente à crédit à un client qui paie mal est une perte déguisée en chiffre d’affaires.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Calculez votre fonds de roulement : additionnez caisse, banque, stock et créances ; soustrayez tout ce que vous devez à court terme.
 2. Mesurez vos trois délais réels.
 3. Listez tous vos débiteurs avec les montants et les dates.

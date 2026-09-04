@@ -36,9 +36,11 @@ Toute campagne se construit autour de six éléments : un **titre** court et con
 
 Un point mérite qu’on s’y arrête : l’usage des fonds est ce qui distingue une campagne sérieuse d’une demande d’aide. « Cette somme finance la machine à coudre industrielle et trois mois de matière première » est infiniment plus convaincant que « pour développer notre activité ».
 
-Les travaux menés sur le financement participatif convergent par ailleurs sur un point : les vidéos où l’on perçoit la passion réelle du porteur de projet produisent une contagion émotionnelle — le spectateur ressent quelque chose, partage la campagne, et contribue davantage. Cet effet ne joue pleinement que si le projet est aussi perçu comme nouveau ou singulier[^3]. Ne cherchez donc pas à faire une vidéo professionnelle : cherchez à être vous-même devant la caméra.
+Les travaux menés sur le financement participatif convergent par ailleurs sur un point : les vidéos où l’on perçoit la passion réelle du porteur de projet produisent une contagion émotionnelle — le spectateur ressent quelque chose, partage la campagne, et contribue davantage. Cet effet ne joue pleinement que si le projet est aussi perçu comme nouveau ou singulier[^3].
 
-::: encadre "Réalité congolaise"
+Ne cherchez donc pas à faire une vidéo professionnelle : cherchez à être vous-même devant la caméra.
+
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Deux difficultés à regarder en face avant de vous engager dans cette voie.
 **L’encaissement.** La plupart des plateformes internationales exigent un compte bancaire dans un pays qu’elles desservent, et un moyen de paiement que vos contributeurs locaux n’ont pas forcément. Vérifiez ce point *avant* de préparer votre campagne.
 **Le public.** Le financement participatif suppose une communauté déjà constituée. Les campagnes qui aboutissent depuis chez nous s’appuient presque toujours sur un réseau de proches et sur la diaspora. Si vous ne disposez d’aucune audience, la campagne échouera quelle que soit sa qualité — construisez d’abord la communauté, financez ensuite.
@@ -82,7 +84,7 @@ familiale ?
 
 La dernière ligne est celle que l’on oublie, et souvent la plus lourde.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 **Le taux annoncé n’est pas le coût.** Ajoutez toujours les frais de dossier, l’assurance exigée, la commission, et calculez ce que vous rembourserez au total. Un prêt à taux mensuel apparemment raisonnable peut représenter un coût annuel considérable — faites la multiplication vous-même avant de signer.
 **La monnaie du prêt doit être celle de vos recettes.** Si vous vendez en francs congolais et empruntez en dollars, une variation du taux de change augmente votre dette sans que votre activité ait changé. Beaucoup d’entreprises saines ont été mises en difficulté par ce seul décalage.
 **La régularité vaut mieux que la garantie.** N’ayant ni titre foncier ni bilan, une petite entreprise n’a qu’un actif à faire valoir : la preuve qu’elle encaisse régulièrement. Ouvrez un compte, faites-y transiter vos recettes, tenez vos registres. Après six à douze mois, vous ne demandez plus un financement sur la foi d’un projet, vous le demandez sur des relevés.
@@ -92,15 +94,13 @@ La dernière ligne est celle que l’on oublie, et souvent la plus lourde.
 
 Manquer de capital au démarrage est la situation normale, pas l’exception. Ce qui distingue ceux qui avancent, ce n’est pas la taille de la mise de départ : c’est l’usage qu’ils font du peu dont ils disposent.
 
-### Ne laissez pas la recherche d’argent vous empêcher
-
-**d’avancer.** Beaucoup de porteurs de projets passent des mois à solliciter, à déposer des dossiers, à attendre des réponses. Pendant ce temps, l’entreprise n’existe pas. Élaborez toujours un plan que vous pouvez commencer à exécuter dès aujourd’hui, avec ce que vous avez.
+**Ne laissez pas la recherche d’argent vous empêcher d’avancer.** Beaucoup de porteurs de projets passent des mois à solliciter, à déposer des dossiers, à attendre des réponses. Pendant ce temps, l’entreprise n’existe pas. Élaborez toujours un plan que vous pouvez commencer à exécuter dès aujourd’hui, avec ce que vous avez.
 
 **Démarrez avec ce que vous avez.** C’est le principe du *bootstrapping*. Ses formes concrètes sont connues : différer votre propre rémunération le temps du démarrage, faire facturer et encaisser plus vite, partager un local, un véhicule ou un équipement avec un autre entrepreneur, négocier des paiements échelonnés auprès de vos fournisseurs, limiter vos stocks au strict nécessaire. Soyez créatif dans cette recherche : c’est là que se révèle un entrepreneur.
 
 **Réinvestissez vos bénéfices.** C’est la source de financement la plus sûre et la moins coûteuse qui existe, et celle que l’on néglige le plus. Une entreprise qui remet une part de ses gains dans son outil de travail se finance elle-même et n’a de comptes à rendre à personne. Fixez-vous une proportion — un tiers, la moitié — et tenez-la comme une charge obligatoire, pas comme ce qui reste une fois tout le reste dépensé.
 
-::: encadre "Le lien avec la caisse"
+::: {.encadre type="aparte" titre="Le lien avec la caisse"}
 Cette troisième règle est impossible à appliquer si l’on prélève dans la caisse au fil des besoins. On ne réinvestit pas ce qu’on a déjà consommé. Le chapitre 11 est le véritable préalable à celui-ci : la première source de capital d’une petite entreprise congolaise, ce n’est pas la banque, c’est l’argent qu’elle a cessé de laisser fuir.
 :::
 
@@ -124,7 +124,7 @@ Notez ces remarques et regardez si les mêmes reviennent. Une objection entendue
 
 Une nuance cependant : un financeur juge selon ses propres critères. Certains refusent tout ce qui n’est pas déjà rentable ; d’autres ne financent qu’un secteur. Distinguez la critique de votre projet du désintérêt pour votre type de projet.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Chiffrez votre besoin poste par poste, puis retirez tout ce qui ne produit pas de revenu. Notez le nouveau montant.
 2. Listez ce que vous pouvez couvrir vous-même : épargne, biens à utiliser, délai obtenu d’un fournisseur.
 3. Pour le reste, comparez deux sources sur les cinq critères du tableau.

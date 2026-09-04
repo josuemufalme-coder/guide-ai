@@ -52,19 +52,13 @@ Interrogez plutôt le passé et le présent, qui sont vérifiables :
 | « Ce serait utile, non ? » | « Qu’est-ce qui vous gêne le plus là-dedans ? » |
 | « Vous en pensez quoi ? » | « Quand cela vous est-il arrivé la dernière fois ? » |
 
-Et posez enfin les deux questions qui comptent vraiment :
-
-### qu’est-ce qui vous plaît dans cette idée, et qu’est-ce qui
-
-**ne vous plaît pas ?** Puis : **comment faudrait-il l’adapter pour que vous l’achetiez ?** La seconde transforme un avis en instruction de travail.
+Et posez enfin les deux questions qui comptent vraiment : **qu’est-ce qui vous plaît dans cette idée, et qu’est-ce qui ne vous plaît pas ?** Puis : **comment faudrait-il l’adapter pour que vous l’achetiez ?** La seconde transforme un avis en instruction de travail.
 
 Interrogez au moins une dizaine de personnes qui ne vous doivent rien, et notez leurs réponses le jour même.
 
 ## Le test qui décide : la vente
 
-Toutes les questions du monde ne valent pas une transaction.
-
-### Un client qui sort son argent a répondu ; un client qui vous félicite n’a rien dit.
+Toutes les questions du monde ne valent pas une transaction. **Un client qui sort son argent a répondu ; un client qui vous félicite n’a rien dit.**
 
 Cherchez donc, le plus tôt possible, une preuve d’engagement réel :
 - une vente, même unique, même à petite échelle ;
@@ -76,7 +70,7 @@ Testez toujours le produit **et le prix ensemble**. Un client trouve votre idée
 
 Quelques formes de test peu coûteuses : vendre à dix personnes avant d’en viser cent ; louer avant d’acheter ; sous-traiter la production avant d’acquérir la machine ; ouvrir un jour par semaine avant de signer un bail ; proposer le service à la main avant de l’industrialiser.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Trois précautions propres à notre contexte.
 **Le compliment n’est pas un engagement.** La courtoisie est une valeur forte dans nos échanges : on ne décourage pas quelqu’un qui se lance. Attendez-vous à beaucoup d’encouragements sincères et sans conséquence. Une commande vaut cent compliments.
 **Testez là où vous vendrez.** Un produit qui séduit vos collègues du bureau ne dit rien de ce qu’en pensera le marché du quartier où vous comptez vous installer. Le pouvoir d’achat, les habitudes et les circuits changent d’une commune à l’autre.
@@ -102,7 +96,7 @@ Au terme de vos tests, trois issues sont possibles, et toutes trois sont des ré
 
 Le seul véritable échec serait de renoncer à tester et de vous lancer quand même, en espérant que le marché finisse par vous donner raison.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Écrivez les cinq hypothèses de votre idée. Entourez celle dont tout dépend.
 2. Interrogez dix personnes qui ne sont pas de vos proches, avec des questions sur leur passé et non sur leur avenir.
 3. Organisez une vente réelle, à n’importe quelle échelle, avec un prix annoncé.

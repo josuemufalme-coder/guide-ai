@@ -27,16 +27,14 @@ Retenez surtout la dernière. C’est de loin la plus fréquente, et c’est cel
 
 L’identification d’une opportunité suit un cycle. Ce cycle, vous le parcourrez plusieurs fois — et vous continuerez à le parcourir longtemps après avoir créé votre entreprise.
 
-```schema
-OBSERVER ET PLANIFIER → TESTER À PETITE ÉCHELLE
-↑ ↓
-```
+::: {.todo-schema page="24"}
+Schéma de la page 24 du PDF, à reprendre en figure vectorielle.
+Contenu exact à fournir : l'extraction le rend en caractères invalides.
+:::
 
-```schema
-AGIR EN GRAND ← APPRENDRE
-```
+**Observer et planifier.** Partez d’une situation qui ne fonctionne pas bien et demandez-vous comment elle pourrait être améliorée. Formulez ensuite une proposition précise : qui en bénéficierait, en quoi ce serait mieux, ce que cela coûterait.
 
-**Observer et planifier.** Partez d’une situation qui ne fonctionne pas bien et demandez-vous comment elle pourrait être améliorée. Formulez ensuite une proposition précise : qui en bénéficierait, en quoi ce serait mieux, ce que cela coûterait. **Tester à petite échelle.** C’est l’étape que presque tout le monde saute, et c’est celle qui sauve les projets. Avant d’engager votre épargne, essayez en petit. Vendez à cinq clients avant d’en viser cent. Louez avant d’acheter. Faites une semaine avant de signer un bail d’un an. Un test raté coûte quelques jours ; un lancement raté coûte des années.
+**Tester à petite échelle.** C’est l’étape que presque tout le monde saute, et c’est celle qui sauve les projets. Avant d’engager votre épargne, essayez en petit. Vendez à cinq clients avant d’en viser cent. Louez avant d’acheter. Faites une semaine avant de signer un bail d’un an. Un test raté coûte quelques jours ; un lancement raté coûte des années.
 
 **Apprendre.** Analysez ce que le test a produit et — surtout — allez chercher le retour de ceux qui ont acheté ou refusé d’acheter. Ce que le client refuse vous apprend davantage que ce qu’il accepte. Ne défendez pas votre idée devant lui : écoutez-le.
 
@@ -63,7 +61,7 @@ Ces trois traits ne sont pas des dons de naissance. Ce sont des habitudes. On le
 4. **Ne proposez pas exactement la même chose que votre voisin.** Si votre offre est identique à celle d’à côté, il ne vous reste que le prix comme argument — et cette guerre-là, personne ne la gagne.
 5. **Réfléchissez avant d’agir, mais n’attendez pas d’être certain.** L’analyse a une utilité, puis elle devient un refuge. Vous avez besoin du retour du terrain, et ce retour n’existe que si vous avez agi.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Ici, le cinquième principe se heurte à une difficulté que les livres importés ignorent : dès qu’une activité marche dans une rue, elle est copiée en quelques semaines par cinq voisins. L’avantage d’être arrivé le premier est donc réel, mais court. Ne comptez pas dessus comme unique protection : ce qui vous protégera dans la durée, c’est la qualité de votre travail, votre relation avec vos clients et votre réputation — trois choses qui ne se copient pas en une semaine.
 À l’inverse, méfiez-vous du raisonnement contraire, très répandu : « il y a déjà dix personnes qui le font, donc c’est un bon business ». Souvent, cela signifie surtout que le marché est saturé et que les marges se sont effondrées.
 :::
@@ -72,14 +70,10 @@ Ici, le cinquième principe se heurte à une difficulté que les livres importé
 
 Une idée entrepreneuriale ne tombe pas du ciel. Elle naît de la rencontre entre deux choses : **ce dont vous disposez** et **ce dont les autres manquent**. Ce sont les deux portes d’entrée du processus, et vous pouvez commencer par l’une ou par l’autre.
 
-```schema
-VOS RESSOURCES �
-�→ IDÉE ENTREPRENEURIALE → ÉVALUATION → ACTION
-```
-
-```schema
-LE MARCHÉ �
-```
+::: {.todo-schema page="27"}
+Schéma de la page 27 du PDF, à reprendre en figure vectorielle.
+Contenu exact à fournir : l'extraction le rend en caractères invalides.
+:::
 
 Ce chapitre traite des deux : d’abord ce que vous possédez déjà, ensuite ce que le marché réclame sans le dire.
 
@@ -119,7 +113,7 @@ Cela suppose d’écarter deux tentations. La première est le **statu quo** : c
 
 Alors pensez autrement. Sortez des sentiers battus, examinez les solutions que personne n’a essayées dans votre secteur, et posez-vous cette question simple : *que puis-je offrir que mon voisin n’offre pas ?* Un horaire, une livraison, une garantie, une qualité constante, un accueil, un conditionnement, un mode de paiement.
 
-::: encadre "Une mise au point nécessaire"
+::: {.encadre type="aparte" titre="Une mise au point nécessaire"}
 Être différent ne veut pas dire inventer ce qui n’a jamais existé. On confond souvent les deux, et cette confusion paralyse beaucoup de porteurs de projets, persuadés qu’il leur faut une idée révolutionnaire pour commencer.
 C’est faux, et c’est même une mauvaise stratégie pour un premier projet : une activité totalement inédite exige d’éduquer le marché, ce qui coûte cher et prend du temps. La grande majorité des
 entreprises solides font une chose connue, mais la font autrement et mieux. Visez la différence, pas l’inédit.
@@ -127,13 +121,11 @@ entreprises solides font une chose connue, mais la font autrement et mieux. Vise
 
 ## Seconde porte : le marché, ou l’art de voir les problèmes autrement
 
-Voici peut-être le renversement de regard le plus utile de tout ce livre : **tout problème est un besoin non satisfait, et tout**
-
-### besoin non satisfait est une entreprise possible.
+Voici peut-être le renversement de regard le plus utile de tout ce livre : **tout problème est un besoin non satisfait, et tout besoin non satisfait est une entreprise possible.**
 
 Les embouteillages, les coupures de courant, les files d’attente dans les administrations, la difficulté à trouver un artisan fiable, les produits qui s’abîment faute de conservation, les paiements compliqués : là où la population voit des désagréments, l’entrepreneur voit des marchés. Il ne s’agit pas d’être insensible aux difficultés du pays. Il s’agit de comprendre qu’une difficulté partagée par des milliers de personnes est précisément ce qui rend un service rentable.
 
-Prenez donc l’habitude, chaque fois que vous vous plaignez ou que vous entendez quelqu’un se plaindre, de vous poser une question de plus : *combien de personnes vivent le même* problème, et que paieraient-elles pour qu’il disparaisse ?
+Prenez donc l’habitude, chaque fois que vous vous plaignez ou que vous entendez quelqu’un se plaindre, de vous poser une question de plus : *combien de personnes vivent le même problème, et que paieraient-elles pour qu’il disparaisse ?*
 
 Une fois le problème repéré, votre travail consiste à concevoir une réponse que le client choisira. Une offre est choisie lorsqu’elle réunit quatre conditions :
 - **Attrayante** : elle donne envie, elle se distingue de ce qui existe.
@@ -157,7 +149,7 @@ Pendant une semaine, observez votre propre journée avec l’œil de quelqu’un
 
 Chacune de ces irritations est un besoin non satisfait. Toutes ne feront pas une entreprise — mais aucune opportunité ne naîtra si vous ne les notez jamais.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Prenez un cahier. Pendant sept jours, notez chaque irritation rencontrée dans votre journée ou entendue autour de vous. Ne jugez pas, notez.
 2. Sur une autre page, faites la liste de ce que vous savez faire mieux que la moyenne des gens que vous connaissez. Soyez honnête, dans les deux sens.
 3. Sur une troisième, listez tout ce que vous possédez ou pouvez emprunter et qui ne sert pas à plein temps.

@@ -10,12 +10,14 @@ Sa première utilité est pour vous. L’exercice oblige à mettre côte à côt
 
 Sa seconde utilité est de convaincre : un banquier, un bailleur, un associé, un partenaire.
 
-### Si vous ne devez le faire que pour la seconde raison, faites-le quand même pour la première.
+**Si vous ne devez le faire que pour la seconde raison, faites-le quand même pour la première.**
 
 ## La structure
 
 Un plan d’affaires solide comporte huit parties.
-**1. Le résumé.** Une page, écrite en dernier. Le problème, votre réponse, votre marché, ce que vous demandez et pour quoi faire. C’est souvent la seule page réellement lue : soignez-la comme votre discours d’ascenseur, dont elle est la version écrite.
+**1. Le résumé.** Une page, écrite en dernier. Le problème, votre réponse, votre marché, ce que vous demandez et pour quoi faire.
+
+C’est souvent la seule page réellement lue : soignez-la comme votre discours d’ascenseur, dont elle est la version écrite.
 **2. Le porteur de projet et l’équipe.** Qui vous êtes, votre formation, votre expérience du métier. Un financeur mise autant sur la personne que sur l’idée. Si vous avez déjà réalisé des choses — c’est ici que votre historique de jalons prend sa valeur.
 **3. L’offre.** Ce que vous vendez, à quel besoin cela répond, ce qui vous distingue.
 **4. Le marché.** Votre clientèle, sa taille estimée et *comment* vous l’avez estimée, vos segments, vos concurrents, votre positionnement.
@@ -24,7 +26,7 @@ Un plan d’affaires solide comporte huit parties.
 **7. Les chiffres.** Le besoin de financement décomposé poste par poste, un compte de résultat prévisionnel sur trois ans, et surtout un **plan de trésorerie mensuel sur la première année**. Ce dernier est le document que les financeurs sérieux regardent en premier, parce qu’il montre si l’entreprise survit aux mois creux.
 **8. Les risques.** Ce qui peut mal tourner et ce que vous ferez alors.
 
-::: encadre "Ne dissimulez pas les risques"
+::: {.encadre type="aparte" titre="Ne dissimulez pas les risques"}
 Beaucoup de porteurs de projets présentent un plan sans aucune difficulté, croyant rassurer. L’effet est inverse : un financeur expérimenté sait qu’aucun projet n’est sans risque, et l’absence de cette partie lui indique que vous n’avez pas réfléchi — ou que vous dissimulez.
 Une partie « risques » honnête, avec les réponses préparées que vous avez élaborées au chapitre 8, est un signe de sérieux. C’est souvent elle qui fait la différence entre deux dossiers comparables.
 :::
@@ -42,13 +44,13 @@ Un plan d’affaires n’est pas un document que l’on écrit une fois et que l
 
 Confrontez-le à ce qui s’est réellement passé. Là où vous vous êtes trompé, comprenez pourquoi : c’est ainsi qu’on apprend à prévoir.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Ne faites pas rédiger votre plan par quelqu’un d’autre. L’offre existe, elle est tentante quand un dossier est urgent, et le résultat est presque toujours reconnaissable : un document impeccable que son porteur ne sait pas défendre. Or on vous interrogera. Un plan modeste que vous maîtrisez entièrement vaut mieux qu’un plan brillant qui n’est pas le vôtre. Faites-vous aider, relire, corriger — mais écrivez-le.
 **Adaptez vos chiffres au contexte.** Un prévisionnel réaliste ici intègre l’instabilité des prix, le coût de l’énergie, les délais de paiement effectifs — souvent bien plus longs qu’annoncés — et une marge de sécurité. Un plan qui suppose un environnement stable sera démenti dès le troisième mois.
 **Présentez vos hypothèses.** Faute de statistiques fiables, vos chiffres reposeront sur vos propres estimations. Ce n’est pas une faiblesse à cacher : c’est une force à exposer. Expliquez comment vous avez compté. Un financeur préfère une estimation modeste et méthodique à un chiffre impressionnant venu de nulle part.
 :::
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Rédigez la page de résumé, même si le reste n’est pas prêt. Elle révélera immédiatement ce qui n’est pas clair.
 2. Construisez votre plan de trésorerie mensuel sur douze mois, avec les entrées et sorties réelles attendues.
 3. Écrivez la partie « risques » : trois risques, trois réponses préparées.

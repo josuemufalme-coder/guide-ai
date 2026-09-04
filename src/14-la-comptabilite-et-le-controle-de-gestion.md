@@ -13,7 +13,7 @@ Ce que l’absence de comptes vous coûte, en revanche, est certain :
 - Vous ne repérez ni les vols, ni les pertes, ni les dérives.
 - Vous ne pouvez pas vendre ni transmettre votre entreprise : elle n’a d’existence que dans votre tête.
 
-### Une comptabilité ne sert pas d’abord à l’administration. Elle sert à vous.
+**Une comptabilité ne sert pas d’abord à l’administration. Elle sert à vous.**
 
 ## Le minimum vital : quatre cahiers
 
@@ -29,13 +29,13 @@ Commencez petit, mais commencez. Quatre registres suffisent pour tenir une petit
 
 De cette tenue, tirez chaque mois trois chiffres. Ce sont les seuls indispensables.
 
-**Le résultat** : ce que l’activité a produit, une fois toutes les charges retirées — y compris votre salaire. Il répond à : *est-ce* que je gagne de l’argent ?
+**Le résultat** : ce que l’activité a produit, une fois toutes les charges retirées — y compris votre salaire. Il répond à : *est-ce que je gagne de l’argent ?*
 
 **La trésorerie** : ce dont vous disposez réellement aujourd’hui pour payer. Elle répond à : *puis-je tenir le mois prochain ?* Un résultat positif et une trésorerie vide sont parfaitement compatibles : c’est tout l’objet du chapitre 13.
 
 **Le seuil de rentabilité** : le volume de ventes à partir duquel vous couvrez toutes vos charges. En dessous, vous perdez ; au-dessus, vous gagnez. Connaître ce seuil change la façon de travailler : vous savez, dès le milieu du mois, où vous en êtes.
 
-::: encadre "Un tableau de bord d’une page"
+::: {.encadre type="aparte" titre="Un tableau de bord d’une page"}
 Chaque fin de mois, notez sur une seule feuille : les ventes, les achats, les charges, le résultat, la trésorerie disponible, les créances à recouvrer, les dettes à payer, et le stock.
 Douze feuilles par an, comparées entre elles, vous en apprendront davantage sur votre entreprise que n’importe quel conseil extérieur. Ce sont vos chiffres, dans votre activité.
 :::
@@ -56,14 +56,14 @@ En République démocratique du Congo comme dans les autres États membres de l�
 
 Deux conseils pratiques. D’abord, tenez vos quatre cahiers dès le premier jour, quel que soit votre régime : ils sont la matière première de toute comptabilité formelle ultérieure, et les reconstituer après coup est un travail pénible et coûteux. Ensuite, faites-vous accompagner par un professionnel dès que votre activité dépasse quelques dizaines de transactions par mois — un comptable coûte moins cher qu’un redressement ou qu’un financement refusé.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Abordons franchement la crainte de l’administration.
 L’argument « si je tiens des comptes, on viendra me taxer » est compréhensible, et il n’est pas entièrement faux. Mais il conduit à un piège : sans comptes, vous ne pouvez rien contester. Face à une taxation d’office établie sur une estimation, celui qui n’a aucun document ne peut opposer que sa parole. Celui qui a ses cahiers et ses pièces peut discuter des chiffres. **La comptabilité** protège autant qu’elle expose.
 Un second point, plus important encore : sans comptes, vous êtes définitivement enfermé dans la petite échelle. Ni crédit bancaire, ni marché avec une grande entreprise, ni appel d’offres, ni partenaire sérieux. Beaucoup d’entrepreneurs congolais
 compétents restent petits pour cette seule raison. C’est un choix qui se comprend à court terme et qui coûte tout à long terme.
 :::
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Achetez quatre cahiers et ouvrez-les aujourd’hui, même au milieu du mois.
 2. Calculez votre seuil de rentabilité mensuel : total de vos charges fixes divisé par votre marge unitaire.
 3. Remplissez votre première page de tableau de bord avec les chiffres du mois écoulé, même approximatifs.

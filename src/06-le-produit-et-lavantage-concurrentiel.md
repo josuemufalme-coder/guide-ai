@@ -4,7 +4,7 @@
 
 Un client qui hésite entre vous et le voisin ne cherche pas le meilleur produit du monde. Il cherche une raison de choisir. Votre travail, lorsque vous concevez votre offre, consiste à lui fournir cette raison.
 
-C’est ce qu’on appelle un **avantage concurrentiel** : une caractéristique de votre produit ou de votre service qui place votre entreprise en position favorable face aux autres. Posez-vous la question sans détour, et n’acceptez pas de réponse vague : *en quoi ce que je propose est-il différent, particulier* ou supérieur ?
+C’est ce qu’on appelle un **avantage concurrentiel** : une caractéristique de votre produit ou de votre service qui place votre entreprise en position favorable face aux autres. Posez-vous la question sans détour, et n’acceptez pas de réponse vague : *en quoi ce que je propose est-il différent, particulier ou supérieur ?*
 
 Cet avantage peut prendre plusieurs formes :
 - **Une caractéristique que personne d’autre n’offre** dans votre zone : une fonction, un service associé, un conditionnement, un horaire.
@@ -13,7 +13,7 @@ Cet avantage peut prendre plusieurs formes :
 - **La niche** : vous servez un groupe précis que les autres servent mal ou pas du tout.
 - **La ressource** : vous disposez d’une matière première, d’un accès, d’un emplacement ou d’un savoir-faire que les autres n’ont pas.
 
-::: encadre "Attention au prix comme avantage"
+::: {.encadre type="aparte" titre="Attention au prix comme avantage"}
 Se distinguer par le prix est la stratégie la plus facile à annoncer et la plus difficile à tenir. Elle a un défaut fatal pour une entreprise qui démarre : **n’importe qui peut la copier du jour au lendemain**, et celui qui gagne cette guerre-là est celui qui a le plus de trésorerie — jamais le nouveau venu.
 Vendre moins cher ne se justifie que si vous produisez réellement à un coût inférieur, pour une raison solide : un approvisionnement plus direct, une organisation plus efficace, une charge que vous n’avez pas. Sans cette raison, baisser le prix ne vous rend pas plus compétitif, cela réduit seulement votre marge, puis votre capacité à tenir.
 :::
@@ -40,11 +40,11 @@ Nous y venons ci-dessous, car c’est la décision la plus mal comprise.
 
 ## La qualité est ce que le client perçoit
 
-Voici le point que la plupart des producteurs refusent d’admettre : **la qualité ne se définit pas dans votre**
+Voici le point que la plupart des producteurs refusent d’admettre : **la qualité ne se définit pas dans votre atelier, elle se définit dans la tête de votre client.**
 
-### atelier, elle se définit dans la tête de votre client.
+Commencez donc par comprendre ce que *votre* clientèle appelle la qualité. Pour l’un, ce sera la durée de vie du produit. Pour l’autre, la propreté et la présentation. Pour un troisième, le respect du délai. Pour un quatrième, le fait que le produit soit toujours identique d’une fois sur l’autre. Ce ne sont pas les mêmes exigences, et elles n’appellent pas les mêmes efforts.
 
-Commencez donc par comprendre ce que *votre* clientèle appelle la qualité. Pour l’un, ce sera la durée de vie du produit. Pour l’autre, la propreté et la présentation. Pour un troisième, le respect du délai. Pour un quatrième, le fait que le produit soit toujours identique d’une fois sur l’autre. Ce ne sont pas les mêmes exigences, et elles n’appellent pas les mêmes efforts. Une fois que vous savez ce qui compte pour eux, les moyens d’y parvenir sont connus :
+Une fois que vous savez ce qui compte pour eux, les moyens d’y parvenir sont connus :
 - des **matières premières** de bonne qualité, choisies et contrôlées à la réception ;
 - de bonnes conditions de **stockage** et de conservation ;
 - des **outils et techniques** de production efficaces, entretenus ;
@@ -53,7 +53,7 @@ Commencez donc par comprendre ce que *votre* clientèle appelle la qualité. Pou
 
 Et fixez-vous un niveau : celui qui correspond aux normes attendues par votre clientèle, et qu’elle est prête à payer. Ni en dessous — vous perdez le client — ni très au-dessus.
 
-::: encadre "Un piège coûteux : la sur-qualité"
+::: {.encadre type="aparte" titre="Un piège coûteux : la sur-qualité"}
 On répète qu’il faut toujours viser le meilleur. C’est faux en gestion. Une qualité supérieure que votre client ne remarque pas, ou qu’il ne paiera pas plus cher, est une dépense pure. Un emballage luxueux pour un produit acheté au quotidien, une finition invisible, un matériau surdimensionné : ce sont des marges perdues.
 La bonne question n’est pas « puis-je faire mieux ? » mais « **mon client verra-t-il la différence, et la paiera-t-il ?** ». Si la réponse est non, mettez cet effort ailleurs.
 :::
@@ -69,7 +69,7 @@ Une fois le produit correct, la différence se joue souvent sur ce qui l’entou
 
 Pensez la maintenance dès la conception. Un produit que personne ne peut réparer, ou dont on ne trouve plus les consommables, perd sa valeur au premier incident — et vous perdez le client suivant, qui a entendu l’histoire.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Sur notre marché, l’avantage le plus puissant n’est presque jamais l’innovation technique. C’est la **régularité**. Beaucoup d’entreprises savent faire une belle réalisation une fois ; très peu livrent la même chose, à la même qualité, au même délai, douze fois de suite.
 Un client qui a été déçu deux fois ailleurs paiera davantage pour ne plus avoir à vérifier. Être celui qui tient toujours parole est, ici, une position commerciale plus solide qu’une trouvaille technique — et elle ne se copie pas en une semaine.
 Deux conséquences concrètes : soignez votre stockage, car une part importante des pertes de qualité vient de la conservation ; et sécurisez vos approvisionnements, car une matière première irrégulière produit un produit irrégulier, quelle que soit votre habileté.
@@ -85,7 +85,7 @@ Deux habitudes simples valent tous les discours.
 
 Et si votre produit ne répond pas aux attentes : changez-le. Un produit n’est pas un engagement d’honneur, c’est un outil pour servir un marché. S’obstiner par fierté sur une offre que le client refuse est l’une des manières les plus sûres de fermer.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Écrivez en une phrase votre avantage concurrentiel. Faites-la lire à trois clients : s’ils ne la reconnaissent pas, elle n’existe pas.
 2. Achetez le produit de deux concurrents et comparez-le au vôtre, point par point.
 3. Demandez à cinq clients ce qui, pour eux, fait la qualité de ce que vous vendez. Comparez leurs réponses à vos propres efforts : vous découvrirez probablement que vous travaillez beaucoup sur ce qu’ils ne regardent pas.

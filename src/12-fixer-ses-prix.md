@@ -2,7 +2,7 @@
 
 ## L’erreur la plus coûteuse
 
-De toutes les décisions d’un entrepreneur, la fixation du prix est celle qui a le plus d’effet sur la survie de l’entreprise — et celle qu’on prend avec le moins de méthode. La règle la plus répandue est : *je regarde ce que fait le voisin, et je me place un* peu en dessous.
+De toutes les décisions d’un entrepreneur, la fixation du prix est celle qui a le plus d’effet sur la survie de l’entreprise — et celle qu’on prend avec le moins de méthode. La règle la plus répandue est : *je regarde ce que fait le voisin, et je me place un peu en dessous.*
 
 Cette règle a deux défauts. Elle suppose que le voisin, lui, sait calculer — rien ne le prouve. Et elle ignore complètement vos propres coûts, qui ne sont pas les siens.
 
@@ -22,7 +22,7 @@ Avant de parler de prix de vente, il faut savoir ce qu’une unité vous coûte 
 - **L’usure de l’équipement.** Une machine qui dure trois ans doit être remplacée au bout de trois ans. Si vous n’en mettez pas une part de côté chaque mois, vous vous retrouverez sans outil et sans argent pour le racheter.
 - **Le temps improductif.** Vous ne travaillez pas tous les jours à plein régime. Les jours creux se financent sur les jours pleins.
 
-::: encadre "Un test rapide"
+::: {.encadre type="aparte" titre="Un test rapide"}
 Prenez le total de vos ventes du mois dernier. Retirez tout ce que vous avez payé, y compris ce que vous avez pris pour vous. Divisez par le nombre d’unités vendues. Si le résultat est proche de zéro ou négatif alors que vous avez beaucoup travaillé, votre prix est le problème — pas votre volume.
 :::
 
@@ -45,14 +45,14 @@ Si votre plancher est au-dessus du plafond du marché, le problème n’est pas 
 
 **Vendre plus pour compenser un mauvais prix.** Si chaque unité vous fait perdre de l’argent, doubler les ventes double la perte. Augmenter le volume n’a de sens qu’une fois la marge assainie.
 
-::: encadre "Réalité congolaise"
+::: {.encadre type="realite-congolaise" titre="Réalité congolaise"}
 Trois points spécifiques.
 **Le taux de change.** Si vous achetez en devise et vendez en francs, une variation vous frappe directement. Recalculez vos prix à intervalle régulier plutôt qu’après avoir constaté la perte, et gardez une marge de sécurité sur les produits importés.
 **Le coût de l’énergie.** Le carburant du groupe électrogène est une charge majeure et irrégulière que beaucoup n’intègrent jamais au prix de revient, parce qu’elle est payée séparément et vécue comme un imprévu. Elle n’est pas un imprévu : c’est un coût de production.
 **Le marchandage.** Il fait partie de nos usages. Intégrez-le : annoncez un prix qui laisse une marge de négociation, et fixez-vous un plancher écrit en dessous duquel vous ne descendez pas. Sans ce plancher écrit, c’est la fatigue ou la sympathie qui décide — et elles décident toujours mal.
 :::
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 1. Calculez le prix de revient complet d’un seul de vos produits, avec les trois familles de coûts.
 2. Comparez-le à votre prix de vente actuel. Notez l’écart.
 3. Fixez par écrit votre plancher de négociation.

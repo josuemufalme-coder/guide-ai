@@ -16,7 +16,7 @@ Un bon discours d’ascenseur tient en quatre éléments :
 
 Entraînez-vous à voix haute, chronomètre en main, jusqu’à ce que les trente secondes passent sans hésitation. Préparez également une version d’une minute, pour les occasions où l’on vous donnera davantage de temps. Ce petit texte vous servira ensuite partout : devant une banque, devant un client, devant un futur associé, et jusque dans votre plan d’affaires.
 
-::: encadre "À faire cette semaine"
+::: {.encadre type="a-faire" titre="À faire cette semaine"}
 Écrivez votre discours d’ascenseur en quatre lignes. Dites-le à cinq personnes de votre entourage. Demandez à chacune de vous répéter ce qu’elle a compris. Si trois d’entre elles se trompent, ce n’est pas elles qu’il faut corriger, c’est votre texte.
 :::
 
@@ -24,9 +24,7 @@ Entraînez-vous à voix haute, chronomètre en main, jusqu’à ce que les trent
 
 Beaucoup de porteurs de projets confondent la planification avec la projection : imaginer l’entreprise dans cinq ans, le nombre d’employés, le bâtiment, la flotte de véhicules. C’est agréable, et parfaitement inutile.
 
-Planifier consiste à répondre à une seule question : **que dois-je**
-
-### faire, concrètement, et dans quel ordre, pour passer de là où je suis à là où je veux être ?
+Planifier consiste à répondre à une seule question : **que dois-je faire, concrètement, et dans quel ordre, pour passer de là où je suis à là où je veux être ?**
 
 La démarche se déroule en deux temps qui ne se séparent pas. D’abord fixer des objectifs et préparer des plans. Ensuite — et c’est là que la plupart des projets s’arrêtent — les mettre en œuvre. Un plan qui reste dans un cahier n’a produit aucune valeur. Une entreprise n’existe qu’à partir du moment où quelque chose est fait.
 
@@ -47,17 +45,15 @@ Ambitieux et réaliste ne s’opposent pas : ils se tiennent. Un objectif trop f
 
 ## Trois horizons, et un ordre de priorité
 
-Un seul objectif ne suffit pas à conduire une entreprise. Il vous en faut à trois échelles, et ces trois échelles doivent s’emboîter. **Le long terme — un an.** Que doit être votre entreprise dans douze mois ? Combien de clients, quel chiffre d’affaires, quelle capacité de production, quel statut ? C’est votre cap. Il ne se pilote pas au quotidien, mais sans lui vous ne saurez jamais si vous avancez ou si vous tournez.
+Un seul objectif ne suffit pas à conduire une entreprise. Il vous en faut à trois échelles, et ces trois échelles doivent s’emboîter.
+
+**Le long terme — un an.** Que doit être votre entreprise dans douze mois ? Combien de clients, quel chiffre d’affaires, quelle capacité de production, quel statut ? C’est votre cap. Il ne se pilote pas au quotidien, mais sans lui vous ne saurez jamais si vous avancez ou si vous tournez.
 
 **Le moyen terme — trois mois.** Ce sont les jalons : les résultats intermédiaires qui prouvent que vous progressez vers l’objectif annuel. Chacun porte une date.
 
 **Le court terme — la semaine.** Ce que vous faites maintenant. C’est le seul horizon sur lequel vous agissez réellement.
 
-La règle qui relie les trois est simple et exigeante : **tout objectif**
-
-### de la semaine doit servir un jalon du trimestre, et tout
-
-**jalon doit servir l’objectif de l’année.** Une action qui ne remonte à rien n’est pas du travail, c’est de l’agitation.
+La règle qui relie les trois est simple et exigeante : **tout objectif de la semaine doit servir un jalon du trimestre, et tout jalon doit servir l’objectif de l’année.** Une action qui ne remonte à rien n’est pas du travail, c’est de l’agitation.
 
 Enfin, classez vos objectifs par ordre de priorité. Ils ne se valent pas. Deux ou trois comptent vraiment ; les autres attendront. La tentation inverse — multiplier les activités pour ne rien rater, ouvrir un deuxième commerce avant d’avoir stabilisé le premier — est compréhensible dans un environnement incertain, où la dispersion ressemble à de la prudence. C’est pourtant l’une des causes les plus fréquentes d’épuisement et d’échec chez les jeunes entreprises : trois activités menées à moitié rapportent moins qu’une seule menée entièrement.
 
@@ -67,11 +63,9 @@ Un objectif que l’on garde en tête s’efface au premier imprévu. Écrivez-l
 
 Et le jour où vous rencontrez un obstacle, relisez-le avant de décider quoi que ce soit. C’est précisément dans ces moments-là que l’on renonce sans s’en rendre compte, en se disant qu’on verra plus tard.
 
-### Règle générale : quand un obstacle surgit, changez le
+**Règle générale : quand un obstacle surgit, changez le plan, pas l’objectif.** Le plan est un chemin ; s’il est coupé, on en prend un autre. L’objectif, lui, est la destination, et l’on ne change pas de destination parce que la route est mauvaise.
 
-**plan, pas l’objectif.** Le plan est un chemin ; s’il est coupé, on en prend un autre. L’objectif, lui, est la destination, et l’on ne change pas de destination parce que la route est mauvaise.
-
-::: encadre "Une exception importante"
+::: {.encadre type="aparte" titre="Une exception importante"}
 Cette règle a une limite, et elle est sérieuse. Un objectif construit sur une hypothèse fausse doit être modifié, pas défendu.
 Si vos tests montrent que le client ne veut pas de votre produit, que le prix ne peut pas couvrir vos coûts, ou que le marché visé n’existe pas à la taille supposée, s’entêter n’est pas de la persévérance : c’est du refus d’apprendre, et cela coûte beaucoup plus cher que d’admettre l’erreur au troisième mois.
 La distinction est simple à retenir. Face à une **difficulté**, on maintient l’objectif et on change de méthode. Face à une **preuve** que l’objectif était mal posé, on corrige l’objectif. Ce qui décide, ce n’est jamais votre humeur du moment : ce sont les faits que vous avez recueillis.

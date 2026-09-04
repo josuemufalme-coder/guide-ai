@@ -2,18 +2,18 @@
 
 Un livre se referme ; une entreprise se construit. Pour que ces pages ne restent pas des pages, voici ce que nous vous proposons de faire dans les trois mois qui viennent.
 
-### Le premier mois — comprendre et choisir.
+**Le premier mois — comprendre et choisir.**
 - Tenez le cahier des irritations pendant une semaine ; croisez-le avec vos forces et vos ressources.
 - Retenez trois idées, testez-les auprès de dix personnes réelles — avec le prix.
 - Écrivez votre vision en sept mots et votre discours d’ascenseur en quatre lignes.
 
-### Le deuxième mois — construire.
+**Le deuxième mois — construire.**
 - Décrivez votre client principal, choisissez votre segment, remplissez votre tableau de positionnement.
 - Calculez le prix de revient complet d’un produit, salaire compris. Fixez votre prix et votre plancher de négociation.
 - Établissez votre plan de développement : trois mois, un jalon par quinzaine.
 - Préparez trois réponses « si… alors » pour vos dépendances critiques.
 
-### Le troisième mois — lancer et tenir.
+**Le troisième mois — lancer et tenir.**
 - Ouvrez vos quatre cahiers et un compte distinct pour l’activité.
 - Fixez votre salaire et versez-le à date fixe.
 - Réunissez les informations sur votre formalisation et vos obligations.
