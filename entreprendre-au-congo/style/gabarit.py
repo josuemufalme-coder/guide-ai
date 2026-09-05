@@ -172,6 +172,11 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 %% portant des guillemets ou une commande traverse intact.
 \newenvironment{encadre}[2]{%
   \par\addvspace{\onelineskip}%
+  %% Un encadré ne s'ouvre pas au ras du pied de page : son filet de tête est
+  %% resté seul en bas d'une page, la suite passant à la page d'après. Quatre
+  %% lignes disponibles, et rien ne se coupe entre le filet, le titre et la
+  %% première ligne — les \nobreak s'en chargent.
+  \Needspace*{4\baselineskip}%
   \begingroup
   \def\sorteencadre{#1}%
   \def\titreencadre{#2}%
@@ -180,16 +185,18 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
   %% peut y déborder. Une réserve d'élasticité plus large lui est propre.
   \emergencystretch=3em
   \ifx\sorteencadre\encadreaparte\else
-    \filetencadre\vspace{0.6\onelineskip}%
+    \filetencadre\nobreak\vskip 0.6\onelineskip
   \fi
   \small
   \ifx\titreencadre\empty\else
-    \noindent\textbf{#2}\par\nobreak\vspace{0.3\onelineskip}%
+    \noindent\textbf{#2}\par\nobreak\vskip 0.3\onelineskip
   \fi
+  \nobreak
 }{%
   \par
   \ifx\sorteencadre\encadreaparte\else
-    \vspace{0.6\onelineskip}\filetencadre
+    %% Et le filet de pied ne se sépare pas de la dernière ligne qu'il ferme.
+    \nobreak\vskip 0.6\onelineskip\nobreak\filetencadre
   \fi
   \endgroup
   \par\addvspace{\onelineskip}%

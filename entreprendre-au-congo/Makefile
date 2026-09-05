@@ -102,6 +102,8 @@ ouvrage: livre couverture
 	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.png
 	cp $(BUILD)/couverture/couverture-A-typographique.pdf \
 	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.pdf
+	python3 $(QA)/controler-filets.py $(BUILD)/livre/ENTREPRENDRE-AU-CONGO-interieur.pdf \
+	  --attendus 30 | tee $(QA)/rapport-filets.txt
 	python3 $(QA)/controler-pdf.py $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO.pdf \
 	  | tee $(QA)/rapport-pdf.txt
 

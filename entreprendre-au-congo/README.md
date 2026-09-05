@@ -233,6 +233,10 @@ LanguageTool en profil français, après en avoir retiré ce qui n'est pas de la
 prose. `qa/controler-pdf.py` constate sur le PDF d'impression : polices
 incorporées, format unique, boîte de rognage, fond perdu, absence de RVB et de
 quadrichromie, métadonnées, pagination multiple de quatre.
+`qa/controler-filets.py` vérifie ce qu'aucun des deux ne peut voir : les traits.
+Il rend chaque page en niveaux de gris, retient les lignes de pixels qui
+traversent la justification, écarte les filets noirs de booktabs à leur gris, et
+apparie les soixante filets des trente encadrés à filets.
 
 **Phase 9 — les livrables.** `qa/assembler-livre.py` réunit la couverture
 retenue et l'intérieur dans un fichier unique où toutes les pages sortent au même
@@ -257,6 +261,11 @@ Corrigé dans la chaîne :
 - une rubrique pouvait s'ouvrir en pied de page sur un seul article, le reste
   passant à la page suivante : `\clubpenalty` ne retient pas le deuxième article
   d'une liste ;
+- le filet de tête d'un encadré restait seul au pied d'une page, l'encadré
+  commençant à la page suivante sans son trait ; aucune extraction de texte ne
+  le voyait, un filet n'étant pas un caractère — d'où `qa/controler-filets.py`,
+  qui rend le PDF en niveaux de gris, compte les traits pleine mesure et les
+  apparie page par page ;
 - la couverture était définie en RVB, ce qui n'a pas de sens dans un fichier
   d'impression ; elle est en noir seul ;
 - les deux lignes du titre de couverture se touchaient presque ;
