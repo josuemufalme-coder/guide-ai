@@ -112,11 +112,16 @@ def convertir(chemin):
             continue
         if nue.startswith("<!--"):
             fermer_liste()
-            sortie.append(r"\part*{%s}" % en_latex(TITRE_PARTIE.match(nue).group(1)))
+            partie = en_latex(TITRE_PARTIE.match(nue).group(1))
+            sortie.append(r"\part*{%s}\addcontentsline{toc}{part}{%s}"
+                          % (partie, partie))
         elif nue.startswith("# "):
             fermer_liste()
             titre = en_latex(nue[2:])
-            sortie.append(r"\chapter*{%s}\markright{%s}" % (titre, titre))
+            # Le titre entre à la table des matières et au titre courant : sans
+            # \addcontentsline, un \chapter* n'y figure pas.
+            sortie.append(r"\chapter*{%s}\addcontentsline{toc}{chapter}{%s}"
+                          r"\markright{%s}" % (titre, titre, titre))
         elif nue.startswith("## "):
             fermer_liste()
             sortie.append(r"\section*{%s}" % en_latex(nue[3:]))
@@ -142,6 +147,42 @@ def convertir(chemin):
     return "\n\n".join(sortie)
 
 
+def liminaire_en_latex(chemin):
+    """La page de titre, la page de droits et la table des matières.
+
+    Le cahier des charges les confie à la phase 6 ; sans elles, le PDF n'est pas
+    un livre mais un tirage de chapitres. Ce qui manque encore — ISBN, dépôt
+    légal, achevé d'imprimer — ne s'invente pas et reste en blanc.
+    """
+    lignes = [l.strip() for l in chemin.read_text(encoding="utf-8").split("\n")
+              if l.strip()]
+    droits = [en_latex(l) for l in lignes
+              if not l.startswith("#") and "ENTREPRENDRE AU CONGO" not in l
+              and "Comprendre l" not in l]
+    return "\n\n".join([
+        r"\frontmatter",
+        r"\thispagestyle{empty}",
+        r"\vspace*{55mm}",
+        r"\begin{center}",
+        r"{\fontsize{26}{32}\selectfont\bfseries ENTREPRENDRE\\[2mm] AU CONGO}",
+        r"\vspace{12mm}",
+        r"{\large Comprendre l'entrepreneuriat\\ et savoir par où commencer}",
+        r"\vspace{28mm}",
+        r"{\large Par Ruth ZADI Pukuta}",
+        r"\end{center}",
+        r"\cleardoublepage",
+        r"\thispagestyle{empty}",
+        r"\vspace*{\fill}",
+        r"{\small\raggedright " + r"\par ".join(droits) + r"\par}",
+        r"\vspace{6mm}",
+        r"{\small\raggedright ISBN : à attribuer\par "
+        r"Dépôt légal : à effectuer\par Achevé d'imprimer : à compléter\par}",
+        r"\cleardoublepage",
+        r"\tableofcontents",
+        r"\mainmatter",
+    ])
+
+
 def main():
     analyseur = argparse.ArgumentParser(description=__doc__)
     analyseur.add_argument("--police", default="sourceserif")
@@ -151,7 +192,11 @@ def main():
     options.sortie.mkdir(parents=True, exist_ok=True)
 
     fichiers = sorted(options.source.glob("*.md"))
-    corps = "\n\n\\cleardoublepage\n\n".join(convertir(f) for f in fichiers)
+    # Le premier fichier porte la page de titre et la page de droits : il n'est
+    # pas du corps de l'ouvrage et se compose à part, en pages liminaires.
+    liminaires, corps_fichiers = fichiers[0], fichiers[1:]
+    corps = liminaire_en_latex(liminaires) + "\n\n" + "\n\n\\cleardoublepage\n\n".join(
+        convertir(f) for f in corps_fichiers)
     police = POLICES[options.police]
 
     global PREAMBULE
@@ -162,17 +207,39 @@ def main():
                                   "\\usepackage{graphicx}\n"
                                   "\\newsavebox{\\boiteschema}\n"
                                   "\\begin{document}")
-    preambule = preambule.replace(r"\setcounter{page}{18}", r"\setcounter{page}{1}")
+    preambule = preambule.replace(r"\setcounter{page}{18}", "")
+    preambule = preambule.replace(
+        r"\begin{document}",
+        "\\setcounter{tocdepth}{0}\n\\setcounter{secnumdepth}{-1}\n"
+        # La colonne des folios doit tenir trois chiffres, et l'entrée s'arrêter
+        # avant elle : sinon un folio à trois chiffres déborde la justification.
+        # Ces réglages n'ont d'effet que posés avant \\begin{document}.
+        "\\setpnumwidth{3em}\n\\setrmarg{4.5em}\n"
+        "\\begin{document}")
     COMP.PREAMBULE = preambule
-    pdf = COMP.composer("livre", police, corps, options.sortie,
-                        "Entreprendre au Congo",
-                        f"{police['nom']} \\quad {police['corps']:g}/"
-                        f"{police['interlignage']:g} pt")
-    if not pdf:
-        return 1
-    pages = COMP.compte_de_pages(pdf)
+    regie = (f"{police['nom']} \\quad {police['corps']:g}/"
+             f"{police['interlignage']:g} pt")
+    # L'imposition exige une pagination multiple de quatre. Le nombre de pages
+    # blanches à ajouter ne se devine pas : on compose, on compte, on complète,
+    # et on recompose pour vérifier que le compte est juste.
+    blanches = ""
+    for _ in range(2):
+        pdf = COMP.composer("livre", police, corps + blanches, options.sortie,
+                            "Entreprendre au Congo", regie)
+        if not pdf:
+            return 1
+        pages = COMP.compte_de_pages(pdf)
+        manque = -pages % 4
+        if not manque:
+            break
+        blanches = ("\n\n" + "\n".join(
+            [r"\clearpage\thispagestyle{empty}\null"] * manque))
+
     print(f"  {police['nom']} — {len(fichiers)} fichiers, {pages} pages")
     print(f"  multiple de 4 : {'oui' if pages % 4 == 0 else f'non, il en manque {-pages % 4}'}")
+    final = options.sortie / "ENTREPRENDRE-AU-CONGO-interieur.pdf"
+    final.write_bytes(pdf.read_bytes())
+    print(f"  livrable : {final}")
     return 0
 
 

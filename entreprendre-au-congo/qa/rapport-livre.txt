@@ -1,5 +1,5 @@
 
-── specimen-livre — 134 pages, 2791 lignes de corps ──
+── specimen-livre — 134 pages, 2773 lignes de corps ──
   boîtes débordantes                       : 0   ✓
   lignes de mauvaisité > 1000             : 20
   césures consécutives (maximum, plafond 2) : 2   ✓

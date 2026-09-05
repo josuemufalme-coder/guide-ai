@@ -126,8 +126,14 @@ def interligne(pages):
     return ecarts.most_common(1)[0][0] if ecarts else 25
 
 
-def mesurer(pdf, journal):
-    pages = pages_de_corps(pdf)
+def mesurer(pdf, journal, depuis=1):
+    """Mesure à partir de la page indiquée.
+
+    Les pages liminaires — titre, droits, table des matières — ne sont pas du
+    texte courant : une entrée de table isolée en pied n'est pas une orpheline,
+    et les juger comme du corps ferait compter des défauts qui n'en sont pas.
+    """
+    pages = pages_de_corps(pdf)[depuis - 1:]
     toutes = [l for p in pages for l in p]
     if not toutes:
         return None
@@ -279,10 +285,12 @@ def rapporter(nom, m):
 def main():
     analyseur = argparse.ArgumentParser(description=__doc__)
     analyseur.add_argument("pdfs", nargs="+", type=Path)
+    analyseur.add_argument("--depuis", type=int, default=1,
+                           help="première page à mesurer, liminaires exclus")
     options = analyseur.parse_args()
     tout_conforme = True
     for pdf in options.pdfs:
-        mesure = mesurer(pdf, pdf.with_suffix(".log"))
+        mesure = mesurer(pdf, pdf.with_suffix(".log"), options.depuis)
         if mesure is None:
             print(f"\n── {pdf.name} : illisible")
             tout_conforme = False

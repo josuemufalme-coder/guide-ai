@@ -13,12 +13,12 @@ Il fait autorité. En cas de divergence avec ce fichier-ci, c'est lui qui tranch
 | Phase | Objet | État |
 | --- | --- | --- |
 | 0 | Mise en place, découpage, contrôle d'intégrité | **en cours de validation** |
-| 1 | Gabarit typographique (césure, police, justification) | **D2 et D3 tranchées ; ouvrage composé, 134 pages** |
+| 1 | Gabarit typographique (césure, police, justification) | **faite** — D2 et D3 tranchées, ouvrage composé en 140 pages |
 | 2 | Normalisation typographique du texte source | à venir |
 | 3 | Appareil de notes | à venir |
 | 4 | Figures et tableaux | à venir |
 | 5 | Cohérence éditoriale | à venir |
-| 6 | Liminaires et fin de volume | à venir |
+| 6 | Liminaires et fin de volume | **entamée** — titre, droits et table des matières posés ; ISBN, dépôt légal et achevé d'imprimer restent en blanc |
 | 7 | Composition et mise en page | à venir |
 | 8 | Contrôle qualité automatisé | à venir |
 | 9 | Livrables | à venir |
