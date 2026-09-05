@@ -38,6 +38,7 @@ body { margin: 0 5%; line-height: 1.5; text-align: justify;
        hyphens: auto; -webkit-hyphens: auto; }
 h1 { font-size: 1.6em; line-height: 1.2; margin: 2em 0 1em; text-align: left; }
 h2 { font-size: 1.15em; margin: 1.8em 0 0.4em; text-align: left; }
+h3 { font-size: 1em; margin: 1.2em 0 0.3em; text-align: left; }
 p { margin: 0 0 0.7em; }
 p.partie { margin: 3em 0 0; font-size: 1.2em; font-weight: bold;
            letter-spacing: 0.05em; text-align: left; }
@@ -70,7 +71,7 @@ GABARIT_XHTML = """<?xml version="1.0" encoding="utf-8"?>
 """
 
 CELLULES = re.compile(r"^\|(.*)\|\s*$")
-NUMERO = re.compile(r"^\d{1,2}\. ")
+NUMERO = re.compile(r"^(\d{1,2})\. ")
 FILET = re.compile(r"^\|[\s|:-]+\|\s*$")
 
 
@@ -145,6 +146,9 @@ def convertir(chemin):
             fermer_liste()
             titre_du_fichier = nue[2:].strip()
             sortie.append(f"<h1>{en_xhtml(titre_du_fichier)}</h1>")
+        elif nue.startswith("### "):
+            fermer_liste()
+            sortie.append(f"<h3>{en_xhtml(nue[4:])}</h3>")
         elif nue.startswith("## "):
             fermer_liste()
             if titre_du_fichier is None:
@@ -169,9 +173,13 @@ def convertir(chemin):
                 liste = "ul"
             sortie.append(f"<li>{en_xhtml(nue[2:])}</li>")
         elif NUMERO.match(nue):
+            rang = int(NUMERO.match(nue).group(1))
             if liste != "ol":
                 fermer_liste()
-                sortie.append("<ol>")
+                # Une énumération que le manuscrit reprend après un tableau ou
+                # un paragraphe garde son rang : sans « start », le navigateur
+                # la fait repartir de 1.
+                sortie.append("<ol>" if rang == 1 else '<ol start="%d">' % rang)
                 liste = "ol"
             sortie.append("<li>%s</li>" % en_xhtml(NUMERO.sub("", nue)))
         else:
@@ -202,7 +210,7 @@ def main():
     analyseur.add_argument("--source", type=Path, default=Path("src"))
     analyseur.add_argument("--sortie", type=Path, default=Path("build/livrable"))
     analyseur.add_argument("--couverture", type=Path,
-                           default=Path("build/couverture/couverture-B-bloc-couleur.png"))
+                           default=Path("build/couverture/ENTREPRENDRE-AU-CONGO-premiere.png"))
     options = analyseur.parse_args()
 
     fichiers = sorted(options.source.glob("*.md"))

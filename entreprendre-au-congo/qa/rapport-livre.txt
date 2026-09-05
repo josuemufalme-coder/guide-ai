@@ -6,7 +6,7 @@
   veuves et lignes creuses en tête          : 0   ✓
   orphelines en pied                        : 0   ✓
   mots coupés en dernier mot de page        : 0   ✓
-  pages raccourcies (bas de page remonté)   : 23   soit 39 ligne(s) au total
+  pages raccourcies (bas de page remonté)   : 25   soit 44 ligne(s) au total
   signes par ligne pleine                   : médiane 62, 90ᵉ centile 66
 
 composition : CONFORME

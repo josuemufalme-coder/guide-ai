@@ -83,7 +83,7 @@ Ce chapitre traite des deux : d’abord ce que vous possédez déjà, ensuite c
 
 La question qui bloque le plus grand nombre de porteurs de projets est : « je n’ai pas de capital ». Elle est légitime, mais elle arrive trop tôt. Avant l’argent, vous disposez de quatre ressources, et la plupart des gens les sous-emploient.
 
-## Vos forces personnelles
+### Vos forces personnelles
 
 Cherchez une idée qui s’appuie sur ce que vous savez déjà très bien faire. Votre temps et votre énergie sont limités : investis là où vous êtes fort, ils produisent beaucoup ; investis là où vous êtes faible, ils s’épuisent.
 
@@ -91,13 +91,13 @@ Attention cependant à un piège : une force qui ne rencontre aucune demande n�
 
 À vos compétences, ajoutez vos centres d’intérêt. On travaille mieux, et surtout plus longtemps, sur ce que l’on aime. Les premiers mois d’une entreprise sont ingrats : sans un attachement réel à ce que vous faites, vous abandonnerez avant que les résultats n’arrivent. Mais gardez la hiérarchie dans le bon ordre — l’intérêt vous fera tenir, il ne vous fera pas vendre. C’est la demande qui décide.
 
-## Vos ressources physiques
+### Vos ressources physiques
 
 Regardez ce qui, chez vous et autour de vous, est sous-employé : une parcelle, une pièce inoccupée, un véhicule, un outil, une machine qui ne tourne que le matin, un congélateur, une connexion internet. Ces ressources ne coûtent rien de plus puisqu’elles existent déjà. Utilisez-les au lieu d’attendre d’en acquérir d’autres.
 
 Cette manière de démarrer avec ce qu’on a sous la main, plutôt qu’avec ce qu’on souhaiterait avoir, porte un nom en anglais : le *bootstrapping*. C’est la méthode la mieux adaptée à notre contexte, et elle a un avantage que l’on mesure rarement : une entreprise démarrée sans dette n’est comptable qu’envers ses clients.
 
-## Vos relations
+### Vos relations
 
 Les personnes que vous connaissez — dans votre quartier, dans votre ville, dans le pays, et parfois à l’étranger — constituent une ressource que la plupart des porteurs de projets n’exploitent jamais méthodiquement. Elles servent à repérer une opportunité avant les autres, à obtenir une information fiable, à emprunter un équipement, à être recommandé auprès d’un premier client, à faire tester une offre gratuitement.
 
@@ -105,7 +105,7 @@ Ne vous contentez pas de « connaître du monde ». Faites le travail série
 
 Puis parlez-leur. Exposez votre projet, écoutez leurs objections, acceptez qu’ils vous complètent là où vous êtes incomplet. L’entrepreneur qui garde son idée secrète par crainte du vol se prive du seul retour gratuit dont il dispose.
 
-## Votre créativité
+### Votre créativité
 
 C’est elle qui relie les trois autres, et c’est elle qui vous maintiendra en vie une fois lancé.
 

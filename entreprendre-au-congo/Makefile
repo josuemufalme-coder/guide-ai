@@ -96,16 +96,29 @@ langue: | $(BUILD)
 	python3 $(QA)/controler-langue.py --source $(SRC) | tee $(QA)/rapport-langue.txt
 
 ouvrage: livre couverture
+	python3 couverture/composer-jaquette.py --sortie $(BUILD)/couverture \
+	  --pages $$(python3 -c "from pypdf import PdfReader; \
+	    print(len(PdfReader('$(BUILD)/livre/ENTREPRENDRE-AU-CONGO-interieur.pdf').pages))")
 	python3 $(QA)/assembler-livre.py
 	python3 $(QA)/composer-epub.py --source $(SRC)
-	cp $(BUILD)/couverture/couverture-B-bloc-couleur.png \
-	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.png
-	cp $(BUILD)/couverture/couverture-B-bloc-couleur.pdf \
-	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.pdf
+	cp $(BUILD)/couverture/ENTREPRENDRE-AU-CONGO-premiere.png \
+	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-premiere.png
+	cp $(BUILD)/couverture/ENTREPRENDRE-AU-CONGO-quatrieme.png \
+	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-quatrieme.png
+	cp $(BUILD)/couverture/ENTREPRENDRE-AU-CONGO-jaquette.pdf \
+	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture-complete.pdf
+	cp $(BUILD)/couverture/ENTREPRENDRE-AU-CONGO-jaquette.png \
+	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture-complete.png
 	python3 $(QA)/controler-filets.py $(BUILD)/livre/ENTREPRENDRE-AU-CONGO-interieur.pdf \
 	  --attendus 30 | tee $(QA)/rapport-filets.txt
 	python3 $(QA)/controler-pdf.py $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO.pdf \
 	  | tee $(QA)/rapport-pdf.txt
+	python3 $(QA)/controler-pdf.py --couverture-seule --hauteur 216 \
+	  --largeur $$(python3 -c "from pypdf import PdfReader; \
+	    b=PdfReader('$(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture-complete.pdf').pages[0].mediabox; \
+	    print(round(float(b.width)*25.4/72,1))") \
+	  $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture-complete.pdf \
+	  | tee -a $(QA)/rapport-pdf.txt
 
 propre:
 	rm -rf $(BUILD)

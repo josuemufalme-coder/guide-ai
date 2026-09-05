@@ -17,11 +17,11 @@ Il fait autorité. En cas de divergence avec ce fichier-ci, c'est lui qui tranch
 | 2 | Normalisation typographique du texte source | **faite** — 434 lignes corrigées, aucun signe ajouté ni retiré |
 | 3 | Appareil de notes | **faite** — les cinq appels s'impriment en exposant, et renvoient dans l'EPUB |
 | 4 | Figures et tableaux | **faite pour les encadrés** — forme arrêtée par sorte ; schémas et tableaux non numérotés, voir plus bas |
-| 5 | Cohérence éditoriale | à venir |
+| 5 | Cohérence éditoriale | **faite** — lecture intégrale, voir [`RAPPORT-EDITORIAL.md`](RAPPORT-EDITORIAL.md) |
 | 6 | Liminaires et fin de volume | **entamée** — titre, droits et table des matières posés ; ISBN, dépôt légal et achevé d'imprimer restent physiquement vides |
 | 7 | Composition et mise en page | **faite** — 140 pages, quatre mesures conformes |
 | 8 | Contrôle qualité automatisé | **faite** — LanguageTool sur la source, contrôle du PDF d'impression |
-| 9 | Livrables | **faite** — un PDF unique, un EPUB validé, la couverture seule ; couverture retenue : B, bloc de couleur |
+| 9 | Livrables | **faite** — un PDF unique première + intérieur + quatrième, la jaquette complète pour l'imprimeur, un EPUB validé |
 
 Une phase se termine par un point d'arrêt : rapport présenté, validation
 attendue. Aucune phase n'en enchaîne une autre — sauf les phases 2, 4, 8 et 9,
@@ -246,7 +246,12 @@ compose l'EPUB depuis la même source, sans convertisseur extérieur ; epubcheck
 
 La couverture retenue est la **proposition B, bloc de couleur** : un aplat ocre
 sur la moitié haute, le titre en réserve, le sous-titre et l'autrice dans la
-réserve de papier, en Source Sans Pro. L'ocre est posé en quadrichromie
+réserve de papier, en Source Sans Pro. `couverture/composer-jaquette.py` en
+compose la version complète — quatrième, dos et première d'un seul tenant, comme
+un imprimeur la reçoit — et en extrait les deux panneaux seuls, du même dessin et
+sans recopier une cote. L'épaisseur du dos se calcule à partir du nombre de pages
+et du papier ; le script imprime son calcul et accepte `--dos` quand l'imprimeur
+impose la sienne. L'ocre est posé en quadrichromie
 (C0 M57 J81 N36) ; le bloc de texte, lui, reste en noir seul, et le contrôle
 vérifie les deux séparément.
 

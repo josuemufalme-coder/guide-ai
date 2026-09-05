@@ -22,19 +22,19 @@ Retenez aussi qu’un avantage ne dure pas. Vos concurrents observent, imitent, 
 
 ## Trois décisions à prendre sur votre offre
 
-## Combien de produits différents ? (la largeur)
+### Combien de produits différents ? (la largeur)
 
 Combien de produits ou de services distincts voulez-vous proposer ? Un menu de trois plats ou de vingt ? Un seul service ou une gamme complète ?
 
 La tentation, au démarrage, est d’en offrir le plus possible pour ne perdre aucun client. C’est une erreur coûteuse. Chaque produit supplémentaire immobilise de l’argent en stock, disperse votre attention, complique votre approvisionnement et dilue votre réputation. Une jeune entreprise gagne presque toujours à faire peu de choses, très bien, avant d’élargir.
 
-## Combien de versions de chacun ? (la profondeur)
+### Combien de versions de chacun ? (la profondeur)
 
 Pour un même produit, combien de variantes proposez-vous : plusieurs tailles, plusieurs qualités, plusieurs formats de conditionnement, plusieurs niveaux de service ?
 
 Cette question est souvent plus rentable que la précédente. Proposer un même produit en petit format pour les revenus modestes et en grand format pour les clients réguliers vous ouvre deux marchés sans vous obliger à maîtriser un second métier.
 
-## Quel niveau de qualité ?
+### Quel niveau de qualité ?
 
 Nous y venons ci-dessous, car c’est la décision la plus mal comprise.
 

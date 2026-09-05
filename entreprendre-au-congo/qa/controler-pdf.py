@@ -31,7 +31,7 @@ def sortie_de(commande):
     return subprocess.run(commande, capture_output=True, text=True).stdout
 
 
-def controler(chemin, largeur, hauteur, fond_perdu):
+def controler(chemin, largeur, hauteur, fond_perdu, pagine=True):
     verdicts = []
 
     def poser(nom, bon, detail):
@@ -107,8 +107,9 @@ def controler(chemin, largeur, hauteur, fond_perdu):
             noirseul += len(GRIS.findall(donnees))
         return quadri, rvb, noirseul
 
-    couleurs_couverture, rvb_couverture, _ = encres(lecteur.pages[:1])
-    couleurs_bloc, rvb_bloc, noirseul = encres(lecteur.pages[1:])
+    couleurs_couverture, rvb_couverture, _ = encres(
+        [lecteur.pages[0], lecteur.pages[-1]])
+    couleurs_bloc, rvb_bloc, noirseul = encres(lecteur.pages[1:-1])
     poser("bloc de texte en noir seul", not couleurs_bloc and not rvb_bloc,
           f"{noirseul} pose(s) de noir seul, aucune couleur"
           if not (couleurs_bloc or rvb_bloc)
@@ -124,10 +125,11 @@ def controler(chemin, largeur, hauteur, fond_perdu):
     poser("titre et auteure renseignés",
           bool(infos.get("/Title")) and bool(infos.get("/Author")),
           f"« {infos.get('/Title', '')} » — {infos.get('/Author', '')}")
-    pages = len(lecteur.pages)
-    interieur = pages - 1
-    poser("intérieur multiple de quatre", interieur % 4 == 0,
-          f"{pages} pages, dont {interieur} d'intérieur")
+    if pagine:
+        pages = len(lecteur.pages)
+        interieur = pages - 2      # la première et la quatrième de couverture
+        poser("intérieur multiple de quatre", interieur % 4 == 0,
+              f"{pages} pages, dont {interieur} d'intérieur")
 
     return verdicts
 
@@ -138,10 +140,13 @@ def main():
     analyseur.add_argument("--largeur", type=float, default=154.0)
     analyseur.add_argument("--hauteur", type=float, default=216.0)
     analyseur.add_argument("--fond-perdu", type=float, default=3.0)
+    analyseur.add_argument("--couverture-seule", action="store_true",
+                           help="une jaquette : elle n'a pas de pagination à vérifier")
     options = analyseur.parse_args()
 
     verdicts = controler(options.pdf, options.largeur, options.hauteur,
-                         options.fond_perdu * MM)
+                         options.fond_perdu * MM,
+                         pagine=not options.couverture_seule)
     print(f"\n── {options.pdf.name} ──")
     for nom, bon, detail in verdicts:
         print(f"  {nom:<28} {'✓' if bon else '✗'}   {detail}")

@@ -43,19 +43,19 @@ Si l’une de ces réponses manque, l’action n’est pas prête.
 
 Vos plans ne se réaliseront pas toujours comme prévu. Ce n’est ni du pessimisme ni de la malchance : les conditions changent, et elles changent ici plus vite qu’ailleurs. La souplesse ne s’improvise pas le jour du problème — elle se prépare à l’avance.
 
-## La technique « si… alors »
+### La technique « si… alors »
 
 Pour chaque obstacle que vous jugez possible, écrivez une phrase construite ainsi :
 
 ::: {.encadre type="aparte"}
-**Si* (obstacle précis) *alors* (action précise que je déclenche)*.
+**Si** (obstacle précis) **alors** (action précise que je déclenche).
 :::
 
 Par exemple : « **Si** mon fournisseur habituel n’a plus de papier, **alors** je passe commande chez celui du marché de X dès le lendemain matin. »
 
 L’intérêt de cette formulation est qu’elle prend la décision **avant** le problème, à un moment où vous êtes calme et lucide. Le jour de l’incident, vous n’aurez pas à réfléchir sous pression, avec la fatigue et l’urgence comme conseillers : vous exécuterez ce que vous aviez déjà décidé.
 
-## Un problème, trois solutions
+### Un problème, trois solutions
 
 N’arrêtez pas votre préparation au premier plan B. Pour chaque obstacle sérieux, écrivez **trois** solutions.
 

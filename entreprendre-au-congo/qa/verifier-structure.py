@@ -10,7 +10,7 @@ attrape mal, et sur seize chapitres elle en laissera passer.
 Ce contrôle compare donc, chapitre par chapitre, ce que le PDF porte et ce que
 le Markdown en a fait :
 
-    sections      lignes de 11,96 pt         contre  titres `##`
+    sections      lignes de 11,96 pt         contre  titres `##` et `###`
     paragraphes   blocs de corps             contre  paragraphes
     items         puces et numéros           contre  `- ` et `1. `
     encadrés      titres d'encadré en gras   contre  `::: {.encadre`
@@ -104,7 +104,11 @@ def obtenu(chemin):
     """Ce que le Markdown en a fait."""
     texte = chemin.read_text(encoding="utf-8")
     compte = compteur()
-    compte["sections"] = len(re.findall(r"^## ", texte, re.M))
+    # Deux niveaux, un seul comptage : le PDF d'origine compose les
+    # sous-sections à la taille des sections — c'est justement le défaut que la
+    # hiérarchie à trois niveaux corrige. Les compter ensemble maintient la
+    # comparaison avec l'imprimé, qui ne les distingue pas.
+    compte["sections"] = len(re.findall(r"^#{2,3} ", texte, re.M))
     compte["encadres"] = len(re.findall(r"^::: \{\.encadre", texte, re.M))
     compte["schemas"] = set(re.findall(r"```schema page=(\d+)", texte))
     compte["notes"] = len(re.findall(r"\[\^\d+\]", texte))

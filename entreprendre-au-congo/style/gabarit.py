@@ -212,6 +212,15 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 
 %% --- Titres ----------------------------------------------------------------
 \setsecheadstyle{\normalfont\bfseries\large\raggedright}
+%% Un troisième niveau, discret : même corps que le texte, en gras, avec moins
+%% d'air au-dessus que le deuxième. L'ouvrage d'origine n'avait que trois tailles
+%% de titre, et ses sous-sections se confondaient donc avec les sections — le
+%% lecteur ne voyait pas que « Directe et indirecte » dépendait d'« Analyser sa
+%% concurrence ». Ce niveau rend la subordination visible sans rien ajouter au
+%% texte.
+\setsubsecheadstyle{\normalfont\bfseries\raggedright}
+\setbeforesubsecskip{1.1\onelineskip plus 0.2\onelineskip minus 0.15\onelineskip}
+\setaftersubsecskip{0.35\onelineskip}
 \setbeforesecskip{1.6\onelineskip plus 0.3\onelineskip minus 0.2\onelineskip}
 \setaftersecskip{0.5\onelineskip}
 

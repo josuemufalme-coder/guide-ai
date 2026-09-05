@@ -39,7 +39,7 @@ Choisissez ensuite le ou les segments que vous servirez en priorité. Servir deu
 
 ## Analyser sa concurrence
 
-## Directe et indirecte
+### Directe et indirecte
 
 **La concurrence directe** propose la même chose que vous : l’autre atelier de couture, l’autre transporteur, l’autre école.
 
@@ -47,7 +47,7 @@ Choisissez ensuite le ou les segments que vous servirez en priorité. Servir deu
 
 On oublie presque toujours la seconde, et c’est souvent d’elle que vient la perte de clients.
 
-## Ce que vous devez savoir sur eux
+### Ce que vous devez savoir sur eux
 
 Pour chaque concurrent sérieux, réunissez :
 - ce qu’il **propose** exactement ;
@@ -58,7 +58,7 @@ Pour chaque concurrent sérieux, réunissez :
 - ses **points faibles** — ce que ses clients lui reprochent ;
 - son **niveau d’activité** approximatif.
 
-## Comment obtenir ces informations
+### Comment obtenir ces informations
 
 Personne ne vous communiquera ses chiffres. Vous les construirez vous-même, et c’est à la portée de tous :
 - **Achetez chez lui**, en client ordinaire. Une visite vaut dix suppositions.
@@ -68,7 +68,7 @@ Personne ne vous communiquera ses chiffres. Vous les construirez vous-même, et 
 
 Ne cherchez pas la précision comptable. Cherchez l’ordre de grandeur, et la liste de ce qu’on lui reproche : c’est là que se trouve votre place.
 
-## Le positionnement
+### Le positionnement
 
 Se comparer à ses concurrents et s’en différencier porte un nom : le **positionnement**. Attention à ne pas le confondre avec la publicité — le positionnement n’est pas ce que vous dites de vous. C’est **la place que vous occupez dans l’esprit de votre client** : ce qu’il pense de vous, spontanément, quand il vous compare aux autres.
 

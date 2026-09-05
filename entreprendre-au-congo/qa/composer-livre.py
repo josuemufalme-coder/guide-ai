@@ -27,6 +27,7 @@ COMP = importlib.util.module_from_spec(_c); _c.loader.exec_module(COMP)
 
 TITRE_PARTIE = re.compile(r"<!--\s*(.*?)\s*-->")
 CELLULES = re.compile(r"^\|(.*)\|\s*$")
+NUMERO = re.compile(r"^(\d{1,2})\. ")
 FILET = re.compile(r"^\|[\s|:-]+\|\s*$")
 
 
@@ -189,6 +190,9 @@ def convertir(chemin, etat):
                           r"\markboth{%s}{%s}"
                           % (titre, titre, petites_capitales(etat["partie"]),
                              petites_capitales(sans_numero(nue[2:]))))
+        elif nue.startswith("### "):
+            fermer_liste()
+            sortie.append(r"\placedutitre\subsection*{%s}" % en_latex(nue[4:]))
         elif nue.startswith("## "):
             fermer_liste()
             sortie.append(r"\placedutitre\section*{%s}" % en_latex(nue[3:]))
@@ -206,10 +210,19 @@ def convertir(chemin, etat):
             if liste != "itemize":
                 fermer_liste(); sortie.append(r"\begin{itemize}"); liste = "itemize"
             sortie.append(r"\item %s" % en_latex(nue[2:]))
-        elif re.match(r"^\d{1,2}\. ", nue):
+        elif NUMERO.match(nue):
+            rang = int(NUMERO.match(nue).group(1))
             if liste != "enumerate":
-                fermer_liste(); sortie.append(r"\begin{enumerate}"); liste = "enumerate"
-            sortie.append(r"\item %s" % en_latex(re.sub(r"^\d{1,2}\. ", "", nue)))
+                fermer_liste()
+                # Une énumération interrompue par un tableau ou par un
+                # paragraphe repartait de 1 : le livre imprimait « 1, 2, 1 » au
+                # chapitre 5, et « 1, 1, 2… 7 » pour les huit parties du plan
+                # d'affaires. Le rang écrit dans le manuscrit fait foi.
+                sortie.append(r"\begin{enumerate}"
+                              + (r"\setcounter{enumi}{%d}" % (rang - 1)
+                                 if rang != 1 else ""))
+                liste = "enumerate"
+            sortie.append(r"\item %s" % en_latex(NUMERO.sub("", nue)))
         else:
             fermer_liste()
             sortie.append(en_latex(nue))

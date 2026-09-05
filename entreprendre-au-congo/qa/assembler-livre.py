@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Assemblage du livrable unique — phase 9.
 
-Un seul fichier pour l'imprimeur : la couverture retenue, puis l'intérieur.
+Un seul fichier : la première de couverture, l'intérieur, la quatrième.
 
 Toutes les pages sortent au même format, 154 × 216 mm, avec un fond perdu de
 3 mm sur les quatre côtés et une boîte de rognage à 148 × 210 mm. La couverture
@@ -25,7 +25,9 @@ FOND_PERDU = 3 * MM
 def main():
     analyseur = argparse.ArgumentParser(description=__doc__)
     analyseur.add_argument("--couverture", type=Path,
-                           default=Path("build/couverture/couverture-B-bloc-couleur.pdf"))
+                           default=Path("build/couverture/ENTREPRENDRE-AU-CONGO-premiere.pdf"))
+    analyseur.add_argument("--quatrieme", type=Path,
+                           default=Path("build/couverture/ENTREPRENDRE-AU-CONGO-quatrieme.pdf"))
     analyseur.add_argument("--interieur", type=Path,
                            default=Path("build/livre/ENTREPRENDRE-AU-CONGO-interieur.pdf"))
     analyseur.add_argument("--sortie", type=Path,
@@ -36,6 +38,7 @@ def main():
     from pypdf.generic import RectangleObject
 
     couverture = PdfReader(str(options.couverture))
+    quatrieme = PdfReader(str(options.quatrieme))
     interieur = PdfReader(str(options.interieur))
     ecrivain = PdfWriter()
 
@@ -49,6 +52,8 @@ def main():
         page.cropbox = RectangleObject(support)
         page.bleedbox = RectangleObject(support)
         page.trimbox = RectangleObject(rogne)
+        ecrivain.add_page(page)
+    for page in quatrieme.pages:
         ecrivain.add_page(page)
 
     ecrivain.add_metadata({
@@ -64,7 +69,8 @@ def main():
     with options.sortie.open("wb") as fichier:
         ecrivain.write(fichier)
 
-    print(f"  couverture : {len(couverture.pages)} page")
+    print(f"  couverture : {len(couverture.pages)} page,"
+          f" quatrième : {len(quatrieme.pages)} page")
     print(f"  intérieur  : {len(interieur.pages)} pages")
     print(f"  livrable   : {options.sortie}")
     return 0
