@@ -85,7 +85,7 @@ def convertir(chemin):
                 # seulement si elle dépasse la justification.
                 sortie.append(
                     "\\begin{lrbox}{\\boiteschema}\n"
-                    "\\begin{BVerbatim}[fontsize=\\small]\n"
+                    "\\begin{BVerbatim}[fontsize=\\corpsschema]\n"
                     + "\n".join(schema)
                     + "\n\\end{BVerbatim}\n\\end{lrbox}\n"
                     "\\begin{center}\n"
@@ -124,11 +124,14 @@ def convertir(chemin):
                           r"\markright{%s}" % (titre, titre, titre))
         elif nue.startswith("## "):
             fermer_liste()
-            sortie.append(r"\section*{%s}" % en_latex(nue[3:]))
+            sortie.append(r"\placedutitre\section*{%s}" % en_latex(nue[3:]))
         elif nue.startswith("::: {"):
             fermer_liste()
             titre = re.search(r'titre="([^"]*)"', nue)
-            sortie.append(r"\begin{encadre}{%s}" % en_latex(titre.group(1) if titre else ""))
+            sorte = re.search(r'type="([^"]*)"', nue)
+            sortie.append(r"\begin{encadre}{%s}{%s}" % (
+                sorte.group(1) if sorte else "aparte",
+                en_latex(titre.group(1) if titre else "")))
         elif nue == ":::":
             fermer_liste()
             sortie.append(r"\end{encadre}")
@@ -151,8 +154,12 @@ def liminaire_en_latex(chemin):
     """La page de titre, la page de droits et la table des matières.
 
     Le cahier des charges les confie à la phase 6 ; sans elles, le PDF n'est pas
-    un livre mais un tirage de chapitres. Ce qui manque encore — ISBN, dépôt
-    légal, achevé d'imprimer — ne s'invente pas et reste en blanc.
+    un livre mais un tirage de chapitres.
+
+    ISBN, dépôt légal, achevé d'imprimer : ces trois mentions ne s'inventent pas
+    et ne figurent pas ici. Pas de ligne en attente, pas de crochets — la page de
+    droits ne porte que ce qui est établi. Les trois lignes seront ajoutées quand
+    les numéros existeront, sans rien déplacer d'autre.
     """
     lignes = [l.strip() for l in chemin.read_text(encoding="utf-8").split("\n")
               if l.strip()]
@@ -174,11 +181,8 @@ def liminaire_en_latex(chemin):
         r"\thispagestyle{empty}",
         r"\vspace*{\fill}",
         r"{\small\raggedright " + r"\par ".join(droits) + r"\par}",
-        r"\vspace{6mm}",
-        r"{\small\raggedright ISBN : à attribuer\par "
-        r"Dépôt légal : à effectuer\par Achevé d'imprimer : à compléter\par}",
         r"\cleardoublepage",
-        r"\tableofcontents",
+        r"\tableofcontents*",
         r"\mainmatter",
     ])
 
@@ -216,9 +220,16 @@ def main():
         # Ces réglages n'ont d'effet que posés avant \\begin{document}.
         "\\setpnumwidth{3em}\n\\setrmarg{4.5em}\n"
         "\\begin{document}")
+    # La ligne de régie appartient au spécimen : elle nomme la police et le corps
+    # que la double page donne à juger. Sur l'ouvrage, elle s'imprimerait au pied
+    # de chaque page. Les deux redéfinitions de pied qui la portent sont retirées
+    # du préambule ; le pied redevient celui du livre, le folio seul.
+    for pied in (r"\makeoddfoot{livre}{}{\scriptsize\color{filet}@regie@}{\small\thepage}",
+                 r"\makeevenfoot{livre}{\small\thepage}{\scriptsize\color{filet}@regie@}{}"):
+        assert pied in preambule, pied
+        preambule = preambule.replace(pied + "\n", "")
     COMP.PREAMBULE = preambule
-    regie = (f"{police['nom']} \\quad {police['corps']:g}/"
-             f"{police['interlignage']:g} pt")
+    regie = ""
     # L'imposition exige une pagination multiple de quatre. Le nombre de pages
     # blanches à ajouter ne se devine pas : on compose, on compte, on complète,
     # et on recompose pour vérifier que le compte est juste.

@@ -1,0 +1,224 @@
+
+── 00a-liminaires.md
+  5:9  [FR_SPELLING_RULE] « ZADI » → CADI, ZAD, BADI
+      Faute de frappe possible trouvée.
+  5:14  [FR_SPELLING_RULE] « PUKUTA » → PIEUTA, PROUTA, PUTTA
+      Faute de frappe possible trouvée.
+  9:8  [FR_SPELLING_RULE] « Zadi » → Cadi, ZAD, Badi
+      Faute de frappe possible trouvée.
+  9:13  [FR_SPELLING_RULE] « Pukuta » → Paquita, Pieuta, Piqueta
+      Faute de frappe possible trouvée.
+
+── 00b-introduction.md
+  26:207  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+  28:290  [FR_REPEATEDWORDS_ACCESSIBLE] « accessibles » → abordables, ouvert, engageants
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+
+── 02-identifier-une-opportunite.md
+  19:8  [PLACE_ADJ] « service nouveau » → nouveau service
+      Cet adjectif précède généralement le nom.
+  20:89  [AGREEMENT_POSTPONED_ADJ] « cher » → chère
+      Vérifiez la concordance de « cher » avec les noms précédents.
+  22:9  [PLACE_ADJ] « combinaison nouvelle » → nouvelle combinaison
+      Cet adjectif précède généralement le nom.
+  50:5  [FR_SPELLING_RULE] « autodémarrage »
+      Faute de frappe possible trouvée.
+  62:22  [FR_REPEATEDWORDS_EXACTEMENT] « exactement » → précisément, concrètement, justement
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  72:239  [OU] « ou » → où
+      Pour évoquer un lieu, un temps ou une situation, écrivez « où ». La conjonction « ou » signale une alternative.
+  90:78  [NEGATION_PERSONNE] « est pas » → est
+      L’expression « aucune » exprime déjà la négation, celle-ci pourrait sembler redondante.
+  98:131  [FR_SPELLING_RULE] « bootstrapping »
+      Faute de frappe possible trouvée.
+  98:263  [FR_REPEATEDWORDS_DÉMARRER] « démarrée » → débutée, commencée, lancée
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  116:1  [PLACE_DE_LA_VIRGULE] « Alors » → Alors,
+      Une virgule est conseillée dans ce contexte.
+  123:62  [REP_AUTREMENT] « autrement » → sinon, dans le cas contraire, différement
+      Dans un contexte formel, d’autres structures peuvent être utilisées pour enrichir votre style.
+  141:187  [PLACE_DE_LA_VIRGULE] « surtout » → surtout,
+      Une virgule est conseillée dans ce contexte.
+  143:538  [PLACE_ADJ] « entreprise nouvelle » → nouvelle entreprise
+      Cet adjectif précède généralement le nom.
+  157:109  [OU] « ou » → où
+      Pour évoquer un lieu, un temps ou une situation, écrivez « où ». La conjonction « ou » signale une alternative.
+  164:12  [CONFUSION_E_ER] « observer » → observé
+      Un participe passé semble plus probable.
+
+── 03-valider-lidee-avant-dengager-son-argent.md
+  65:76  [PLACE_ADJ] « idée excellente » → excellente idée
+      Cet adjectif précède généralement le nom.
+  73:131  [CEST_CE_SONT] « Ce sont » → C'est
+      Il convient d’accorder ce présentatif au pluriel lorsque le sujet réel est au pluriel.
+  86:51  [WRONG_ETRE_VPPA] « ont acheté. » → ont acheté, sont acheté.
+      Un autre auxiliaire semble plus approprié, car ce verbe n’est pas suivi par un objet.
+
+── 04-une-entreprise-orientee-vers-le-marche.md
+  35:223  [VIRGULE_TEMPS] «  eux-mêmes » → , eux-mêmes
+      Une virgule suivant le verbe semble être requise dans ce contexte.
+
+── 05-analyser-son-marche-clients-concurrents-sect.md
+  13:289  [AUXILIAIRE_MANQUANT] « ne satisfaites » → n'avez satisfaites, n'a satisfaites, n'êtes satisfaites
+      Un verbe conjugué est généralement attendu après le pronom personnel sujet « vous ».
+  35:35  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+  48:49  [FR_REPEATEDWORDS_SOUVENT] « souvent » → fréquemment, généralement, continuellement
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  54:15  [PAS_DE_VIRGULE] « , et » →  et
+      La virgule doit être omise dans ce contexte.
+  85:51  [OU_LEQUEL] « où » → avec laquelle, à laquelle, sur laquelle
+      Un autre pronom relatif peut sembler plus approprié dans le langage formel.
+  102:251  [VIRG_NON_TROUVEE] «  il » → , il
+      Une virgule est requise.
+  102:316  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+
+── 06-le-produit-et-lavantage-concurrentiel.md
+  7:207  [ACCORD_EXPRESSION_SANS_COMPLEMENT] « détour » → détours
+      Une erreur d’accord semble être détectée, car « détour » fait généralement référence à une unité au pluriel.
+  27:36  [PLACE_DE_LA_VIRGULE] « distincts » → distincts,
+      Une virgule est conseillée dans ce contexte.
+  75:165  [REP_CAR] « car une » → parce qu'une, comme une, puisqu'une
+      Dans un contexte formel, d’autres structures peuvent être utilisées pour enrichir votre style.
+  89:4  [IMP_PRON] « Écrivez en » → Écrivez-en
+      Un trait d’union est nécessaire entre le verbe et le pronom à l’impératif.
+
+── 07-fixer-le-cap.md
+  17:175  [OU_LEQUEL] « où » → avec lesquelles, auxquelles, sur lesquelles
+      Un autre pronom relatif peut sembler plus approprié dans le langage formel.
+  31:290  [FR_SPELLING_RULE] « autodémarrage »
+      Faute de frappe possible trouvée.
+  36:38  [FR_REPEATEDWORDS_PRÉCISÉMENT] « précisément » → exactement, concrètement, justement
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  44:198  [FR_REPEATEDWORDS_OBLIGER] « oblige » → exige, ordonne, attends
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  46:18  [PAS_DE_VIRGULE] « , et » →  et
+      La virgule doit être omise dans ce contexte.
+  50:231  [VIRG_NON_TROUVEE] «  vous » → , vous
+      Une virgule est requise.
+  69:79  [PLACE_ADJ] « hypothèse fausse » → fausse hypothèse
+      Cet adjectif précède généralement le nom.
+
+── 08-du-cap-au-plan.md
+  27:140  [IL_FAUT] « vaut » → il vaut
+      Cette expression peut sembler familière dans un contexte formel, car le sujet semble être manquant.
+  32:14  [TIRET] « — l’ » → — L', L'
+      Cette phrase doit commencer par un tiret et une majuscule.
+  33:13  [TIRET] « — la » → — La, La
+      Cette phrase doit commencer par un tiret et une majuscule.
+  34:15  [TIRET] « — la » → — La, La
+      Cette phrase doit commencer par un tiret et une majuscule.
+  34:24  [PAS_DE_VIRGULE] « , et » →  et
+      La virgule doit être omise dans ce contexte.
+  35:12  [TIRET] « — le » → — Le, Le
+      Cette phrase doit commencer par un tiret et une majuscule.
+  36:19  [TIRET] « — le » → — Le, Le
+      Cette phrase doit commencer par un tiret et une majuscule.
+  76:152  [PAS_DE_VIRGULE] « , et » →  et
+      La virgule doit être omise dans ce contexte.
+  85:65  [PLACE_ADJ] « conséquences longues » → longues conséquences
+      Cet adjectif précède généralement le nom.
+  96:47  [FR_COMPOUNDS_DOUBLE_PAGE] « double page » → double-page
+      Écrivez avec un trait d’union.
+
+── 09-la-gestion-strategique.md
+  5:153  [PAS_DE_VIRGULE] « , ou » →  ou
+      La virgule doit être omise dans ce contexte.
+  27:60  [FR_REPEATEDWORDS_RÉELLEMENT] « réellement » → précisément, concrètement, exactement
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  65:178  [PLACE_ADJ] « demande nouvelle » → nouvelle demande
+      Cet adjectif précède généralement le nom.
+  75:80  [OU] « ou » → où, ou bien
+      Le mot « où » indique un lieu, un temps ou une situation.
+  76:77  [VIRGULE_DEBUT_DE_PHRASE] «  vous » → , vous
+      Une virgule semble être requise dans ce contexte.
+  81:302  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+
+── 10-trouver-le-capital-de-depart.md
+  33:145  [FR_REPEATEDWORDS_SURTOUT] « surtout » → notamment, plutôt, davantage
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  35:92  [PLACE_ADJ] « description courte » → courte description
+      Cet adjectif précède généralement le nom.
+  35:194  [PLACE_ADJ] « description longue » → longue description
+      Cet adjectif précède généralement le nom.
+  35:257  [FR_REPEATEDWORDS_SURTOUT] « surtout » → notamment, plutôt, davantage
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  39:101  [OU_LEQUEL] « où » → avec lesquelles, auxquelles, sur lesquelles
+      Un autre pronom relatif peut sembler plus approprié dans le langage formel.
+  55:16  [ACCORD_EXPRESSION_SANS_COMPLEMENT] « détour » → détours
+      Une erreur d’accord semble être détectée, car « détour » fait généralement référence à une unité au pluriel.
+  63:54  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+  63:267  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+  65:114  [FR_REPEATEDWORDS_DÉMARRER] « démarre » → débute, commence, lance
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  67:62  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+  97:59  [FR_SPELLING_RULE] « bootstrapping »
+      Faute de frappe possible trouvée.
+  111:77  [PLACE_ADJ] « message court » → court message
+      Cet adjectif précède généralement le nom.
+  117:133  [P_V_PAS] « recevra » → ne recevra
+      Un adverbe de négation doit être ajouté afin d’obtenir une négation complète.
+  119:238  [CEST_CE_SONT] « ce sont » → c'est
+      Il convient d’accorder ce présentatif au pluriel lorsque le sujet réel est au pluriel.
+  126:26  [CONFUSION_ER_E_PAR] « poste » → posté
+      Un participe passé semble plus approprié.
+
+── 11-separer-largent-de-lentreprise-et-largent-du.md
+  21:19  [POINT] « décisif » → décisif ?, décisif.
+      Un point est requis pour indiquer la fin de cette phrase.
+  33:239  [ACCORD_EXPRESSION_SANS_COMPLEMENT] « limite » → limites
+      Une erreur d’accord semble être détectée, car « limite » fait généralement référence à une unité au pluriel.
+  34:99  [A_ACCENT] « a » → à
+      Une préposition semble plus appropriée.
+  41:35  [MOTS_INCOMP] « avec pour » → avec, pour
+      Ces deux mots ne peuvent pas se côtoyer.
+  52:72  [ACCORD_SUJET_VERBE] « est » → sont
+      Le verbe devrait être à la 3e personne du pluriel.
+
+── 12-fixer-ses-prix.md
+  52:197  [CE_SE] « ce » → se
+      Un pronom réfléchi semble plus approprié.
+
+── 13-le-fonds-de-roulement.md
+  15:237  [PLACE_DE_LA_VIRGULE] «  mais » → , mais
+      Une virgule est conseillée dans ce contexte.
+  40:291  [PAS_DE_VIRGULE] « , et » →  et
+      La virgule doit être omise dans ce contexte.
+  44:266  [FR_SPELLING_RULE] « démodation » → démo dation
+      Faute de frappe possible trouvée.
+  48:102  [FR_REPEATEDWORDS_PRESQUE] « presque » → bientôt, quasiment, approximativement
+      Ce mot apparaît déjà dans l’une des phrases précédant immédiatement celle-ci. Utilisez un synonyme pour apporter plus de variété à votre texte, excepté si la répétition est intentionnelle.
+  48:357  [VIRGULE_DEBUT_DE_PHRASE] «  on » → , on
+      Une virgule semble être requise dans ce contexte.
+  53:73  [OU_LEQUEL] « où » → avec lequel, auquel, sur lequel
+      Un autre pronom relatif peut sembler plus approprié dans le langage formel.
+
+── 14-la-comptabilite-et-le-controle-de-gestion.md
+  21:144  [D_N_E_OU_E] « Tenu » → Tenues
+      Un nom semble plus approprié.
+  55:184  [FR_SPELLING_RULE] « SYSCOHADA »
+      Faute de frappe possible trouvée.
+
+── 15-surmonter-les-obstacles.md
+  34:213  [VIRG_NON_TROUVEE] «  il » → , il
+      Une virgule est requise.
+  38:42  [OU_LEQUEL] « où » → avec lequel, auquel, sur lequel
+      Un autre pronom relatif peut sembler plus approprié dans le langage formel.
+
+── 16-le-plan-daffaires.md
+  48:305  [IL_FAUT] « vaut » → il vaut
+      Cette expression peut sembler familière dans un contexte formel, car le sujet semble être manquant.
+
+── 90-notes-et-sources.md
+  5:43  [FR_SPELLING_RULE] « autodémarrage »
+      Faute de frappe possible trouvée.
+  7:93  [FR_SPELLING_RULE] « SYSCOHADA »
+      Faute de frappe possible trouvée.
+
+relevées : 93   écartées par règle nommée : 0   à examiner : 93

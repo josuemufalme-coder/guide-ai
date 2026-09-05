@@ -42,12 +42,33 @@ def echapper(texte):
     return _A_ECHAPPER.sub(lambda m: ECHAPPEMENTS[m.group()], texte)
 
 
+# Les espaces insécables que la phase 2 a posées dans la source sont des
+# caractères Unicode. LuaLaTeX les composerait avec la chasse de la police, si
+# tant est qu'elle les porte — Source Serif Pro n'a pas de U+202F. On les rend
+# donc par les commandes de TeX, qui sont des ressorts et non des glyphes :
+# « ~ » pour l'insécable de chasse normale, « \, » pour la fine.
+ESPACES = {"\u00a0": "~", "\u202f": r"\,"}
+_ESPACES = re.compile("[\u00a0\u202f]")
+
+
+# L'appel de note s'écrit « [^3] », et le circonflexe est un signe réservé de
+# LaTeX. L'échappement le change en \textasciicircum{} avant que la règle de
+# l'appel ne puisse le reconnaître, et le livre imprimait « [^3] » en toutes
+# lettres — il l'a fait. L'appel est donc mis de côté avant l'échappement,
+# sous une marque que le texte ne peut pas contenir, et rétabli après.
+MARQUE_APPEL = "\x00"
+APPEL = re.compile(r"\[\^(\d+)\]")
+_APPEL_MIS_DE_COTE = re.compile(MARQUE_APPEL + r"(\d+)" + MARQUE_APPEL)
+
+
 def en_latex(ligne):
     """Convertit le sous-ensemble de Markdown que la reconstitution produit."""
+    ligne = APPEL.sub(MARQUE_APPEL + r"\1" + MARQUE_APPEL, ligne)
     ligne = echapper(ligne)
+    ligne = _ESPACES.sub(lambda m: ESPACES[m.group()], ligne)
     ligne = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", ligne)
     ligne = re.sub(r"(?<!\*)\*([^*]+?)\*(?!\*)", r"\\emph{\1}", ligne)
-    ligne = re.sub(r"\[\^(\d+)\]", r"\\textsuperscript{\1}", ligne)
+    ligne = _APPEL_MIS_DE_COTE.sub(r"\\textsuperscript{\1}", ligne)
     return ligne
 
 
@@ -91,9 +112,11 @@ def corps_du_specimen(chapitre, jusqu_a, depuis=None):
         elif nue.startswith("::: {"):
             fermer_liste()
             titre = re.search(r'titre="([^"]*)"', nue)
+            sorte = re.search(r'type="([^"]*)"', nue)
             intitule = titre.group(1) if titre else ""
             encadre_vise = bool(jusqu_a) and jusqu_a in intitule
-            sortie.append(r"\begin{encadre}{%s}" % en_latex(intitule))
+            sortie.append(r"\begin{encadre}{%s}{%s}" % (
+                sorte.group(1) if sorte else "aparte", en_latex(intitule)))
         elif nue == ":::":
             fermer_liste()
             sortie.append(r"\end{encadre}")

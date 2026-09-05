@@ -22,8 +22,8 @@ APT := texlive-luatex texlive-lang-french texlive-latex-extra texlive-fonts-extr
        texlive-pictures texlive-plain-generic latexmk fonts-ebgaramond \
        poppler-utils python3-pip
 
-.PHONY: aide setup reconstituer integrite structure mesures qa specimen composition livre \
-        couverture livre epub relecture tout propre
+.PHONY: aide setup reconstituer integrite structure mesures qa specimen composition \
+        normaliser langue livre couverture ouvrage propre
 
 aide:
 	@echo "cibles :"
@@ -33,6 +33,9 @@ aide:
 	@echo "  structure     vérifie l'agencement : titres, encadrés, tableaux"
 	@echo "  mesures       relève césure, ponctuation haute, gabarit"
 	@echo "  qa            integrite + mesures, rapports archivés dans qa/"
+	@echo "  normaliser    pose les espaces insécables françaises dans la source"
+	@echo "  langue        contrôle LanguageTool du manuscrit"
+	@echo "  ouvrage       le livrable unique : couverture + intérieur, EPUB, PNG"
 	@echo "  specimen      la double page dans les trois polices  (phase 1)"
 	@echo "  composition   les quatre mesures : débordements, césures, veuves"
 	@echo "  couverture    les cinq propositions de première, vignettes comprises"
@@ -74,7 +77,7 @@ composition: | $(BUILD)
 livre: | $(BUILD)
 	python3 $(QA)/composer-livre.py --sortie $(BUILD)/livre
 	python3 $(QA)/mesurer-composition.py $(BUILD)/livre/specimen-livre.pdf \
-	  | tee $(QA)/rapport-livre.txt
+	  --depuis 7 | tee $(QA)/rapport-livre.txt
 
 couverture: | $(BUILD)
 	python3 couverture/composer.py --sortie $(BUILD)/couverture
@@ -86,10 +89,21 @@ $(BUILD):
 
 # --- Phases suivantes ------------------------------------------------------
 
-livre epub relecture tout:
-	@echo "Cible « $@ » : le gabarit typographique de la phase 1 n'est pas encore"
-	@echo "posé. Rien n'est produit plutôt qu'un fichier qui ne vaudrait rien."
-	@exit 1
+normaliser:
+	python3 $(QA)/normaliser-typographie.py --source $(SRC)
+
+langue: | $(BUILD)
+	python3 $(QA)/controler-langue.py --source $(SRC) | tee $(QA)/rapport-langue.txt
+
+ouvrage: livre couverture
+	python3 $(QA)/assembler-livre.py
+	python3 $(QA)/composer-epub.py --source $(SRC)
+	cp $(BUILD)/couverture/couverture-A-typographique.png \
+	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.png
+	cp $(BUILD)/couverture/couverture-A-typographique.pdf \
+	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.pdf
+	python3 $(QA)/controler-pdf.py $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO.pdf \
+	  | tee $(QA)/rapport-pdf.txt
 
 propre:
 	rm -rf $(BUILD)

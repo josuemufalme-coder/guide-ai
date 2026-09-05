@@ -1,3 +1,5 @@
+--- corrections de langue appliquées ---
+  « à intervalle régulier » → « à intervalles réguliers »
 référence   : 23311 mots
 reconstitué : 22791 mots
 écarts — mise en page  : 88

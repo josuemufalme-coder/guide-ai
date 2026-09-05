@@ -86,9 +86,14 @@ PREAMBULE = r"""\documentclass{article}
 \newcommand{\demi}{\fontseries{sb}\selectfont}
 
 %% Encre : un noir de labeur, jamais le noir pur de l'écran, et un ocre sourd.
-\definecolor{encre}{RGB}{26,26,26}
-\definecolor{ocre}{RGB}{162,69,31}
-\definecolor{papier}{RGB}{250,248,244}
+%% Les couleurs sont posées en quadrichromie, jamais en RVB : un fichier
+%% d'impression ne contient pas de couleur d'écran. L'encre est du noir seul,
+%% cent pour cent de noir et rien d'autre — c'est ce que le contrôle vérifie.
+%% Le papier est l'absence d'encre : la teinte du fond est celle du support,
+%% elle ne s'imprime pas.
+\definecolor{encre}{cmyk}{0,0,0,1}
+\definecolor{ocre}{cmyk}{0,0.57,0.81,0.36}
+\definecolor{papier}{cmyk}{0,0,0,0}
 
 %% Le fond perdu déborde de @fp@ mm sur les quatre côtés ; la coupe tombe sur le
 %% rectangle intérieur. Le TrimBox le déclare pour l'imprimeur.
@@ -117,7 +122,10 @@ PARTIS = {
       \color{encre}\maigre\fontsize{14}{18}\selectfont Par Ruth ZADI Pukuta};
   \node[anchor=north west, text width=118mm, align=left, inner sep=0pt]
     at ($(coupe0)+(18mm,132mm)$) {%
-      \color{encre}\demi\fontsize{39}{46}\selectfont ENTREPRENDRE\\ AU\hspace{0.30em}CONGO};
+      %% L'interlignage d'un nœud TikZ ne suit pas toujours \fontsize : les deux
+      %% lignes du titre se touchaient presque. L'écart est donc posé en
+      %% millimètres, où il se mesure.
+      \color{encre}\demi\fontsize{39}{46}\selectfont ENTREPRENDRE\\[5mm] AU\hspace{0.30em}CONGO};
   \node[anchor=north west, text width=100mm, align=left, inner sep=0pt]
     at ($(coupe0)+(18mm,62mm)$) {%
       \color{encre}\maigre\fontsize{13.5}{19}\selectfont Comprendre

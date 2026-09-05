@@ -1,0 +1,14 @@
+# Corrections de langue apportées au manuscrit — phase 8.
+#
+# Le contrôle LanguageTool a relevé quatre-vingt-quatorze signalements sur le
+# manuscrit. Presque tous portent sur le style de l'auteure — place de
+# l'adjectif, virgule conseillée, mot répété — et le style de l'auteure n'est
+# pas une erreur : ils ne sont pas suivis. Ne sont corrigées ici que les fautes
+# de français avérées, et chacune est écrite en toutes lettres.
+#
+# Chaque ligne : ce que porte le livre imprimé, puis ce que porte le manuscrit,
+# séparés par une flèche. Le contrôle d'intégrité les applique à la référence
+# avant de comparer : une correction voulue n'est donc pas comptée comme un
+# signe perdu, et elle reste visible ici plutôt que dissoute dans un écart.
+
+à intervalle régulier -> à intervalles réguliers

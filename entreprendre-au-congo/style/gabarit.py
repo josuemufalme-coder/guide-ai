@@ -80,9 +80,24 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 ]
 \linespread{@linespread@}
 
+%% Les trois schémas sont dessinés avec les demi-graphiques d'Unicode (U+2500 et
+%% suivants). Latin Modern Mono ne les porte pas : LuaLaTeX n'en disait rien
+%% d'autre qu'un « Missing character » dans son journal, et les traits du dessin
+%% s'imprimaient en blanc. DejaVu Sans Mono les porte tous. Le corps est fixé
+%% ici, une fois, pour les trois : à 9 points, la plus large des trois lignes
+%% — quarante-neuf signes — tient dans la justification sans être réduite, et
+%% les trois schémas s'impriment donc à la même échelle.
+\setmonofont{DejaVu Sans Mono}[Scale=1.0]
+\newcommand{\corpsschema}{\fontsize{9}{11}\selectfont}
+
 %% --- Langue et césure ------------------------------------------------------
 \usepackage[french]{babel}
-\frenchsetup{ThinSpaceInFrenchNumbers=true}
+%% La source porte elle-même ses espaces insécables depuis la phase 2 : le
+%% manuscrit est correct hors de toute chaîne, et l'EPUB, qui n'a pas de
+%% babel, en profite autant que le PDF. Il faut donc empêcher babel d'en
+%% poser une seconde par-dessus, sans quoi la ponctuation haute s'écarterait
+%% du double.
+\frenchsetup{AutoSpacePunctuation=false, ThinSpaceInFrenchNumbers=false}
 
 %% Pénalités de césure demandées par le cahier des charges : pas de césure en
 %% dernière ligne de paragraphe, pas de césure d'un recto à un verso, et deux
@@ -104,6 +119,17 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 \widowpenalty=10000
 \displaywidowpenalty=10000
 
+%% Les listes échappent à \clubpenalty : celui-ci retient la deuxième ligne d'un
+%% paragraphe, pas le deuxième article d'une énumération. Une rubrique « Ce qu'il
+%% faut retenir » pouvait donc s'ouvrir en pied de page sur un seul article, le
+%% reste passant à la page suivante. Rien ne s'ouvre plus au ras d'une liste, et
+%% une coupure entre deux articles est désormais payante sans être interdite —
+%% l'interdire rejetterait des listes entières et creuserait les pages.
+\makeatletter
+\@beginparpenalty=-51
+\@itempenalty=500
+\makeatother
+
 %% Le seuil de mauvaisité annoncé : au-delà de 1000, une ligne est visiblement
 %% lâche. LaTeX consigne alors un avertissement, que qa/mesurer-composition.py
 %% relève et dénombre.
@@ -122,28 +148,60 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 %% la correction du défaut B1.
 \usepackage[protrusion=true,expansion=true,final]{microtype}
 
-%% --- Encadré « Réalité congolaise » ----------------------------------------
-%% Composé comme dans le livre : corps réduit, retrait des deux côtés, titre en
-%% gras. Les filets sont provisoires — la phase 4 arrêtera la forme définitive.
+%% --- Encadrés --------------------------------------------------------------
+%% Le livre en compte trois sortes, et elles reviennent : « Réalité congolaise »
+%% quinze fois, « À faire cette semaine » quinze fois, l'aparté dix-sept fois.
+%% Phase 4 : leur forme est arrêtée ici, une fois, et ne varie plus d'une
+%% occurrence à l'autre. Géométrie commune — même retrait des deux côtés, même
+%% corps, même respiration avant et après, titre en gras — et un seul signe
+%% distinctif, le filet, pour que le lecteur reconnaisse la sorte sans que la
+%% page change de texture. Les deux rubriques récurrentes sont encadrées de
+%% filets ; l'aparté, qui est une digression et non une rubrique, n'en porte
+%% pas. Un aparté sans titre — il y en a trois — n'ouvre pas de ligne vide.
 \usepackage{xcolor}
 \definecolor{filet}{gray}{0.55}
-\newenvironment{encadre}[1]{%
+
+\newlength{\retraitencadre}
+\setlength{\retraitencadre}{5mm}
+\newcommand{\filetencadre}{{\color{filet}\hrule height 0.4pt}}
+\def\encadreaparte{aparte}
+
+%% #1 : la sorte — realite-congolaise, a-faire, aparte. #2 : le titre, vide pour
+%% un aparté qui n'en porte pas. Le titre est confronté à \empty par \ifx, qui
+%% compare des listes de lexèmes : il n'est donc jamais développé, et un titre
+%% portant des guillemets ou une commande traverse intact.
+\newenvironment{encadre}[2]{%
   \par\addvspace{\onelineskip}%
   \begingroup
-  \leftskip=5mm \rightskip=5mm
+  \def\sorteencadre{#1}%
+  \def\titreencadre{#2}%
+  \leftskip=\retraitencadre \rightskip=\retraitencadre
   %% L'encadré compose sur une mesure plus étroite : ce qui passe dans le corps
   %% peut y déborder. Une réserve d'élasticité plus large lui est propre.
   \emergencystretch=3em
-  {\color{filet}\hrule height 0.4pt}%
-  \vspace{0.6\onelineskip}%
+  \ifx\sorteencadre\encadreaparte\else
+    \filetencadre\vspace{0.6\onelineskip}%
+  \fi
   \small
-  \noindent\textbf{#1}\par\nobreak\vspace{0.3\onelineskip}%
+  \ifx\titreencadre\empty\else
+    \noindent\textbf{#2}\par\nobreak\vspace{0.3\onelineskip}%
+  \fi
 }{%
-  \par\vspace{0.6\onelineskip}%
-  {\color{filet}\hrule height 0.4pt}%
+  \par
+  \ifx\sorteencadre\encadreaparte\else
+    \vspace{0.6\onelineskip}\filetencadre
+  \fi
   \endgroup
   \par\addvspace{\onelineskip}%
 }
+
+%% Une rubrique ne s'ouvre pas au ras du pied de page. \clubpenalty retient la
+%% deuxième ligne d'un paragraphe, mais pas le deuxième article d'une liste : un
+%% « Ce qu'il faut retenir » pouvait donc s'imprimer suivi d'un seul article, le
+%% reste passant à la page suivante. On exige quatre lignes disponibles sous le
+%% titre — le titre, et de quoi commencer vraiment.
+\usepackage{needspace}
+\newcommand{\placedutitre}{\Needspace*{4\baselineskip}}
 
 %% --- Titres ----------------------------------------------------------------
 \setsecheadstyle{\normalfont\bfseries\large\raggedright}

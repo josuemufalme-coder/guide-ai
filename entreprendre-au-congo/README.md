@@ -14,17 +14,21 @@ Il fait autorité. En cas de divergence avec ce fichier-ci, c'est lui qui tranch
 | --- | --- | --- |
 | 0 | Mise en place, découpage, contrôle d'intégrité | **en cours de validation** |
 | 1 | Gabarit typographique (césure, police, justification) | **faite** — D2 et D3 tranchées, ouvrage composé en 140 pages |
-| 2 | Normalisation typographique du texte source | à venir |
-| 3 | Appareil de notes | à venir |
-| 4 | Figures et tableaux | à venir |
+| 2 | Normalisation typographique du texte source | **faite** — 434 lignes corrigées, aucun signe ajouté ni retiré |
+| 3 | Appareil de notes | **faite** — les cinq appels s'impriment en exposant, et renvoient dans l'EPUB |
+| 4 | Figures et tableaux | **faite pour les encadrés** — forme arrêtée par sorte ; schémas et tableaux non numérotés, voir plus bas |
 | 5 | Cohérence éditoriale | à venir |
-| 6 | Liminaires et fin de volume | **entamée** — titre, droits et table des matières posés ; ISBN, dépôt légal et achevé d'imprimer restent en blanc |
-| 7 | Composition et mise en page | à venir |
-| 8 | Contrôle qualité automatisé | à venir |
-| 9 | Livrables | à venir |
+| 6 | Liminaires et fin de volume | **entamée** — titre, droits et table des matières posés ; ISBN, dépôt légal et achevé d'imprimer restent physiquement vides |
+| 7 | Composition et mise en page | **faite** — 140 pages, quatre mesures conformes |
+| 8 | Contrôle qualité automatisé | **faite** — LanguageTool sur la source, contrôle du PDF d'impression |
+| 9 | Livrables | **faite** — un PDF unique, un EPUB validé, la couverture seule |
 
 Une phase se termine par un point d'arrêt : rapport présenté, validation
-attendue. Aucune phase n'en enchaîne une autre.
+attendue. Aucune phase n'en enchaîne une autre — sauf les phases 2, 4, 8 et 9,
+que l'auteure a demandé de mener d'affilée et sans question.
+
+**Aucune relecture humaine n'a eu lieu.** Tout ce qui est déclaré ici est le
+résultat d'un contrôle automatique, et un contrôle automatique ne lit pas.
 
 ## Arborescence
 
@@ -43,6 +47,11 @@ build/       les sorties — jamais versionnées
 make setup          installe la chaîne sur une machine vierge
 make reconstituer   régénère src/*.md depuis le PDF de contrôle
 make qa             intégrité, structure et mesures typographiques
+make normaliser     pose les espaces insécables françaises dans la source
+make langue         contrôle LanguageTool du manuscrit
+make livre          compose l'intérieur et le mesure
+make couverture     compose les cinq propositions de couverture
+make ouvrage        le livrable unique, l'EPUB, la couverture seule
 make aide           la liste complète
 ```
 
@@ -191,6 +200,82 @@ passer, une relecture les rate une fois sur deux. Verdict actuel : *conforme*.
 **Mesures** (`mesure-typo.py`) relève la césure, la ponctuation haute rejetée et
 le gabarit sur le PDF composé. Il servira de juge aux critères de sortie
 chiffrés de la phase 1.
+
+## Phases 2, 4, 8 et 9 — ce qui a été fait sans point d'arrêt
+
+**Phase 2 — la typographie française.** `qa/normaliser-typographie.py` pose les
+espaces insécables : fine devant `;` `!` `?` `%`, à l'intérieur des guillemets ;
+insécable devant `:`, entre un nombre et son unité, après une civilité. 434
+lignes ont changé, et le contrôle a vérifié qu'aucun signe autre qu'une espace
+n'a été touché : le texte hors espaces est identique avant et après.
+
+Un choix accompagne cette phase. babel-french sait poser ces espaces lui-même ;
+si la source les porte *aussi*, elles se cumulent. Le gabarit désactive donc
+`AutoSpacePunctuation`. Le manuscrit est ainsi correct hors de toute chaîne, ce
+dont l'EPUB, qui n'a pas de babel, profite autant que le PDF. À la composition,
+les deux caractères Unicode deviennent des ressorts de TeX — `~` et `\,` — car
+Source Serif Pro ne porte pas U+202F et l'aurait imprimé en blanc.
+
+**Phase 4 — les encadrés.** Le livre en compte trois sortes : « Réalité
+congolaise » quinze fois, « À faire cette semaine » quinze fois, l'aparté
+dix-sept fois. Leur forme est arrêtée une fois dans le gabarit et ne varie plus :
+même retrait, même corps, même respiration, titre en gras. Seul le filet
+distingue les sortes — les deux rubriques récurrentes en sont encadrées,
+l'aparté, qui est une digression, n'en porte pas. Les trois apartés sans titre
+n'ouvrent plus de ligne vide.
+
+Ce que la phase 4 n'a **pas** fait : numéroter les schémas et les tableaux, leur
+donner une légende, ajouter une table des illustrations. Le livre n'en porte pas,
+et les inventer aurait ajouté au texte de l'auteure ce qu'elle n'y a pas mis.
+
+**Phase 8 — les contrôles.** `qa/controler-langue.py` soumet la source à
+LanguageTool en profil français, après en avoir retiré ce qui n'est pas de la
+prose. `qa/controler-pdf.py` constate sur le PDF d'impression : polices
+incorporées, format unique, boîte de rognage, fond perdu, absence de RVB et de
+quadrichromie, métadonnées, pagination multiple de quatre.
+
+**Phase 9 — les livrables.** `qa/assembler-livre.py` réunit la couverture
+retenue et l'intérieur dans un fichier unique où toutes les pages sortent au même
+format, 154 × 216 mm, coupe déclarée à 148 × 210 mm. `qa/composer-epub.py`
+compose l'EPUB depuis la même source, sans convertisseur extérieur ; epubcheck
+5.3.0 le déclare valide.
+
+## Ce que les contrôles ont trouvé, et ce qui a été corrigé
+
+Corrigé dans la chaîne :
+
+- les demi-graphiques Unicode des trois schémas manquaient à Latin Modern Mono
+  et s'imprimaient en blanc, LuaLaTeX ne le disant que dans son journal ; la
+  fonte à chasse fixe est désormais DejaVu Sans Mono, à un corps fixé une fois
+  pour les trois ;
+- les cinq appels de notes s'imprimaient « [^3] » en toutes lettres :
+  l'échappement de LaTeX changeait le circonflexe avant que la règle de l'appel
+  ne puisse le reconnaître ;
+- la ligne de régie du spécimen — nom de la police et corps — s'imprimait au pied
+  de chacune des 140 pages de l'ouvrage ;
+- la table des matières se citait elle-même, faute d'un `\tableofcontents*` ;
+- une rubrique pouvait s'ouvrir en pied de page sur un seul article, le reste
+  passant à la page suivante : `\clubpenalty` ne retient pas le deuxième article
+  d'une liste ;
+- la couverture était définie en RVB, ce qui n'a pas de sens dans un fichier
+  d'impression ; elle est en noir seul ;
+- les deux lignes du titre de couverture se touchaient presque ;
+- dans l'EPUB, un tableau se retrouvait à l'intérieur d'une liste et les cinq
+  notes n'avaient pas d'ancre.
+
+Corrigé dans le manuscrit, et écrit dans `qa/corrections-langue.txt` :
+
+- « à intervalle régulier » → « à intervalles réguliers ».
+
+Trouvé et **non** corrigé, parce que la correction relèverait de l'auteure :
+
+- « démodation » (chapitre 13) n'est pas un mot du français attesté ; il est bien
+  celui du livre imprimé, ce n'est donc pas un défaut de reconstitution.
+
+Les 93 autres signalements de LanguageTool sont archivés dans
+`qa/rapport-langue.txt`. Ils portent sur le style — place de l'adjectif, virgule
+conseillée, mot répété, nom propre inconnu du dictionnaire — et le style de
+l'auteure n'est pas une erreur.
 
 ## Le double comptage
 

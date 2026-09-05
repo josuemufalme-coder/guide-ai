@@ -1,0 +1,12 @@
+
+── ENTREPRENDRE-AU-CONGO.pdf ──
+  polices incorporées          ✓   6 police(s), 6 incorporée(s), 6 en sous-ensemble
+  format unique et conforme    ✓   154.0 × 216.0 mm — attendu 154.0 × 216.0 mm
+  boîte de rognage déclarée    ✓   toutes les pages
+  fond perdu ≥ 3 mm            ✓   sur les quatre côtés de chaque page
+  aucune image à profiler      ✓   le livre est composé de texte et de traits
+  couleur en noir seul         ✓   4 pose(s) de noir seul, aucune couleur
+  titre et auteure renseignés  ✓   « Entreprendre au Congo — Comprendre l'entrepreneuriat et savoir par où commencer » — Ruth ZADI Pukuta
+  intérieur multiple de quatre ✓   141 pages, dont 140 d'intérieur
+
+PDF : CONFORME

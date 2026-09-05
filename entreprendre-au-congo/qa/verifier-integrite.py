@@ -68,10 +68,34 @@ def mots(texte):
     return [m for m in texte.split() if m != PUCE]
 
 
-def reference(chemin):
+def corrections_de_langue(chemin):
+    """Les fautes de français corrigées dans le manuscrit, et leur forme d'origine.
+
+    Le manuscrit doit porter exactement la matière du livre. Une faute corrigée
+    est donc, pour ce contrôle, un signe perdu — à moins qu'elle ne soit écrite
+    quelque part. Elle l'est ici, ligne à ligne, et le contrôle applique ces
+    corrections à la référence avant de comparer.
+    """
+    couples = []
+    if not chemin.exists():
+        return couples
+    for ligne in chemin.read_text(encoding="utf-8").split("\n"):
+        if ligne.startswith("#") or "->" not in ligne:
+            continue
+        avant, _, apres = ligne.partition("->")
+        couples.append((avant.strip(), apres.strip()))
+    return couples
+
+
+def reference(chemin, corrections=()):
     """La suite de mots de l'extraction, table des matières écartée."""
     retenu, dernier_folio = [], 0
-    for page in chemin.read_text(encoding="utf-8").split(SAUT_DE_PAGE):
+    brut = chemin.read_text(encoding="utf-8")
+    for avant, apres in corrections:
+        if avant not in brut:
+            print(f"  correction sans objet dans la référence : {avant!r}")
+        brut = brut.replace(avant, apres)
+    for page in brut.split(SAUT_DE_PAGE):
         lignes = [l.strip() for l in page.split("\n") if l.strip()]
         if sum(1 for l in lignes if POINTS_DE_CONDUITE in l) >= 3:
             continue  # table des matières : régénérée à la composition
@@ -122,24 +146,29 @@ def titres_courants(dossier):
     Un tableau qui déborde sur la page suivante y répète son en-tête. La
     reconstitution ne le garde qu'une fois ; l'extraction, qui suit les pages,
     le porte deux fois. La seconde occurrence relève de la mise en page.
+
+    Ces chaînes sont confrontées telles quelles au texte extrait du PDF, qui
+    ignore les espaces insécables. Elles passent donc par `mots`, qui les ramène
+    à l'espace ordinaire : depuis la phase 2, un titre de chapitre peut porter
+    une insécable devant deux-points, et la comparaison littérale échouait.
     """
     titres = {TITRE_DE_L_OUVRAGE}
     for fichier in dossier.glob("*.md"):
         lignes = fichier.read_text(encoding="utf-8").split("\n")
         for index, ligne in enumerate(lignes):
             if ligne.startswith("# "):
-                titres.add(ligne[2:].strip())
+                titres.add(" ".join(mots(ligne[2:])))
                 continue
             if ligne.startswith("<!--"):
                 # Les ouvertures de partie : l'extraction les encadre de folios.
-                titres.add(ligne.strip("<!->").strip())
+                titres.add(" ".join(mots(ligne.strip("<!->"))))
                 continue
             # L'en-tête d'un tableau est la rangée qui précède le filet ; elle
             # seule se répète en tête de page. Les rangées de corps, non.
             suivante = lignes[index + 1] if index + 1 < len(lignes) else ""
             if ligne.startswith("|") and suivante.startswith("|") and "---" in suivante:
                 cellules = [c.strip() for c in ligne.strip("|").split("|")]
-                titres.add(" ".join(c for c in cellules if c))
+                titres.add(" ".join(" ".join(mots(c)) for c in cellules if c))
     return sorted(titres, key=len, reverse=True)
 
 
@@ -356,7 +385,12 @@ def main():
     analyseur.add_argument("--tout", action="store_true",
                            help="détaille aussi les écarts de mise en page")
     options = analyseur.parse_args()
-    attendu = reference(options.reference)
+    corrections = corrections_de_langue(Path("qa/corrections-langue.txt"))
+    if corrections:
+        print("--- corrections de langue appliquées ---")
+        for avant, apres in corrections:
+            print(f"  « {avant} » → « {apres} »")
+    attendu = reference(options.reference, corrections)
     obtenu = candidat(options.source)
     titres = titres_courants(options.source)
     reels = rapporter(attendu, obtenu, titres, options.tout)
@@ -365,11 +399,6 @@ def main():
     print("\nintégrité : " + ("VÉRIFIÉE" if perdus == 0
                               else f"{perdus} signe(s) perdu(s)"))
     return 0 if perdus == 0 else 1
-    reels = rapporter(reference(options.reference), candidat(options.source),
-                      titres_courants(options.source), options.tout)
-    print("\nintégrité : " + ("VÉRIFIÉE" if reels == 0
-                              else f"{reels} écart(s) réel(s) à examiner"))
-    return 0 if reels == 0 else 1
 
 
 if __name__ == "__main__":
