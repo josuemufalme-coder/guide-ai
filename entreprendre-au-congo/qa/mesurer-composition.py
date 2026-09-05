@@ -71,18 +71,28 @@ def pages_de_corps(pdf):
     """
     R = _reconstitueur()
     brutes = [R.nettoyer(page) for page in R.lire_pages([pdf])]
-    # Le corps se reconnaît à sa mesure, non à sa fréquence : un encadré est
-    # composé en retrait des deux côtés, donc sur une justification plus étroite,
-    # et une double page qu'il occupe le rendrait majoritaire à tort.
-    largeurs = collections.defaultdict(int)
+    # Le corps se reconnaît à deux traits, et il faut les deux. Il est fréquent :
+    # une taille qui ne porte qu'une poignée de lignes est un titre, une légende
+    # ou une rangée de tableau. Et il occupe la pleine mesure : un encadré est
+    # composé en retrait des deux côtés, donc plus étroit. La fréquence seule se
+    # trompe sur une double page occupée par un encadré ; la largeur seule se
+    # trompe sur un livre entier, où un tableau déborde la justification.
+    lignes_par_hauteur = collections.Counter()
+    largeurs = collections.defaultdict(collections.Counter)
     for page in brutes:
         for ligne in page:
             if len(ligne.texte_brut()) > 2:
-                largeurs[ligne.hauteur] = max(largeurs[ligne.hauteur],
-                                              ligne.droite - ligne.gauche)
-    if not largeurs:
+                lignes_par_hauteur[ligne.hauteur] += 1
+                largeurs[ligne.hauteur][ligne.droite - ligne.gauche] += 1
+    if not lignes_par_hauteur:
         return []
-    corps = max(largeurs, key=largeurs.get)
+    total = sum(lignes_par_hauteur.values())
+    courantes = [h for h, n in lignes_par_hauteur.items() if n >= 0.05 * total]
+    # La largeur retenue est la plus fréquente, non la plus grande : un schéma en
+    # chasse fixe déborde la justification et rendrait sa taille la plus large,
+    # alors qu'il ne compte que trois occurrences dans tout l'ouvrage.
+    mode_largeur = lambda h: largeurs[h].most_common(1)[0][0]
+    corps = max(courantes or lignes_par_hauteur, key=mode_largeur)
 
     ecarts = collections.Counter()
     for page in brutes:
@@ -189,6 +199,38 @@ def mesurer(pdf, journal):
               for numero, page in enumerate(pages, 1)
               if page and page[-1]["texte"].rstrip().endswith(("-", "­"))]
 
+    # Interdire les veuves ne les supprime pas : cela reporte la contrainte sur
+    # le bas de page. Avec \raggedbottom, TeX raccourcit la page plutôt que
+    # d'étirer les blancs verticaux — ce qui se voit, et se compte.
+    inter = interligne(pages)
+    bas = collections.Counter(page[-1]["haut"] for page in pages if page)
+    bas_courant = bas.most_common(1)[0][0] if bas else 0
+
+    hauteur_corps = max((l["hauteur"] for page in pages for l in page if l["corps"]),
+                        default=0)
+    ouvre_une_unite = lambda page: bool(page) and page[0]["hauteur"] > hauteur_corps
+
+    def finit_un_chapitre(numero):
+        """La page suivante — les pages blanches passées — ouvre-t-elle une unité ?
+
+        Une page qui s'achève tôt parce que le chapitre s'y achève n'est pas une
+        page raccourcie, et une ouverture de partie n'en est pas une non plus.
+        Les compter fausserait la mesure de ce que l'interdiction des veuves
+        coûte réellement — c'est ce que donnait mon premier relevé, qui annonçait
+        deux cent seize lignes manquantes là où il y en a trois.
+        """
+        if ouvre_une_unite(pages[numero - 1]):
+            return True
+        for suivante in pages[numero:]:
+            if suivante:
+                return ouvre_une_unite(suivante)
+        return True
+
+    pages_courtes = [(numero, round((bas_courant - page[-1]["haut"]) / inter, 1))
+                     for numero, page in enumerate(pages, 1)
+                     if page and bas_courant - page[-1]["haut"] >= 0.75 * inter
+                     and not finit_un_chapitre(numero)]
+
     longueurs = sorted(len(l["texte"]) for numero, page in enumerate(pages, 1)
                        for l in page if l["corps"] and pleine(l, numero))
     return {
@@ -200,6 +242,7 @@ def mesurer(pdf, journal):
         "veuves": veuves,
         "orphelines": orphelines,
         "coupes_en_pied": coupes,
+        "pages_courtes": pages_courtes,
         "signes_mediane": st.median(longueurs) if longueurs else 0,
         "signes_90e": longueurs[int(0.9 * len(longueurs))] if longueurs else 0,
     }
@@ -221,6 +264,9 @@ def rapporter(nom, m):
           f"   {'✓' if not m['orphelines'] else '✗'}")
     print(f"  mots coupés en dernier mot de page        : {len(m['coupes_en_pied'])}"
           f"   {'✓' if not m['coupes_en_pied'] else '✗'}")
+    manque = sum(n for _, n in m["pages_courtes"])
+    print(f"  pages raccourcies (bas de page remonté)   : {len(m['pages_courtes'])}"
+          f"   soit {manque:.0f} ligne(s) au total")
     print(f"  signes par ligne pleine                   : "
           f"médiane {m['signes_mediane']:.0f}, 90ᵉ centile {m['signes_90e']}")
     for intitule, cas in (("veuve", m["veuves"]), ("orpheline", m["orphelines"]),

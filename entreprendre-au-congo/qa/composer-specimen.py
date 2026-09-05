@@ -28,12 +28,18 @@ SIGNES = {"garamond": "62 / 66", "libertinus": "62 / 66", "sourceserif": "62 / 6
 ECHAPPEMENTS = {"&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#",
                 "_": r"\_", "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}",
                 "^": r"\textasciicircum{}", "\\": r"\textbackslash{}"}
+_A_ECHAPPER = re.compile("|".join(re.escape(s) for s in ECHAPPEMENTS))
 
 
 def echapper(texte):
-    for signe, remplacement in ECHAPPEMENTS.items():
-        texte = texte.replace(signe, remplacement)
-    return texte
+    """Échappe les signes réservés de LaTeX, en une seule passe.
+
+    Signe par signe, l'ordre trahit : « % » devient « \\% », puis la passe
+    suivante prend cette barre oblique pour un antislash du texte et la rend
+    « \\textbackslash{}% ». Le pour-cent se retrouve nu, ouvre un commentaire et
+    avale la fin de la ligne — une rangée de tableau y perdait son « \\\\ ».
+    """
+    return _A_ECHAPPER.sub(lambda m: ECHAPPEMENTS[m.group()], texte)
 
 
 def en_latex(ligne):

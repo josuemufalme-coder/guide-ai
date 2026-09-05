@@ -13,7 +13,7 @@ Il fait autorité. En cas de divergence avec ce fichier-ci, c'est lui qui tranch
 | Phase | Objet | État |
 | --- | --- | --- |
 | 0 | Mise en place, découpage, contrôle d'intégrité | **en cours de validation** |
-| 1 | Gabarit typographique (césure, police, justification) | **spécimens livrés, D2/D3/D5 en attente** |
+| 1 | Gabarit typographique (césure, police, justification) | **D2 et D3 tranchées ; ouvrage composé, 134 pages** |
 | 2 | Normalisation typographique du texte source | à venir |
 | 3 | Appareil de notes | à venir |
 | 4 | Figures et tableaux | à venir |

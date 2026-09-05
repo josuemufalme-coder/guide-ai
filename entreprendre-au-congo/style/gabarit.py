@@ -89,7 +89,9 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 %% césures consécutives fortement découragées.
 \finalhyphendemerits=10000
 \brokenpenalty=10000
-\doublehyphendemerits=10000
+\doublehyphendemerits=900000
+%% Deux césures consécutives sont fortement pénalisées : c'est ce qui empêche
+%% qu'il s'en aligne trois, faute de paramètre TeX qui les plafonne directement.
 %% Deux lettres avant la coupure, trois après : l'usage français, que
 %% babel-french pose lui-même. Exiger trois des deux côtés, comme on le fait en
 %% anglais, étouffe la césure — et c'est précisément ce que la mesure a montré.

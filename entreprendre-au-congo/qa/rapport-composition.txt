@@ -6,6 +6,7 @@
   veuves et lignes creuses en tête          : 0   ✓
   orphelines en pied                        : 0   ✓
   mots coupés en dernier mot de page        : 0   ✓
+  pages raccourcies (bas de page remonté)   : 2   soit 2 ligne(s) au total
   signes par ligne pleine                   : médiane 62, 90ᵉ centile 66
 
 ── specimen-libertinus — 43 pages, 1072 lignes de corps ──
@@ -15,6 +16,7 @@
   veuves et lignes creuses en tête          : 0   ✓
   orphelines en pied                        : 0   ✓
   mots coupés en dernier mot de page        : 0   ✓
+  pages raccourcies (bas de page remonté)   : 13   soit 21 ligne(s) au total
   signes par ligne pleine                   : médiane 62, 90ᵉ centile 66
 
 ── specimen-sourceserif — 42 pages, 1067 lignes de corps ──
@@ -24,6 +26,7 @@
   veuves et lignes creuses en tête          : 0   ✓
   orphelines en pied                        : 0   ✓
   mots coupés en dernier mot de page        : 0   ✓
+  pages raccourcies (bas de page remonté)   : 3   soit 3 ligne(s) au total
   signes par ligne pleine                   : médiane 62, 90ᵉ centile 66
 
 composition : CONFORME

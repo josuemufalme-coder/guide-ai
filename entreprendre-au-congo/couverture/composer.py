@@ -14,11 +14,25 @@ Quatre partis pris distincts, non quatre variantes d'une même idée :
 
 Aucune illustration, aucune photographie.
 
-UN POINT IMPORTANT. La police employée ici n'engage pas le choix du livre. Les
-couvertures sont composées en Source Sans Pro, qui ne figure pas parmi les trois
-candidates du spécimen : le choix de la police de labeur se tranche sur le texte
-courant, et rien dans ces quatre pages ne doit peser sur cette décision. La
-police de couverture se choisira après, en connaissance de la police du livre.
+    E  collection             aplat pleine page, bandeau horizontal, titre en
+                             réserve dans le bandeau, autrice en pied. Parti pris
+                             commercial et non littéraire, à comparer aux autres.
+
+LA POLICE N'EST PAS LA MÊME PARTOUT, et c'est délibéré. D3 a retenu Source Serif
+Pro pour le texte courant ; rien n'oblige la couverture à la reprendre. Chaque
+proposition emploie donc la police que son parti pris demande, et le rapport dit
+laquelle et pourquoi :
+
+    A  Source Serif Pro   continuité avec le livre : la couverture annonce la
+                          voix du texte, sans rupture
+    B  Source Sans Pro    des capitales en réserve sur un aplat exigent un dessin
+                          ouvert et régulier, que l'encre ne referme pas
+    C  Libertinus Serif   la composition classique appelle une serif de tradition,
+                          plus ancienne d'esprit que celle du livre
+    D  Source Sans Pro    un axe décalé tient mieux avec un dessin neutre, qui ne
+                          concurrence pas la composition
+    E  Source Sans Pro    le bandeau réclame de la graisse et une lisibilité
+                          immédiate en vignette
 """
 import argparse
 import subprocess
@@ -26,11 +40,32 @@ from pathlib import Path
 
 TITRE = "ENTREPRENDRE AU CONGO"
 SOUS_TITRE = "Comprendre l’entrepreneuriat et savoir par où commencer"
-AUTRICE = "RUTH ZADI PUKUTA"
+AUTRICE = "Par Ruth ZADI Pukuta"
 
 FOND_PERDU = 3          # mm
 LARGEUR, HAUTEUR = 148, 210
 SANS = "/usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcesanspro/"
+SERIF = "/usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourceserifpro/"
+LIBERTINUS = "/usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/"
+
+# La police de chaque proposition, et la raison de ce choix.
+POLICES = {
+    "A-typographique": ("Source Serif Pro", SERIF, "SourceSerifPro-Regular.otf",
+                        "SourceSerifPro-RegularIt.otf", "SourceSerifPro-Bold.otf",
+                        "SourceSerifPro-Light.otf", "SourceSerifPro-Semibold.otf"),
+    "B-bloc-couleur": ("Source Sans Pro", SANS, "SourceSansPro-Regular.otf",
+                       "SourceSansPro-RegularIt.otf", "SourceSansPro-Bold.otf",
+                       "SourceSansPro-Light.otf", "SourceSansPro-Semibold.otf"),
+    "C-centree": ("Libertinus Serif", LIBERTINUS, "LibertinusSerif-Regular.otf",
+                  "LibertinusSerif-Italic.otf", "LibertinusSerif-Bold.otf",
+                  "LibertinusSerif-Regular.otf", "LibertinusSerif-Semibold.otf"),
+    "D-asymetrique": ("Source Sans Pro", SANS, "SourceSansPro-Regular.otf",
+                      "SourceSansPro-RegularIt.otf", "SourceSansPro-Bold.otf",
+                      "SourceSansPro-Light.otf", "SourceSansPro-Semibold.otf"),
+    "E-collection": ("Source Sans Pro", SANS, "SourceSansPro-Regular.otf",
+                     "SourceSansPro-RegularIt.otf", "SourceSansPro-Bold.otf",
+                     "SourceSansPro-Light.otf", "SourceSansPro-Semibold.otf"),
+}
 
 PREAMBULE = r"""\documentclass{article}
 \usepackage[paperwidth=@pw@mm,paperheight=@ph@mm,margin=0pt]{geometry}
@@ -39,12 +74,12 @@ PREAMBULE = r"""\documentclass{article}
 \usetikzlibrary{calc}
 \usepackage[french]{babel}
 \pagestyle{empty}
-\setmainfont{SourceSansPro-Regular.otf}[
-  Path       = @sans@ ,
-  ItalicFont = SourceSansPro-RegularIt.otf ,
-  BoldFont   = SourceSansPro-Bold.otf ,
-  FontFace   = {l}{n}{SourceSansPro-Light.otf} ,
-  FontFace   = {sb}{n}{SourceSansPro-Semibold.otf} ,
+\setmainfont{@romain@}[
+  Path       = @chemin@ ,
+  ItalicFont = @italique@ ,
+  BoldFont   = @gras@ ,
+  FontFace   = {l}{n}{@maigre@} ,
+  FontFace   = {sb}{n}{@demi@} ,
   Ligatures  = TeX ,
 ]
 \newcommand{\maigre}{\fontseries{l}\selectfont}
@@ -79,7 +114,7 @@ PARTIS = {
   %% est réparti, non rejeté en bas — c'est lui qui fait la tenue de la page.
   \node[anchor=north west, text width=112mm, align=left, inner sep=0pt]
     at ($(coupe0)+(18mm,180mm)$) {%
-      \color{encre}\maigre\fontsize{14}{18}\selectfont RUTH ZADI PUKUTA};
+      \color{encre}\maigre\fontsize{14}{18}\selectfont Par Ruth ZADI Pukuta};
   \node[anchor=north west, text width=118mm, align=left, inner sep=0pt]
     at ($(coupe0)+(18mm,132mm)$) {%
       \color{encre}\demi\fontsize{39}{46}\selectfont ENTREPRENDRE\\ AU\hspace{0.30em}CONGO};
@@ -100,7 +135,7 @@ PARTIS = {
       \color{encre}\fontsize{13.5}{19}\selectfont Comprendre l’entrepreneuriat\\
       et savoir par où commencer};
   \node[anchor=south west, inner sep=0pt] at ($(coupe0)+(16mm,20mm)$) {%
-      \color{encre}\demi\fontsize{13}{16}\selectfont RUTH ZADI PUKUTA};
+      \color{encre}\demi\fontsize{13}{16}\selectfont Par Ruth ZADI Pukuta};
 """,
 "C-centree": r"""
   \fill[papier] (coin) rectangle ($(coin)+(@pw@mm,@ph@mm)$);
@@ -108,7 +143,7 @@ PARTIS = {
   \draw[encre,line width=0.4pt] ($(coupe0)+(24mm,178mm)$) -- ($(coupe0)+(124mm,178mm)$);
   \node[anchor=north, text width=112mm, align=center, inner sep=0pt]
     at ($(coupe0)+(74mm,168mm)$) {%
-      \color{encre}\fontsize{11}{15}\selectfont RUTH\quad ZADI\quad PUKUTA};
+      \color{encre}\fontsize{11}{15}\selectfont Par Ruth ZADI Pukuta};
   \node[anchor=north, text width=124mm, align=center, inner sep=0pt]
     at ($(coupe0)+(74mm,132mm)$) {%
       \color{encre}\demi\fontsize{31}{43}\selectfont ENTREPRENDRE\\ AU\hspace{0.30em}CONGO};
@@ -133,17 +168,37 @@ PARTIS = {
       \color{encre}\maigre\fontsize{12.5}{18}\selectfont Comprendre l’entrepreneuriat\\
       et savoir par où commencer};
   \node[anchor=south west, inner sep=0pt] at ($(coupe0)+(26mm,22mm)$) {%
-      \color{encre}\demi\fontsize{12}{15}\selectfont RUTH ZADI PUKUTA};
+      \color{encre}\demi\fontsize{12}{15}\selectfont Par Ruth ZADI Pukuta};
+""",
+"E-collection": r"""
+  %% Aplat pleine page, coupé sur les quatre bords. Un bandeau clair le traverse ;
+  %% le titre s'y détient en réserve. Parti pris de collection : la couverture se
+  %% reconnaît de loin et en vignette, avant même d'être lue.
+  \fill[ocre] (coin) rectangle ($(coin)+(@pw@mm,@ph@mm)$);
+  \fill[papier] ($(coin)+(0mm,@ph@mm-72mm)$) rectangle ($(coin)+(@pw@mm,@ph@mm-140mm)$);
+  \node[anchor=west, text width=124mm, align=left, inner sep=0pt]
+    at ($(coupe0)+(15mm,105mm)$) {%
+      \color{ocre}\fontseries{b}\selectfont\fontsize{33}{43}\selectfont
+      ENTREPRENDRE\\ AU\hspace{0.30em}CONGO};
+  \node[anchor=north west, text width=120mm, align=left, inner sep=0pt]
+    at ($(coupe0)+(15mm,60mm)$) {%
+      \color{papier}\fontsize{13}{18}\selectfont Comprendre l’entrepreneuriat\\
+      et savoir par où commencer};
+  \node[anchor=south west, inner sep=0pt] at ($(coupe0)+(15mm,18mm)$) {%
+      \color{papier}\demi\fontsize{12.5}{15}\selectfont Par Ruth ZADI Pukuta};
 """,
 }
 
 
 def composer(nom, decor, sortie):
     pt = lambda mm: f"{mm * 72 / 25.4:.3f}"
+    _, chemin, romain, italique, gras, maigre, demi = POLICES[nom]
     valeurs = {
+        "chemin": chemin, "romain": romain, "italique": italique,
+        "gras": gras, "maigre": maigre, "demi": demi,
         "pw": str(LARGEUR + 2 * FOND_PERDU), "ph": str(HAUTEUR + 2 * FOND_PERDU),
         "bw": str(LARGEUR + FOND_PERDU), "bh": str(HAUTEUR + FOND_PERDU),
-        "fp": str(FOND_PERDU), "sans": SANS,
+        "fp": str(FOND_PERDU),
         "t0": pt(FOND_PERDU), "tx": pt(FOND_PERDU + LARGEUR),
         "ty": pt(FOND_PERDU + HAUTEUR),
     }
@@ -168,6 +223,11 @@ def composer(nom, decor, sortie):
     pdf = sortie / f"couverture-{nom}.pdf"
     subprocess.run(["pdftoppm", "-r", "150", "-png", "-singlefile", str(pdf),
                     str(sortie / f"couverture-{nom}")], check=True)
+    # La vignette : le livre se vendra en ligne, et une couverture illisible à
+    # deux cents pixels est une couverture ratée, si belle soit-elle en grand.
+    subprocess.run(["pdftoppm", "-scale-to-x", "200", "-scale-to-y", "-1",
+                    "-png", "-singlefile", str(pdf),
+                    str(sortie / f"vignette-{nom}")], check=True)
     return pdf
 
 

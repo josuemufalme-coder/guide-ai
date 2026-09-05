@@ -392,7 +392,8 @@ def interlignes(pages):
     return {hauteur: compte.most_common(1)[0][0] for hauteur, compte in ecarts.items()}
 
 
-def blocs_de_page(page, bords, blocs, continuation, sauts, page_suivante=None):
+def blocs_de_page(page, bords, blocs, continuation, sauts, page_suivante=None,
+                  numero=1):
     """Ajoute les blocs d'une page à la suite, en gérant le report de paragraphe.
 
     Un bloc s'ouvre quand le genre change, quand la ligne ouvre un item de liste,
@@ -434,10 +435,10 @@ def blocs_de_page(page, bords, blocs, continuation, sauts, page_suivante=None):
         else:
             blocs[-1].lignes.append(ligne)
 
-    return paragraphe_se_poursuit(page, bords, page_suivante)
+    return paragraphe_se_poursuit(page, bords, page_suivante, numero)
 
 
-def paragraphe_se_poursuit(page, bords, page_suivante):
+def paragraphe_se_poursuit(page, bords, page_suivante, numero=1):
     """Le paragraphe de fin de page se poursuit-il sur la page suivante ?
 
     Une ligne pleine est le premier indice : dans un texte justifié, la dernière
@@ -451,8 +452,9 @@ def paragraphe_se_poursuit(page, bords, page_suivante):
     if genre not in ("corps", "encadre"):
         return False
     # Un encadré est composé sur une justification plus étroite : sa ligne pleine
-    # n'atteint jamais le bord du corps de texte. Chaque genre a donc son bord.
-    if derniere.droite < bords[genre] - 8:
+    # n'atteint jamais le bord du corps de texte. Chaque genre a son bord, et
+    # chaque parité de page le sien.
+    if derniere.droite < bords[(genre, numero % 2)] - 8:
         return False
     texte = derniere.texte_brut().rstrip()
     if not texte.endswith(FIN_DE_PHRASE):
@@ -474,10 +476,18 @@ def assembler(pages):
     """Rend la suite des blocs du livre, hors mise en page et table des matières."""
     propres = [nettoyer(p) for p in pages]
     propres = [p for p in propres if not est_table_des_matieres(p)]
+    # Le bord droit dépend du genre ET de la parité de la page. La gouttière
+    # étant plus large que la marge extérieure, le bloc de texte se déplace du
+    # recto au verso : un bord unique ferait passer pour courtes toutes les
+    # lignes pleines d'une des deux paginations, et donc pour fins de paragraphe
+    # des lignes qui n'en sont pas.
     bords = {}
     for genre in ("corps", "encadre"):
-        droites = [l.droite for p in propres for l in p if genre_de(l) == genre]
-        bords[genre] = collections.Counter(droites).most_common(1)[0][0]
+        for parite in (0, 1):
+            droites = [l.droite for numero, p in enumerate(propres, 1)
+                       if numero % 2 == parite for l in p if genre_de(l) == genre]
+            bords[(genre, parite)] = (collections.Counter(droites).most_common(1)[0][0]
+                                      if droites else 0)
 
     sauts = interlignes(propres)
     blocs, continuation = [], False
@@ -485,7 +495,7 @@ def assembler(pages):
         if page:
             suivante = propres[index + 1] if index + 1 < len(propres) else None
             continuation = blocs_de_page(page, bords, blocs, continuation, sauts,
-                                         suivante)
+                                         suivante, index + 1)
     return blocs
 
 
