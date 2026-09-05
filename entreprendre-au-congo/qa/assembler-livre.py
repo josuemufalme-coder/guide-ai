@@ -25,7 +25,7 @@ FOND_PERDU = 3 * MM
 def main():
     analyseur = argparse.ArgumentParser(description=__doc__)
     analyseur.add_argument("--couverture", type=Path,
-                           default=Path("build/couverture/couverture-A-typographique.pdf"))
+                           default=Path("build/couverture/couverture-B-bloc-couleur.pdf"))
     analyseur.add_argument("--interieur", type=Path,
                            default=Path("build/livre/ENTREPRENDRE-AU-CONGO-interieur.pdf"))
     analyseur.add_argument("--sortie", type=Path,

@@ -34,7 +34,69 @@ def en_latex(ligne):
     return COMP.en_latex(ligne)
 
 
-def convertir(chemin):
+SANS_NUMERO = re.compile(r"^Chapitre\s+\d+\s*—\s*")
+
+
+def sans_numero(titre):
+    """« Chapitre 5 — Analyser son marché » devient « Analyser son marché »."""
+    return SANS_NUMERO.sub("", titre)
+
+
+def nom_de_partie(intitule):
+    """« Quatrième partie — PLANIFIER ET DÉCIDER » donne « PLANIFIER ET DÉCIDER »."""
+    _, _, nom = intitule.partition("—")
+    return (nom or intitule).strip()
+
+
+def rang_de_partie(intitule):
+    """La part de l'intitulé qui dit le rang : « Quatrième partie »."""
+    rang, separateur, _ = intitule.partition("—")
+    return rang.strip() if separateur else ""
+
+
+def petites_capitales(texte):
+    """Un titre courant en petites capitales véritables.
+
+    Les petites capitales se dessinent à partir des minuscules : un intitulé de
+    partie, qui est écrit tout en capitales dans le manuscrit, doit d'abord
+    redescendre en bas de casse, sans quoi la police rend des capitales de
+    pleine hauteur et la ligne de tête crie.
+    """
+    if not texte:
+        return ""
+    return r"\textsc{\MakeLowercase{%s}}" % en_latex(texte)
+
+
+def page_de_partie(intitule):
+    """La page de titre d'une partie : recto, sans folio, verso blanc.
+
+    Elle remplace le \part* de memoir pour deux raisons. La première est de
+    forme : une partie s'annonce sur sa propre page, rang au-dessus, filet, nom
+    au-dessous, et rien d'autre. La seconde est un défaut constaté : le
+    \addcontentsline qui suivait \part* s'exécutait une fois la page tournée,
+    et la table des matières renvoyait deux pages trop loin. Ici, il est écrit
+    sur la page de la partie elle-même.
+    """
+    rang, nom = rang_de_partie(intitule), nom_de_partie(intitule)
+    return "\n".join([
+        r"\cleardoublepage",
+        r"\thispagestyle{empty}",
+        r"\addcontentsline{toc}{part}{%s}" % en_latex(intitule),
+        r"\markboth{%s}{%s}" % (petites_capitales(nom), petites_capitales(nom)),
+        r"\vspace*{52mm}",
+        r"\begin{center}",
+        r"{\small\textsc{\MakeLowercase{%s}}}\par" % en_latex(rang),
+        r"\vspace{6mm}",
+        r"{\color{filet}\rule{20mm}{0.4pt}}\par",
+        r"\vspace{8mm}",
+        r"{\LARGE\bfseries %s}" % en_latex(nom),
+        r"\end{center}",
+        r"\vfill",
+        r"\cleardoublepage",
+    ])
+
+
+def convertir(chemin, etat):
     """Un fichier du manuscrit en LaTeX."""
     sortie, liste, tableau, schema = [], None, [], None
 
@@ -112,16 +174,21 @@ def convertir(chemin):
             continue
         if nue.startswith("<!--"):
             fermer_liste()
-            partie = en_latex(TITRE_PARTIE.match(nue).group(1))
-            sortie.append(r"\part*{%s}\addcontentsline{toc}{part}{%s}"
-                          % (partie, partie))
+            intitule = TITRE_PARTIE.match(nue).group(1)
+            etat["partie"] = nom_de_partie(intitule)
+            sortie.append(page_de_partie(intitule))
         elif nue.startswith("# "):
             fermer_liste()
             titre = en_latex(nue[2:])
-            # Le titre entre à la table des matières et au titre courant : sans
-            # \addcontentsline, un \chapter* n'y figure pas.
+            # Le titre entre à la table des matières et aux titres courants :
+            # sans \addcontentsline, un \chapter* n'y figure pas. Le titre
+            # courant, lui, laisse tomber le « Chapitre N — » : le numéro est
+            # déjà en tête du chapitre, et la ligne de tête doit tenir dans la
+            # justification.
             sortie.append(r"\chapter*{%s}\addcontentsline{toc}{chapter}{%s}"
-                          r"\markright{%s}" % (titre, titre, titre))
+                          r"\markboth{%s}{%s}"
+                          % (titre, titre, petites_capitales(etat["partie"]),
+                             petites_capitales(sans_numero(nue[2:]))))
         elif nue.startswith("## "):
             fermer_liste()
             sortie.append(r"\placedutitre\section*{%s}" % en_latex(nue[3:]))
@@ -199,8 +266,18 @@ def main():
     # Le premier fichier porte la page de titre et la page de droits : il n'est
     # pas du corps de l'ouvrage et se compose à part, en pages liminaires.
     liminaires, corps_fichiers = fichiers[0], fichiers[1:]
-    corps = liminaire_en_latex(liminaires) + "\n\n" + "\n\n\\cleardoublepage\n\n".join(
-        convertir(f) for f in corps_fichiers)
+    # La partie courante se transmet d'un fichier à l'autre : seuls huit des
+    # seize chapitres portent l'ouverture de leur partie, les autres en héritent.
+    # L'introduction, la clôture et les notes n'appartiennent à aucune partie :
+    # leur ligne de tête de gauche reste vide plutôt que de porter la partie
+    # précédente, qui ne les concerne pas.
+    etat, morceaux = {"partie": ""}, []
+    for fichier in corps_fichiers:
+        if not fichier.stem[:2].isdigit() or fichier.stem[:2] in ("00", "80", "90"):
+            etat["partie"] = ""
+        morceaux.append(convertir(fichier, etat))
+    corps = (liminaire_en_latex(liminaires) + "\n\n"
+             + "\n\n\\cleardoublepage\n\n".join(morceaux))
     police = POLICES[options.police]
 
     global PREAMBULE

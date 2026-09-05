@@ -216,9 +216,17 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 \setaftersecskip{0.5\onelineskip}
 
 %% --- Titres courants -------------------------------------------------------
+%% Le titre de l'ouvrage ne se répète pas de page en page : le lecteur sait quel
+%% livre il tient. La ligne de tête dit où il en est — la partie sur la page de
+%% gauche, le chapitre sur celle de droite. Les deux changent au fil du volume,
+%% ce qui est la raison d'être d'un titre courant. Les pages qui n'appartiennent
+%% à aucune partie — introduction, clôture, notes — laissent la gauche vide.
 \makepagestyle{livre}
-\makeevenhead{livre}{\small\textsc{Entreprendre au Congo}}{}{}
-\makeoddhead{livre}{}{}{\small\textsc{@courant@}}
+%% memoir met la table des matières en capitales de pleine hauteur dans sa
+%% ligne de tête. Le reste du livre est en petites capitales : on l'y ramène.
+\renewcommand{\tocmark}{\markboth{\textsc{\contentsname}}{\textsc{\contentsname}}}
+\makeevenhead{livre}{\small\leftmark}{}{}
+\makeoddhead{livre}{}{}{\small\rightmark}
 \makeevenfoot{livre}{\small\thepage}{}{}
 \makeoddfoot{livre}{}{}{\small\thepage}
 \pagestyle{livre}
@@ -233,5 +241,7 @@ PREAMBULE = r"""\documentclass[11pt,twoside]{memoir}
 \raggedbottom
 
 \begin{document}
+%% Le spécimen, qui ne pose pas de marque, garde un titre courant.
+\markboth{\textsc{@courant@}}{\textsc{@courant@}}
 \setcounter{page}{18}
 """

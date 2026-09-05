@@ -98,9 +98,9 @@ langue: | $(BUILD)
 ouvrage: livre couverture
 	python3 $(QA)/assembler-livre.py
 	python3 $(QA)/composer-epub.py --source $(SRC)
-	cp $(BUILD)/couverture/couverture-A-typographique.png \
+	cp $(BUILD)/couverture/couverture-B-bloc-couleur.png \
 	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.png
-	cp $(BUILD)/couverture/couverture-A-typographique.pdf \
+	cp $(BUILD)/couverture/couverture-B-bloc-couleur.pdf \
 	   $(BUILD)/livrable/ENTREPRENDRE-AU-CONGO-couverture.pdf
 	python3 $(QA)/controler-filets.py $(BUILD)/livre/ENTREPRENDRE-AU-CONGO-interieur.pdf \
 	  --attendus 30 | tee $(QA)/rapport-filets.txt

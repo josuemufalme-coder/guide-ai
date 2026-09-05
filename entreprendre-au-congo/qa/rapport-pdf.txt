@@ -5,7 +5,8 @@
   boîte de rognage déclarée    ✓   toutes les pages
   fond perdu ≥ 3 mm            ✓   sur les quatre côtés de chaque page
   aucune image à profiler      ✓   le livre est composé de texte et de traits
-  couleur en noir seul         ✓   4 pose(s) de noir seul, aucune couleur
+  bloc de texte en noir seul   ✓   1383 pose(s) de noir seul, aucune couleur
+  encres de la couverture      ✓   C0 M57 J81 N36
   titre et auteure renseignés  ✓   « Entreprendre au Congo — Comprendre l'entrepreneuriat et savoir par où commencer » — Ruth ZADI Pukuta
   intérieur multiple de quatre ✓   141 pages, dont 140 d'intérieur
 

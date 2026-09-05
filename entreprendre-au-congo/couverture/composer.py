@@ -85,7 +85,6 @@ PREAMBULE = r"""\documentclass{article}
 \newcommand{\maigre}{\fontseries{l}\selectfont}
 \newcommand{\demi}{\fontseries{sb}\selectfont}
 
-%% Encre : un noir de labeur, jamais le noir pur de l'écran, et un ocre sourd.
 %% Les couleurs sont posées en quadrichromie, jamais en RVB : un fichier
 %% d'impression ne contient pas de couleur d'écran. L'encre est du noir seul,
 %% cent pour cent de noir et rien d'autre — c'est ce que le contrôle vérifie.
@@ -135,14 +134,26 @@ PARTIS = {
   \fill[papier] (coin) rectangle ($(coin)+(@pw@mm,@ph@mm)$);
   %% L'aplat doit être coupé, donc couvrir le fond perdu jusqu'au bord de page.
   \fill[ocre] ($(coin)+(0mm,@ph@mm)$) rectangle ($(coin)+(@pw@mm,@ph@mm-107mm)$);
+  %% Le titre en réserve dans l'aplat. Son interlignage est posé en millimètres :
+  %% celui d'un nœud TikZ ne suit pas \fontsize, et les deux lignes se touchaient.
+  %% Il est placé au tiers bas de l'aplat plutôt qu'en son milieu — l'œil corrige
+  %% vers le haut, et une masse optiquement centrée se pose un peu plus bas.
   \node[anchor=north west, text width=118mm, align=left, inner sep=0pt]
-    at ($(coupe0)+(16mm,182mm)$) {%
-      \color{papier}\demi\fontsize{38}{42}\selectfont ENTREPRENDRE\\[1mm] AU\hspace{0.30em}CONGO};
-  \node[anchor=north west, text width=116mm, align=left, inner sep=0pt]
-    at ($(coupe0)+(16mm,86mm)$) {%
+    at ($(coupe0)+(16mm,168mm)$) {%
+      \color{papier}\demi\fontsize{38}{42}\selectfont ENTREPRENDRE\\[6mm] AU\hspace{0.15em}CONGO};
+  %% Un filet court en réserve, au-dessus du titre : il donne à l'aplat un point
+  %% d'appui et signale une collection plutôt qu'un tirage isolé.
+  \draw[papier, line width=0.9pt]
+    ($(coupe0)+(16mm,180mm)$) -- ($(coupe0)+(38mm,180mm)$);
+  %% Sous l'aplat, la page respire : sous-titre haut, autrice en pied, et entre
+  %% les deux rien. C'est cette réserve qui fait la tenue de la couverture.
+  \node[anchor=north west, text width=112mm, align=left, inner sep=0pt]
+    at ($(coupe0)+(16mm,88mm)$) {%
       \color{encre}\fontsize{13.5}{19}\selectfont Comprendre l’entrepreneuriat\\
       et savoir par où commencer};
-  \node[anchor=south west, inner sep=0pt] at ($(coupe0)+(16mm,20mm)$) {%
+  \draw[ocre, line width=0.6pt]
+    ($(coupe0)+(16mm,34mm)$) -- ($(coupe0)+(38mm,34mm)$);
+  \node[anchor=south west, inner sep=0pt] at ($(coupe0)+(16mm,22mm)$) {%
       \color{encre}\demi\fontsize{13}{16}\selectfont Par Ruth ZADI Pukuta};
 """,
 "C-centree": r"""

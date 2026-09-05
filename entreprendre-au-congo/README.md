@@ -21,7 +21,7 @@ Il fait autorité. En cas de divergence avec ce fichier-ci, c'est lui qui tranch
 | 6 | Liminaires et fin de volume | **entamée** — titre, droits et table des matières posés ; ISBN, dépôt légal et achevé d'imprimer restent physiquement vides |
 | 7 | Composition et mise en page | **faite** — 140 pages, quatre mesures conformes |
 | 8 | Contrôle qualité automatisé | **faite** — LanguageTool sur la source, contrôle du PDF d'impression |
-| 9 | Livrables | **faite** — un PDF unique, un EPUB validé, la couverture seule |
+| 9 | Livrables | **faite** — un PDF unique, un EPUB validé, la couverture seule ; couverture retenue : B, bloc de couleur |
 
 Une phase se termine par un point d'arrêt : rapport présenté, validation
 attendue. Aucune phase n'en enchaîne une autre — sauf les phases 2, 4, 8 et 9,
@@ -243,6 +243,33 @@ retenue et l'intérieur dans un fichier unique où toutes les pages sortent au m
 format, 154 × 216 mm, coupe déclarée à 148 × 210 mm. `qa/composer-epub.py`
 compose l'EPUB depuis la même source, sans convertisseur extérieur ; epubcheck
 5.3.0 le déclare valide.
+
+La couverture retenue est la **proposition B, bloc de couleur** : un aplat ocre
+sur la moitié haute, le titre en réserve, le sous-titre et l'autrice dans la
+réserve de papier, en Source Sans Pro. L'ocre est posé en quadrichromie
+(C0 M57 J81 N36) ; le bloc de texte, lui, reste en noir seul, et le contrôle
+vérifie les deux séparément.
+
+## Ce qui fait un livre plutôt qu'un tirage de chapitres
+
+**Les titres courants ne répètent plus le titre de l'ouvrage.** Le lecteur sait
+quel livre il tient ; ce qu'il cherche en haut de page, c'est où il en est. La
+page de gauche porte donc la partie, la page de droite le chapitre — sans son
+numéro, qui figure déjà en tête du chapitre et ferait déborder la ligne. Les
+pages qui n'appartiennent à aucune partie — introduction, clôture, notes —
+laissent la gauche vide plutôt que d'y traîner la partie précédente. Tout est en
+petites capitales véritables, les intitulés de partie repassant par
+`\MakeLowercase` d'abord : dessinées à partir des minuscules, les petites
+capitales exigent des minuscules.
+
+**Chaque partie s'annonce sur sa propre page.** Recto, sans folio ni titre
+courant, verso blanc : le rang au-dessus, un filet, le nom au-dessous. Elle
+remplace le `\part*` de memoir, dont le `\addcontentsline` s'exécutait une fois
+la page tournée — la table des matières renvoyait deux pages trop loin, et le
+dit maintenant juste.
+
+**Les chapitres s'ouvrent au recto**, folio en pied de page, titre courant
+supprimé sur la page d'ouverture.
 
 ## Ce que les contrôles ont trouvé, et ce qui a été corrigé
 

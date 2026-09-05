@@ -8,8 +8,8 @@ un imprimeur, et que ce script vérifie :
     format         une seule taille de page, la taille annoncée
     rognage        une boîte de rognage déclarée sur chaque page, et un fond
                    perdu d'au moins 3 mm tout autour
-    couleur        pas de couleur en quadrichromie là où l'on a annoncé du noir
-                   seul ; aucune image en RVB
+    couleur        le bloc de texte en noir seul, la couverture dans les encres
+                   qu'elle emploie et jamais en RVB ; aucune image à profiler
     métadonnées    titre et auteure renseignés
     pagination     un multiple de quatre, condition de l'imposition
 
@@ -82,26 +82,42 @@ def controler(chemin, largeur, hauteur, fond_perdu):
     # Les opérateurs de couleur du PostScript : « k » pose une quadrichromie,
     # « rg » un rouge-vert-bleu, « g » un niveau de gris. Les flux de page sont
     # compressés ; pypdf les rend décompressés, et c'est là qu'on les lit.
-    # « 0 0 0 X k » est du noir seul : c'est ce qu'on veut, et ce n'est pas de
-    # la quadrichromie. N'est comptée comme quadrichromie qu'une pose où le
-    # cyan, le magenta ou le jaune sont sollicités.
+    # « 0 0 0 X k » est du noir seul : c'est ce qu'on veut dans le bloc de
+    # texte, et ce n'est pas de la quadrichromie. La couverture, elle, porte une
+    # couleur d'accompagnement voulue : elle est décrite, non reprochée.
     QUADRI = re.compile(rb"([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) k[\s]")
-    quadri = rvb = noirseul = 0
-    for page in lecteur.pages:
-        flux = page.get_contents()
-        if flux is None:
-            continue
-        donnees = flux.get_data()
-        for c, m, j, _ in QUADRI.findall(donnees):
-            if any(float(v) for v in (c, m, j)):
-                quadri += 1
-            else:
-                noirseul += 1
-        rvb += len(re.findall(rb"[\d.]+ [\d.]+ [\d.]+ rg[\s]", donnees))
-    poser("couleur en noir seul", quadri == 0 and rvb == 0,
+    GRIS = re.compile(rb"(?:^|[\s])[\d.]+ [gG][\s]")
+
+    def encres(pages):
+        quadri, rvb, noirseul = set(), 0, 0
+        for page in pages:
+            flux = page.get_contents()
+            if flux is None:
+                continue
+            donnees = flux.get_data()
+            for c, m, j, n in QUADRI.findall(donnees):
+                if any(float(v) for v in (c, m, j)):
+                    quadri.add(tuple(round(float(v), 2) for v in (c, m, j, n)))
+                else:
+                    noirseul += 1
+            rvb += len(re.findall(rb"[\d.]+ [\d.]+ [\d.]+ rg[\s]", donnees))
+            # Le texte du livre est posé en niveaux de gris, qui s'impriment en
+            # noir seul : c'est la même encre, exprimée dans l'espace le plus
+            # simple. On le compte pour que le rapport dise ce qu'il a vu.
+            noirseul += len(GRIS.findall(donnees))
+        return quadri, rvb, noirseul
+
+    couleurs_couverture, rvb_couverture, _ = encres(lecteur.pages[:1])
+    couleurs_bloc, rvb_bloc, noirseul = encres(lecteur.pages[1:])
+    poser("bloc de texte en noir seul", not couleurs_bloc and not rvb_bloc,
           f"{noirseul} pose(s) de noir seul, aucune couleur"
-          if not (quadri or rvb)
-          else f"{quadri} quadrichromie(s), {rvb} RVB")
+          if not (couleurs_bloc or rvb_bloc)
+          else f"{len(couleurs_bloc)} couleur(s), {rvb_bloc} RVB")
+    poser("encres de la couverture", not rvb_couverture,
+          ("noir seul" if not couleurs_couverture else
+           " + ".join("C%.0f M%.0f J%.0f N%.0f" % tuple(100 * v for v in c)
+                      for c in sorted(couleurs_couverture)))
+          + (f" — {rvb_couverture} RVB" if rvb_couverture else ""))
 
     # --- Métadonnées et pagination -----------------------------------------
     infos = lecteur.metadata or {}

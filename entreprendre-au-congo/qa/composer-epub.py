@@ -202,7 +202,7 @@ def main():
     analyseur.add_argument("--source", type=Path, default=Path("src"))
     analyseur.add_argument("--sortie", type=Path, default=Path("build/livrable"))
     analyseur.add_argument("--couverture", type=Path,
-                           default=Path("build/couverture/couverture-A-typographique.png"))
+                           default=Path("build/couverture/couverture-B-bloc-couleur.png"))
     options = analyseur.parse_args()
 
     fichiers = sorted(options.source.glob("*.md"))
